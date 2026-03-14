@@ -52,7 +52,16 @@ Grund:
   - `fw_load_type=0`
   - dort wurde bereits `SMU is initialized successfully!` erreicht
 - aktueller on-disk Modulstand:
-  - `86b03d3b9735631345a41be0244b03e9af8d1c2a0080abff5487ad505d5791bd`
+  - `08efc87519f2614e748f177d3bb3c060818f2f7571e3b81ed9be948245d27290`
+  - auf frischem Cold Boot validiert
+  - frischer Boot:
+    - `52e121c3-b4be-4f41-bb1e-996c7249d5bb`
+  - frischer erster Blocker:
+    - `smu_load`
+  - einziger Verhaltensunterschied gegenueber dem vorherigen on-disk Stand:
+    - lokale PMFW/SMU-Sonderlogik in `psp_hw_start()` entfernt
+  - vorheriger on-disk Backup-Stand:
+    - `/lib/modules/6.1.115-vendor-rk35xx/kernel/drivers/gpu/drm/amd/amdgpu/amdgpu.ko.bak-20260314-152903`
 
 Die aktuelle Wahrheit steht in:
 - `SESSION_STATE_RK3588_AMDGPU_2026-03-11.md`
@@ -63,13 +72,15 @@ Die schnelle Wiederaufnahme nach Reboot steht ausserhalb des Repos gespiegelt in
 ## Wichtigste Referenzen im Repo
 
 - frische PSP-Referenz:
-  - `logs/postcold-psp-dmesg-20260314-134619.log`
+  - `logs/postcold-psp-dmesg-20260314-153451.log`
 - same-boot Richtungsbeweis fuer `LOAD_IP_FW(SMC)=0`:
   - `logs/postcold-psp-dmesg-20260314-135942.log`
 - bewusst verworfene same-boot Verschmutzung:
   - `logs/postcold-psp-dmesg-20260314-140252.log`
 - aktueller Quellzustand als Patch:
-  - `state-snapshots/amdgpu-worktree-diff-20260314-iteration36.patch`
+  - `state-snapshots/amdgpu-psp-current-diff-20260314-153451.patch`
+  - Basis-Kontext weiter in:
+    - `state-snapshots/amdgpu-worktree-diff-20260314-iteration36.patch`
 
 ## Arbeitsregeln
 

@@ -1,12 +1,65 @@
 # Session State: RK3588 + RX 6400 AMDGPU Bring-up
 
-Last updated: 2026-03-14T14:18:00+01:00
+Last updated: 2026-03-14T15:37:00+01:00
 
 ## Goal
 
 Enable AMDGPU on Orange Pi 5 Plus (RK3588) with RX 6400 (`1002:743f`) on Armbian vendor kernel (`rk35xx`, 6.1), with reproducible patches and a controlled smoke-test flow.
 
 ## Latest checkpoint
+
+- Fresh reboot validation of the minimal PMFW revert:
+  - classification:
+    - PROTECTED_FRESH
+  - logs:
+    - `/home/orange/gpu-bringup/logs/postcold-psp-dmesg-20260314-153451.log`
+    - `/home/orange/gpu-bringup/logs/postcold-psp-smoke-20260314-153451.log`
+  - boot id:
+    - `52e121c3-b4be-4f41-bb1e-996c7249d5bb`
+  - module hash:
+    - `08efc87519f2614e748f177d3bb3c060818f2f7571e3b81ed9be948245d27290`
+  - exact source change validated there:
+    - reverted only the local PMFW/SMU special-casing in `psp_hw_start()`
+    - preserved local iteration36 changes for:
+      - fixed/natural TMR placement
+      - ASD shared-buffer init
+      - optional RAP skip on MP0 `11.0.13`
+      - diagnostic logging
+  - current source snapshot for the validated `amdgpu_psp.c` state:
+    - `/home/orange/gpu-bringup/state-snapshots/amdgpu-psp-current-diff-20260314-153451.patch`
+  - broader prior context snapshot:
+    - `/home/orange/gpu-bringup/state-snapshots/amdgpu-worktree-diff-20260314-iteration36.patch`
+  - analyzer result:
+    - `13/21` phases green
+    - green:
+      - `vbios`
+      - `post-1`
+      - `vram`
+      - `reserve_tmr`
+      - `mem_training`
+      - `fw_buf`
+      - `ring_init`
+      - `ring_prewait`
+      - `boot_kdb`
+      - `boot_spl`
+      - `boot_sysdrv`
+      - `ID_LOAD_TOC`
+      - `SMC_prep`
+  - first hard blocker:
+    - `smu_load`
+    - exact lines:
+      - `arm64 bring-up: load_ip_fw prep ucode=SMC id=0x31 mc=0x8000578000 size=0x3b200 type=0x12`
+      - `psp submit-post: cmd=LOAD_IP_FW(0x6) ... resp{status=0xa5a5a5a5 ...}`
+      - `arm64 bring-up: PSP cmd wait expired for LOAD_IP_FW with no response`
+      - `[drm:psp_load_smu_fw [amdgpu]] *ERROR* PSP load smu failed!`
+  - interpretation:
+    - the one-change revert restored the intended fresh `smu_load` frontier
+    - this matches the older depth reference `113549`
+    - it did not regress earlier validated phases below the protected floor
+  - previous on-disk module backup:
+    - `/lib/modules/6.1.115-vendor-rk35xx/kernel/drivers/gpu/drm/amd/amdgpu/amdgpu.ko.bak-20260314-152903`
+    - previous hash:
+      - `86b03d3b9735631345a41be0244b03e9af8d1c2a0080abff5487ad505d5791bd`
 
 - Current protected baseline run is now:
   - `/home/orange/gpu-bringup/logs/postcold-psp-dmesg-20260314-123919.log`
