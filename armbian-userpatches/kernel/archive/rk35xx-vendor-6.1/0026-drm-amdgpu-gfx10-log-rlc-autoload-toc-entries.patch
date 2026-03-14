@@ -1,0 +1,48 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: RK3588 AMDGPU Bringup <noreply@example.com>
+Date: Fri, 13 Mar 2026 22:24:00 +0100
+Subject: [PATCH] drm/amdgpu/gfx10: log RLC backdoor TOC entries before autoload
+
+For fw3 bring-up on arm64, print key TOC sizes/offsets prior to programming
+`RLC_HYP_BOOTLOAD_*`, and flag empty mandatory entries.
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index ded89d9897a5..116e11d3ae93 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -5575,14 +5575,32 @@ static void gfx_v10_0_rlc_backdoor_autoload_copy_sdma_ucode(struct amdgpu_devic
+ static int gfx_v10_0_rlc_backdoor_autoload_enable(struct amdgpu_device *adev)
+ {
+ 	uint32_t rlc_g_offset, rlc_g_size, tmp;
++	uint32_t pfp_size, ce_size, me_size, mec_size;
+ 	uint64_t gpu_addr;
+ 
+ 	gfx_v10_0_rlc_backdoor_autoload_copy_toc_ucode(adev);
+ 	gfx_v10_0_rlc_backdoor_autoload_copy_sdma_ucode(adev);
+ 	gfx_v10_0_rlc_backdoor_autoload_copy_gfx_ucode(adev);
+ 
+ 	rlc_g_offset = rlc_autoload_info[FIRMWARE_ID_RLC_G_UCODE].offset;
+ 	rlc_g_size = rlc_autoload_info[FIRMWARE_ID_RLC_G_UCODE].size;
++	pfp_size = rlc_autoload_info[FIRMWARE_ID_CP_PFP].size;
++	ce_size = rlc_autoload_info[FIRMWARE_ID_CP_CE].size;
++	me_size = rlc_autoload_info[FIRMWARE_ID_CP_ME].size;
++	mec_size = rlc_autoload_info[FIRMWARE_ID_CP_MEC].size;
+ 	gpu_addr = adev->gfx.rlc.rlc_autoload_gpu_addr + rlc_g_offset;
++
++	dev_info(adev->dev,
++		 "rlc autoload toc: RLC_G off=0x%08x size=0x%08x PFP size=0x%08x CE size=0x%08x ME size=0x%08x MEC size=0x%08x SDMA0 size=0x%08x SDMA1 size=0x%08x\n",
++		 rlc_g_offset, rlc_g_size, pfp_size, ce_size, me_size, mec_size,
++		 rlc_autoload_info[FIRMWARE_ID_SDMA0_UCODE].size,
++		 rlc_autoload_info[FIRMWARE_ID_SDMA1_UCODE].size);
++	if (!rlc_g_size || !pfp_size || !ce_size || !me_size || !mec_size)
++		dev_err(adev->dev,
++			"rlc autoload toc has empty mandatory entries (RLC_G/PFP/CE/ME/MEC)\n");
+ 
+ 	WREG32_SOC15(GC, 0, mmRLC_HYP_BOOTLOAD_ADDR_HI, upper_32_bits(gpu_addr));
+ 	WREG32_SOC15(GC, 0, mmRLC_HYP_BOOTLOAD_ADDR_LO, lower_32_bits(gpu_addr));
+-- 
+2.43.0
+

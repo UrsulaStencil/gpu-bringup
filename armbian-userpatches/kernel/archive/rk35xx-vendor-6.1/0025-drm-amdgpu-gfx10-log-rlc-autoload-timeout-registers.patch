@@ -1,0 +1,63 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: RK3588 AMDGPU Bringup <noreply@example.com>
+Date: Fri, 13 Mar 2026 22:20:00 +0100
+Subject: [PATCH] drm/amdgpu/gfx10: log detailed register state on RLC autoload
+ timeout
+
+Adds first/last CP/bootload snapshots and key GRBM/CP ucode registers when
+`gfx_v10_0_wait_for_rlc_autoload_complete()` times out. This keeps the fw3
+path diagnostic and avoids blind condition changes.
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 38 +++++++++++++++++++++++++++++++---
+ 1 file changed, 35 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index f8382b227ad4..ded89d9897a5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -5756,11 +5756,17 @@ static int gfx_v10_0_wait_for_rlc_autoload_complete(struct amdgpu_device *adev)
+ {
+ 	uint32_t cp_status;
+ 	uint32_t bootload_status;
++	uint32_t first_cp_status = 0;
++	uint32_t first_bootload_status = 0;
+ 	int i, r;
+ 
+ 	for (i = 0; i < adev->usec_timeout; i++) {
+ 		cp_status = RREG32_SOC15(GC, 0, mmCP_STAT);
+ 		bootload_status = RREG32_SOC15(GC, 0, mmRLC_RLCS_BOOTLOAD_STATUS);
++		if (!i) {
++			first_cp_status = cp_status;
++			first_bootload_status = bootload_status;
++		}
+ 		if ((cp_status == 0) &&
+ 		    (REG_GET_FIELD(bootload_status,
+ 			RLC_RLCS_BOOTLOAD_STATUS, BOOTLOAD_COMPLETE) == 1)) {
+@@ -5773,7 +5779,33 @@ static int gfx_v10_0_wait_for_rlc_autoload_complete(struct amdgpu_device *adev)
+ 	}
+ 
+ 	if (i >= adev->usec_timeout) {
+-		dev_err(adev->dev, "rlc autoload: gc ucode autoload timeout\n");
++		uint32_t grbm_status = RREG32_SOC15(GC, 0, mmGRBM_STATUS);
++		uint32_t grbm_status2 = RREG32_SOC15(GC, 0, mmGRBM_STATUS2);
++		uint32_t cp_me_cntl = RREG32_SOC15(GC, 0, mmCP_ME_CNTL);
++		uint32_t pfp_ucode_addr = RREG32_SOC15(GC, 0, mmCP_PFP_UCODE_ADDR);
++		uint32_t ce_ucode_addr = RREG32_SOC15(GC, 0, mmCP_CE_UCODE_ADDR);
++		uint32_t hyp_me_ucode_addr = RREG32_SOC15(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
++		uint32_t bootload_complete = REG_GET_FIELD(bootload_status,
++							   RLC_RLCS_BOOTLOAD_STATUS,
++							   BOOTLOAD_COMPLETE);
++
++		dev_err(adev->dev,
++			"rlc autoload: gc ucode autoload timeout cp_stat first=0x%08x last=0x%08x boot first=0x%08x last=0x%08x complete=%u\n",
++			first_cp_status, cp_status, first_bootload_status,
++			bootload_status, bootload_complete);
++		dev_err(adev->dev,
++			"rlc autoload regs: GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x CP_ME_CNTL=0x%08x PFP_UCODE_ADDR=0x%08x CE_UCODE_ADDR=0x%08x HYP_ME_UCODE_ADDR=0x%08x\n",
++			grbm_status, grbm_status2, cp_me_cntl, pfp_ucode_addr,
++			ce_ucode_addr, hyp_me_ucode_addr);
+ 		return -ETIMEDOUT;
+ 	}
+ 
+-- 
+2.43.0

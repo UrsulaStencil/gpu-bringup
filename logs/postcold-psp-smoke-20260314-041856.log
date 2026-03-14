@@ -1,0 +1,120 @@
+[smoke] date=2026-03-14T04:18:56+01:00
+[smoke] uname -r: 6.1.115-vendor-rk35xx
+[smoke] boot_id: 8644c871-8370-4a26-a77b-1d327a8299e0
+[smoke] modprobe args: fw_load_type=1 async_gfx_ring=0 num_kcq=0 mes=0 msi=1
+[smoke] amdgpu.ko sha256: f366a3e367064ef60226164d46aebdb83f61d748e269701e45f580f622f8e558
+
+[smoke] lspci -nn -s 03:00.0
+0000:03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon RX 6400/6500 XT/6500M] [1002:743f] (rev c7)
+
+[smoke] unload amdgpu
+
+[smoke] clear dmesg
+
+[smoke] modprobe amdgpu fw_load_type=1 async_gfx_ring=0 num_kcq=0 mes=0 msi=1
+[smoke] modprobe timeout: 45s
+[smoke] modprobe pid: 16645 (timeout 45s)
+[smoke] modprobe exited within timeout
+
+[smoke] lingering modprobe/amdgpu tasks
+
+[smoke] capture full dmesg snapshot: /home/orange/gpu-bringup/logs/postcold-psp-dmesg-20260314-041856.log
+
+[smoke] lsmod | grep amdgpu
+amdgpu               4182016  0
+drm_ttm_helper         16384  1 amdgpu
+drm_buddy              20480  1 amdgpu
+ttm                    57344  2 amdgpu,drm_ttm_helper
+gpu_sched              40960  2 amdgpu,panfrost
+
+[smoke] /dev/dri
+insgesamt 0
+drwxr-xr-x 2 root root        120 14. Mär 03:38 by-path
+crw-rw---- 1 root video  226,   0 14. Mär 03:38 card0
+crw-rw---- 1 root video  226,   1 14. Mär 03:38 card1
+crw-rw---- 1 root render 226, 128 14. Mär 03:38 renderD128
+crw-rw---- 1 root render 226, 129 14. Mär 03:38 renderD129
+
+[smoke] vulkaninfo --summary
+==========
+VULKANINFO
+==========
+
+Vulkan Instance Version: 1.4.309
+
+
+Instance Extensions: count = 24
+-------------------------------
+VK_EXT_acquire_drm_display             : extension revision 1
+VK_EXT_acquire_xlib_display            : extension revision 1
+VK_EXT_debug_report                    : extension revision 10
+VK_EXT_debug_utils                     : extension revision 2
+VK_EXT_direct_mode_display             : extension revision 1
+VK_EXT_display_surface_counter         : extension revision 1
+VK_EXT_headless_surface                : extension revision 1
+VK_EXT_surface_maintenance1            : extension revision 1
+VK_EXT_swapchain_colorspace            : extension revision 5
+VK_KHR_device_group_creation           : extension revision 1
+VK_KHR_display                         : extension revision 23
+VK_KHR_external_fence_capabilities     : extension revision 1
+VK_KHR_external_memory_capabilities    : extension revision 1
+VK_KHR_external_semaphore_capabilities : extension revision 1
+VK_KHR_get_display_properties2         : extension revision 1
+VK_KHR_get_physical_device_properties2 : extension revision 2
+VK_KHR_get_surface_capabilities2       : extension revision 1
+VK_KHR_portability_enumeration         : extension revision 1
+VK_KHR_surface                         : extension revision 25
+VK_KHR_surface_protected_capabilities  : extension revision 1
+VK_KHR_wayland_surface                 : extension revision 6
+VK_KHR_xcb_surface                     : extension revision 6
+VK_KHR_xlib_surface                    : extension revision 6
+VK_LUNARG_direct_driver_loading        : extension revision 1
+
+Instance Layers: count = 2
+--------------------------
+VK_LAYER_MESA_device_select Linux device selection layer 1.4.303  version 1
+VK_LAYER_MESA_overlay       Mesa Overlay layer           1.4.303  version 1
+
+Devices:
+========
+GPU0:
+	apiVersion         = 1.4.305
+	driverVersion      = 0.0.1
+	vendorID           = 0x10005
+	deviceID           = 0x0000
+	deviceType         = PHYSICAL_DEVICE_TYPE_CPU
+	deviceName         = llvmpipe (LLVM 19.1.7, 128 bits)
+	driverID           = DRIVER_ID_MESA_LLVMPIPE
+	driverName         = llvmpipe
+	driverInfo         = Mesa 25.0.7-2 (LLVM 19.1.7)
+	conformanceVersion = 1.3.1.1
+	deviceUUID         = 6d657361-3235-2e30-2e37-2d3200000000
+	driverUUID         = 6c6c766d-7069-7065-5555-494400000000
+
+[smoke] unload amdgpu after capture
+
+[smoke] dmesg snapshot extract
+[Sa Mär 14 04:19:20 2026] [drm] amdgpu kernel modesetting enabled.
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: get invalid ip discovery binary signature from vram
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_discovery is not set properly
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: failed to read ip discovery binary from file
+[Sa Mär 14 04:19:20 2026] [drm:amdgpu_discovery_set_ip_blocks [amdgpu]] *ERROR* amdgpu_discovery_init failed
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using beige_goby static IP fallback after discovery failure
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 3 <psp>
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: Invalid PCI ROM header signature: expecting 0xaa55, got 0xffff
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: Using VBIOS fallback file amdgpu/vbios-1002-743f-1462-5082.rom
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from firmware file
+[Sa Mär 14 04:19:20 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: SMU: response:0xFFFFFFFF for index:2 param:0x00000000 message:GetSmuVersion?
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: GPU psp mode1 reset
+[Sa Mär 14 04:19:46 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0xffffffff expect=0x80000000 mask=0x8000ffff changed=0 timeout_us=10000000
+[Sa Mär 14 04:19:46 2026] [drm] psp is not working correctly before mode1 reset!
+[Sa Mär 14 04:19:46 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset failed
+[Sa Mär 14 04:19:46 2026] amdgpu 0000:03:00.0: amdgpu: asic reset on init failed
+[Sa Mär 14 04:19:46 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sa Mär 14 04:19:46 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sa Mär 14 04:19:46 2026] amdgpu: probe of 0000:03:00.0 failed with error -22

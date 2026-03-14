@@ -1,0 +1,576 @@
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index f8740ad08af4..44df002ea01e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -44,6 +44,7 @@
+ #include "amdgpu_atomfirmware.h"
+ 
+ #define AMD_VBIOS_FILE_MAX_SIZE_B      (1024*1024*3)
++#define PSP_CMD_RESP_SENTINEL          0xA5A5A5A5u
+ 
+ static int psp_sysfs_init(struct amdgpu_device *adev);
+ static void psp_sysfs_fini(struct amdgpu_device *adev);
+@@ -94,6 +95,7 @@ static void psp_check_pmfw_centralized_cstate_management(struct psp_context *psp
+ 		psp->pmfw_centralized_cstate_management = false;
+ 		break;
+ 	}
++
+ }
+ 
+ static int psp_early_init(void *handle)
+@@ -222,7 +224,9 @@ static int psp_memory_training_init(struct psp_context *psp)
+ 	struct psp_memory_training_context *ctx = &psp->mem_train_ctx;
+ 
+ 	if (ctx->init != PSP_MEM_TRAIN_RESERVE_SUCCESS) {
+-		DRM_DEBUG("memory training is not supported!\n");
++		dev_info(psp->adev->dev,
++			 "arm64 bring-up: memory training init skipped state=%u enable=%d\n",
++			 ctx->init, ctx->enable_mem_training);
+ 		return 0;
+ 	}
+ 
+@@ -233,10 +237,14 @@ static int psp_memory_training_init(struct psp_context *psp)
+ 		goto Err_out;
+ 	}
+ 
+-	DRM_DEBUG("train_data_size:%llx,p2c_train_data_offset:%llx,c2p_train_data_offset:%llx.\n",
+-		  ctx->train_data_size,
+-		  ctx->p2c_train_data_offset,
+-		  ctx->c2p_train_data_offset);
++	dev_info(psp->adev->dev,
++		 "arm64 bring-up: memory training init train_size=0x%llx p2c=0x%llx c2p=0x%llx mc_vram=0x%llx real_vram=0x%llx visible_vram=0x%llx\n",
++		 (unsigned long long)ctx->train_data_size,
++		 (unsigned long long)ctx->p2c_train_data_offset,
++		 (unsigned long long)ctx->c2p_train_data_offset,
++		 (unsigned long long)psp->adev->gmc.mc_vram_size,
++		 (unsigned long long)psp->adev->gmc.real_vram_size,
++		 (unsigned long long)psp->adev->gmc.visible_vram_size);
+ 	ctx->init = PSP_MEM_TRAIN_INIT_SUCCESS;
+ 	return 0;
+ 
+@@ -365,6 +373,7 @@ static int psp_sw_init(void *handle)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 	struct psp_context *psp = &adev->psp;
+ 	int ret;
++	bool boot_cfg_valid;
+ 	struct psp_runtime_boot_cfg_entry boot_cfg_entry;
+ 	struct psp_memory_training_context *mem_training_ctx = &psp->mem_train_ctx;
+ 	struct psp_runtime_scpm_entry scpm_entry;
+@@ -384,6 +393,12 @@ static int psp_sw_init(void *handle)
+ 		return ret;
+ 	}
+ 
++	dev_info(adev->dev,
++		 "psp sw_init: load_type=%d autoload_supported=%d toc_start=%p toc_size=0x%x sos_start=%p sos_size=0x%x\n",
++		 adev->firmware.load_type, psp->autoload_supported,
++		 psp->toc.start_addr, psp->toc.size_bytes,
++		 psp->sos.start_addr, psp->sos.size_bytes);
++
+ 	adev->psp.xgmi_context.supports_extended_data =
+ 		!adev->gmc.xgmi.connected_to_cpu &&
+ 			adev->ip_versions[MP0_HWIP][0] == IP_VERSION(13, 0, 2);
+@@ -403,9 +418,10 @@ static int psp_sw_init(void *handle)
+ 	/* TODO: stop gpu driver services and print alarm if scpm is enabled with error status */
+ 
+ 	memset(&boot_cfg_entry, 0, sizeof(boot_cfg_entry));
+-	if (psp_get_runtime_db_entry(adev,
+-				PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG,
+-				&boot_cfg_entry)) {
++	boot_cfg_valid = psp_get_runtime_db_entry(adev,
++					PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG,
++					&boot_cfg_entry);
++	if (boot_cfg_valid) {
+ 		psp->boot_cfg_bitmask = boot_cfg_entry.boot_cfg_bitmask;
+ 		if ((psp->boot_cfg_bitmask) &
+ 		    BOOT_CFG_FEATURE_TWO_STAGE_DRAM_TRAINING) {
+@@ -423,6 +439,13 @@ static int psp_sw_init(void *handle)
+ 		mem_training_ctx->enable_mem_training = true;
+ 	}
+ 
++	dev_info(psp->adev->dev,
++		 "arm64 bring-up: mem_training decision runtime_db=%d boot_cfg_bitmask=0x%x enable=%d init=%u\n",
++		 boot_cfg_valid,
++		 psp->boot_cfg_bitmask,
++		 mem_training_ctx->enable_mem_training,
++		 mem_training_ctx->init);
++
+ 	if (mem_training_ctx->enable_mem_training) {
+ 		ret = psp_memory_training_init(psp);
+ 		if (ret) {
+@@ -445,12 +468,31 @@ static int psp_sw_init(void *handle)
+ 		}
+ 	}
+ 
+-	ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
+-				      amdgpu_sriov_vf(adev) ?
+-				      AMDGPU_GEM_DOMAIN_VRAM : AMDGPU_GEM_DOMAIN_GTT,
+-				      &psp->fw_pri_bo,
+-				      &psp->fw_pri_mc_addr,
+-				      &psp->fw_pri_buf);
++	{
++		u32 fw_pri_domain = amdgpu_sriov_vf(adev) ?
++			AMDGPU_GEM_DOMAIN_VRAM : AMDGPU_GEM_DOMAIN_GTT;
++#if defined(CONFIG_ARM64)
++		/*
++		 * On ARM64 bring-up, PSP/MP0 accesses to the fw private buffer can
++		 * fault when the buffer lives in GTT. Keep it in visible VRAM so
++		 * LOAD_TOC / bootloader paths use the same aperture style as the
++		 * already-working PSP cmd/fence buffers.
++		 */
++		if (!amdgpu_sriov_vf(adev))
++			fw_pri_domain = AMDGPU_GEM_DOMAIN_VRAM;
++#endif
++		ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
++					      fw_pri_domain,
++					      &psp->fw_pri_bo,
++					      &psp->fw_pri_mc_addr,
++					      &psp->fw_pri_buf);
++		if (!ret)
++			dev_info(adev->dev,
++				 "psp shared buf: using %s-backed fw_pri mc=0x%llx size=0x%x\n",
++				 fw_pri_domain == AMDGPU_GEM_DOMAIN_VRAM ? "VRAM" : "GTT",
++				 (unsigned long long)psp->fw_pri_mc_addr,
++				 PSP_1_MEG);
++	}
+ 	if (ret)
+ 		return ret;
+ 
+@@ -594,6 +636,113 @@ static const char *psp_gfx_cmd_name(enum psp_gfx_cmd_id cmd_id)
+ 	}
+ }
+ 
++static void psp_mark_cmd_resp_pending(struct psp_gfx_cmd_resp *cmd)
++{
++	u32 *dw = (u32 *)&cmd->resp;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(cmd->resp.reserved); i++)
++		dw[i] = PSP_CMD_RESP_SENTINEL;
++}
++
++static bool psp_cmd_resp_written(const struct psp_gfx_cmd_resp *cmd)
++{
++	const u32 *dw = (const u32 *)&cmd->resp;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(cmd->resp.reserved); i++) {
++		if (dw[i] != PSP_CMD_RESP_SENTINEL)
++			return true;
++	}
++
++	return false;
++}
++
++static void psp_log_boot_bufs(struct psp_context *psp, const char *stage,
++			      const struct psp_gfx_cmd_resp *cmd)
++{
++	struct amdgpu_device *adev = psp->adev;
++	struct psp_ring *ring = &psp->km_ring;
++	u64 fw_pri_mc = psp->fw_pri_bo ? psp->fw_pri_mc_addr : 0;
++	u64 cmd_mc = psp->cmd_buf_bo ? psp->cmd_buf_mc_addr : 0;
++	u64 fence_mc = psp->fence_buf_bo ? psp->fence_buf_mc_addr : 0;
++	u64 ring_mc = ring->ring_mem ? ring->ring_mem_mc_addr : 0;
++	u64 tmr_mc = psp->tmr_bo ? psp->tmr_mc_addr : 0;
++	unsigned long fw_pri_size = psp->fw_pri_bo ? amdgpu_bo_size(psp->fw_pri_bo) : 0;
++	unsigned long cmd_size = psp->cmd_buf_bo ? amdgpu_bo_size(psp->cmd_buf_bo) : 0;
++	unsigned long fence_size = psp->fence_buf_bo ? amdgpu_bo_size(psp->fence_buf_bo) : 0;
++	unsigned long tmr_size = psp->tmr_bo ? amdgpu_bo_size(psp->tmr_bo) : 0;
++
++	dev_info(adev->dev,
++		 "psp %s: fw_pri_mc=0x%llx cmd_mc=0x%llx fence_mc=0x%llx ring_mc=0x%llx tmr_mc=0x%llx sizes fw=0x%lx cmd=0x%lx fence=0x%lx ring=0x%x tmr=0x%lx\n",
++		 stage,
++		 (unsigned long long)fw_pri_mc,
++		 (unsigned long long)cmd_mc,
++		 (unsigned long long)fence_mc,
++		 (unsigned long long)ring_mc,
++		 (unsigned long long)tmr_mc,
++		 fw_pri_size, cmd_size, fence_size, ring->ring_size, tmr_size);
++
++	if (!cmd)
++		return;
++
++	switch (cmd->cmd_id) {
++	case GFX_CMD_ID_LOAD_TOC:
++		dev_info(adev->dev,
++			 "psp %s: cmd=%s(0x%x) toc_mc=0x%llx toc_size=0x%x resp{status=0x%x fw=0x%08x:%08x tmr=0x%x}\n",
++			 stage, psp_gfx_cmd_name(cmd->cmd_id), cmd->cmd_id,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_load_toc.toc_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_load_toc.toc_phy_addr_lo),
++			 cmd->cmd.cmd_load_toc.toc_size,
++			 cmd->resp.status,
++			 cmd->resp.fw_addr_hi,
++			 cmd->resp.fw_addr_lo,
++			 cmd->resp.tmr_size);
++		break;
++	case GFX_CMD_ID_SETUP_TMR:
++	case GFX_CMD_ID_SETUP_VMR:
++		dev_info(adev->dev,
++			 "psp %s: cmd=%s(0x%x) buf_mc=0x%llx buf_size=0x%x system_pa=0x%llx flags=0x%x resp{status=0x%x fw=0x%08x:%08x tmr=0x%x}\n",
++			 stage, psp_gfx_cmd_name(cmd->cmd_id), cmd->cmd_id,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_setup_tmr.buf_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_setup_tmr.buf_phy_addr_lo),
++			 cmd->cmd.cmd_setup_tmr.buf_size,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_setup_tmr.system_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_setup_tmr.system_phy_addr_lo),
++			 cmd->cmd.cmd_setup_tmr.tmr_flags,
++			 cmd->resp.status,
++			 cmd->resp.fw_addr_hi,
++			 cmd->resp.fw_addr_lo,
++			 cmd->resp.tmr_size);
++		break;
++	case GFX_CMD_ID_LOAD_ASD:
++	case GFX_CMD_ID_LOAD_TA:
++		dev_info(adev->dev,
++			 "psp %s: cmd=%s(0x%x) app_mc=0x%llx app_len=0x%x shared_mc=0x%llx shared_len=0x%x resp{status=0x%x fw=0x%08x:%08x tmr=0x%x}\n",
++			 stage, psp_gfx_cmd_name(cmd->cmd_id), cmd->cmd_id,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_load_ta.app_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_load_ta.app_phy_addr_lo),
++			 cmd->cmd.cmd_load_ta.app_len,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_load_ta.cmd_buf_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_load_ta.cmd_buf_phy_addr_lo),
++			 cmd->cmd.cmd_load_ta.cmd_buf_len,
++			 cmd->resp.status,
++			 cmd->resp.fw_addr_hi,
++			 cmd->resp.fw_addr_lo,
++			 cmd->resp.tmr_size);
++		break;
++	default:
++		dev_info(adev->dev,
++			 "psp %s: cmd=%s(0x%x) resp{status=0x%x fw=0x%08x:%08x tmr=0x%x}\n",
++			 stage, psp_gfx_cmd_name(cmd->cmd_id), cmd->cmd_id,
++			 cmd->resp.status,
++			 cmd->resp.fw_addr_hi,
++			 cmd->resp.fw_addr_lo,
++			 cmd->resp.tmr_size);
++		break;
++	}
++}
++
+ static int
+ psp_cmd_submit_buf(struct psp_context *psp,
+ 		   struct amdgpu_firmware_info *ucode,
+@@ -611,14 +760,22 @@ psp_cmd_submit_buf(struct psp_context *psp,
+ 	if (!drm_dev_enter(adev_to_drm(psp->adev), &idx))
+ 		return 0;
+ 
+-	memset(psp->cmd_buf_mem, 0, PSP_CMD_BUFFER_SIZE);
++#if defined(CONFIG_ARM64)
++	if (psp->adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13))
++		timeout = 100000;
++#endif
++
++	memset_io(psp->cmd_buf_mem, 0, PSP_CMD_BUFFER_SIZE);
++	psp_mark_cmd_resp_pending(cmd);
+ 
+-	memcpy(psp->cmd_buf_mem, cmd, sizeof(struct psp_gfx_cmd_resp));
++	memcpy_toio(psp->cmd_buf_mem, cmd, sizeof(struct psp_gfx_cmd_resp));
++	psp_log_boot_bufs(psp, "submit-pre", cmd);
+ 
+ 	index = atomic_inc_return(&psp->fence_value);
+ 	ret = psp_ring_cmd_submit(psp, psp->cmd_buf_mc_addr, fence_mc_addr, index);
+ 	if (ret) {
+ 		atomic_dec(&psp->fence_value);
++		psp_log_boot_bufs(psp, "submit-ring-error", cmd);
+ 		goto exit;
+ 	}
+ 
+@@ -642,7 +799,42 @@ psp_cmd_submit_buf(struct psp_context *psp,
+ 	skip_unsupport = (psp->cmd_buf_mem->resp.status == TEE_ERROR_NOT_SUPPORTED ||
+ 		psp->cmd_buf_mem->resp.status == PSP_ERR_UNKNOWN_COMMAND) && amdgpu_sriov_vf(psp->adev);
+ 
+-	memcpy((void*)&cmd->resp, (void*)&psp->cmd_buf_mem->resp, sizeof(struct psp_gfx_resp));
++	memcpy_fromio((void *)&cmd->resp, (void *)&psp->cmd_buf_mem->resp,
++		      sizeof(struct psp_gfx_resp));
++	psp_log_boot_bufs(psp, "submit-post", cmd);
++
++#if defined(CONFIG_ARM64)
++	/*
++	 * On RK3588 bring-up we have observed LOAD_TOC return a valid TMR size
++	 * even when the PSP fence writeback path does not complete in time.
++	 * If the response payload is already populated, continue so the next
++	 * stage can reveal whether the remaining blocker is the fence path or
++	 * a later PSP command.
++	 */
++	if (!timeout &&
++	    psp->adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13) &&
++	    psp_cmd_resp_written(cmd) &&
++	    !cmd->resp.status) {
++		dev_warn(psp->adev->dev,
++			 "arm64 bring-up: ignoring PSP fence timeout for %s, status=0x%08x tmr=0x%x fence=0x%x index=%d\n",
++			 psp_gfx_cmd_name(cmd->cmd_id),
++			 cmd->resp.status,
++			 cmd->resp.tmr_size,
++			 *((unsigned int *)psp->fence_buf),
++			 index);
++		timeout = 1;
++	}
++
++	if (!timeout &&
++	    psp->adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13) &&
++	    !psp_cmd_resp_written(cmd)) {
++		dev_warn(psp->adev->dev,
++			 "arm64 bring-up: PSP cmd wait expired for %s with no response, fence=0x%x index=%d\n",
++			 psp_gfx_cmd_name(cmd->cmd_id),
++			 *((unsigned int *)psp->fence_buf),
++			 index);
++	}
++#endif
+ 
+ 	/* In some cases, psp response status is not 0 even there is no
+ 	 * problem while the command is submitted. Some version of PSP FW
+@@ -709,6 +901,25 @@ static void psp_prep_tmr_cmd_buf(struct psp_context *psp,
+ 	cmd->cmd.cmd_setup_tmr.buf_phy_addr_lo = lower_32_bits(tmr_mc);
+ 	cmd->cmd.cmd_setup_tmr.buf_phy_addr_hi = upper_32_bits(tmr_mc);
+ 	cmd->cmd.cmd_setup_tmr.buf_size = size;
++
++#if defined(CONFIG_ARM64)
++	if (adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13) &&
++	    (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT ||
++	     adev->firmware.load_type == AMDGPU_FW_LOAD_PSP ||
++	     adev->firmware.load_type == AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO)) {
++		cmd->cmd.cmd_setup_tmr.bitfield.virt_phy_addr = 0;
++		cmd->cmd.cmd_setup_tmr.system_phy_addr_lo = 0;
++		cmd->cmd.cmd_setup_tmr.system_phy_addr_hi = 0;
++		dev_info(adev->dev,
++			 "arm64 bring-up: SETUP_TMR using MC-only addressing load_type=%d mc=0x%llx pa=0x%llx size=0x%x\n",
++			 adev->firmware.load_type,
++			 (unsigned long long)tmr_mc,
++			 (unsigned long long)tmr_pa,
++			 size);
++		return;
++	}
++#endif
++
+ 	cmd->cmd.cmd_setup_tmr.bitfield.virt_phy_addr = 1;
+ 	cmd->cmd.cmd_setup_tmr.system_phy_addr_lo = lower_32_bits(tmr_pa);
+ 	cmd->cmd.cmd_setup_tmr.system_phy_addr_hi = upper_32_bits(tmr_pa);
+@@ -745,11 +956,44 @@ static int psp_load_toc(struct psp_context *psp,
+ 	return ret;
+ }
+ 
++static bool psp_get_natural_tmr_offset(struct psp_context *psp,
++				       uint32_t tmr_size,
++				       uint64_t *tmr_offset,
++				       uint64_t *top_limit)
++{
++	struct amdgpu_device *adev = psp->adev;
++	struct psp_memory_training_context *ctx = &psp->mem_train_ctx;
++	uint64_t limit = adev->gmc.real_vram_size;
++
++	if (!tmr_size)
++		return false;
++
++	if (adev->mman.fw_reserved_memory)
++		limit -= amdgpu_bo_size(adev->mman.fw_reserved_memory);
++
++	if (ctx->init == PSP_MEM_TRAIN_RESERVE_SUCCESS &&
++	    ctx->c2p_bo &&
++	    ctx->c2p_train_data_offset &&
++	    ctx->c2p_train_data_offset < limit)
++		limit = ctx->c2p_train_data_offset;
++
++	if (limit <= tmr_size)
++		return false;
++
++	*top_limit = limit;
++	*tmr_offset = rounddown(limit - tmr_size, (uint64_t)tmr_size);
++
++	return (*tmr_offset + tmr_size) <= limit;
++}
++
+ /* Set up Trusted Memory Region */
+ static int psp_tmr_init(struct psp_context *psp)
+ {
+ 	int ret = 0;
+ 	int tmr_size;
++	u32 tmr_align;
++	u64 tmr_offset = 0;
++	u64 top_limit = 0;
+ 	void *tmr_buf;
+ 	void **pptr;
+ 
+@@ -777,9 +1021,53 @@ static int psp_tmr_init(struct psp_context *psp)
+ 
+ 	if (!psp->tmr_bo) {
+ 		pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
+-		ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_ALIGNMENT,
+-					      AMDGPU_GEM_DOMAIN_VRAM,
+-					      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
++		tmr_align = max_t(u32, PSP_TMR_ALIGNMENT, tmr_size);
++		if (!amdgpu_sriov_vf(psp->adev) &&
++		    psp_get_natural_tmr_offset(psp, tmr_size, &tmr_offset, &top_limit)) {
++			dev_info(psp->adev->dev,
++				 "psp tmr placement: trying fixed offset=0x%llx size=0x%x limit=0x%llx\n",
++				 (unsigned long long)tmr_offset, tmr_size,
++				 (unsigned long long)top_limit);
++			ret = amdgpu_bo_create_kernel_at(psp->adev, tmr_offset, tmr_size,
++							 &psp->tmr_bo, NULL);
++			if (!ret) {
++				psp->tmr_mc_addr = amdgpu_bo_gpu_offset(psp->tmr_bo);
++				dev_info(psp->adev->dev,
++					 "psp tmr fixed: size=0x%x offset=0x%llx mc=0x%llx pa=0x%llx pa_mod_size=0x%llx\n",
++					 tmr_size,
++					 (unsigned long long)tmr_offset,
++					 (unsigned long long)psp->tmr_mc_addr,
++					 (unsigned long long)amdgpu_gmc_vram_pa(psp->adev, psp->tmr_bo),
++					 (unsigned long long)(amdgpu_gmc_vram_pa(psp->adev, psp->tmr_bo) % tmr_size));
++			} else {
++				dev_warn(psp->adev->dev,
++					 "psp tmr fixed placement failed size=0x%x offset=0x%llx ret=%d, falling back\n",
++					 tmr_size,
++					 (unsigned long long)tmr_offset,
++					 ret);
++			}
++		}
++		if (!psp->tmr_bo) {
++			ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, tmr_align,
++						      AMDGPU_GEM_DOMAIN_VRAM,
++						      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
++		}
++		if (ret && tmr_align != PSP_TMR_ALIGNMENT) {
++			dev_warn(psp->adev->dev,
++				 "psp tmr alloc: aligned request failed size=0x%x align=0x%x, retrying align=0x%x\n",
++				 tmr_size, tmr_align, PSP_TMR_ALIGNMENT);
++			ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_ALIGNMENT,
++						      AMDGPU_GEM_DOMAIN_VRAM,
++						      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
++			tmr_align = PSP_TMR_ALIGNMENT;
++		}
++		if (!ret)
++			dev_info(psp->adev->dev,
++				 "psp tmr alloc: size=0x%x align=0x%x mc=0x%llx pa=0x%llx pa_mod_size=0x%llx\n",
++				 tmr_size, tmr_align,
++				 (unsigned long long)psp->tmr_mc_addr,
++				 (unsigned long long)amdgpu_gmc_vram_pa(psp->adev, psp->tmr_bo),
++				 (unsigned long long)(amdgpu_gmc_vram_pa(psp->adev, psp->tmr_bo) % tmr_size));
+ 	}
+ 
+ 	return ret;
+@@ -941,8 +1229,8 @@ static int psp_rl_load(struct amdgpu_device *adev)
+ 
+ 	cmd = acquire_psp_cmd_buf(psp);
+ 
+-	memset(psp->fw_pri_buf, 0, PSP_1_MEG);
+-	memcpy(psp->fw_pri_buf, psp->rl.start_addr, psp->rl.size_bytes);
++	memset_io(psp->fw_pri_buf, 0, PSP_1_MEG);
++	memcpy_toio(psp->fw_pri_buf, psp->rl.start_addr, psp->rl.size_bytes);
+ 
+ 	cmd->cmd_id = GFX_CMD_ID_LOAD_IP_FW;
+ 	cmd->cmd.cmd_load_ip_fw.fw_phy_addr_lo = lower_32_bits(psp->fw_pri_mc_addr);
+@@ -972,6 +1260,12 @@ static int psp_asd_initialize(struct psp_context *psp)
+ 	psp->asd_context.mem_context.shared_mem_size = PSP_ASD_SHARED_MEM_SIZE;
+ 	psp->asd_context.ta_load_type                = GFX_CMD_ID_LOAD_ASD;
+ 
++	if (!psp->asd_context.mem_context.shared_buf) {
++		ret = psp_ta_init_shared_buf(psp, &psp->asd_context.mem_context);
++		if (ret)
++			return ret;
++	}
++
+ 	ret = psp_ta_load(psp, &psp->asd_context);
+ 	if (!ret)
+ 		psp->asd_context.initialized = true;
+@@ -1065,15 +1359,32 @@ static void psp_prep_ta_load_cmd_buf(struct psp_gfx_cmd_resp *cmd,
+ int psp_ta_init_shared_buf(struct psp_context *psp,
+ 				  struct ta_mem_context *mem_ctx)
+ {
++	int ret;
++	u64 shared_pa = 0;
++
+ 	/*
+ 	* Allocate 16k memory aligned to 4k from Frame Buffer (local
+ 	* physical) for ta to host memory
+ 	*/
+-	return amdgpu_bo_create_kernel(psp->adev, mem_ctx->shared_mem_size,
++	ret = amdgpu_bo_create_kernel(psp->adev, mem_ctx->shared_mem_size,
+ 				      PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM,
+ 				      &mem_ctx->shared_bo,
+ 				      &mem_ctx->shared_mc_addr,
+ 				      &mem_ctx->shared_buf);
++	if (ret)
++		return ret;
++
++	if (mem_ctx->shared_bo)
++		shared_pa = amdgpu_gmc_vram_pa(psp->adev, mem_ctx->shared_bo);
++
++	dev_info(psp->adev->dev,
++		 "psp ta shared alloc: size=0x%x mc=0x%llx pa=0x%llx pa_mod_2g=0x%llx\n",
++		 mem_ctx->shared_mem_size,
++		 (unsigned long long)mem_ctx->shared_mc_addr,
++		 (unsigned long long)shared_pa,
++		 (unsigned long long)(shared_pa & 0x7fffffffULL));
++
++	return 0;
+ }
+ 
+ static void psp_prep_ta_invoke_indirect_cmd_buf(struct psp_gfx_cmd_resp *cmd,
+@@ -1144,9 +1455,25 @@ int psp_ta_load(struct psp_context *psp, struct ta_context *context)
+ {
+ 	int ret;
+ 	struct psp_gfx_cmd_resp *cmd;
++	u64 shared_pa = 0;
+ 
+ 	cmd = acquire_psp_cmd_buf(psp);
+ 
++	if (context->mem_context.shared_bo)
++		shared_pa = amdgpu_gmc_vram_pa(psp->adev,
++					       context->mem_context.shared_bo);
++
++	dev_info(psp->adev->dev,
++		 "psp ta load prep: type=%s fw_ver=0x%x feature=0x%x app_len=0x%x fw_pri_mc=0x%llx shared_mc=0x%llx shared_pa=0x%llx shared_pa_mod_2g=0x%llx\n",
++		 psp_gfx_cmd_name(context->ta_load_type),
++		 context->bin_desc.fw_version,
++		 context->bin_desc.feature_version,
++		 context->bin_desc.size_bytes,
++		 (unsigned long long)psp->fw_pri_mc_addr,
++		 (unsigned long long)context->mem_context.shared_mc_addr,
++		 (unsigned long long)shared_pa,
++		 (unsigned long long)(shared_pa & 0x7fffffffULL));
++
+ 	psp_copy_fw(psp, context->bin_desc.start_addr,
+ 		    context->bin_desc.size_bytes);
+ 
+@@ -1820,6 +2147,14 @@ static int psp_rap_initialize(struct psp_context *psp)
+ 	int ret;
+ 	enum ta_rap_status status = TA_RAP_STATUS__SUCCESS;
+ 
++#if defined(CONFIG_ARM64)
++	if (psp->adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13)) {
++		dev_info(psp->adev->dev,
++			 "arm64 bring-up: skipping optional RAP TA on MP0 11.0.13\n");
++		return 0;
++	}
++#endif
++
+ 	/*
+ 	 * TODO: bypass the initialize in sriov for now
+ 	 */
+@@ -2546,7 +2881,7 @@ static int psp_load_fw(struct amdgpu_device *adev)
+ 		/* should not destroy ring, only stop */
+ 		psp_ring_stop(psp, PSP_RING_TYPE__KM);
+ 	} else {
+-		memset(psp->fence_buf, 0, PSP_FENCE_BUFFER_SIZE);
++		memset_io(psp->fence_buf, 0, PSP_FENCE_BUFFER_SIZE);
+ 
+ 		ret = psp_ring_init(psp, PSP_RING_TYPE__KM);
+ 		if (ret) {
+@@ -2906,7 +3241,7 @@ int psp_ring_cmd_submit(struct psp_context *psp,
+ 	}
+ 
+ 	/* Initialize KM RB frame */
+-	memset(write_frame, 0, sizeof(struct psp_gfx_rb_frame));
++	memset_io(write_frame, 0, sizeof(struct psp_gfx_rb_frame));
+ 
+ 	/* Update KM RB frame */
+ 	write_frame->cmd_buf_addr_hi = upper_32_bits(cmd_buf_mc_addr);
+@@ -3492,8 +3827,8 @@ void psp_copy_fw(struct psp_context *psp, uint8_t *start_addr, uint32_t bin_size
+ 	if (!drm_dev_enter(adev_to_drm(psp->adev), &idx))
+ 		return;
+ 
+-	memset(psp->fw_pri_buf, 0, PSP_1_MEG);
+-	memcpy(psp->fw_pri_buf, start_addr, bin_size);
++	memset_io(psp->fw_pri_buf, 0, PSP_1_MEG);
++	memcpy_toio(psp->fw_pri_buf, start_addr, bin_size);
+ 
+ 	drm_dev_exit(idx);
+ }

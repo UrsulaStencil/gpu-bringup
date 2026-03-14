@@ -1,0 +1,52 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: RK3588 AMDGPU Bringup <noreply@example.com>
+Date: Fri, 13 Mar 2026 22:30:00 +0100
+Subject: [PATCH] drm/amdgpu/gfx10: log raw PSP TOC entry before RLC TOC parse
+
+Add diagnostics to distinguish between a missing `psp.toc` buffer and an
+unsupported/unexpected first TOC entry ID during `gfx_v10_0` backdoor autoload.
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 116e11d3ae93..a4fd5f46ce6b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -5350,8 +5350,20 @@ static uint32_t total_size;
+ static int gfx_v10_0_parse_rlc_toc(struct amdgpu_device *adev)
+ {
+ 	int ret;
+ 	RLC_TABLE_OF_CONTENT *rlc_toc;
++	RLC_TABLE_OF_CONTENT *first;
++
++	if (!adev->psp.toc.start_addr || !adev->psp.toc.size_bytes) {
++		dev_err(adev->dev,
++			"rlc autoload: missing psp toc buffer (start=%p size=0x%x)\n",
++			adev->psp.toc.start_addr, adev->psp.toc.size_bytes);
++		return -EINVAL;
++	}
+ 
+ 	ret = amdgpu_bo_create_reserved(adev, adev->psp.toc.size_bytes, PAGE_SIZE,
+ 					AMDGPU_GEM_DOMAIN_GTT,
+ 					&adev->gfx.rlc.rlc_toc_bo,
+@@ -5368,6 +5380,16 @@ static int gfx_v10_0_parse_rlc_toc(struct amdgpu_device *adev)
+ 	memcpy(adev->gfx.rlc.rlc_toc_buf, adev->psp.toc.start_addr, adev->psp.toc.size_bytes);
+ 
+ 	rlc_toc = (RLC_TABLE_OF_CONTENT *)adev->gfx.rlc.rlc_toc_buf;
++	first = rlc_toc;
++	dev_info(adev->dev,
++		 "rlc autoload parse toc: psp_toc_size=0x%08x first_entry{id=%u offset=0x%08x size=0x%08x}\n",
++		 adev->psp.toc.size_bytes, first->id, first->offset, first->size);
++	if (!(first && (first->id > FIRMWARE_ID_INVALID) &&
++	      (first->id < FIRMWARE_ID_MAX)))
++		dev_err(adev->dev,
++			"rlc autoload parse toc: first entry id=%u outside expected range (%u..%u)\n",
++			first->id, FIRMWARE_ID_INVALID + 1, FIRMWARE_ID_MAX - 1);
++
+ 	while (rlc_toc && (rlc_toc->id > FIRMWARE_ID_INVALID) &&
+ 		(rlc_toc->id < FIRMWARE_ID_MAX)) {
+ 		if ((rlc_toc->id >= FIRMWARE_ID_CP_CE) &&
+-- 
+2.43.0
+

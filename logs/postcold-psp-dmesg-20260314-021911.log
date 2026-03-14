@@ -1,0 +1,1520 @@
+[Sa Mär 14 02:19:35 2026] [drm] amdgpu kernel modesetting enabled.
+[Sa Mär 14 02:19:35 2026] [drm] initializing kernel modesetting (BEIGE_GOBY 0x1002:0x743F 0x1462:0x5082 0xC7).
+[Sa Mär 14 02:19:35 2026] [drm] register mmio base: 0xF0200000
+[Sa Mär 14 02:19:35 2026] [drm] register mmio size: 1048576
+[Sa Mär 14 02:19:35 2026] [drm] add ip block number 0 <nv_common>
+[Sa Mär 14 02:19:35 2026] [drm] add ip block number 1 <gmc_v10_0>
+[Sa Mär 14 02:19:35 2026] [drm] add ip block number 2 <navi10_ih>
+[Sa Mär 14 02:19:35 2026] [drm] add ip block number 3 <psp>
+[Sa Mär 14 02:19:35 2026] [drm] add ip block number 4 <gfx_v10_0>
+[Sa Mär 14 02:19:35 2026] [drm] add ip block number 5 <sdma_v5_2>
+[Sa Mär 14 02:19:35 2026] [drm] add ip block number 6 <vcn_v3_0>
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Sa Mär 14 02:19:35 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sa Mär 14 02:19:35 2026] [drm] VCN(0) decode is enabled in VM mode
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: skipping asic reset on init for fw_load_type=3 reset_method=-1
+[Sa Mär 14 02:19:35 2026] [drm] vm size is 262144 GB, 4 levels, block size is 9-bit, fragment size is 9-bit
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: BAR 2: releasing [mem 0x910000000-0x9101fffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: BAR 0: releasing [mem 0x900000000-0x90fffffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:02:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:01:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:01:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:01:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:02:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:02:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: BAR 0: no space for [mem size 0x100000000 64bit pref]
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: BAR 0: failed to assign [mem size 0x100000000 64bit pref]
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: BAR 2: no space for [mem size 0x00200000 64bit pref]
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: BAR 2: failed to assign [mem size 0x00200000 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0: PCI bridge to [bus 01-ff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0:   bridge window [io  0x300000-0x300fff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0:   bridge window [mem 0xf0200000-0xf04fffff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0: PCI bridge to [bus 01-ff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0:   bridge window [io  0x300000-0x300fff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0:   bridge window [mem 0xf0200000-0xf04fffff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:00:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:01:00.0: PCI bridge to [bus 02-03]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:01:00.0:   bridge window [io  0x300000-0x300fff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:01:00.0:   bridge window [mem 0xf0200000-0xf03fffff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:01:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:02:00.0: PCI bridge to [bus 03]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:02:00.0:   bridge window [io  0x300000-0x300fff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:02:00.0:   bridge window [mem 0xf0200000-0xf03fffff]
+[Sa Mär 14 02:19:35 2026] pcieport 0000:02:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] [drm] Not enough PCI address space for a large BAR.
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: BAR 0: assigned [mem 0x900000000-0x90fffffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: BAR 2: assigned [mem 0x910000000-0x9101fffff 64bit pref]
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: VRAM: 4080M 0x0000008000000000 - 0x00000080FEFFFFFF (4080M used)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: AGP: 267894784M 0x0000008400000000 - 0x0000FFFFFFFFFFFF
+[Sa Mär 14 02:19:35 2026] [drm] Detected VRAM RAM=4080M, BAR=256M
+[Sa Mär 14 02:19:35 2026] [drm] RAM width 64bits GDDR6
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: reserve_tmr mem_train=1 bios_reserved=0x300000 reserve_size=0x300000 mc_vram=0xff000000 real_vram=0xff000000 visible_vram=0x10000000 vram_start=0x8000000000 vram_end=0x80feffffff fb_offset=0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_train block reserve_size=0x300000 mc_vram=0xff000000 real_vram=0xff000000 visible_vram=0x10000000 p2c=0xfeff8000 c2p=0xfec00000 train_size=0x1000
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: reserve_tmr fw_reserved_offset=0xfed00000 size=0x300000
+[Sa Mär 14 02:19:35 2026] [drm] amdgpu: 4080M of VRAM memory ready
+[Sa Mär 14 02:19:35 2026] [drm] amdgpu: 3968M of GTT memory ready.
+[Sa Mär 14 02:19:35 2026] [drm] GART: num cpu pages 131072, num gpu pages 131072
+[Sa Mär 14 02:19:35 2026] [drm] PCIE GART of 512M enabled (table at 0x0000008000000000).
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: psp sw_init: load_type=3 autoload_supported=1 toc_start=000000002a6914e5 toc_size=0x600 sos_start=000000002d291df3 sos_size=0x14350
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't exist
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't exist
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_training decision runtime_db=0 boot_cfg_bitmask=0x0 enable=1 init=4
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: disabling PSP memory training for fw_load_type=3 on MP0 11.0.13
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: psp shared buf: using VRAM-backed fw_pri mc=0x8000200000 size=0x100000
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: rlc autoload parse toc: psp_toc_size=0x00000600 first_entry{id=22 offset=0x00c9448f size=0x0001035a}
+[Sa Mär 14 02:19:35 2026] [drm] use_doorbell being set to: [true]
+[Sa Mär 14 02:19:35 2026] [drm] Found VCN firmware Version ENC: 1.33 DEC: 4 VEP: 0 Revision: 13
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: psp ring init: type=2 ring_mc=0x8000105000 ring_size=0x1000
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: psp ring prewait: C2P64=0x80030000 C2P65=0x00000000 C2P66=0x00000000 C2P81=0x09d0f746
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: psp ring create: sriov=0 ring_mc=0x8000105000 ring_size=0x1000 C2P69=0x00105000 C2P70=0x00000080 C2P71=0x00001000 C2P64=0x00020000
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: psp submit-pre: fw_pri_mc=0x8000200000 cmd_mc=0x8000102000 fence_mc=0x8000101000 ring_mc=0x8000105000 tmr_mc=0x0 sizes fw=0x100000 cmd=0x1000 fence=0x1000 ring=0x1000 tmr=0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: psp submit-pre: cmd=ID_LOAD_TOC(0x20) toc_mc=0x8000200000 toc_size=0x600 resp{status=0xa5a5a5a5 fw=0xa5a5a5a5:a5a5a5a5 tmr=0xa5a5a5a5}
+[Sa Mär 14 02:19:35 2026] gmc_v10_0_process_interrupt: 675139 callbacks suppressed
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092500, 0x00000040, 0x00012520)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:35 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096CA0, 0x00012900, 0x00016CC0)
+[Sa Mär 14 02:19:37 2026] amdgpu 0000:03:00.0: amdgpu: psp submit-post: fw_pri_mc=0x8000200000 cmd_mc=0x8000102000 fence_mc=0x8000101000 ring_mc=0x8000105000 tmr_mc=0x0 sizes fw=0x100000 cmd=0x1000 fence=0x1000 ring=0x1000 tmr=0x0
+[Sa Mär 14 02:19:37 2026] amdgpu 0000:03:00.0: amdgpu: psp submit-post: cmd=ID_LOAD_TOC(0x20) toc_mc=0x8000200000 toc_size=0x600 resp{status=0x0 fw=0xa5a5a5a5:a5a5a5a5 tmr=0xa00000}
+[Sa Mär 14 02:19:37 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: ignoring PSP fence timeout for ID_LOAD_TOC, status=0x00000000 tmr=0xa00000 fence=0x0 index=1
+[Sa Mär 14 02:19:37 2026] amdgpu 0000:03:00.0: amdgpu: psp tmr placement: trying fixed offset=0xfdc00000 size=0xa00000 limit=0xfec00000
+[Sa Mär 14 02:19:37 2026] amdgpu 0000:03:00.0: amdgpu: psp tmr fixed: size=0xa00000 offset=0xfdc00000 mc=0x80fdc00000 pa=0xfdc00000 pa_mod_size=0x0
+[Sa Mär 14 02:19:37 2026] amdgpu 0000:03:00.0: amdgpu: psp tmr alloc: size=0xa00000 align=0xa00000 mc=0x80fdc00000 pa=0xfdc00000 pa_mod_size=0x0
+[Sa Mär 14 02:19:37 2026] [drm] reserve 0xa00000 from 0x80fdc00000 for PSP TMR
+[Sa Mär 14 02:19:37 2026] amdgpu 0000:03:00.0: amdgpu: psp submit-pre: fw_pri_mc=0x8000200000 cmd_mc=0x8000102000 fence_mc=0x8000101000 ring_mc=0x8000105000 tmr_mc=0x80fdc00000 sizes fw=0x100000 cmd=0x1000 fence=0x1000 ring=0x1000 tmr=0xa00000
+[Sa Mär 14 02:19:37 2026] amdgpu 0000:03:00.0: amdgpu: psp submit-pre: cmd=SETUP_TMR(0x5) buf_mc=0x80fdc00000 buf_size=0xa00000 system_pa=0xfdc00000 flags=0x2 resp{status=0xa5a5a5a5 fw=0xa5a5a5a5:a5a5a5a5 tmr=0xa5a5a5a5}
+[Sa Mär 14 02:19:39 2026] amdgpu 0000:03:00.0: amdgpu: psp submit-post: fw_pri_mc=0x8000200000 cmd_mc=0x8000102000 fence_mc=0x8000101000 ring_mc=0x8000105000 tmr_mc=0x80fdc00000 sizes fw=0x100000 cmd=0x1000 fence=0x1000 ring=0x1000 tmr=0xa00000
+[Sa Mär 14 02:19:39 2026] amdgpu 0000:03:00.0: amdgpu: psp submit-post: cmd=SETUP_TMR(0x5) buf_mc=0x80fdc00000 buf_size=0xa00000 system_pa=0xfdc00000 flags=0x2 resp{status=0xa5a5a5a5 fw=0xa5a5a5a5:a5a5a5a5 tmr=0xa5a5a5a5}
+[Sa Mär 14 02:19:39 2026] [drm] psp gfx command SETUP_TMR(0x5) failed and response status is (0xA5A5A5A5)
+[Sa Mär 14 02:19:39 2026] [drm:psp_hw_start [amdgpu]] *ERROR* PSP load tmr failed!
+[Sa Mär 14 02:19:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008FF80, 0x00010300, 0x0000FFA0)
+[Sa Mär 14 02:19:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2DE0, 0x00033160, 0x00032E00)
+[Sa Mär 14 02:19:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00094560, 0x00014880, 0x00014580)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5CA0, 0x00036000, 0x00035CC0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097BC0, 0x00017F00, 0x00017BE0)
+[Sa Mär 14 02:19:40 2026] gmc_v10_0_process_interrupt: 1874626 callbacks suppressed
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B6400, 0x0000B540, 0x00036420)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2660, 0x000329E0, 0x00032680)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082E80, 0x000031C0, 0x00002EA0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A83A0, 0x00028720, 0x000283C0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008DD20, 0x0000E020, 0x0000DD40)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1B80, 0x00031E80, 0x00031BA0)
+[Sa Mär 14 02:19:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000970C0, 0x00017420, 0x000170E0)
+[Sa Mär 14 02:19:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BCDA0, 0x0003D120, 0x0003CDC0)
+[Sa Mär 14 02:19:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4A20, 0x00024D00, 0x00024A40)
+[Sa Mär 14 02:19:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A380, 0x0000A6A0, 0x0000A3A0)
+[Sa Mär 14 02:19:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AF8A0, 0x0002FC20, 0x0002F8C0)
+[Sa Mär 14 02:19:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000960E0, 0x000164A0, 0x00016100)
+[Sa Mär 14 02:19:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC220, 0x0003C520, 0x0003C240)
+[Sa Mär 14 02:19:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A13C0, 0x000216E0, 0x000213E0)
+[Sa Mär 14 02:19:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086D00, 0x00007040, 0x00006D20)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC9E0, 0x0002CD60, 0x0002CA00)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090BE0, 0x00010F20, 0x00010C00)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8400, 0x00038760, 0x00038420)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D200, 0x0001D4E0, 0x0001D220)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082760, 0x00002AA0, 0x00002780)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8400, 0x000287C0, 0x00028420)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E540, 0x0000E840, 0x0000E560)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3640, 0x00033A00, 0x00033660)
+[Sa Mär 14 02:19:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098FA0, 0x000192C0, 0x00018FC0)
+[Sa Mär 14 02:19:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BFC80, 0x0003FF80, 0x0003FCA0)
+[Sa Mär 14 02:19:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A68C0, 0x00026C60, 0x000268E0)
+[Sa Mär 14 02:19:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E120, 0x0000E440, 0x0000E140)
+[Sa Mär 14 02:19:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3260, 0x000335E0, 0x00033280)
+[Sa Mär 14 02:19:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099F40, 0x0001A240, 0x00019F60)
+[Sa Mär 14 02:19:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000807E0, 0x00000B40, 0x00000800)
+[Sa Mär 14 02:19:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A6C40, 0x00027000, 0x00026C60)
+[Sa Mär 14 02:19:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000903A0, 0x000106C0, 0x000103C0)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8380, 0x000386E0, 0x000383A0)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1300, 0x00021640, 0x00021320)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000892C0, 0x00009640, 0x000092E0)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B25C0, 0x00032960, 0x000325E0)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009B160, 0x0001B4A0, 0x0001B180)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00085840, 0x00005B60, 0x00005860)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AF700, 0x0002FA80, 0x0002F720)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099D60, 0x0001A100, 0x00019D80)
+[Sa Mär 14 02:19:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084FA0, 0x00005300, 0x00004FC0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AF620, 0x0002F9A0, 0x0002F640)
+[Sa Mär 14 02:19:45 2026] gmc_v10_0_process_interrupt: 1568259 callbacks suppressed
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4E00, 0x0000A160, 0x00034E20)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8CC0, 0x00038FE0, 0x00038CE0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A2FA0, 0x000232E0, 0x00022FC0)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008BF20, 0x0000C260, 0x0000BF40)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B6D60, 0x000370E0, 0x00036D80)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1440, 0x00021760, 0x00021460)
+[Sa Mär 14 02:19:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008BE80, 0x0000C220, 0x0000BEA0)
+[Sa Mär 14 02:19:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5D20, 0x000360C0, 0x00035D40)
+[Sa Mär 14 02:19:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0B60, 0x00020EE0, 0x00020B80)
+[Sa Mär 14 02:19:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008AA20, 0x0000ADA0, 0x0000AA40)
+[Sa Mär 14 02:19:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5120, 0x00035420, 0x00035140)
+[Sa Mär 14 02:19:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009E040, 0x0001E3E0, 0x0001E060)
+[Sa Mär 14 02:19:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089280, 0x000095E0, 0x000092A0)
+[Sa Mär 14 02:19:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1DC0, 0x00032160, 0x00031DE0)
+[Sa Mär 14 02:19:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009B0C0, 0x0001B460, 0x0001B0E0)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084480, 0x00004760, 0x000044A0)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ACC00, 0x0002CF80, 0x0002CC20)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096AE0, 0x00016E40, 0x00016B00)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000811E0, 0x000014E0, 0x00001200)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9920, 0x00029CE0, 0x00029940)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093480, 0x00013780, 0x000134A0)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BCFC0, 0x0003D2E0, 0x0003CFE0)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A7E80, 0x00028180, 0x00027EA0)
+[Sa Mär 14 02:19:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092180, 0x000124A0, 0x000121A0)
+[Sa Mär 14 02:19:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BBC80, 0x0003BFE0, 0x0003BCA0)
+[Sa Mär 14 02:19:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5740, 0x00025AE0, 0x00025760)
+[Sa Mär 14 02:19:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090200, 0x00010520, 0x00010220)
+[Sa Mär 14 02:19:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BA840, 0x0003AC00, 0x0003A860)
+[Sa Mär 14 02:19:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4F40, 0x00025240, 0x00024F60)
+[Sa Mär 14 02:19:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008CF40, 0x0000D280, 0x0000CF60)
+[Sa Mär 14 02:19:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7A40, 0x00037D20, 0x00037A60)
+[Sa Mär 14 02:19:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1CC0, 0x00022060, 0x00021CE0)
+[Sa Mär 14 02:19:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008B3A0, 0x0000B740, 0x0000B3C0)
+[Sa Mär 14 02:19:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3720, 0x00033AC0, 0x00033740)
+[Sa Mär 14 02:19:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009E5A0, 0x0001E8E0, 0x0001E5C0)
+[Sa Mär 14 02:19:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000888A0, 0x00008BC0, 0x000088C0)
+[Sa Mär 14 02:19:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2B00, 0x00032EC0, 0x00032B20)
+[Sa Mär 14 02:19:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009BA20, 0x0001BDC0, 0x0001BA40)
+[Sa Mär 14 02:19:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000845E0, 0x00004900, 0x00004600)
+[Sa Mär 14 02:19:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE8C0, 0x0002EC00, 0x0002E8E0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000987E0, 0x00018B00, 0x00018800)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082A80, 0x00002E00, 0x00002AA0)
+[Sa Mär 14 02:19:50 2026] gmc_v10_0_process_interrupt: 1580830 callbacks suppressed
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087320, 0x0002AFC0, 0x00007340)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F740, 0x0000FAC0, 0x0000F760)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8EA0, 0x000391C0, 0x00038EC0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1E00, 0x00022160, 0x00021E20)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008ADA0, 0x0000B0C0, 0x0000ADC0)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B57E0, 0x00035B80, 0x00035800)
+[Sa Mär 14 02:19:50 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0660, 0x000209A0, 0x00020680)
+[Sa Mär 14 02:19:51 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A8E0, 0x0000AC80, 0x0000A900)
+[Sa Mär 14 02:19:51 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B47A0, 0x00034B20, 0x000347C0)
+[Sa Mär 14 02:19:51 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009E6A0, 0x0001E9E0, 0x0001E6C0)
+[Sa Mär 14 02:19:51 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087980, 0x00007D40, 0x000079A0)
+[Sa Mär 14 02:19:51 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1420, 0x000317E0, 0x00031440)
+[Sa Mär 14 02:19:51 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CA40, 0x0001CDA0, 0x0001CA60)
+[Sa Mär 14 02:19:51 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00085220, 0x00005540, 0x00005240)
+[Sa Mär 14 02:19:51 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE920, 0x0002ECA0, 0x0002E940)
+[Sa Mär 14 02:19:52 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000997C0, 0x00019AE0, 0x000197E0)
+[Sa Mär 14 02:19:52 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082740, 0x00002A80, 0x00002760)
+[Sa Mär 14 02:19:52 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD540, 0x0002D900, 0x0002D560)
+[Sa Mär 14 02:19:52 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096C60, 0x00016FC0, 0x00016C80)
+[Sa Mär 14 02:19:52 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00081EA0, 0x00002200, 0x00001EC0)
+[Sa Mär 14 02:19:52 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC560, 0x0002C8A0, 0x0002C580)
+[Sa Mär 14 02:19:52 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096080, 0x000163C0, 0x000160A0)
+[Sa Mär 14 02:19:52 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BE440, 0x0003E7A0, 0x0003E460)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A6C00, 0x00026F40, 0x00026C20)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092620, 0x00012960, 0x00012640)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD880, 0x0003DBC0, 0x0003D8A0)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A82C0, 0x00028660, 0x000282E0)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000919A0, 0x00011D40, 0x000119C0)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BA8E0, 0x0003AC60, 0x0003A900)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A2C60, 0x00023000, 0x00022C80)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C400, 0x0000C6E0, 0x0000C420)
+[Sa Mär 14 02:19:53 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3FE0, 0x00034360, 0x00034000)
+[Sa Mär 14 02:19:54 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C340, 0x0001C700, 0x0001C360)
+[Sa Mär 14 02:19:54 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086DE0, 0x00007120, 0x00006E00)
+[Sa Mär 14 02:19:54 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0120, 0x00030480, 0x00030140)
+[Sa Mär 14 02:19:54 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099820, 0x00019BA0, 0x00019840)
+[Sa Mär 14 02:19:54 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082B20, 0x00002EC0, 0x00002B40)
+[Sa Mär 14 02:19:54 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD9E0, 0x0002DCE0, 0x0002DA00)
+[Sa Mär 14 02:19:54 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000978A0, 0x00017C20, 0x000178C0)
+[Sa Mär 14 02:19:54 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00081F40, 0x000022A0, 0x00001F60)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8F40, 0x00029300, 0x00028F60)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093240, 0x00013560, 0x00013260)
+[Sa Mär 14 02:19:55 2026] gmc_v10_0_process_interrupt: 1582070 callbacks suppressed
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AA8E0, 0x00006DA0, 0x0002A900)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE740, 0x0002EAC0, 0x0002E760)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E740, 0x0000EAA0, 0x0000E760)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B89E0, 0x00038D60, 0x00038A00)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A2C60, 0x00023000, 0x00022C80)
+[Sa Mär 14 02:19:55 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008EE60, 0x0000F180, 0x0000EE80)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B79A0, 0x00037D40, 0x000379C0)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3B60, 0x00023EC0, 0x00023B80)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E580, 0x0000E940, 0x0000E5A0)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B9F60, 0x0003A2E0, 0x00039F80)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3640, 0x000239E0, 0x00023660)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D960, 0x0000DC60, 0x0000D980)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8000, 0x00038360, 0x00038020)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1320, 0x000216A0, 0x00021340)
+[Sa Mär 14 02:19:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008AA80, 0x0000ADA0, 0x0000AAA0)
+[Sa Mär 14 02:19:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B50E0, 0x00035480, 0x00035100)
+[Sa Mär 14 02:19:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009E800, 0x0001EB60, 0x0001E820)
+[Sa Mär 14 02:19:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089280, 0x000095E0, 0x000092A0)
+[Sa Mär 14 02:19:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2D60, 0x000330E0, 0x00032D80)
+[Sa Mär 14 02:19:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D3C0, 0x0001D760, 0x0001D3E0)
+[Sa Mär 14 02:19:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087660, 0x000079E0, 0x00007680)
+[Sa Mär 14 02:19:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B24C0, 0x00032820, 0x000324E0)
+[Sa Mär 14 02:19:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C760, 0x0001CAE0, 0x0001C780)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087960, 0x00007D00, 0x00007980)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B23A0, 0x00032740, 0x000323C0)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CA00, 0x0001CDA0, 0x0001CA20)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086C80, 0x00007020, 0x00006CA0)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0F20, 0x000312A0, 0x00030F40)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099A80, 0x00019E00, 0x00019AA0)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083D40, 0x000040A0, 0x00003D60)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AF3A0, 0x0002F6C0, 0x0002F3C0)
+[Sa Mär 14 02:19:58 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098680, 0x00018A40, 0x000186A0)
+[Sa Mär 14 02:19:59 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084880, 0x00004BA0, 0x000048A0)
+[Sa Mär 14 02:19:59 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD080, 0x0002D380, 0x0002D0A0)
+[Sa Mär 14 02:19:59 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096F40, 0x000172C0, 0x00016F60)
+[Sa Mär 14 02:19:59 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000815A0, 0x00001940, 0x000015C0)
+[Sa Mär 14 02:19:59 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC860, 0x0002CB40, 0x0002C880)
+[Sa Mär 14 02:19:59 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000967A0, 0x00016AA0, 0x000167C0)
+[Sa Mär 14 02:19:59 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000802C0, 0x00000600, 0x000002E0)
+[Sa Mär 14 02:19:59 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9DC0, 0x0002A120, 0x00029DE0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095000, 0x00015360, 0x00015020)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BF360, 0x0003F620, 0x0003F380)
+[Sa Mär 14 02:20:00 2026] gmc_v10_0_process_interrupt: 1580169 callbacks suppressed
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8780, 0x0001B300, 0x000387A0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BA3A0, 0x0003A680, 0x0003A3C0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1BE0, 0x00021F20, 0x00021C00)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008CA00, 0x0000CDA0, 0x0000CA20)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4D80, 0x00035120, 0x00034DA0)
+[Sa Mär 14 02:20:00 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009E8C0, 0x0001EBE0, 0x0001E8E0)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A2C0, 0x0000A620, 0x0000A2E0)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5140, 0x00035480, 0x00035160)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D160, 0x0001D480, 0x0001D180)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087080, 0x000073A0, 0x000070A0)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1AC0, 0x00031E60, 0x00031AE0)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D160, 0x0001D440, 0x0001D180)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087460, 0x00007780, 0x00007480)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0B40, 0x00030EE0, 0x00030B60)
+[Sa Mär 14 02:20:01 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099700, 0x00019A20, 0x00019720)
+[Sa Mär 14 02:20:02 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000835E0, 0x00003940, 0x00003600)
+[Sa Mär 14 02:20:02 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC520, 0x0002C8A0, 0x0002C540)
+[Sa Mär 14 02:20:02 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00094580, 0x00014860, 0x000145A0)
+[Sa Mär 14 02:20:02 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BE4C0, 0x0003E7C0, 0x0003E4E0)
+[Sa Mär 14 02:20:02 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A70C0, 0x000273A0, 0x000270E0)
+[Sa Mär 14 02:20:02 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008FCA0, 0x0000FFA0, 0x0000FCC0)
+[Sa Mär 14 02:20:02 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BAAA0, 0x0003AE60, 0x0003AAC0)
+[Sa Mär 14 02:20:02 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A41A0, 0x00024520, 0x000241C0)
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D0E0, 0x0000D460, 0x0000D100)
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7B40, 0x00037EC0, 0x00037B60)
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0B00, 0x00020E00, 0x00020B20)
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088EC0, 0x00009220, 0x00008EE0)
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B21E0, 0x00032560, 0x00032200)
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C860, 0x0001CBE0, 0x0001C880)
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086340, 0x000066C0, 0x00006360)
+[Sa Mär 14 02:20:03 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=10000000
+[Sa Mär 14 02:20:03 2026] [drm:psp_v11_0_ring_destroy [amdgpu]] *ERROR* Fail to stop psp ring
+[Sa Mär 14 02:20:03 2026] [drm:psp_hw_init [amdgpu]] *ERROR* PSP firmware loading failed
+[Sa Mär 14 02:20:03 2026] [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* hw_init of IP block <psp> failed -22
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sa Mär 14 02:20:03 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sa Mär 14 02:20:03 2026] [drm] shutdown in progress; skipping GPU TLB flush
+[Sa Mär 14 02:20:03 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Sa Mär 14 02:20:03 2026] ------------[ cut here ]------------
+[Sa Mär 14 02:20:03 2026] Memory manager not clean during takedown.
+[Sa Mär 14 02:20:03 2026] WARNING: CPU: 3 PID: 4505 at drivers/gpu/drm/drm_mm.c:999 drm_mm_takedown+0x2c/0x40
+[Sa Mär 14 02:20:03 2026] Modules linked in: amdgpu(O+) drm_ttm_helper drm_buddy ttm(O) zram zsmalloc binfmt_misc panfrost pwm_fan rk805_pwrkey drm_shmem_helper gpu_sched fuse nfnetlink ip_tables x_tables ipv6 btrfs blake2b_generic xor xor_neon raid6_pq r8169 rockchip_cpuinfo uio_pdrv_genirq adc_keys uio [last unloaded: drm_ttm_helper]
+[Sa Mär 14 02:20:03 2026] CPU: 3 PID: 4505 Comm: modprobe Tainted: G        W  O       6.1.115-vendor-rk35xx #1
+[Sa Mär 14 02:20:03 2026] Hardware name: Orange Pi 5 Plus (DT)
+[Sa Mär 14 02:20:03 2026] pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[Sa Mär 14 02:20:03 2026] pc : drm_mm_takedown+0x2c/0x40
+[Sa Mär 14 02:20:04 2026] lr : drm_mm_takedown+0x2c/0x40
+[Sa Mär 14 02:20:04 2026] sp : ffff8000146fb6d0
+[Sa Mär 14 02:20:04 2026] x29: ffff8000146fb6d0 x28: 000000000000000c x27: 0000000000000000
+[Sa Mär 14 02:20:04 2026] x26: 0000000000000000 x25: 0000000000006250 x24: ffff000116b57100
+[Sa Mär 14 02:20:04 2026] x23: ffff800001784c76 x22: ffff000116b54000 x21: ffff000116b46130
+[Sa Mär 14 02:20:04 2026] x20: ffff000116b45fc8 x19: ffff000116b40000 x18: 000000000000000a
+[Sa Mär 14 02:20:04 2026] x17: 0000000000000000 x16: 0000000000000000 x15: ffff8000146fb190
+[Sa Mär 14 02:20:04 2026] x14: 0000000000000000 x13: 2e6e776f64656b61 x12: 7420676e69727564
+[Sa Mär 14 02:20:04 2026] x11: 206e61656c632074 x10: 6f6e20726567616e x9 : ffff8000081aba44
+[Sa Mär 14 02:20:04 2026] x8 : ffff8000146fb438 x7 : ffff0002f6d6ca10 x6 : ffff0002f6d6ca10
+[Sa Mär 14 02:20:04 2026] x5 : ffff0002f6d78a70 x4 : 0000000000000000 x3 : ffff0002f6d78a70
+[Sa Mär 14 02:20:04 2026] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff00012abcdd00
+[Sa Mär 14 02:20:04 2026] Call trace:
+[Sa Mär 14 02:20:04 2026]  drm_mm_takedown+0x2c/0x40
+[Sa Mär 14 02:20:04 2026]  amdgpu_gtt_mgr_fini+0x60/0xe4 [amdgpu]
+[Sa Mär 14 02:20:04 2026]  amdgpu_ttm_fini+0x138/0x1b8 [amdgpu]
+[Sa Mär 14 02:20:04 2026]  amdgpu_bo_fini+0x38/0x80 [amdgpu]
+[Sa Mär 14 02:20:04 2026]  gmc_v10_0_sw_fini+0x38/0x4c [amdgpu]
+[Sa Mär 14 02:20:04 2026]  amdgpu_device_fini_sw+0x248/0x2d0 [amdgpu]
+[Sa Mär 14 02:20:04 2026]  amdgpu_driver_release_kms+0x24/0x3c [amdgpu]
+[Sa Mär 14 02:20:04 2026]  drm_dev_put+0xa4/0xac
+[Sa Mär 14 02:20:04 2026]  devm_drm_dev_init_release+0x18/0x24
+[Sa Mär 14 02:20:04 2026]  devm_action_release+0x1c/0x28
+[Sa Mär 14 02:20:04 2026]  release_nodes+0x78/0x8c
+[Sa Mär 14 02:20:04 2026]  devres_release_all+0xc0/0xf8
+[Sa Mär 14 02:20:04 2026]  device_unbind_cleanup+0x20/0x70
+[Sa Mär 14 02:20:04 2026]  really_probe+0x1a4/0x390
+[Sa Mär 14 02:20:04 2026]  __driver_probe_device+0x140/0x158
+[Sa Mär 14 02:20:04 2026]  driver_probe_device+0x44/0x100
+[Sa Mär 14 02:20:04 2026]  __driver_attach+0x16c/0x17c
+[Sa Mär 14 02:20:04 2026]  bus_for_each_dev+0x80/0xd0
+[Sa Mär 14 02:20:04 2026]  driver_attach+0x2c/0x38
+[Sa Mär 14 02:20:04 2026]  bus_add_driver+0xf8/0x20c
+[Sa Mär 14 02:20:04 2026]  driver_register+0xb8/0xf4
+[Sa Mär 14 02:20:04 2026]  __pci_register_driver+0x48/0x54
+[Sa Mär 14 02:20:04 2026]  amdgpu_init+0x7c/0xfa0 [amdgpu]
+[Sa Mär 14 02:20:04 2026]  do_one_initcall+0xa4/0x1f8
+[Sa Mär 14 02:20:04 2026]  do_init_module+0x58/0x1dc
+[Sa Mär 14 02:20:04 2026]  load_module+0x1878/0x18f0
+[Sa Mär 14 02:20:04 2026]  __do_sys_finit_module+0xf4/0x124
+[Sa Mär 14 02:20:04 2026]  __arm64_sys_finit_module+0x24/0x30
+[Sa Mär 14 02:20:04 2026]  invoke_syscall+0x8c/0x12c
+[Sa Mär 14 02:20:04 2026]  el0_svc_common.constprop.0+0xd8/0x124
+[Sa Mär 14 02:20:04 2026]  do_el0_svc+0x9c/0xc4
+[Sa Mär 14 02:20:04 2026]  el0_svc+0x2c/0x54
+[Sa Mär 14 02:20:04 2026]  el0t_64_sync_handler+0xac/0x13c
+[Sa Mär 14 02:20:04 2026]  el0t_64_sync+0x19c/0x1a0
+[Sa Mär 14 02:20:04 2026] 
+                           PC: 0xffff80000875c29c:
+[Sa Mär 14 02:20:04 2026] c09c  f9400044 f9000483 a9020824 f9000043 a9408422 f9401803 8b010041 eb03003f
+[Sa Mär 14 02:20:04 2026] c0bc  540000c9 f9401c00 eb00005f 1a9f27e0 d50323bf d65f03c0 52800000 17fffffd
+[Sa Mär 14 02:20:04 2026] c0dc  aa1e03e9 d503201f d503233f a9bd7bfd 52800023 d2800004 910003fd a90153f3
+[Sa Mär 14 02:20:04 2026] c0fc  aa0003f3 f90013f5 a9418015 a9408662 f85e8000 cb020000 cb010000 910342a1
+[Sa Mär 14 02:20:04 2026] c11c  aa0103e2 a9090260 f9400054 b5000434 91016260 f9002e64 a900fc1f f9000040
+[Sa Mär 14 02:20:04 2026] c13c  34000043 f9006ea0 9428ad3a a9408263 910382a1 f9404e65 aa0103e2 8b000063
+[Sa Mär 14 02:20:04 2026] c15c  f9400040 b5000380 9101c260 f9003a74 a900fc1f f9000040 f0ffffe2 91363042
+[Sa Mär 14 02:20:04 2026] c17c  9428ad7f aa1503e0 9100c261 f8408c02 f9000441 a9030262 f90006a1 f94013f5
+[Sa Mär 14 02:20:04 2026] c19c  a94153f3 a8c37bfd d50323bf d65f03c0 f9401e82 eb02001f 54000089 91004282
+[Sa Mär 14 02:20:04 2026] c1bc  aa1403e4 17ffffd9 91002282 52800003 17fffffc f9401404 d101c002 eb0400bf
+[Sa Mär 14 02:20:04 2026] c1dc  54000049 f9004c45 a9408844 91004006 aa0003f4 8b020084 91002002 eb04007f
+[Sa Mär 14 02:20:04 2026] c1fc  9a862042 17ffffd7 aa1e03e9 d503201f d503233f a9be7bfd 8b020021 cb0203e2
+[Sa Mär 14 02:20:04 2026] c21c  910003fd f9000bf3 aa0003f3 f800841f f9000660 f9000a60 9100e260 f9001e60
+[Sa Mär 14 02:20:04 2026] c23c  a9020a61 f9001a73 f9002260 91006260 a90bfe7f a90cfe7f a90dfe7f 97ffffa1
+[Sa Mär 14 02:20:04 2026] c25c  f900767f f9400bf3 a8c27bfd d50323bf d65f03c0 aa1e03e9 d503201f f8438c01
+[Sa Mär 14 02:20:04 2026] c27c  eb00003f 54000160 d503233f a9bf7bfd f00081a0 910c0800 910003fd 97e4a4bf
+[Sa Mär 14 02:20:04 2026] c29c* d4210000 a8c17bfd d50323bf d65f03c0 d65f03c0 aa1e03e9 d503201f d503233f
+[Sa Mär 14 02:20:04 2026] c2bc  a9bf7bfd 910003fd a9408c22 f9400c04 8b030042 d1000442 f9004422 f9405002
+[Sa Mär 14 02:20:04 2026] c2dc  360003c2 91010003 aa0303e2 b40000c2 f9402447 d1010045 f9404426 eb0600ff
+[Sa Mär 14 02:20:04 2026] c2fc  54000243 91012002 52800005 f9400040 b50002c0 91010020 f9002023 a900fc1f
+[Sa Mär 14 02:20:04 2026] c31c  f9000040 34000045 f9006480 91030081 90000002 911c4042 9428ad11 a8c17bfd
+[Sa Mär 14 02:20:04 2026] c33c  d50323bf d65f03c0 f90044a6 f9400042 927ef442 17ffffe6 91030082 52800025
+[Sa Mär 14 02:20:04 2026] c35c  d2800003 17ffffea f9402406 d1010002 f9404423 eb0300df 54000042 f9004443
+[Sa Mär 14 02:20:04 2026] c37c  f9400423 f9400442 eb02007f 54000082 91004002 aa0003e3 17ffffdd 91002002
+[Sa Mär 14 02:20:04 2026] c39c  52800005 17fffffc d503233f d2800021 d503201f f8611001 d50323bf d65f03c0
+[Sa Mär 14 02:20:04 2026] c3bc  f9800011 c85f7c02 8a210043 c804fc03 35ffffa4 17fffff9 aa1e03e9 d503201f
+[Sa Mär 14 02:20:04 2026] c3dc  d503233f a9bd7bfd 910003fd a90153f3 aa0003f4 d2800013 a9025bf5 aa0103f5
+[Sa Mär 14 02:20:04 2026] c3fc  aa0203f6 b50000f4 aa1303e0 a94153f3 a9425bf5 a8c37bfd d50323bf d65f03c0
+[Sa Mär 14 02:20:04 2026] c41c  aa1603e1 aa1403e0 97fffe6e 3607fee0 d101c293 a9408660 8b010000 eb15001f
+[Sa Mär 14 02:20:04 2026] c43c  54000069 f9404274 17ffffef f9404a61 8b010000 eb0002bf 54fffd89 f9403e74
+[Sa Mär 14 02:20:04 2026] c45c  17ffffe9 d503233f eb01001f 54000061 d50323bf d65f03c0 f9400803 d101c000
+[Sa Mär 14 02:20:04 2026] c47c  f9404802 b4000083 f9401463 eb03005f 9a832042 f9403c03 b4000083 f9401463
+[Sa Mär 14 02:20:04 2026] 
+                           LR: 0xffff80000875c29c:
+[Sa Mär 14 02:20:04 2026] c09c  f9400044 f9000483 a9020824 f9000043 a9408422 f9401803 8b010041 eb03003f
+[Sa Mär 14 02:20:04 2026] c0bc  540000c9 f9401c00 eb00005f 1a9f27e0 d50323bf d65f03c0 52800000 17fffffd
+[Sa Mär 14 02:20:04 2026] c0dc  aa1e03e9 d503201f d503233f a9bd7bfd 52800023 d2800004 910003fd a90153f3
+[Sa Mär 14 02:20:04 2026] c0fc  aa0003f3 f90013f5 a9418015 a9408662 f85e8000 cb020000 cb010000 910342a1
+[Sa Mär 14 02:20:04 2026] c11c  aa0103e2 a9090260 f9400054 b5000434 91016260 f9002e64 a900fc1f f9000040
+[Sa Mär 14 02:20:04 2026] c13c  34000043 f9006ea0 9428ad3a a9408263 910382a1 f9404e65 aa0103e2 8b000063
+[Sa Mär 14 02:20:04 2026] c15c  f9400040 b5000380 9101c260 f9003a74 a900fc1f f9000040 f0ffffe2 91363042
+[Sa Mär 14 02:20:04 2026] c17c  9428ad7f aa1503e0 9100c261 f8408c02 f9000441 a9030262 f90006a1 f94013f5
+[Sa Mär 14 02:20:04 2026] c19c  a94153f3 a8c37bfd d50323bf d65f03c0 f9401e82 eb02001f 54000089 91004282
+[Sa Mär 14 02:20:04 2026] c1bc  aa1403e4 17ffffd9 91002282 52800003 17fffffc f9401404 d101c002 eb0400bf
+[Sa Mär 14 02:20:04 2026] c1dc  54000049 f9004c45 a9408844 91004006 aa0003f4 8b020084 91002002 eb04007f
+[Sa Mär 14 02:20:04 2026] c1fc  9a862042 17ffffd7 aa1e03e9 d503201f d503233f a9be7bfd 8b020021 cb0203e2
+[Sa Mär 14 02:20:04 2026] c21c  910003fd f9000bf3 aa0003f3 f800841f f9000660 f9000a60 9100e260 f9001e60
+[Sa Mär 14 02:20:04 2026] c23c  a9020a61 f9001a73 f9002260 91006260 a90bfe7f a90cfe7f a90dfe7f 97ffffa1
+[Sa Mär 14 02:20:04 2026] c25c  f900767f f9400bf3 a8c27bfd d50323bf d65f03c0 aa1e03e9 d503201f f8438c01
+[Sa Mär 14 02:20:04 2026] c27c  eb00003f 54000160 d503233f a9bf7bfd f00081a0 910c0800 910003fd 97e4a4bf
+[Sa Mär 14 02:20:04 2026] c29c* d4210000 a8c17bfd d50323bf d65f03c0 d65f03c0 aa1e03e9 d503201f d503233f
+[Sa Mär 14 02:20:04 2026] c2bc  a9bf7bfd 910003fd a9408c22 f9400c04 8b030042 d1000442 f9004422 f9405002
+[Sa Mär 14 02:20:04 2026] c2dc  360003c2 91010003 aa0303e2 b40000c2 f9402447 d1010045 f9404426 eb0600ff
+[Sa Mär 14 02:20:04 2026] c2fc  54000243 91012002 52800005 f9400040 b50002c0 91010020 f9002023 a900fc1f
+[Sa Mär 14 02:20:04 2026] c31c  f9000040 34000045 f9006480 91030081 90000002 911c4042 9428ad11 a8c17bfd
+[Sa Mär 14 02:20:04 2026] c33c  d50323bf d65f03c0 f90044a6 f9400042 927ef442 17ffffe6 91030082 52800025
+[Sa Mär 14 02:20:04 2026] c35c  d2800003 17ffffea f9402406 d1010002 f9404423 eb0300df 54000042 f9004443
+[Sa Mär 14 02:20:04 2026] c37c  f9400423 f9400442 eb02007f 54000082 91004002 aa0003e3 17ffffdd 91002002
+[Sa Mär 14 02:20:04 2026] c39c  52800005 17fffffc d503233f d2800021 d503201f f8611001 d50323bf d65f03c0
+[Sa Mär 14 02:20:04 2026] c3bc  f9800011 c85f7c02 8a210043 c804fc03 35ffffa4 17fffff9 aa1e03e9 d503201f
+[Sa Mär 14 02:20:04 2026] c3dc  d503233f a9bd7bfd 910003fd a90153f3 aa0003f4 d2800013 a9025bf5 aa0103f5
+[Sa Mär 14 02:20:04 2026] c3fc  aa0203f6 b50000f4 aa1303e0 a94153f3 a9425bf5 a8c37bfd d50323bf d65f03c0
+[Sa Mär 14 02:20:04 2026] c41c  aa1603e1 aa1403e0 97fffe6e 3607fee0 d101c293 a9408660 8b010000 eb15001f
+[Sa Mär 14 02:20:04 2026] c43c  54000069 f9404274 17ffffef f9404a61 8b010000 eb0002bf 54fffd89 f9403e74
+[Sa Mär 14 02:20:04 2026] c45c  17ffffe9 d503233f eb01001f 54000061 d50323bf d65f03c0 f9400803 d101c000
+[Sa Mär 14 02:20:04 2026] c47c  f9404802 b4000083 f9401463 eb03005f 9a832042 f9403c03 b4000083 f9401463
+[Sa Mär 14 02:20:04 2026] 
+                           SP: 0xffff8000146fb6d0:
+[Sa Mär 14 02:20:04 2026] b4d0  146fb4f0 ffff8000 08033264 ffff8000 146fb580 ffff8000 00000029 00000000
+[Sa Mär 14 02:20:04 2026] b4f0  146fb540 ffff8000 091d5f70 ffff8000 146fb580 ffff8000 09b142f4 ffff8000
+[Sa Mär 14 02:20:04 2026] b510  f2000800 00000000 00000020 64e3d3ca 60400009 00000000 16b57100 ffff0001
+[Sa Mär 14 02:20:04 2026] b530  00006250 00000000 00000000 00000000 146fb570 ffff8000 091d6390 ffff8000
+[Sa Mär 14 02:20:04 2026] b550  16b40000 ffff0001 16b45fc8 ffff0001 146fb6d0 ffff8000 0875c29c ffff8000
+[Sa Mär 14 02:20:04 2026] b570  146fb6b0 ffff8000 080112e0 ffff8000 2abcdd00 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:04 2026] b590  00000000 00000000 f6d78a70 ffff0002 00000000 00000000 f6d78a70 ffff0002
+[Sa Mär 14 02:20:04 2026] b5b0  f6d6ca10 ffff0002 f6d6ca10 ffff0002 146fb438 ffff8000 081aba44 ffff8000
+[Sa Mär 14 02:20:04 2026] b5d0  6567616e 6f6e2072 6c632074 206e6165 69727564 7420676e 64656b61 2e6e776f
+[Sa Mär 14 02:20:04 2026] b5f0  00000000 00000000 146fb190 ffff8000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] b610  0000000a 00000000 16b40000 ffff0001 16b45fc8 ffff0001 16b46130 ffff0001
+[Sa Mär 14 02:20:04 2026] b630  16b54000 ffff0001 01784c76 ffff8000 16b57100 ffff0001 00006250 00000000
+[Sa Mär 14 02:20:04 2026] b650  00000000 00000000 00000000 00000000 0000000c 00000000 146fb6d0 ffff8000
+[Sa Mär 14 02:20:04 2026] b670  0875c29c ffff8000 146fb6d0 ffff8000 0875c29c ffff8000 60400009 00000000
+[Sa Mär 14 02:20:04 2026] b690  146fb6e0 ffff8000 29466d68 ffff0001 00000001 00000000 16b46130 ffff0001
+[Sa Mär 14 02:20:04 2026] b6b0  146fb6d0 ffff8000 0875c29c ffff8000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] b6d0* 146fb6e0 ffff8000 014c162c ffff8000 146fb720 ffff8000 014a0094 ffff8000
+[Sa Mär 14 02:20:04 2026] b6f0  16b40000 ffff0001 16b45000 ffff0001 16b540a0 ffff0001 014a0084 ffff8000
+[Sa Mär 14 02:20:04 2026] b710  16b400c0 00000000 b86a8d00 e9ef33bd 146fb760 ffff8000 014a2274 ffff8000
+[Sa Mär 14 02:20:04 2026] b730  16b40000 ffff0001 16b56018 ffff0001 00000001 00000000 16b56018 ffff0001
+[Sa Mär 14 02:20:04 2026] b750  00000001 00000000 b86a8d00 e9ef33bd 146fb780 ffff8000 014fb11c ffff8000
+[Sa Mär 14 02:20:04 2026] b770  16b40000 ffff0001 00000000 00000000 146fb7b0 ffff8000 0148d8e4 ffff8000
+[Sa Mär 14 02:20:04 2026] b790  16b40000 ffff0001 16b56018 ffff0001 00000000 00000000 b86a8d00 e9ef33bd
+[Sa Mär 14 02:20:04 2026] b7b0  146fb800 ffff8000 01493aa0 ffff8000 16b40000 ffff0001 146fb8a8 ffff8000
+[Sa Mär 14 02:20:04 2026] b7d0  066430c8 ffff0001 146fb8a8 ffff8000 09715920 ffff8000 00000001 00000000
+[Sa Mär 14 02:20:04 2026] b7f0  2924b568 ffff0001 2a75f600 ffff0001 146fb820 ffff8000 0875ae48 ffff8000
+[Sa Mär 14 02:20:04 2026] b810  16b40010 ffff0001 00000001 00000000 146fb840 ffff8000 0875ae68 ffff8000
+[Sa Mär 14 02:20:04 2026] b830  2924bb00 ffff0001 088e8be8 ffff8000 146fb850 ffff8000 088e89cc ffff8000
+[Sa Mär 14 02:20:04 2026] b850  146fb860 ffff8000 088e8bdc ffff8000 146fb8c0 ffff8000 088e9fe4 ffff8000
+[Sa Mär 14 02:20:04 2026] b870  066430c8 ffff0001 0000000d 00000000 146fb8a8 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] b890  06643370 ffff0001 091d8e48 ffff8000 2abcdd00 ffff0001 2924bb00 ffff0001
+[Sa Mär 14 02:20:04 2026] b8b0  29467100 ffff0001 b86a8d00 e9ef33bd 146fb900 ffff8000 088e33bc ffff8000
+[Sa Mär 14 02:20:04 2026] 
+                           X0: 0xffff00012abcdd00:
+[Sa Mär 14 02:20:04 2026] db00  00000000 00000000 00000000 00000000 00000007 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] db20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] db40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] db60  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] db80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dba0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dbc0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dbe0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dc00  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dc20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dc40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dc60  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dc80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dca0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dcc0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dce0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dd00* 0000000e 00000000 00000000 00000000 00000003 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dd20  146f8000 ffff8000 00000001 00400100 00000000 00000001 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dd40  00000030 00000000 0000002a 00000000 000102fa 00000001 00cb9f00 ffff0001
+[Sa Mär 14 02:20:04 2026] dd60  00000003 00000003 00000001 00000078 00000078 00000078 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dd80  00100000 00000000 00400000 00000000 00000001 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dda0  00000000 00000000 f6d7da78 ffff0002 00a4af28 ffff0001 00000001 00000000
+[Sa Mär 14 02:20:04 2026] ddc0  5572f682 00000079 d14d70a1 00000005 d52bd36c 00000001 d0e4d966 00000005
+[Sa Mär 14 02:20:04 2026] dde0  00000022 00000000 00000003 00000000 0081fc00 ffff0001 14d1c400 ffff0001
+[Sa Mär 14 02:20:04 2026] de00  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] de20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] de40  5527f400 00000079 0000b84f 00000000 02e143b0 00000000 02c8848c 000001fd
+[Sa Mär 14 02:20:04 2026] de60  000003ff 00000000 000003ff 00000000 000003dc 00000000 00000023 0000002a
+[Sa Mär 14 02:20:04 2026] de80  2abcde80 ffff0001 2abcde80 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dea0  0000001e 00000000 00000000 00000000 2a2cf000 ffff0001 28d55800 ffff0001
+[Sa Mär 14 02:20:04 2026] dec0  00000000 00000000 2abcdec8 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] dee0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 
+                           X3: 0xffff0002f6d78a70:
+[Sa Mär 14 02:20:04 2026] 8870  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8890  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 88b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 88d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 88f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8910  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8930  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8950  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8970  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8990  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 89b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 89d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 89f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a70* f6d6ca10 ffff0002 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8ab0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8ad0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8af0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8bb0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8bd0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8bf0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8c10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8c30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8c50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 
+                           X5: 0xffff0002f6d78a70:
+[Sa Mär 14 02:20:04 2026] 8870  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8890  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 88b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 88d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 88f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8910  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8930  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8950  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8970  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8990  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 89b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 89d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 89f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a70* f6d6ca10 ffff0002 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8a90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8ab0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8ad0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8af0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8b90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8bb0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8bd0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8bf0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8c10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8c30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 8c50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 
+                           X6: 0xffff0002f6d6ca10:
+[Sa Mär 14 02:20:04 2026] c810  00000000 00000000 00000000 00000000 da5a0667 00000000 0032dcd5 00000000
+[Sa Mär 14 02:20:04 2026] c830  16f3202c 00000001 016409d3 00000000 00000000 00000000 8fc2e92a 0000006f
+[Sa Mär 14 02:20:04 2026] c850  dda4b4a3 00000007 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c870  000144b2 00000000 00000000 0000170d 00000000 00000030 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c890  00000000 00003460 00000000 0000313c 000000ff 00000000 000000ff 00000000
+[Sa Mär 14 02:20:04 2026] c8b0  00000000 00000000 00000000 00000000 00000030 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c8d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c8f0  00000000 00000000 00000000 00000000 f6d7b9e8 ffff0002 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c910  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c930  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c950  00b62800 ffff0001 00000008 00000000 09b82f80 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c970  00000000 00000000 00b62800 ffff0001 00036bc4 00000000 00000000 00000003
+[Sa Mär 14 02:20:04 2026] c990  00000000 000000d0 5211515e 0f0816e9 00000000 00000000 2ee72330 1ec98f45
+[Sa Mär 14 02:20:04 2026] c9b0  3a9d9094 00000000 553fd83e 00000079 5211515e 0f0816e9 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c9d0  2ec74b55 1ec75eb9 3a52eab8 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c9f0  00000000 00000000 00000000 00000000 1d6736b3 00000002 00000001 00000000
+[Sa Mär 14 02:20:04 2026] ca10* 00000000 00000000 00000027 00000000 080ece20 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] ca30  00000000 00000000 00000000 00000000 00000000 00000000 f6d6ca40 ffff0002
+[Sa Mär 14 02:20:04 2026] ca50  f6d6ca40 ffff0002 f6d6ca40 ffff0002 f6d6ca40 ffff0002 00000000 00000000
+[Sa Mär 14 02:20:04 2026] ca70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] ca90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cab0  00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cad0  ffffffe0 0000000f f6d6cad8 ffff0002 f6d6cad8 ffff0002 0810430c ffff8000
+[Sa Mär 14 02:20:04 2026] caf0  00000000 00000000 00000008 00000000 08103c18 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cb10  00000000 00000000 00000000 00000000 f6d6cb20 ffff0002 f6d6cb20 ffff0002
+[Sa Mär 14 02:20:04 2026] cb30  00000003 00000000 0a287468 ffff8000 00000000 00000000 f6d6cb40 ffff0002
+[Sa Mär 14 02:20:04 2026] cb50  f6d6cb40 ffff0002 f6d6cb40 ffff0002 f6d6cb40 ffff0002 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cb70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cb90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cbb0  00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cbd0  ffffffe0 0000000f f6d6cbd8 ffff0002 f6d6cbd8 ffff0002 0810430c ffff8000
+[Sa Mär 14 02:20:04 2026] cbf0  00000000 00000000 00000008 00000000 08103c18 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] 
+                           X7: 0xffff0002f6d6ca10:
+[Sa Mär 14 02:20:04 2026] c810  00000000 00000000 00000000 00000000 da5a0667 00000000 0032dcd5 00000000
+[Sa Mär 14 02:20:04 2026] c830  16f3202c 00000001 016409d3 00000000 00000000 00000000 8fc2e92a 0000006f
+[Sa Mär 14 02:20:04 2026] c850  dda4b4a3 00000007 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c870  000144b2 00000000 00000000 0000170d 00000000 00000030 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c890  00000000 00003460 00000000 0000313c 000000ff 00000000 000000ff 00000000
+[Sa Mär 14 02:20:04 2026] c8b0  00000000 00000000 00000000 00000000 00000030 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c8d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c8f0  00000000 00000000 00000000 00000000 f6d7b9e8 ffff0002 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c910  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c930  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c950  00b62800 ffff0001 00000008 00000000 09b82f80 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c970  00000000 00000000 00b62800 ffff0001 00036bc4 00000000 00000000 00000003
+[Sa Mär 14 02:20:04 2026] c990  00000000 000000d0 5211515e 0f0816e9 00000000 00000000 2ee72330 1ec98f45
+[Sa Mär 14 02:20:04 2026] c9b0  3a9d9094 00000000 553fd83e 00000079 5211515e 0f0816e9 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c9d0  2ec74b55 1ec75eb9 3a52eab8 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] c9f0  00000000 00000000 00000000 00000000 1d6736b3 00000002 00000001 00000000
+[Sa Mär 14 02:20:04 2026] ca10* 00000000 00000000 00000027 00000000 080ece20 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] ca30  00000000 00000000 00000000 00000000 00000000 00000000 f6d6ca40 ffff0002
+[Sa Mär 14 02:20:04 2026] ca50  f6d6ca40 ffff0002 f6d6ca40 ffff0002 f6d6ca40 ffff0002 00000000 00000000
+[Sa Mär 14 02:20:04 2026] ca70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] ca90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cab0  00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cad0  ffffffe0 0000000f f6d6cad8 ffff0002 f6d6cad8 ffff0002 0810430c ffff8000
+[Sa Mär 14 02:20:04 2026] caf0  00000000 00000000 00000008 00000000 08103c18 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:04 2026] cb10  00000000 00000000 00000000 00000000 f6d6cb20 ffff0002 f6d6cb20 ffff0002
+[Sa Mär 14 02:20:04 2026] cb30  00000003 00000000 0a287468 ffff8000 00000000 00000000 f6d6cb40 ffff0002
+[Sa Mär 14 02:20:04 2026] cb50  f6d6cb40 ffff0002 f6d6cb40 ffff0002 f6d6cb40 ffff0002 00000000 00000000
+[Sa Mär 14 02:20:05 2026] cb70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] cb90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] cbb0  00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] cbd0  ffffffe0 0000000f f6d6cbd8 ffff0002 f6d6cbd8 ffff0002 0810430c ffff8000
+[Sa Mär 14 02:20:05 2026] cbf0  00000000 00000000 00000008 00000000 08103c18 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 
+                           X8: 0xffff8000146fb438:
+[Sa Mär 14 02:20:05 2026] b238  146fb340 ffff8000 146fb300 ffff8000 ffffffc8 00000000 146fb2f0 ffff8000
+[Sa Mär 14 02:20:05 2026] b258  09194678 ffff8000 00000020 00000000 146fb264 ffff8000 00000001 00000000
+[Sa Mär 14 02:20:05 2026] b278  ffffffe0 00000000 146fb340 ffff8000 146fb340 ffff8000 146fb300 ffff8000
+[Sa Mär 14 02:20:05 2026] b298  ffffffc8 00000000 146fb340 ffff8000 146fb340 ffff8000 146fb300 ffff8000
+[Sa Mär 14 02:20:05 2026] b2b8  ffffffc8 00000000 146fb580 ffff8000 146fb340 ffff8000 146fb340 ffff8000
+[Sa Mär 14 02:20:05 2026] b2d8  146fb300 ffff8000 146fb320 ffff8000 091ddfb8 ffff8000 146fb344 ffff8000
+[Sa Mär 14 02:20:05 2026] b2f8  146fb2f8 ffff8000 00000006 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] b318  b86a8d00 e9ef33bd 146fb350 ffff8000 080192a4 ffff8000 00000020 00000000
+[Sa Mär 14 02:20:05 2026] b338  00000000 00000000 146fb3a0 00000000 b86a8d00 e9ef33bd 146fb3b0 ffff8000
+[Sa Mär 14 02:20:05 2026] b358  080194f4 ffff8000 146fb580 ffff8000 00000009 00000000 096ff494 ffff8000
+[Sa Mär 14 02:20:05 2026] b378  146fb580 ffff8000 0979338d ffff8000 00000009 00000000 000003e7 00000000
+[Sa Mär 14 02:20:05 2026] b398  00000000 00000000 00000000 00003858 b86a8d00 e9ef33bd 146fb3e0 ffff8000
+[Sa Mär 14 02:20:05 2026] b3b8  08085d78 ffff8000 09b14008 ffff8000 00000000 00000000 0875c29c ffff8000
+[Sa Mär 14 02:20:05 2026] b3d8  f6d6ca10 ffff0002 146fb450 ffff8000 09173af0 ffff8000 09b24330 ffff8000
+[Sa Mär 14 02:20:05 2026] b3f8  0a5317c4 ffff8000 0875c29c ffff8000 ff261bc5 00000000 146fb580 ffff8000
+[Sa Mär 14 02:20:05 2026] b418  00000000 00000000 000003e7 00000000 080efeb8 ffff8000 0a551568 ffff8000
+[Sa Mär 14 02:20:05 2026] b438* 00000000 00000000 00000000 00000000 00000001 00000000 146fb4a0 ffff8000
+[Sa Mär 14 02:20:05 2026] b458  0801fc9c ffff8000 146fb580 ffff8000 f2000800 00000000 f2000800 00000000
+[Sa Mär 14 02:20:05 2026] b478  00000090 00000000 0a49bbb8 ffff8000 0a49bc48 ffff8000 00000020 64e3d3ca
+[Sa Mär 14 02:20:05 2026] b498  0875c29c ffff8000 146fb4c0 ffff8000 080158ec ffff8000 146fb580 ffff8000
+[Sa Mär 14 02:20:05 2026] b4b8  146fb580 ffff8000 146fb4d0 ffff8000 08015d3c ffff8000 146fb4f0 ffff8000
+[Sa Mär 14 02:20:05 2026] b4d8  08033264 ffff8000 146fb580 ffff8000 00000029 00000000 146fb540 ffff8000
+[Sa Mär 14 02:20:05 2026] b4f8  091d5f70 ffff8000 146fb580 ffff8000 09b142f4 ffff8000 f2000800 00000000
+[Sa Mär 14 02:20:05 2026] b518  00000020 64e3d3ca 60400009 00000000 16b57100 ffff0001 00006250 00000000
+[Sa Mär 14 02:20:05 2026] b538  00000000 00000000 146fb570 ffff8000 091d6390 ffff8000 16b40000 ffff0001
+[Sa Mär 14 02:20:05 2026] b558  16b45fc8 ffff0001 146fb6d0 ffff8000 0875c29c ffff8000 146fb6b0 ffff8000
+[Sa Mär 14 02:20:05 2026] b578  080112e0 ffff8000 2abcdd00 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] b598  f6d78a70 ffff0002 00000000 00000000 f6d78a70 ffff0002 f6d6ca10 ffff0002
+[Sa Mär 14 02:20:05 2026] b5b8  f6d6ca10 ffff0002 146fb438 ffff8000 081aba44 ffff8000 6567616e 6f6e2072
+[Sa Mär 14 02:20:05 2026] b5d8  6c632074 206e6165 69727564 7420676e 64656b61 2e6e776f 00000000 00000000
+[Sa Mär 14 02:20:05 2026] b5f8  146fb190 ffff8000 00000000 00000000 00000000 00000000 0000000a 00000000
+[Sa Mär 14 02:20:05 2026] b618  16b40000 ffff0001 16b45fc8 ffff0001 16b46130 ffff0001 16b54000 ffff0001
+[Sa Mär 14 02:20:05 2026] 
+                           X9: 0xffff8000081aba44:
+[Sa Mär 14 02:20:05 2026] b844  911c0400 943fa372 910023e0 94041a2e 17ffffe0 a905d815 a94087e0 a9038660
+[Sa Mär 14 02:20:05 2026] b864  aa1403e0 52819801 94022de0 f9002a60 b4000320 f9404260 f00107a1 911f6021
+[Sa Mär 14 02:20:05 2026] b884  9101c274 9100e022 91016021 f9004c02 f9403002 f9001041 52801041 b900c001
+[Sa Mär 14 02:20:05 2026] b8a4  f9403001 90000000 9114d000 f9000c20 f9401260 f100001f aa1403e0 1a9f07e1
+[Sa Mär 14 02:20:05 2026] b8c4  97fff352 37f80080 f9404273 91014273 17ffffc0 aa1303e0 92800173 97fff71b
+[Sa Mär 14 02:20:05 2026] b8e4  17ffffbc a9427bfd aa1303e0 a94353f3 a9445bf5 910143ff d50323bf d65f03c0
+[Sa Mär 14 02:20:05 2026] b904  d503233f a9bf7bfd 910003fd f84a0c01 eb00003f 540000e0 b40000c1 d101c020
+[Sa Mär 14 02:20:05 2026] b924  97fff70a a8c17bfd d50323bf d65f03c0 d4210000 d2800000 17fffffa d53cd040
+[Sa Mär 14 02:20:05 2026] b944  d503233f d50323bf d53cd040 d65f03c0 d503233f 52800462 d503201f 91002000
+[Sa Mär 14 02:20:05 2026] b964  b8e23001 2a2103e0 d50323bf 12000000 d65f03c0 91002000 f9800011 885f7c01
+[Sa Mär 14 02:20:05 2026] b984  2a020023 8804fc03 35ffffa4 d5033bbf 17fffff5 d503233f a9be7bfd 910003fd
+[Sa Mär 14 02:20:05 2026] b9a4  f9000bf3 aa0003f3 9440b512 b9400a60 370800a0 f9400bf3 a8c27bfd d50323bf
+[Sa Mär 14 02:20:05 2026] b9c4  d65f03c0 d503203f 17fffff9 d503233f d50323bf d65f03c0 d503233f a9be7bfd
+[Sa Mär 14 02:20:05 2026] b9e4  f000cba3 aa0003e1 910003fd 9129c063 f9000bf3 b9400804 97ffffd2 36100184
+[Sa Mär 14 02:20:05 2026] ba04  8b000062 52800033 aa0103e0 940f8fbd 36000060 35000153 97f9eb62 f9400bf3
+[Sa Mär 14 02:20:05 2026] ba24  a8c27bfd d50323bf d65f03c0 91002063 52800013 8b000062 17fffff4 97fe23d0
+[Sa Mär 14 02:20:05 2026] ba44* 3707fec0 17fffff6 d503233f a9be7bfd aa0003e5 910003fd f9000bf3 97ffffbd
+[Sa Mär 14 02:20:05 2026] ba64  2a0003f3 36000073 aa0503e0 97ffffdb 2a1303e0 f9400bf3 a8c27bfd d50323bf
+[Sa Mär 14 02:20:05 2026] ba84  d65f03c0 aa0003e6 d503233f 53067c20 a9be7bfd 2a0103e5 d37df000 910003fd
+[Sa Mär 14 02:20:05 2026] baa4  d000fe81 9128a021 f9000bf3 f8606820 9ac52400 37000040 d4210000 aa0603e0
+[Sa Mär 14 02:20:05 2026] bac4  97ffffa4 2a0003f3 360001f3 b000cb41 97ffff9c 91002021 b8616800 6b05001f
+[Sa Mär 14 02:20:05 2026] bae4  540001c0 d5384100 b9400800 720c0c1f 54000040 d4210000 aa0603e1 2a0503e0
+[Sa Mär 14 02:20:05 2026] bb04  97fe3eb6 2a1303e0 f9400bf3 a8c27bfd d50323bf d65f03c0 aa0603e0 97ffffaf
+[Sa Mär 14 02:20:05 2026] bb24  17fffff9 d503233f a9bf7bfd f000cba1 9129c021 910003fd 91002022 97ffff81
+[Sa Mär 14 02:20:05 2026] bb44  f8626802 f8616801 b4000221 b000cb41 91002021 b8616802 d000fe81 9128a021
+[Sa Mär 14 02:20:05 2026] bb64  53067c40 d37df000 f8606820 9ac22400 360000a0 52800020 a8c17bfd d50323bf
+[Sa Mär 14 02:20:05 2026] bb84  d65f03c0 d4210000 17fffffb 52800000 17fffffa d503233f a9bd7bfd 910003fd
+[Sa Mär 14 02:20:05 2026] bba4  a90153f3 aa0003f3 f90013f5 b9400815 121f7ab4 b9000814 d5033bbf f9400801
+[Sa Mär 14 02:20:05 2026] bbc4  d63f0020 121e76a2 d503201f 91002260 2a1403e1 aa0003e3 2a0103e4 88e4fc62
+[Sa Mär 14 02:20:05 2026] bbe4  2a0403e0 f94013f5 a94153f3 a8c37bfd d50323bf d65f03c0 91002263 f9800071
+[Sa Mär 14 02:20:05 2026] bc04  885f7c61 4a140020 35000080 8800fc62 35ffff80 d5033bbf 17fffff3 d53b4222
+[Sa Mär 14 02:20:05 2026] bc24  12190041 35000041 d4210000 f9400001 b4000121 d2800002 f8e28001 d503201f
+[Sa Mär 14 02:20:05 2026] 
+                           X15: 0xffff8000146fb190:
+[Sa Mär 14 02:20:05 2026] af90  146faff0 ffff8000 0918e900 ffff8000 0000000c 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] afb0  ffffdfff c0000000 00000001 00000000 00000001 00000000 b86a8d00 e9ef33bd
+[Sa Mär 14 02:20:05 2026] afd0  146fb030 ffff8000 080efeb8 ffff8000 146fb040 ffff8000 080eeef0 ffff8000
+[Sa Mär 14 02:20:05 2026] aff0  146fb090 ffff8000 00001647 00000000 00000000 00000000 146fb128 ffff8000
+[Sa Mär 14 02:20:05 2026] b010  146fb0b0 ffff8000 080ef6dc ffff8000 0a1a67e0 ffff8000 146fb090 ffff8000
+[Sa Mär 14 02:20:05 2026] b030  00000000 00000000 146fb128 ffff8000 00000000 00000000 fffff649 00000000
+[Sa Mär 14 02:20:05 2026] b050  0000164a 00000000 146fb090 ffff8000 0a55171c 00000001 0a1a6810 ffff8000
+[Sa Mär 14 02:20:05 2026] b070  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] b090  ffffdfff c0000000 00000001 00000000 00000001 00000000 b86a8d00 e9ef33bd
+[Sa Mär 14 02:20:05 2026] b0b0  146fb110 ffff8000 080efeb8 ffff8000 0a551568 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] b0d0  00000000 00000000 00000001 00000000 0000164e 00000000 0a551b8d ffff8000
+[Sa Mär 14 02:20:05 2026] b0f0  00000000 00000000 00000000 00000000 0a551b40 ffff8000 00000001 00000000
+[Sa Mär 14 02:20:05 2026] b110  146fb140 ffff8000 080ecbf4 ffff8000 0a551568 ffff8000 00001650 00000000
+[Sa Mär 14 02:20:05 2026] b130  146fb150 00ff8000 b86a8d00 e9ef33bd 146fb160 ffff8000 080eba44 ffff8000
+[Sa Mär 14 02:20:05 2026] b150  09b16a10 ffff8000 00000009 00000000 146fb190 ffff8000 080ee698 ffff8000
+[Sa Mär 14 02:20:05 2026] b170  00000000 00000000 00000009 00000000 ffffffff 00000000 146fb230 ffff8000
+[Sa Mär 14 02:20:05 2026] b190* 146fb1a0 ffff8000 080ee824 ffff8000 146fb220 ffff8000 080ee8e4 ffff8000
+[Sa Mär 14 02:20:05 2026] b1b0  09b16a34 ffff8000 096ff382 ffff8000 146fb2a0 ffff8000 146fb1b0 ffff8000
+[Sa Mär 14 02:20:05 2026] b1d0  096ff382 ffff8000 096ff36f ffff8000 096ff376 ffff8000 00000001 00000000
+[Sa Mär 14 02:20:05 2026] b1f0  00000000 00000000 146fb220 ffff8000 146fb340 ffff8000 146fb340 ffff8000
+[Sa Mär 14 02:20:05 2026] b210  146fb300 ffff8000 ffffffc8 00000000 146fb250 ffff8000 080eec50 ffff8000
+[Sa Mär 14 02:20:05 2026] b230  146fb340 ffff8000 146fb340 ffff8000 146fb300 ffff8000 ffffffc8 00000000
+[Sa Mär 14 02:20:05 2026] b250  146fb2f0 ffff8000 09194678 ffff8000 00000020 00000000 146fb264 ffff8000
+[Sa Mär 14 02:20:05 2026] b270  00000017 00000000 ffffffe0 00000000 146fb340 ffff8000 146fb340 ffff8000
+[Sa Mär 14 02:20:05 2026] b290  146fb300 ffff8000 ffffffc8 00000000 146fb340 ffff8000 146fb340 ffff8000
+[Sa Mär 14 02:20:05 2026] b2b0  146fb300 ffff8000 ffffffc8 00000000 146fb580 ffff8000 146fb340 ffff8000
+[Sa Mär 14 02:20:05 2026] b2d0  146fb340 ffff8000 146fb300 ffff8000 146fb320 ffff8000 091ddfb8 ffff8000
+[Sa Mär 14 02:20:05 2026] b2f0  146fb344 ffff8000 146fb2f8 ffff8000 0000001b 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] b310  00000000 00000000 b86a8d00 e9ef33bd 146fb350 ffff8000 080192a4 ffff8000
+[Sa Mär 14 02:20:05 2026] b330  00000020 00000000 00000000 00000000 146fb3a0 00000000 b86a8d00 e9ef33bd
+[Sa Mär 14 02:20:05 2026] b350  146fb3b0 ffff8000 080194f4 ffff8000 146fb580 ffff8000 00000010 00000000
+[Sa Mär 14 02:20:05 2026] b370  096ff494 ffff8000 146fb580 ffff8000 0979338d ffff8000 00000009 00000000
+[Sa Mär 14 02:20:05 2026] 
+                           X19: 0xffff000116b40000:
+[Sa Mär 14 02:20:05 2026] fe00  000081a4 000037fa 69b0bb78 69b0bb85 670f8781 00000000 00010000 00000020
+[Sa Mär 14 02:20:05 2026] fe20  00080000 00000004 0001f30a 00000004 00000000 00000000 00000004 000af4d5
+[Sa Mär 14 02:20:05 2026] fe40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] fe60  00000000 db31b8b8 00000000 00000000 00000000 00000000 00000000 0000c5cc
+[Sa Mär 14 02:20:05 2026] fe80  44d90020 52d8f6dc 00000000 00000000 69b0bb85 494f3adc 00000000 00000000
+[Sa Mär 14 02:20:05 2026] fea0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] fec0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] fee0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] ff00  000081a4 0000089f 69b0bb78 69b0bb85 670f8781 00000000 00010000 00000008
+[Sa Mär 14 02:20:05 2026] ff20  00080000 00000004 0001f30a 00000004 00000000 00000000 00000001 000af4d9
+[Sa Mär 14 02:20:05 2026] ff40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] ff60  00000000 50aeece5 00000000 00000000 00000000 00000000 00000000 0000d6c7
+[Sa Mär 14 02:20:05 2026] ff80  661a0020 52d8f6dc 00000000 00000000 69b0bb85 494f3adc 00000000 00000000
+[Sa Mär 14 02:20:05 2026] ffa0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] ffc0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] ffe0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 0000* 066430c8 ffff0001 06643000 ffff0001 00000000 00000000 066430c8 ffff0001
+[Sa Mär 14 02:20:05 2026] 0020  16543800 ffff0001 0b429000 ffff0001 16b40000 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 0040  016e15e8 ffff8000 00000000 00000000 2924b880 ffff0001 2924b680 ffff0001
+[Sa Mär 14 02:20:05 2026] 0060  00000000 00000000 00000000 00000000 ffffffef 00000000 8efa29f8 ffff0001
+[Sa Mär 14 02:20:05 2026] 0080  2924ba80 ffff0001 00000000 00000000 00000000 00000000 16b40098 ffff0001
+[Sa Mär 14 02:20:05 2026] 00a0  16b40098 ffff0001 00000000 00000000 00000000 00000000 16b400b8 ffff0001
+[Sa Mär 14 02:20:05 2026] 00c0  16b400b8 ffff0001 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 00e0  16b400e0 ffff0001 16b400e0 ffff0001 16b400f0 ffff0001 16b400f0 ffff0001
+[Sa Mär 14 02:20:05 2026] 0100  16b40100 ffff0001 16b40100 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 0120  16b40120 ffff0001 16b40120 ffff0001 16b40130 ffff0001 16b40130 ffff0001
+[Sa Mär 14 02:20:05 2026] 0140  00000001 00000000 16543880 ffff0001 00000000 00000000 00ffffff 00000000
+[Sa Mär 14 02:20:05 2026] 0160  16b40160 ffff0001 16b40160 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 0180  00000000 00000000 16b40188 ffff0001 16b40188 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 01a0  00000000 00000000 16b401a8 ffff0001 16b401a8 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 01c0  16b401c0 ffff0001 16b401c0 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 01e0  00000000 00000000 16b401e8 ffff0001 16b401e8 ffff0001 00000000 08000004
+[Sa Mär 14 02:20:05 2026] 
+                           X20: 0xffff000116b45fc8:
+[Sa Mär 14 02:20:05 2026] 5dc8  16b4b910 ffff0001 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5de8  16b45de8 ffff0001 16b45de8 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5e08  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5e28  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5e48  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5e68  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5e88  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5ea8  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5ec8  00000000 00000000 00000000 00000000 16b45508 ffff0001 ff000000 00000000
+[Sa Mär 14 02:20:05 2026] 5ee8  016e6380 ffff8000 00000000 00000000 00000000 00000000 16b45f00 ffff0001
+[Sa Mär 14 02:20:05 2026] 5f08  16b45f00 ffff0001 16b45f10 ffff0001 16b45f10 ffff0001 16b45f20 ffff0001
+[Sa Mär 14 02:20:05 2026] 5f28  16b45f20 ffff0001 16b45f30 ffff0001 16b45f30 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5f48  16a6a800 ffff0001 016f1480 ffff0001 00000008 00000013 00001000 00000000
+[Sa Mär 14 02:20:05 2026] 5f68  ff000000 00000000 ff000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5f88  16b45f88 ffff0001 16b45f88 ffff0001 16b45f98 ffff0001 16b45f98 ffff0001
+[Sa Mär 14 02:20:05 2026] 5fa8  16b45fa8 ffff0001 16b45fa8 ffff0001 00000000 00000000 00001000 00000000
+[Sa Mär 14 02:20:05 2026] 5fc8* 00000100 00000000 16b45508 ffff0001 f804a000 00000000 016e62f8 ffff8000
+[Sa Mär 14 02:20:05 2026] 5fe8  00000000 00000000 00000000 00000000 16b45ff8 ffff0001 16b45ff8 ffff0001
+[Sa Mär 14 02:20:05 2026] 6008  16b46008 ffff0001 16b46008 ffff0001 16b46018 ffff0001 16b46018 ffff0001
+[Sa Mär 14 02:20:05 2026] 6028  16b46028 ffff0001 16b46028 ffff0001 00042000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6048  29466d78 ffff0001 16b46088 ffff0001 00000000 00000000 00020000 00000000
+[Sa Mär 14 02:20:05 2026] 6068  fffe0400 ffffffff 16b46040 ffff0001 29466d68 ffff0001 29466d68 ffff0001
+[Sa Mär 14 02:20:05 2026] 6088  16b46048 ffff0001 29466d78 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 60a8  00000000 00000000 00000001 00000000 00000000 00000000 29466da0 ffff0001
+[Sa Mär 14 02:20:05 2026] 60c8  00000001 00000000 29466db8 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 60e8  00000104 00000000 0001fabb 00000000 00000000 00000000 29466d88 ffff0001
+[Sa Mär 14 02:20:05 2026] 6108  29466d88 ffff0001 16b460b0 ffff0001 29466da0 ffff0001 16b460c8 ffff0001
+[Sa Mär 14 02:20:05 2026] 6128  00000000 00000000 00000001 00000000 00000101 00000000 16b45508 ffff0001
+[Sa Mär 14 02:20:05 2026] 6148  40000000 00000000 016e6348 ffff8000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6168  16b46168 ffff0001 16b46168 ffff0001 16b46178 ffff0001 16b46178 ffff0001
+[Sa Mär 14 02:20:05 2026] 6188  16b46188 ffff0001 16b46188 ffff0001 16b46198 ffff0001 16b46198 ffff0001
+[Sa Mär 14 02:20:05 2026] 61a8  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 
+                           X21: 0xffff000116b46130:
+[Sa Mär 14 02:20:05 2026] 5f30  16b45f30 ffff0001 16b45f30 ffff0001 00000000 00000000 16a6a800 ffff0001
+[Sa Mär 14 02:20:05 2026] 5f50  016f1480 ffff0001 00000008 00000013 00001000 00000000 ff000000 00000000
+[Sa Mär 14 02:20:05 2026] 5f70  ff000000 00000000 00000000 00000000 00000000 00000000 16b45f88 ffff0001
+[Sa Mär 14 02:20:05 2026] 5f90  16b45f88 ffff0001 16b45f98 ffff0001 16b45f98 ffff0001 16b45fa8 ffff0001
+[Sa Mär 14 02:20:05 2026] 5fb0  16b45fa8 ffff0001 00000000 00000000 00001000 00000000 00000100 00000000
+[Sa Mär 14 02:20:05 2026] 5fd0  16b45508 ffff0001 f804a000 00000000 016e62f8 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 5ff0  00000000 00000000 16b45ff8 ffff0001 16b45ff8 ffff0001 16b46008 ffff0001
+[Sa Mär 14 02:20:05 2026] 6010  16b46008 ffff0001 16b46018 ffff0001 16b46018 ffff0001 16b46028 ffff0001
+[Sa Mär 14 02:20:05 2026] 6030  16b46028 ffff0001 00042000 00000000 00000000 00000000 29466d78 ffff0001
+[Sa Mär 14 02:20:05 2026] 6050  16b46088 ffff0001 00000000 00000000 00020000 00000000 fffe0400 ffffffff
+[Sa Mär 14 02:20:05 2026] 6070  16b46040 ffff0001 29466d68 ffff0001 29466d68 ffff0001 16b46048 ffff0001
+[Sa Mär 14 02:20:05 2026] 6090  29466d78 ffff0001 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 60b0  00000001 00000000 00000000 00000000 29466da0 ffff0001 00000001 00000000
+[Sa Mär 14 02:20:05 2026] 60d0  29466db8 ffff0001 00000000 00000000 00000000 00000000 00000104 00000000
+[Sa Mär 14 02:20:05 2026] 60f0  0001fabb 00000000 00000000 00000000 29466d88 ffff0001 29466d88 ffff0001
+[Sa Mär 14 02:20:05 2026] 6110  16b460b0 ffff0001 29466da0 ffff0001 16b460c8 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6130* 00000001 00000000 00000101 00000000 16b45508 ffff0001 40000000 00000000
+[Sa Mär 14 02:20:05 2026] 6150  016e6348 ffff8000 00000000 00000000 00000000 00000000 16b46168 ffff0001
+[Sa Mär 14 02:20:05 2026] 6170  16b46168 ffff0001 16b46178 ffff0001 16b46178 ffff0001 16b46188 ffff0001
+[Sa Mär 14 02:20:05 2026] 6190  16b46188 ffff0001 16b46198 ffff0001 16b46198 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 61b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 61d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 61f0  11f0f000 ffff0001 00001000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6210  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6230  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6250  00000000 00000000 20100000 ffff8000 00100000 00000080 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6270  00000000 00000000 00000000 00000000 00000100 00000000 00042108 00000000
+[Sa Mär 14 02:20:05 2026] 6290  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 62b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 62d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 62f0  00000000 00000000 00000000 00000000 16a6a400 ffff0001 038c9900 ffff0001
+[Sa Mär 14 02:20:05 2026] 6310  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 
+                           X22: 0xffff000116b54000:
+[Sa Mär 14 02:20:05 2026] 3e00  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3e20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3e40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3e60  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3e80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3ea0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3ec0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3ee0  00000000 00000000 00000000 00000000 17000049 00000000 00007100 00000000
+[Sa Mär 14 02:20:05 2026] 3f00  0d4ae200 ffff8000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3f20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3f40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3f60  1200001a 00000000 00002100 00000000 0d4b5300 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3f80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3fa0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 3fc0  00000000 00000000 00000000 00000000 07000016 00000000 00003100 00000000
+[Sa Mär 14 02:20:05 2026] 3fe0  0d4b7400 ffff8000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4000* 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4020  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4040  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4060  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4080  00000000 00000000 00000000 00000000 16b54090 ffff0001 16b54090 ffff0001
+[Sa Mär 14 02:20:05 2026] 40a0  00001000 00000000 00000000 00000000 feff8000 00000000 fec00000 00000000
+[Sa Mär 14 02:20:05 2026] 40c0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 40e0  00000000 00000000 00000000 00000000 00000000 00000000 00010000 00000040
+[Sa Mär 14 02:20:05 2026] 4100  00000010 000001ff 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4120  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4140  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4160  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 4180  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 41a0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 41c0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 41e0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 
+                           X23: 0xffff800001784c76:
+[Sa Mär 14 02:20:05 2026] 4a74  4920666f 6c622050 206b636f 3e73253c 69616620 2064656c 000a6425 5f746573
+[Sa Mär 14 02:20:05 2026] 4a94  65776f70 74616772 5f676e69 74617473 666f2065 20504920 636f6c62 253c206b
+[Sa Mär 14 02:20:05 2026] 4ab4  66203e73 656c6961 64252064 3601000a 6d72645b 6461205d 70692064 6f6c6220
+[Sa Mär 14 02:20:05 2026] 4ad4  6e206b63 65626d75 64252072 73253c20 73000a3e 635f7465 6b636f6c 69746167
+[Sa Mär 14 02:20:05 2026] 4af4  735f676e 65746174 74616728 6f202965 50492066 6f6c6220 3c206b63 203e7325
+[Sa Mär 14 02:20:05 2026] 4b14  6c696166 25206465 73000a64 705f7465 7265776f 69746167 735f676e 65746174
+[Sa Mär 14 02:20:05 2026] 4b34  74616728 6f202965 50492066 6f6c6220 3c206b63 203e7325 6c696166 25206465
+[Sa Mär 14 02:20:05 2026] 4b54  61000a64 7067646d 46203a75 656c6961 6f742064 73696420 6f6c6c61 66642077
+[Sa Mär 14 02:20:05 2026] 4b74  74736320 00657461 6574616c 696e695f 666f2074 20504920 636f6c62 253c206b
+[Sa Mär 14 02:20:05 2026] 4b94  66203e73 656c6961 64252064 6d61000a 75706764 7361725f 74616c5f 6e695f65
+[Sa Mär 14 02:20:05 2026] 4bb4  66207469 656c6961 64252064 616e6500 20656c62 7570676d 6e616620 6f6f6220
+[Sa Mär 14 02:20:05 2026] 4bd4  66207473 656c6961 25282064 0a2e2964 74737000 20657461 74746573 20676e69
+[Sa Mär 14 02:20:05 2026] 4bf4  6c696166 28206465 2e296425 6d61000a 75706764 6d61203a 75706764 6966203a
+[Sa Mär 14 02:20:05 2026] 4c14  6873696e 20676e69 69766564 0a2e6563 72616500 665f796c 20696e69 4920666f
+[Sa Mär 14 02:20:05 2026] 4c34  6c622050 206b636f 3e73253c 69616620 2064656c 000a6425 6c696166 74206465
+[Sa Mär 14 02:20:05 2026] 4c54  6572206f 7361656c 78652065 73756c63 20657669 65646f6d 206e6f20 696e6966
+[Sa Mär 14 02:20:05 2026] 4c74* 7773000a 6e69665f 666f2069 20504920 636f6c62 253c206b 66203e73 656c6961
+[Sa Mär 14 02:20:05 2026] 4c94  64252064 6d61000a 75706764 6d61203a 75706764 69736120 6e692063 66207469
+[Sa Mär 14 02:20:05 2026] 4cb4  656c6961 61000a64 7067646d 61203a75 7067646d 65645f75 65636976 5f70695f
+[Sa Mär 14 02:20:05 2026] 4cd4  75736572 6620656d 656c6961 25282064 0a2e2964 6c697700 6e65206c 656c6261
+[Sa Mär 14 02:20:05 2026] 4cf4  78666720 2066666f 20726f66 20656874 7373696d 206e6f69 65646f6d 6d61000a
+[Sa Mär 14 02:20:05 2026] 4d14  75706764 6954203a 756f656d 62202c74 6e207475 6168206f 61776472 68206572
+[Sa Mär 14 02:20:05 2026] 4d34  20676e61 65746564 64657463 61000a2e 7067646d 47203a75 72205550 766f6365
+[Sa Mär 14 02:20:05 2026] 4d54  20797265 61736964 64656c62 61000a2e 7067646d 73203a75 2074666f 65736572
+[Sa Mär 14 02:20:05 2026] 4d74  61662074 64656c69 6977202c 66206c6c 626c6c61 206b6361 66206f74 206c6c75
+[Sa Mär 14 02:20:05 2026] 4d94  65736572 000a2174 67646d61 203a7570 43495341 73657220 66207465 656c6961
+[Sa Mär 14 02:20:05 2026] 4db4  69772064 65206874 726f7272 6425202c 726f6620 6d726420 76656420 7325202c
+[Sa Mär 14 02:20:05 2026] 4dd4  646d6100 3a757067 69736120 74612063 69206d6f 2074696e 6c696166 00216465
+[Sa Mär 14 02:20:05 2026] 4df4  67646d61 203a7570 20555047 65736572 75732074 65656363 2c646564 79727420
+[Sa Mär 14 02:20:05 2026] 4e14  20676e69 72206f74 6d757365 01000a65 72645b36 56205d6d 204d4152 6c207369
+[Sa Mär 14 02:20:05 2026] 4e34  2074736f 20657564 47206f74 72205550 74657365 61000a21 7067646d 69203a75
+[Sa Mär 14 02:20:05 2026] 4e54  69722062 7420676e 20747365 6c696166 28206465 2e296425 6f6a000a 73207362
+[Sa Mär 14 02:20:05 2026] 4e74  00706f74 65736572 61660074 64656c69 63757300 64656563 01006465 72645b34
+[Sa Mär 14 02:20:05 2026] 
+                           X24: 0xffff000116b57100:
+[Sa Mär 14 02:20:05 2026] 6f00  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6f20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6f40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6f60  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6f80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6fa0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6fc0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 6fe0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7000  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7020  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7040  00000000 00000000 11f0f264 ffff0001 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7060  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7080  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 70a0  ffffffe0 0000000f 16b570a8 ffff0001 16b570a8 ffff0001 0148b170 ffff8000
+[Sa Mär 14 02:20:05 2026] 70c0  00000000 00000000 00000000 00000000 00000000 00000000 080a3da8 ffff8000
+[Sa Mär 14 02:20:05 2026] 70e0  00200006 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7100* 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7120  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7140  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7160  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7180  00000000 00000000 00000000 00000000 00000000 00000000 16b57198 ffff0001
+[Sa Mär 14 02:20:05 2026] 71a0  16b57198 ffff0001 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 71c0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 71e0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7200  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7220  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7240  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7260  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 7280  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 72a0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 72c0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 72e0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:05 2026] 
+                           X29: 0xffff8000146fb6d0:
+[Sa Mär 14 02:20:05 2026] b4d0  146fb4f0 ffff8000 08033264 ffff8000 146fb580 ffff8000 00000029 00000000
+[Sa Mär 14 02:20:05 2026] b4f0  146fb540 ffff8000 091d5f70 ffff8000 146fb580 ffff8000 09b142f4 ffff8000
+[Sa Mär 14 02:20:05 2026] b510  f2000800 00000000 00000020 64e3d3ca 60400009 00000000 16b57100 ffff0001
+[Sa Mär 14 02:20:05 2026] b530  00006250 00000000 00000000 00000000 146fb570 ffff8000 091d6390 ffff8000
+[Sa Mär 14 02:20:05 2026] b550  16b40000 ffff0001 16b45fc8 ffff0001 146fb6d0 ffff8000 0875c29c ffff8000
+[Sa Mär 14 02:20:06 2026] b570  146fb6b0 ffff8000 080112e0 ffff8000 2abcdd00 ffff0001 00000000 00000000
+[Sa Mär 14 02:20:06 2026] b590  00000000 00000000 f6d78a70 ffff0002 00000000 00000000 f6d78a70 ffff0002
+[Sa Mär 14 02:20:06 2026] b5b0  f6d6ca10 ffff0002 f6d6ca10 ffff0002 146fb438 ffff8000 081aba44 ffff8000
+[Sa Mär 14 02:20:06 2026] b5d0  6567616e 6f6e2072 6c632074 206e6165 69727564 7420676e 64656b61 2e6e776f
+[Sa Mär 14 02:20:06 2026] b5f0  00000000 00000000 146fb190 ffff8000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:06 2026] b610  0000000a 00000000 16b40000 ffff0001 16b45fc8 ffff0001 16b46130 ffff0001
+[Sa Mär 14 02:20:06 2026] b630  16b54000 ffff0001 01784c76 ffff8000 16b57100 ffff0001 00006250 00000000
+[Sa Mär 14 02:20:06 2026] b650  00000000 00000000 00000000 00000000 0000000c 00000000 146fb6d0 ffff8000
+[Sa Mär 14 02:20:06 2026] b670  0875c29c ffff8000 146fb6d0 ffff8000 0875c29c ffff8000 60400009 00000000
+[Sa Mär 14 02:20:06 2026] b690  146fb6e0 ffff8000 29466d68 ffff0001 00000001 00000000 16b46130 ffff0001
+[Sa Mär 14 02:20:06 2026] b6b0  146fb6d0 ffff8000 0875c29c ffff8000 00000000 00000000 00000000 00000000
+[Sa Mär 14 02:20:06 2026] b6d0* 146fb6e0 ffff8000 014c162c ffff8000 146fb720 ffff8000 014a0094 ffff8000
+[Sa Mär 14 02:20:06 2026] b6f0  16b40000 ffff0001 16b45000 ffff0001 16b540a0 ffff0001 014a0084 ffff8000
+[Sa Mär 14 02:20:06 2026] b710  16b400c0 00000000 b86a8d00 e9ef33bd 146fb760 ffff8000 014a2274 ffff8000
+[Sa Mär 14 02:20:06 2026] b730  16b40000 ffff0001 16b56018 ffff0001 00000001 00000000 16b56018 ffff0001
+[Sa Mär 14 02:20:06 2026] b750  00000001 00000000 b86a8d00 e9ef33bd 146fb780 ffff8000 014fb11c ffff8000
+[Sa Mär 14 02:20:06 2026] b770  16b40000 ffff0001 00000000 00000000 146fb7b0 ffff8000 0148d8e4 ffff8000
+[Sa Mär 14 02:20:06 2026] b790  16b40000 ffff0001 16b56018 ffff0001 00000000 00000000 b86a8d00 e9ef33bd
+[Sa Mär 14 02:20:06 2026] b7b0  146fb800 ffff8000 01493aa0 ffff8000 16b40000 ffff0001 146fb8a8 ffff8000
+[Sa Mär 14 02:20:06 2026] b7d0  066430c8 ffff0001 146fb8a8 ffff8000 09715920 ffff8000 00000001 00000000
+[Sa Mär 14 02:20:06 2026] b7f0  2924b568 ffff0001 2a75f600 ffff0001 146fb820 ffff8000 0875ae48 ffff8000
+[Sa Mär 14 02:20:06 2026] b810  16b40010 ffff0001 00000001 00000000 146fb840 ffff8000 0875ae68 ffff8000
+[Sa Mär 14 02:20:06 2026] b830  2924bb00 ffff0001 088e8be8 ffff8000 146fb850 ffff8000 088e89cc ffff8000
+[Sa Mär 14 02:20:06 2026] b850  146fb860 ffff8000 088e8bdc ffff8000 146fb8c0 ffff8000 088e9fe4 ffff8000
+[Sa Mär 14 02:20:06 2026] b870  066430c8 ffff0001 0000000d 00000000 146fb8a8 ffff8000 00000000 00000000
+[Sa Mär 14 02:20:06 2026] b890  06643370 ffff0001 091d8e48 ffff8000 2abcdd00 ffff0001 2924bb00 ffff0001
+[Sa Mär 14 02:20:06 2026] b8b0  29467100 ffff0001 b86a8d00 e9ef33bd 146fb900 ffff8000 088e33bc ffff8000
+[Sa Mär 14 02:20:06 2026] ---[ end trace 0000000000000000 ]---
+[Sa Mär 14 02:20:06 2026] [drm] amdgpu: ttm finalized

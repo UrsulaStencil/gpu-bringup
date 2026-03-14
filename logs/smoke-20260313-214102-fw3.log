@@ -1,0 +1,91 @@
+[smoke-fw3] start 2026-03-13T21:41:02+01:00
+[smoke-fw3] uname 6.1.115-vendor-rk35xx
+[smoke-fw3] lspci
+0000:03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon RX 6400/6500 XT/6500M] [1002:743f] (rev c7)
+	Subsystem: Micro-Star International Co., Ltd. [MSI] Device [1462:5082]
+	Kernel modules: amdgpu
+[smoke-fw3] unload
+[smoke-fw3] clear dmesg
+[smoke-fw3] modprobe args: mes=0 num_kcq=0 msi=1 fw_load_type=3
+[smoke-fw3] lsmod
+amdgpu               4161536  1
+drm_ttm_helper         16384  1 amdgpu
+drm_buddy              20480  1 amdgpu
+ttm                    57344  2 amdgpu,drm_ttm_helper
+drm_shmem_helper       20480  1 panfrost
+gpu_sched              40960  2 amdgpu,panfrost
+[smoke-fw3] vulkaninfo
+==========
+VULKANINFO
+==========
+
+Vulkan Instance Version: 1.4.309
+
+
+Instance Extensions: count = 24
+-------------------------------
+VK_EXT_acquire_drm_display             : extension revision 1
+VK_EXT_acquire_xlib_display            : extension revision 1
+VK_EXT_debug_report                    : extension revision 10
+VK_EXT_debug_utils                     : extension revision 2
+VK_EXT_direct_mode_display             : extension revision 1
+VK_EXT_display_surface_counter         : extension revision 1
+VK_EXT_headless_surface                : extension revision 1
+VK_EXT_surface_maintenance1            : extension revision 1
+VK_EXT_swapchain_colorspace            : extension revision 5
+VK_KHR_device_group_creation           : extension revision 1
+VK_KHR_display                         : extension revision 23
+VK_KHR_external_fence_capabilities     : extension revision 1
+VK_KHR_external_memory_capabilities    : extension revision 1
+VK_KHR_external_semaphore_capabilities : extension revision 1
+VK_KHR_get_display_properties2         : extension revision 1
+VK_KHR_get_physical_device_properties2 : extension revision 2
+VK_KHR_get_surface_capabilities2       : extension revision 1
+VK_KHR_portability_enumeration         : extension revision 1
+VK_KHR_surface                         : extension revision 25
+VK_KHR_surface_protected_capabilities  : extension revision 1
+VK_KHR_wayland_surface                 : extension revision 6
+VK_KHR_xcb_surface                     : extension revision 6
+VK_KHR_xlib_surface                    : extension revision 6
+VK_LUNARG_direct_driver_loading        : extension revision 1
+
+Instance Layers: count = 2
+--------------------------
+VK_LAYER_MESA_device_select Linux device selection layer 1.4.303  version 1
+VK_LAYER_MESA_overlay       Mesa Overlay layer           1.4.303  version 1
+
+Devices:
+========
+GPU0:
+	apiVersion         = 1.4.305
+	driverVersion      = 0.0.1
+	vendorID           = 0x10005
+	deviceID           = 0x0000
+	deviceType         = PHYSICAL_DEVICE_TYPE_CPU
+	deviceName         = llvmpipe (LLVM 19.1.7, 128 bits)
+	driverID           = DRIVER_ID_MESA_LLVMPIPE
+	driverName         = llvmpipe
+	driverInfo         = Mesa 25.0.7-2 (LLVM 19.1.7)
+	conformanceVersion = 1.3.1.1
+	deviceUUID         = 6d657361-3235-2e30-2e37-2d3200000000
+	driverUUID         = 6c6c766d-7069-7065-5555-494400000000
+[smoke-fw3] dmesg tail
+[Fr Mär 13 21:41:26 2026] [drm] amdgpu kernel modesetting enabled.
+[Fr Mär 13 21:41:26 2026] [drm] add ip block number 3 <gfx_v10_0>
+[Fr Mär 13 21:41:26 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Fr Mär 13 21:41:26 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Fr Mär 13 21:41:26 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Fr Mär 13 21:41:26 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Fr Mär 13 21:41:26 2026] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+[Fr Mär 13 21:41:26 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+[Fr Mär 13 21:41:26 2026] Internal error: Oops: 0000000096000004 [#1] SMP
+[Fr Mär 13 21:41:26 2026] Modules linked in: amdgpu(O+) drm_ttm_helper drm_buddy ttm(O) zram zsmalloc binfmt_misc rk805_pwrkey pwm_fan panfrost drm_shmem_helper gpu_sched fuse nfnetlink ip_tables x_tables ipv6 btrfs blake2b_generic xor xor_neon raid6_pq r8169 rockchip_cpuinfo adc_keys uio_pdrv_genirq uio [last unloaded: drm_ttm_helper]
+[Fr Mär 13 21:41:26 2026] pc : smu_mode1_reset_is_support+0x8/0x50 [amdgpu]
+[Fr Mär 13 21:41:26 2026] lr : amdgpu_dpm_is_mode1_reset_supported+0x44/0x70 [amdgpu]
+[Fr Mär 13 21:41:26 2026]  smu_mode1_reset_is_support+0x8/0x50 [amdgpu]
+[Fr Mär 13 21:41:26 2026]  amdgpu_device_mode1_reset+0x50/0x108 [amdgpu]
+[Fr Mär 13 21:41:26 2026]  nv_asic_reset+0x13c/0x140 [amdgpu]
+[Fr Mär 13 21:41:26 2026]  amdgpu_device_init+0x12f8/0x1bf0 [amdgpu]
+[Fr Mär 13 21:41:26 2026]  amdgpu_driver_load_kms+0x28/0x130 [amdgpu]
+[Fr Mär 13 21:41:26 2026]  amdgpu_pci_probe+0x174/0x32c [amdgpu]
+[Fr Mär 13 21:41:26 2026]  amdgpu_init+0x7c/0xfa0 [amdgpu]

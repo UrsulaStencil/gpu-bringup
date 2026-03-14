@@ -1,0 +1,47 @@
+From 2b136c7848cab786614e84c7eb7597e79d7bc7fa Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:45:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 program RB WPTR poll control on resume
+
+RK3588 bring-up diagnostics show `CP_RB_WPTR_POLL_CNTL=0x00400000` during
+gfx ring timeout, while RB0 wptr advances and rptr stays 0. Program the
+same sane poll defaults used elsewhere (`0x00900100`) when setting
+`CP_RB_WPTR_POLL_ADDR*` during `gfx_v10_0_cp_gfx_resume()`.
+
+This keeps RB wptr polling active with a known-good frequency/idle window
+during early bring-up.
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 00d23db5aa14..ec4dfe6b0057 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -6228,6 +6228,10 @@ static int gfx_v10_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_LO,
+ 		     lower_32_bits(wptr_gpu_addr));
+ 	WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_HI,
+ 		     upper_32_bits(wptr_gpu_addr));
++	WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_CNTL,
++		     (0x0100 << CP_RB_WPTR_POLL_CNTL__POLL_FREQUENCY__SHIFT) |
++		     (0x0090 << CP_RB_WPTR_POLL_CNTL__IDLE_POLL_COUNT__SHIFT));
+ 
+ 	mdelay(1);
+ 	WREG32_SOC15(GC, 0, mmCP_RB0_CNTL, tmp);
+@@ -6265,6 +6269,11 @@ static int gfx_v10_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 		WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_LO,
+ 			     lower_32_bits(wptr_gpu_addr));
+ 		WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_HI,
+ 			     upper_32_bits(wptr_gpu_addr));
++		WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_CNTL,
++			     (0x0100 << CP_RB_WPTR_POLL_CNTL__POLL_FREQUENCY__SHIFT) |
++			     (0x0090 << CP_RB_WPTR_POLL_CNTL__IDLE_POLL_COUNT__SHIFT));
++
+ 		mdelay(1);
+ 		WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tmp);
+ 
+-- 
+2.43.0
+

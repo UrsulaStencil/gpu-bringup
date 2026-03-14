@@ -1,0 +1,36 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: RK3588 AMDGPU Bringup <noreply@example.com>
+Date: Fri, 13 Mar 2026 22:47:00 +0100
+Subject: [PATCH] drm/amdgpu/psp: arm64 skip psp hw_init for RLC backdoor
+ bring-up
+
+For arm64 bring-up, allow `fw_load_type=3` to keep PSP `sw_init` artifacts
+(notably TOC metadata) while skipping full PSP runtime firmware load in
+`psp_hw_init()`, which currently stalls on this platform.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 74d9e7442f7d..8e4c71cfcb08 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -2635,6 +2635,15 @@ static int psp_hw_init(void *handle)
+ 	int ret;
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 
++#if defined(CONFIG_ARM64)
++	if (adev->firmware.load_type == AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO) {
++		dev_info(adev->dev,
++			 "arm64 bring-up: skipping psp hw_init for fw_load_type=%d (TOC from sw_init only)\n",
++			 adev->firmware.load_type);
++		return 0;
++	}
++#endif
++
+ 	mutex_lock(&adev->firmware.mutex);
+ 	/*
+ 	 * This sequence is just used on hw_init only once, no need on
+-- 
+2.43.0
+

@@ -1,0 +1,173 @@
+[smoke] date=2026-03-14T10:19:56+01:00
+[smoke] uname -r: 6.1.115-vendor-rk35xx
+[smoke] boot_id: 02ce16b3-6425-4824-8bec-9405424610f5
+[smoke] modprobe args: fw_load_type=0 async_gfx_ring=0 num_kcq=0 mes=0 msi=1
+[smoke] amdgpu.ko sha256: fa03b9006a2f6be7c6ce3567336e62a5e641e0db84cb555ff25b73f371509ea9
+
+[smoke] lspci -nn -s 03:00.0
+0000:03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon RX 6400/6500 XT/6500M] [1002:743f] (rev c7)
+
+[smoke] unload amdgpu
+
+[smoke] pre-modprobe reset: secondary bus reset on 02:00.0
+[smoke] secondary bus reset: bridge=02:00.0 orig=0002 assert=0042
+
+[smoke] clear dmesg
+
+[smoke] modprobe amdgpu fw_load_type=0 async_gfx_ring=0 num_kcq=0 mes=0 msi=1
+[smoke] modprobe timeout: 60s
+[smoke] modprobe pid: 6349 (timeout 60s)
+[smoke] modprobe exited within timeout
+
+[smoke] lingering modprobe/amdgpu tasks
+
+[smoke] capture full dmesg snapshot: /home/orange/gpu-bringup/logs/postcold-psp-dmesg-20260314-101956.log
+
+[smoke] lsmod | grep amdgpu
+amdgpu               4186112  0
+drm_ttm_helper         16384  1 amdgpu
+drm_buddy              20480  1 amdgpu
+ttm                    57344  2 amdgpu,drm_ttm_helper
+gpu_sched              40960  2 amdgpu,panfrost
+
+[smoke] /dev/dri
+total 0
+drwxr-xr-x 2 root root        120 Mar 14 10:01 by-path
+crw-rw---- 1 root video  226,   0 Mar 14 10:01 card0
+crw-rw---- 1 root video  226,   1 Mar 14 10:01 card1
+crw-rw---- 1 root render 226, 128 Mar 14 10:01 renderD128
+crw-rw---- 1 root render 226, 129 Mar 14 10:01 renderD129
+
+[smoke] vulkaninfo --summary
+==========
+VULKANINFO
+==========
+
+Vulkan Instance Version: 1.4.309
+
+
+Instance Extensions: count = 24
+-------------------------------
+VK_EXT_acquire_drm_display             : extension revision 1
+VK_EXT_acquire_xlib_display            : extension revision 1
+VK_EXT_debug_report                    : extension revision 10
+VK_EXT_debug_utils                     : extension revision 2
+VK_EXT_direct_mode_display             : extension revision 1
+VK_EXT_display_surface_counter         : extension revision 1
+VK_EXT_headless_surface                : extension revision 1
+VK_EXT_surface_maintenance1            : extension revision 1
+VK_EXT_swapchain_colorspace            : extension revision 5
+VK_KHR_device_group_creation           : extension revision 1
+VK_KHR_display                         : extension revision 23
+VK_KHR_external_fence_capabilities     : extension revision 1
+VK_KHR_external_memory_capabilities    : extension revision 1
+VK_KHR_external_semaphore_capabilities : extension revision 1
+VK_KHR_get_display_properties2         : extension revision 1
+VK_KHR_get_physical_device_properties2 : extension revision 2
+VK_KHR_get_surface_capabilities2       : extension revision 1
+VK_KHR_portability_enumeration         : extension revision 1
+VK_KHR_surface                         : extension revision 25
+VK_KHR_surface_protected_capabilities  : extension revision 1
+VK_KHR_wayland_surface                 : extension revision 6
+VK_KHR_xcb_surface                     : extension revision 6
+VK_KHR_xlib_surface                    : extension revision 6
+VK_LUNARG_direct_driver_loading        : extension revision 1
+
+Instance Layers: count = 2
+--------------------------
+VK_LAYER_MESA_device_select Linux device selection layer 1.4.303  version 1
+VK_LAYER_MESA_overlay       Mesa Overlay layer           1.4.303  version 1
+
+Devices:
+========
+GPU0:
+	apiVersion         = 1.4.305
+	driverVersion      = 0.0.1
+	vendorID           = 0x10005
+	deviceID           = 0x0000
+	deviceType         = PHYSICAL_DEVICE_TYPE_CPU
+	deviceName         = llvmpipe (LLVM 19.1.7, 128 bits)
+	driverID           = DRIVER_ID_MESA_LLVMPIPE
+	driverName         = llvmpipe
+	driverInfo         = Mesa 25.0.7-2 (LLVM 19.1.7)
+	conformanceVersion = 1.3.1.1
+	deviceUUID         = 6d657361-3235-2e30-2e37-2d3200000000
+	driverUUID         = 6c6c766d-7069-7065-5555-494400000000
+
+[smoke] unload amdgpu after capture
+
+[smoke] dmesg snapshot extract
+[Sat Mar 14 10:20:22 2026] [drm] amdgpu kernel modesetting enabled.
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: enabling device (0000 -> 0003)
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: get invalid ip discovery binary signature from vram
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_discovery is not set properly
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: failed to read ip discovery binary from file
+[Sat Mar 14 10:20:22 2026] [drm:amdgpu_discovery_set_ip_blocks [amdgpu]] *ERROR* amdgpu_discovery_init failed
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using beige_goby static IP fallback after discovery failure
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Sat Mar 14 10:20:22 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: skipping asic reset on init for fw_load_type=0 reset_method=-1
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using static CONFIG_MEMSIZE fallback 0xff0 MB for beige_goby
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: BAR 2: releasing [mem 0x910000000-0x9101fffff 64bit pref]
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: BAR 0: releasing [mem 0x900000000-0x90fffffff 64bit pref]
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: BAR 0: no space for [mem size 0x100000000 64bit pref]
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: BAR 0: failed to assign [mem size 0x100000000 64bit pref]
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: BAR 2: no space for [mem size 0x00200000 64bit pref]
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: BAR 2: failed to assign [mem size 0x00200000 64bit pref]
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: BAR 0: assigned [mem 0x900000000-0x90fffffff 64bit pref]
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: BAR 2: assigned [mem 0x910000000-0x9101fffff 64bit pref]
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using static FB layout fallback base=0xffffff000000 fb_offset=0xffffffff000000 for beige_goby hot-reset path
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: VRAM: 4080M 0x0000008000000000 - 0x00000080FEFFFFFF (4080M used)
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: AGP: 267894784M 0x0000008400000000 - 0x0000FFFFFFFFFFFF
+[Sat Mar 14 10:20:22 2026] [drm] amdgpu: 4080M of VRAM memory ready
+[Sat Mar 14 10:20:22 2026] [drm] amdgpu: 3968M of GTT memory ready.
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: HDP init_registers callback missing, skipping
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu wb: using VRAM-backed writeback buffer gpu_addr=0x8000a02000 size=0x2000
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu ring: using VRAM-backed gfx_0.0.0 ring gpu_addr=0x8000a04000 size=0x2000 cpu_map=iomem
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: STB initialized to 0 entries
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: pre-disable-gpa GC_BASE0=0x00001260 GC_BASE1=0x0000a000 CP_STAT_OFF=0x000021a0 PFP_OP_OFF=0x0000f843 CE_OP_OFF=0x0000f84b ME_OP_OFF=0x0000f847 PFP_BASE_OFF=0x0000f840 HYP_PFP_OFF=0x0000f814 CPG_DBG_OFF=0x0000fc10
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: pre-disable-gpa CP_STAT=0xffffffff CP_ME_CNTL=0xffffffff PFP_OP=0xffffffff CE_OP=0xffffffff ME_OP=0xffffffff PFP_BASE=0xffffffff:ffffffff CE_BASE=0xffffffff:ffffffff ME_BASE=0xffffffff:ffffffff PFP_UCODE=0xffffffff CE_UCODE=0xffffffff ME_UCODE=0xffffffff CPG_PSP_DEBUG=0xffffffff CPC_PSP_DEBUG=0xffffffff RLC_SAFE_MODE=0xffffffff RLC_CP_SCHED=0xffffffff PA_SC_TILE=0xffffffff
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: post-disable-gpa GC_BASE0=0x00001260 GC_BASE1=0x0000a000 CP_STAT_OFF=0x000021a0 PFP_OP_OFF=0x0000f843 CE_OP_OFF=0x0000f84b ME_OP_OFF=0x0000f847 PFP_BASE_OFF=0x0000f840 HYP_PFP_OFF=0x0000f814 CPG_DBG_OFF=0x0000fc10
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: post-disable-gpa CP_STAT=0xffffffff CP_ME_CNTL=0xffffffff PFP_OP=0xffffffff CE_OP=0xffffffff ME_OP=0xffffffff PFP_BASE=0xffffffff:ffffffff CE_BASE=0xffffffff:ffffffff ME_BASE=0xffffffff:ffffffff PFP_UCODE=0xffffffff CE_UCODE=0xffffffff ME_UCODE=0xffffffff CPG_PSP_DEBUG=0xffffffff CPC_PSP_DEBUG=0xffffffff RLC_SAFE_MODE=0xffffffff RLC_CP_SCHED=0xffffffff PA_SC_TILE=0xffffffff
+[Sat Mar 14 10:20:22 2026] [drm:gfx_v10_0_cp_gfx_enable.isra.0 [amdgpu]] *ERROR* failed to halt cp gfx
+[Sat Mar 14 10:20:22 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: forcing local soft reset before direct ucode load (pre CP_STAT=0xffffffff GRBM_STATUS=0xffffffff GRBM_STATUS2=0xffffffff)
+[Sat Mar 14 10:20:23 2026] [drm:gfx_v10_0_cp_gfx_enable.isra.0 [amdgpu]] *ERROR* failed to halt cp gfx
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: GRBM_SOFT_RESET=0xFFFFFFFF
+[Sat Mar 14 10:20:23 2026] [drm:gfx_v10_0_cp_gfx_enable.isra.0 [amdgpu]] *ERROR* failed to halt cp gfx
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: post-forced-soft-reset state CP_STAT=0xffffffff GRBM_STATUS=0xffffffff GRBM_STATUS2=0xffffffff GRBM_GFX_CNTL=0xffffffff GRBM_GFX_INDEX=0xffffffff
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: post-soft-reset GC_BASE0=0x00001260 GC_BASE1=0x0000a000 CP_STAT_OFF=0x000021a0 PFP_OP_OFF=0x0000f843 CE_OP_OFF=0x0000f84b ME_OP_OFF=0x0000f847 PFP_BASE_OFF=0x0000f840 HYP_PFP_OFF=0x0000f814 CPG_DBG_OFF=0x0000fc10
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: post-soft-reset CP_STAT=0xffffffff CP_ME_CNTL=0xffffffff PFP_OP=0xffffffff CE_OP=0xffffffff ME_OP=0xffffffff PFP_BASE=0xffffffff:ffffffff CE_BASE=0xffffffff:ffffffff ME_BASE=0xffffffff:ffffffff PFP_UCODE=0xffffffff CE_UCODE=0xffffffff ME_UCODE=0xffffffff CPG_PSP_DEBUG=0xffffffff CPC_PSP_DEBUG=0xffffffff RLC_SAFE_MODE=0xffffffff RLC_CP_SCHED=0xffffffff PA_SC_TILE=0xffffffff
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: using VRAM-backed pfp fw bo gpu_addr=0x8000a80000 size=0x40400
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: pfp-post-write GC_BASE0=0x00001260 GC_BASE1=0x0000a000 CP_STAT_OFF=0x000021a0 PFP_OP_OFF=0x0000f843 CE_OP_OFF=0x0000f84b ME_OP_OFF=0x0000f847 PFP_BASE_OFF=0x0000f840 HYP_PFP_OFF=0x0000f814 CPG_DBG_OFF=0x0000fc10
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: pfp-post-write CP_STAT=0xffffffff CP_ME_CNTL=0xffffffff PFP_OP=0xffffffff CE_OP=0xffffffff ME_OP=0xffffffff PFP_BASE=0xffffffff:ffffffff CE_BASE=0xffffffff:ffffffff ME_BASE=0xffffffff:ffffffff PFP_UCODE=0xffffffff CE_UCODE=0xffffffff ME_UCODE=0xffffffff CPG_PSP_DEBUG=0xffffffff CPC_PSP_DEBUG=0xffffffff RLC_SAFE_MODE=0xffffffff RLC_CP_SCHED=0xffffffff PA_SC_TILE=0xffffffff
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: using VRAM-backed ce fw bo gpu_addr=0x8000b00000 size=0x40380
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: ce-post-write GC_BASE0=0x00001260 GC_BASE1=0x0000a000 CP_STAT_OFF=0x000021a0 PFP_OP_OFF=0x0000f843 CE_OP_OFF=0x0000f84b ME_OP_OFF=0x0000f847 PFP_BASE_OFF=0x0000f840 HYP_PFP_OFF=0x0000f814 CPG_DBG_OFF=0x0000fc10
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: ce-post-write CP_STAT=0xffffffff CP_ME_CNTL=0xffffffff PFP_OP=0xffffffff CE_OP=0xffffffff ME_OP=0xffffffff PFP_BASE=0xffffffff:ffffffff CE_BASE=0xffffffff:ffffffff ME_BASE=0xffffffff:ffffffff PFP_UCODE=0xffffffff CE_UCODE=0xffffffff ME_UCODE=0xffffffff CPG_PSP_DEBUG=0xffffffff CPC_PSP_DEBUG=0xffffffff RLC_SAFE_MODE=0xffffffff RLC_CP_SCHED=0xffffffff PA_SC_TILE=0xffffffff
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: using VRAM-backed me fw bo gpu_addr=0x8000b80000 size=0x40400
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: me-post-write GC_BASE0=0x00001260 GC_BASE1=0x0000a000 CP_STAT_OFF=0x000021a0 PFP_OP_OFF=0x0000f843 CE_OP_OFF=0x0000f84b ME_OP_OFF=0x0000f847 PFP_BASE_OFF=0x0000f840 HYP_PFP_OFF=0x0000f814 CPG_DBG_OFF=0x0000fc10
+[Sat Mar 14 10:20:23 2026] amdgpu 0000:03:00.0: amdgpu: gfx cp load: me-post-write CP_STAT=0xffffffff CP_ME_CNTL=0xffffffff PFP_OP=0xffffffff CE_OP=0xffffffff ME_OP=0xffffffff PFP_BASE=0xffffffff:ffffffff CE_BASE=0xffffffff:ffffffff ME_BASE=0xffffffff:ffffffff PFP_UCODE=0xffffffff CE_UCODE=0xffffffff ME_UCODE=0xffffffff CPG_PSP_DEBUG=0xffffffff CPC_PSP_DEBUG=0xffffffff RLC_SAFE_MODE=0xffffffff RLC_CP_SCHED=0xffffffff PA_SC_TILE=0xffffffff
+[Sat Mar 14 10:20:23 2026] [drm:gfx_v10_0_cp_gfx_load_microcode [amdgpu]] *ERROR* gfx cp ucode load readback abnormal: direct pfp_ucode=0xffffffff ce_ucode=0xffffffff me_ucode=0xffffffff pfp_ic_lo=0xffffffff ce_ic_lo=0xffffffff me_ic_lo=0xffffffff | rlc pfp_ucode=0xffffffff ce_ucode=0xffffffff me_ucode=0xffffffff pfp_ic_lo=0xffffffff ce_ic_lo=0xffffffff me_ic_lo=0xffffffff load_type=0 pfp_fw=0x6d ce_fw=0x25 me_fw=0x40
+[Sat Mar 14 10:20:23 2026] [drm:gfx_v10_0_cp_gfx_enable.isra.0 [amdgpu]] *ERROR* failed to unhalt cp gfx
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx ring test timeout: ring=gfx_0.0.0 idx=0 scratch=0xffffffff expected=0xDEADBEEF
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx ring state: rptr=0x0 wptr=0x500 sw_wptr=0x500 usec_timeout=100000
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx ring status: GRBM_STATUS=0xffffffff GRBM_STATUS2=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx cp status: CP_ME_CNTL=0xffffffff CP_STAT=0xffffffff CP_RB0_CNTL=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx rb0 ptrs: CP_RB0_RPTR=0xffffffff CP_RB0_WPTR=0xffffffff CP_RB0_WPTR_HI=0xffffffff CP_RB_WPTR_POLL_CNTL=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx rb0 addr regs: BASE=0xffffffff BASE_HI=0xffffffff RPTR_ADDR=0xffffffff RPTR_ADDR_HI=0xffffffff WPTR_POLL_ADDR_LO=0xffffffff WPTR_POLL_ADDR_HI=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx rb0 vmid/debug: CP_RB_VMID=0xffffffff CPG_PSP_DEBUG=0xffffffff CPC_PSP_DEBUG=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx rb0 sw addrs: ring->gpu_addr=0x8000a04000 rptr_gpu_addr=0x8000a02000 wptr_gpu_addr=0x8000a02020
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx cp fw regs: PFP_UCODE_ADDR=0xffffffff HYP_PFP_UCODE_ADDR=0xffffffff CE_UCODE_ADDR=0xffffffff HYP_ME_UCODE_ADDR=0xffffffff RLCS_BOOTLOAD_STATUS=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx cp icache regs: PFP_BASE=0xffffffff:ffffffff PFP_CNTL=0xffffffff CE_BASE=0xffffffff:ffffffff CE_CNTL=0xffffffff ME_BASE=0xffffffff:ffffffff ME_CNTL=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx grbm select regs: GRBM_GFX_CNTL=0xffffffff GRBM_GFX_INDEX=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx cp cpf/cpc: CPC_STATUS=0xffffffff CPC_BUSY1=0xffffffff CPC_BUSY2=0xffffffff CPC_STALL1=0xffffffff CPF_STATUS=0xffffffff CPF_BUSY1=0xffffffff CPF_BUSY2=0xffffffff CPF_STALL1=0xffffffff
+[Sat Mar 14 10:20:25 2026] [drm:gfx_v10_0_ring_test_ring [amdgpu]] *ERROR* gfx cp stalled stats: CP_STALLED_STAT1=0xffffffff CP_STALLED_STAT2=0xffffffff CP_STALLED_STAT3=0xffffffff
+[Sat Mar 14 10:20:25 2026] amdgpu 0000:03:00.0: [drm:amdgpu_ring_test_helper [amdgpu]] *ERROR* ring gfx_0.0.0 test failed (-110)
+[Sat Mar 14 10:20:25 2026] [drm:amdgpu_device_init [amdgpu]] *ERROR* hw_init of IP block <gfx_v10_0> failed -110
+[Sat Mar 14 10:20:25 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Sat Mar 14 10:20:25 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sat Mar 14 10:20:25 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sat Mar 14 10:20:25 2026] amdgpu: probe of 0000:03:00.0 failed with error -110
+[Sat Mar 14 10:20:25 2026] [drm] amdgpu: ttm finalized

@@ -1,0 +1,70 @@
+From 70fe3254b7b8832b58b2293eb5647b9e2fe0cdc1 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 19:22:00 +0100
+Subject: [PATCH] drm/ttm: arm64 coherent cached maps and always vmap kmap
+
+Carry over the known arm SoC TTM mapping fix used for AMD GPU bring-up:
+
+- avoid single-page kmap shortcut in `ttm_bo_kmap_ttm()`
+- on arm64, map `ttm_cached` with `pgprot_dmacoherent()`
+
+This keeps BO CPU mappings consistent on non-coherent paths and removes one
+common source of ARM eGPU bring-up failures.
+
+---
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 14 +-------------
+ drivers/gpu/drm/ttm/ttm_module.c  |  5 +++++
+ 2 files changed, 6 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index acbbca9d5c92..543e4544520d 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -326,21 +326,9 @@ static int ttm_bo_kmap_ttm(struct ttm_buffer_object *bo,
+ 	if (ret)
+ 		return ret;
+ 
+-	if (num_pages == 1 && ttm->caching == ttm_cached) {
+-		/*
+-		 * We're mapping a single page, and the desired
+-		 * page protection is consistent with the bo.
+-		 */
+-
+-		map->bo_kmap_type = ttm_bo_map_kmap;
+-		map->page = ttm->pages[start_page];
+-		map->virtual = kmap(map->page);
+-	} else {
+-		/*
+-		 * We need to use vmap to get the desired page protection
+-		 * or to make the buffer object look contiguous.
+-		 */
+-		prot = ttm_io_prot(bo, mem, PAGE_KERNEL);
+-		map->bo_kmap_type = ttm_bo_map_vmap;
+-		map->virtual = vmap(ttm->pages + start_page, num_pages, 0, prot);
+-	}
++	/* Always use vmap so page protection can be applied consistently. */
++	prot = ttm_io_prot(bo, mem, PAGE_KERNEL);
++	map->bo_kmap_type = ttm_bo_map_vmap;
++	map->virtual = vmap(ttm->pages + start_page, num_pages, 0, prot);
+ 	return (!map->virtual) ? -ENOMEM : 0;
+ }
+diff --git a/drivers/gpu/drm/ttm/ttm_module.c b/drivers/gpu/drm/ttm/ttm_module.c
+index b3fffe7b5062..9f3e425626b5 100644
+--- a/drivers/gpu/drm/ttm/ttm_module.c
++++ b/drivers/gpu/drm/ttm/ttm_module.c
+@@ -62,8 +62,13 @@ pgprot_t ttm_prot_from_caching(enum ttm_caching caching, pgprot_t tmp)
+ {
+ 	/* Cached mappings need no adjustment */
+ 	if (caching == ttm_cached) {
++#ifdef CONFIG_ARM64
++		return pgprot_dmacoherent(tmp);
++#endif
+ 		return tmp;
++	}
+ 
+ #if defined(__i386__) || defined(__x86_64__)
+ 	if (caching == ttm_write_combined)
+ 		tmp = pgprot_writecombine(tmp);
+-- 
+2.43.0
+

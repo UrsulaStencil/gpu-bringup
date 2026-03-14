@@ -1,0 +1,159 @@
+From 8f830ee4ad4d3226af91f0618c4ce6ff04d4071f Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 19:58:00 +0100
+Subject: [PATCH] drm/amdgpu: extend PSP v11 waits on arm64 and log timeouts
+
+On RK3588 bring-up with Navi24 (beige_goby), PSP handshakes can exceed the
+default short polling window and fail early in mode1-reset/ring-create paths.
+
+Add a local wait helper in psp_v11_0 that:
+- extends waits up to 2s for arm64 + MP0 IP 11.0.13
+- keeps default behavior elsewhere
+- logs register/value diagnostics on timeout
+
+Wire this helper into v11 ring stop/create and mode1 reset waits.
+
+---
+ drivers/gpu/drm/amd/amdgpu/psp_v11_0.c | 72 ++++++++++++++++++++++---
+ 1 file changed, 66 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+index 9518b4394a6e..7aee84165600 100644
+--- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+@@ -85,6 +85,12 @@ MODULE_FIRMWARE("amdgpu/beige_goby_ta.bin");
+ /* Read USB-PD from LFB */
+ #define GFX_CMD_USB_PD_USE_LFB 0x480
+ 
++/*
++ * On some arm64 bring-up platforms (e.g. RK3588 + beige_goby), PSP
++ * handshakes can be noticeably slower than the default usec timeout.
++ */
++#define PSP_ARM64_SLOW_WAIT_US 2000000U
++
+ static int psp_v11_0_init_microcode(struct psp_context *psp)
+ {
+ 	struct amdgpu_device *adev = psp->adev;
+@@ -386,6 +392,44 @@ static int psp_v11_0_ring_init(struct psp_context *psp,
+ 	return 0;
+ }
+ 
++static int psp_v11_0_wait_for_ext(struct psp_context *psp, uint32_t reg_index,
++				  uint32_t reg_val, uint32_t mask,
++				  bool check_changed, unsigned int timeout_us)
++{
++	struct amdgpu_device *adev = psp->adev;
++	uint32_t val = 0;
++	unsigned int timeout = timeout_us;
++	unsigned int i;
++
++	if (adev->no_hw_access)
++		return 0;
++
++	if (!timeout)
++		timeout = adev->usec_timeout;
++
++#if defined(CONFIG_ARM64)
++	if (adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13) &&
++	    timeout < PSP_ARM64_SLOW_WAIT_US)
++		timeout = PSP_ARM64_SLOW_WAIT_US;
++#endif
++
++	for (i = 0; i < timeout; i++) {
++		val = RREG32(reg_index);
++		if (check_changed) {
++			if (val != reg_val)
++				return 0;
++		} else {
++			if ((val & mask) == reg_val)
++				return 0;
++		}
++		udelay(1);
++	}
++
++	DRM_ERROR("psp wait timeout: reg=0x%x val=0x%08x expect=0x%08x mask=0x%08x changed=%u timeout_us=%u\n",
++		  reg_index, val, reg_val, mask, check_changed, timeout);
++	return -ETIME;
++}
++
+ static int psp_v11_0_ring_stop(struct psp_context *psp,
+ 			      enum psp_ring_type ring_type)
+ {
+@@ -405,11 +449,15 @@ static int psp_v11_0_ring_stop(struct psp_context *psp,
+ 
+ 	/* Wait for response flag (bit 31) */
+ 	if (amdgpu_sriov_vf(adev))
+-		ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_101),
+-				   0x80000000, 0x80000000, false);
++		ret = psp_v11_0_wait_for_ext(psp,
++					     SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_101),
++					     0x80000000, 0x80000000, false,
++					     adev->usec_timeout);
+ 	else
+-		ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64),
+-				   0x80000000, 0x80000000, false);
++		ret = psp_v11_0_wait_for_ext(psp,
++					     SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64),
++					     0x80000000, 0x80000000, false,
++					     adev->usec_timeout);
+ 
+ 	return ret;
+ }
+@@ -445,13 +493,17 @@ static int psp_v11_0_ring_create(struct psp_context *psp,
+ 		mdelay(20);
+ 
+ 		/* Wait for response flag (bit 31) in C2PMSG_101 */
+-		ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_101),
+-				   0x80000000, 0x8000FFFF, false);
++		ret = psp_v11_0_wait_for_ext(psp,
++					     SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_101),
++					     0x80000000, 0x8000FFFF, false,
++					     PSP_ARM64_SLOW_WAIT_US);
+ 
+ 	} else {
+ 		/* Wait for sOS ready for ring creation */
+-		ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64),
+-				   0x80000000, 0x80000000, false);
++		ret = psp_v11_0_wait_for_ext(psp,
++					     SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64),
++					     0x80000000, 0x80000000, false,
++					     PSP_ARM64_SLOW_WAIT_US);
+ 		if (ret) {
+ 			DRM_ERROR("Failed to wait for sOS ready for ring creation\n");
+ 			return ret;
+@@ -475,8 +527,10 @@ static int psp_v11_0_ring_create(struct psp_context *psp,
+ 		mdelay(20);
+ 
+ 		/* Wait for response flag (bit 31) in C2PMSG_64 */
+-		ret = psp_wait_for(psp, SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64),
+-				   0x80000000, 0x8000FFFF, false);
++		ret = psp_v11_0_wait_for_ext(psp,
++					     SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64),
++					     0x80000000, 0x8000FFFF, false,
++					     PSP_ARM64_SLOW_WAIT_US);
+ 	}
+ 
+ 	return ret;
+@@ -509,7 +563,8 @@ static int psp_v11_0_mode1_reset(struct psp_context *psp)
+ 
+ 	offset = SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_64);
+ 
+-	ret = psp_wait_for(psp, offset, 0x80000000, 0x8000FFFF, false);
++	ret = psp_v11_0_wait_for_ext(psp, offset, 0x80000000, 0x8000FFFF,
++				     false, PSP_ARM64_SLOW_WAIT_US);
+ 
+ 	if (ret) {
+ 		DRM_INFO("psp is not working correctly before mode1 reset!\n");
+@@ -523,7 +578,8 @@ static int psp_v11_0_mode1_reset(struct psp_context *psp)
+ 
+ 	offset = SOC15_REG_OFFSET(MP0, 0, mmMP0_SMN_C2PMSG_33);
+ 
+-	ret = psp_wait_for(psp, offset, 0x80000000, 0x80000000, false);
++	ret = psp_v11_0_wait_for_ext(psp, offset, 0x80000000, 0x80000000,
++				     false, PSP_ARM64_SLOW_WAIT_US);
+ 
+ 	if (ret) {
+ 		DRM_INFO("psp mode 1 reset failed!\n");
+-- 
+2.43.0
+

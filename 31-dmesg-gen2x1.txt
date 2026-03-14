@@ -1,0 +1,115 @@
+[Di Mär 10 23:59:25 2026] Registered cp15_barrier emulation handler
+[Di Mär 10 23:59:25 2026] vcc3v3_pcie30: 3300 mV, disabled
+[Di Mär 10 23:59:25 2026] reg-fixed-voltage vcc3v3-pcie30: Looking up vin-supply from device tree
+[Di Mär 10 23:59:25 2026] vcc3v3_pcie30: supplied by vcc5v0_sys
+[Di Mär 10 23:59:25 2026] reg-fixed-voltage vcc3v3-pcie30: vcc3v3_pcie30 supplying 3300000uV
+[Di Mär 10 23:59:25 2026] vcc3v3_pcie2x1l0: 3300 mV, disabled
+[Di Mär 10 23:59:25 2026] reg-fixed-voltage vcc3v3-pcie2x1l0: Looking up vin-supply from device tree
+[Di Mär 10 23:59:25 2026] vcc3v3_pcie2x1l0: supplied by vcc12v_dcin
+[Di Mär 10 23:59:25 2026] reg-fixed-voltage vcc3v3-pcie2x1l0: vcc3v3_pcie2x1l0 supplying 3300000uV
+[Di Mär 10 23:59:25 2026] reg-fixed-voltage vcc3v3-pcie-eth: Looking up vin-supply from device tree
+[Di Mär 10 23:59:25 2026] vcc3v3_pcie_eth: supplied by vcc12v_dcin
+[Di Mär 10 23:59:25 2026] vcc3v3_pcie_eth: 3300 mV, enabled
+[Di Mär 10 23:59:25 2026] reg-fixed-voltage vcc3v3-pcie-eth: vcc3v3_pcie_eth supplying 3300000uV
+[Di Mär 10 23:59:26 2026] dw-pcie fe180000.pcie: invalid resource
+[Di Mär 10 23:59:26 2026] dw-pcie fe180000.pcie: Failed to initialize host
+[Di Mär 10 23:59:26 2026] dw-pcie: probe of fe180000.pcie failed with error -22
+[Di Mär 10 23:59:26 2026] dw-pcie fe190000.pcie: invalid resource
+[Di Mär 10 23:59:26 2026] dw-pcie fe190000.pcie: Failed to initialize host
+[Di Mär 10 23:59:26 2026] dw-pcie: probe of fe190000.pcie failed with error -22
+[Di Mär 10 23:59:26 2026] dw-pcie fe150000.pcie: invalid resource
+[Di Mär 10 23:59:26 2026] dw-pcie fe150000.pcie: Failed to initialize host
+[Di Mär 10 23:59:26 2026] dw-pcie: probe of fe150000.pcie failed with error -22
+[Di Mär 10 23:59:26 2026] rockchip-pm-domain fd8d8000.power-management:power-controller: Looking up pcie-supply from device tree
+[Di Mär 10 23:59:26 2026] rockchip-pm-domain fd8d8000.power-management:power-controller: Looking up pcie-supply property in node /power-management@fd8d8000/power-controller failed
+[Di Mär 10 23:59:26 2026] dw-pcie fe170000.pcie: invalid resource
+[Di Mär 10 23:59:26 2026] dw-pcie fe170000.pcie: Failed to initialize host
+[Di Mär 10 23:59:26 2026] dw-pcie: probe of fe170000.pcie failed with error -22
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: using pcie default link_up because of rockchip,default-link-up
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: using pcie default link_up because of rockchip,default-link-up
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: invalid prsnt-gpios property in node
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: invalid prsnt-gpios property in node
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: Looking up vpcie3v3-supply from device tree
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: Looking up vpcie3v3-supply property in node /pcie@fe190000 failed
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: no vpcie3v3 regulator found
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: Looking up vpcie3v3-supply from device tree
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: Looking up vpcie3v3-supply property in node /pcie@fe180000 failed
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: no vpcie3v3 regulator found
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: invalid prsnt-gpios property in node
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: Looking up vpcie3v3-supply from device tree
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: invalid prsnt-gpios property in node
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: host bridge /pcie@fe190000 ranges:
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie:       IO 0x00f4100000..0x00f41fffff -> 0x00f4100000
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie:      MEM 0x00f4200000..0x00f4ffffff -> 0x00f4200000
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie:      MEM 0x0a00000000..0x0a3fffffff -> 0x0a00000000
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: Looking up vpcie3v3-supply from device tree
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: iATU unroll: enabled
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: iATU regions: 8 ob, 8 ib, align 64K, limit 8G
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: host bridge /pcie@fe180000 ranges:
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie:       IO 0x00f3100000..0x00f31fffff -> 0x00f3100000
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie:      MEM 0x00f3200000..0x00f3ffffff -> 0x00f3200000
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie:      MEM 0x09c0000000..0x09ffffffff -> 0x09c0000000
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: iATU unroll: enabled
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: iATU regions: 8 ob, 8 ib, align 64K, limit 8G
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: can't get current limit.
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: host bridge /pcie@fe150000 ranges:
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie:       IO 0x00f0100000..0x00f01fffff -> 0x00f0100000
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie:      MEM 0x00f0200000..0x00f0ffffff -> 0x00f0200000
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie:      MEM 0x0900000000..0x093fffffff -> 0x0900000000
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: iATU unroll: enabled
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: iATU regions: 8 ob, 8 ib, align 64K, limit 8G
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: can't get current limit.
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: host bridge /pcie@fe170000 ranges:
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie:       IO 0x00f2100000..0x00f21fffff -> 0x00f2100000
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie:      MEM 0x00f2200000..0x00f2ffffff -> 0x00f2200000
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie:      MEM 0x0980000000..0x09bfffffff -> 0x0980000000
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: iATU unroll: enabled
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: iATU regions: 8 ob, 8 ib, align 64K, limit 8G
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: PCIe Linking... LTSSM is 0x0
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: PCIe Linking... LTSSM is 0x0
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: PCIe Linking... LTSSM is 0x0
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: PCIe Link up, LTSSM is 0x130011
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: PCIe Gen.2 x1 link up
+[Di Mär 10 23:59:26 2026] rk-pcie fe190000.pcie: PCI host bridge to bus 0004:40
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: PCIe Link up, LTSSM is 0x130011
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: PCIe Gen.2 x1 link up
+[Di Mär 10 23:59:26 2026] rk-pcie fe180000.pcie: PCI host bridge to bus 0003:30
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: PCIe Linking... LTSSM is 0x0
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:26 2026] pci 0004:41:00.0: reg 0x10: initial BAR value 0x00000000 invalid
+[Di Mär 10 23:59:26 2026] rk-pcie fe150000.pcie: PCIe Linking... LTSSM is 0x0
+[Di Mär 10 23:59:26 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:26 2026] pci 0004:40:00.0: BAR 8: assigned [mem 0xf4200000-0xf42fffff]
+[Di Mär 10 23:59:26 2026] pci 0004:40:00.0: BAR 6: assigned [mem 0xf4300000-0xf430ffff pref]
+[Di Mär 10 23:59:26 2026] pci 0004:40:00.0: BAR 7: assigned [io  0x1000-0x1fff]
+[Di Mär 10 23:59:26 2026] pci 0004:41:00.0: BAR 2: assigned [mem 0xf4200000-0xf420ffff 64bit]
+[Di Mär 10 23:59:26 2026] pci 0004:41:00.0: BAR 4: assigned [mem 0xf4210000-0xf4213fff 64bit]
+[Di Mär 10 23:59:26 2026] pci 0004:41:00.0: BAR 0: assigned [io  0x1000-0x10ff]
+[Di Mär 10 23:59:26 2026] pcieport 0004:40:00.0: PME: Signaling with IRQ 135
+[Di Mär 10 23:59:26 2026] pci 0003:30:00.0: BAR 8: assigned [mem 0xf3200000-0xf32fffff]
+[Di Mär 10 23:59:26 2026] pci 0003:30:00.0: BAR 6: assigned [mem 0xf3300000-0xf330ffff pref]
+[Di Mär 10 23:59:26 2026] pci 0003:30:00.0: BAR 7: assigned [io  0x100000-0x100fff]
+[Di Mär 10 23:59:26 2026] pci 0003:31:00.0: BAR 2: assigned [mem 0xf3200000-0xf320ffff 64bit]
+[Di Mär 10 23:59:26 2026] pci 0003:31:00.0: BAR 4: assigned [mem 0xf3210000-0xf3213fff 64bit]
+[Di Mär 10 23:59:26 2026] pci 0003:31:00.0: BAR 0: assigned [io  0x100000-0x1000ff]
+[Di Mär 10 23:59:26 2026] pcieport 0003:30:00.0: PME: Signaling with IRQ 145
+[Di Mär 10 23:59:28 2026] systemd[1]: systemd 257.9-1~deb13u1 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +IPE +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBCRYPTSETUP_PLUGINS +LIBFDISK +PCRE2 +PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD +BPF_FRAMEWORK +BTF -XKBCOMMON -UTMP +SYSVINIT +LIBARCHIVE)
+[Di Mär 10 23:59:28 2026] rk-pcie fe150000.pcie: PCIe Link Fail, LTSSM is 0x0, hw_retries=0
+[Di Mär 10 23:59:28 2026] rk-pcie fe150000.pcie: failed to initialize host
+[Di Mär 10 23:59:28 2026] rk-pcie fe170000.pcie: PCIe Link Fail, LTSSM is 0x3, hw_retries=0
+[Di Mär 10 23:59:31 2026] rk_pcie_establish_link: 268 callbacks suppressed
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:31 2026] rk-pcie fe170000.pcie: PCIe Linking... LTSSM is 0x3
+[Di Mär 10 23:59:32 2026] rk-pcie fe170000.pcie: PCIe Link Fail, LTSSM is 0x3, hw_retries=1
+[Di Mär 10 23:59:33 2026] rk-pcie fe170000.pcie: failed to initialize host

@@ -1,0 +1,31 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: RK3588 AMDGPU Bringup <noreply@example.com>
+Date: Fri, 13 Mar 2026 22:34:00 +0100
+Subject: [PATCH] drm/amdgpu/psp: log TOC/SOS population after microcode init
+
+Emit one-line diagnostics in `psp_sw_init()` to confirm whether TOC/SOS pointers
+were populated for the active firmware load type.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 9e6c8f1b1f3d..74d9e7442f7d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -383,6 +383,13 @@ static int psp_sw_init(void *handle)
+ 		DRM_ERROR("Failed to load psp firmware!\n");
+ 		return ret;
+ 	}
++
++	dev_info(adev->dev,
++		 "psp sw_init: load_type=%d autoload_supported=%d toc_start=%p toc_size=0x%x sos_start=%p sos_size=0x%x\n",
++		 adev->firmware.load_type, psp->autoload_supported,
++		 psp->toc.start_addr, psp->toc.size_bytes,
++		 psp->sos.start_addr, psp->sos.size_bytes);
+ 
+ 	adev->psp.xgmi_context.supports_extended_data =
+ 		!adev->gmc.xgmi.connected_to_cpu &&
+-- 
+2.43.0
+

@@ -1,0 +1,47 @@
+From c4a6f3278a770af8b4a3feffb2b56b8f0528f22c Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Wed, 11 Mar 2026 12:10:00 +0100
+Subject: [PATCH] drm/amdgpu: allow PCI reset method in reset_method module
+ parameter
+
+The bring-up flow uses reset_method=5 to explicitly request PCI reset.
+This value is currently rejected during parameter validation and reset to
+auto, preventing the new soc21 PCI reset path from being exercised.
+
+Accept AMD_RESET_METHOD_PCI in validation and document it in the module
+parameter description.
+
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 365fd862282a..3cba7c156e14 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1589,7 +1589,7 @@ static int amdgpu_device_check_arguments(struct amdgpu_device *adev)
+ 		amdgpu_sched_hw_submission = roundup_pow_of_two(amdgpu_sched_hw_submission);
+ 	}
+ 
+-	if (amdgpu_reset_method < -1 || amdgpu_reset_method > 4) {
++	if (amdgpu_reset_method < AMD_RESET_METHOD_NONE || amdgpu_reset_method > AMD_RESET_METHOD_PCI) {
+ 		dev_warn(adev->dev, "invalid option for reset method, reverting to default\n");
+ 		amdgpu_reset_method = -1;
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index d19e9094a56d..f2fb19976685 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -905,10 +905,10 @@ module_param_named(freesync_video, amdgpu_freesync_vid_mode, uint, 0444);
+ 
+ /**
+  * DOC: reset_method (int)
+- * GPU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco)
++ * GPU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco, 5 = pci)
+  */
+-MODULE_PARM_DESC(reset_method, "GPU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco/bamaco)");
++MODULE_PARM_DESC(reset_method, "GPU reset method (-1 = auto (default), 0 = legacy, 1 = mode0, 2 = mode1, 3 = mode2, 4 = baco/bamaco, 5 = pci)");
+ module_param_named(reset_method, amdgpu_reset_method, int, 0444);
+ 
+ /**

@@ -1,0 +1,42 @@
+From 6f9a7e44fa95c35b3802539f08f3ea7ccdc31f5e Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:41:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 force MMIO wptr path on arm64
+
+On RK3588 bring-up with Navi24, gfx ring test consistently times out with:
+
+- scratch stays at 0xCAFEDEAD
+- rptr stays at 0
+- wptr advances to 0x500
+- GRBM_STATUS/STATUS2 show no CP busy state
+
+This pattern is consistent with CP not being kicked by the doorbell path.
+Force gfx ring to use MMIO WPTR updates on arm64 as a bring-up workaround.
+Compute/KCQ paths remain separately controlled by existing num_kcq patches.
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 0913357ec3e0..7a57458b89e3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -4549,6 +4549,14 @@ static int gfx_v10_0_gfx_ring_init(struct amdgpu_device *adev, int ring_id,
+ 	ring->queue = queue;
+ 
+ 	ring->ring_obj = NULL;
+ 	ring->use_doorbell = true;
++#if defined(CONFIG_ARM64)
++	/*
++	 * RK3588 eGPU bring-up: doorbell writes can fail to kick CP and leave
++	 * gfx ring rptr at 0 forever. Force MMIO WPTR programming as fallback.
++	 */
++	ring->use_doorbell = false;
++#endif
+ 
+ 	if (!ring_id)
+ 		ring->doorbell_index = adev->doorbell_index.gfx_ring0 << 1;
+-- 
+2.43.0
+

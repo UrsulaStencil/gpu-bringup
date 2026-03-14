@@ -1,0 +1,46 @@
+From 0f4ad8c88ff2e5a4504e11f4e77e3a8ef5b5bb72 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 16:02:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 skip KGQ setup when num_kcq=0
+
+On RK3588 bring-up we intentionally run with `amdgpu.num_kcq=0` to remove
+kernel compute queues from the equation. KCQ setup is already skipped, but
+gfx10 async graphics still enters KGQ setup through KIQ and ring-tests that
+path, which keeps failing with KIQ timeout on this platform.
+
+For gfx10 render-first bring-up, treat `num_kcq=0` as explicit opt-out for
+KGQ setup/teardown as well.
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 2f5c71f98f67..db0fdd38f3e2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -6610,6 +6610,11 @@ static int gfx_v10_0_kiq_enable_kgq(struct amdgpu_device *adev)
+ 	if (!kiq->pmf || !kiq->pmf->kiq_map_queues)
+ 		return -EINVAL;
+ 
++	if (!adev->gfx.num_compute_rings) {
++		DRM_INFO("num_kcq=0; skipping KGQ setup\n");
++		return 0;
++	}
++
+ 	r = amdgpu_ring_alloc(kiq_ring, kiq->pmf->map_queues_size *
+ 					adev->gfx.num_gfx_rings);
+ 	if (r) {
+@@ -7328,6 +7333,9 @@ static int gfx_v10_0_kiq_disable_kgq(struct amdgpu_device *adev)
+ 	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
+ 		return -EINVAL;
+ 
++	if (!adev->gfx.num_compute_rings)
++		return 0;
++
+ 	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size *
+ 					adev->gfx.num_gfx_rings))
+ 		return -ENOMEM;
+-- 
+2.43.0
+

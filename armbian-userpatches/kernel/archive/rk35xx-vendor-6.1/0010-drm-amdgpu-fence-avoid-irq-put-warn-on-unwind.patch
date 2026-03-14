@@ -1,0 +1,34 @@
+From 9858d41fcca59f4f1c2073be933d30751d5a9f08 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 16:54:00 +0100
+Subject: [PATCH] drm/amdgpu: fence avoid irq_put WARN on failed init unwind
+
+On this RK3588 bring-up path, gfx init fails with `-110` and unwind enters
+`amdgpu_fence_driver_hw_fini()`. Some rings call `amdgpu_irq_put()` without
+having a matching enabled IRQ state, triggering WARN splats from
+`amdgpu_irq_put()` and obscuring signal in logs.
+
+Check `amdgpu_irq_enabled()` before dropping the fence IRQ reference.
+
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 3f00929aa937..13a0feb9b6f4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -566,7 +566,9 @@ void amdgpu_fence_driver_hw_fini(struct amdgpu_device *adev)
+ 
+ 		if (!drm_dev_is_unplugged(adev_to_drm(adev)) &&
+ 		    ring->fence_drv.irq_src &&
+-		    amdgpu_fence_need_ring_interrupt_restore(ring))
++		    amdgpu_fence_need_ring_interrupt_restore(ring) &&
++		    amdgpu_irq_enabled(adev, ring->fence_drv.irq_src,
++				       ring->fence_drv.irq_type))
+ 			amdgpu_irq_put(adev, ring->fence_drv.irq_src,
+ 				       ring->fence_drv.irq_type);
+ 
+-- 
+2.43.0
+

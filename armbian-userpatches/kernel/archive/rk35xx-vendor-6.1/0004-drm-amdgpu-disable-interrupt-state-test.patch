@@ -1,0 +1,31 @@
+From f6ccba11c0ebd00cde57f77ef9f8be0ab464eabf Mon Sep 17 00:00:00 2001
+From: RK3588 Bringup <rk3588-bringup@local>
+Date: Wed, 11 Mar 2026 10:20:00 +0100
+Subject: [PATCH] drm/amdgpu: default to INTx when amdgpu_msi is auto/disabled
+
+On RK3588 eGPU bring-up, MSI is frequently unreliable. Treat non-positive
+`amdgpu_msi` values as MSI-off so INTx is used by default.
+
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+index e16795ce1254..43321f288ad3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+@@ -257,8 +257,11 @@ static bool amdgpu_msi_ok(struct amdgpu_device *adev)
+ {
+ 	if (amdgpu_msi == 1)
+ 		return true;
+-	else if (amdgpu_msi == 0)
++
++	if (amdgpu_msi <= 0) {
++		dev_info(adev->dev, "MSI disabled by module parameter\n");
+ 		return false;
++	}
+ 
+ 	return true;
+ }
+-- 
+2.47.3

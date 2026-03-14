@@ -1,0 +1,174 @@
+[smoke] date=2026-03-14T10:29:46+01:00
+[smoke] uname -r: 6.1.115-vendor-rk35xx
+[smoke] boot_id: 02ce16b3-6425-4824-8bec-9405424610f5
+[smoke] modprobe args: fw_load_type=3 async_gfx_ring=0 num_kcq=0 mes=0 msi=1
+[smoke] amdgpu.ko sha256: a7574452fc4fe124d43b5623911836169fce18535e7842065ae41360e472df76
+
+[smoke] lspci -nn -s 03:00.0
+0000:03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon RX 6400/6500 XT/6500M] [1002:743f] (rev c7)
+
+[smoke] unload amdgpu
+
+[smoke] pre-modprobe reset: secondary bus reset on 02:00.0
+[smoke] secondary bus reset: bridge=02:00.0 orig=0002 assert=0042
+
+[smoke] clear dmesg
+
+[smoke] modprobe amdgpu fw_load_type=3 async_gfx_ring=0 num_kcq=0 mes=0 msi=1
+[smoke] modprobe timeout: 60s
+[smoke] modprobe pid: 12858 (timeout 60s)
+[smoke] modprobe exited within timeout
+
+[smoke] lingering modprobe/amdgpu tasks
+
+[smoke] capture full dmesg snapshot: /home/orange/gpu-bringup/logs/postcold-psp-dmesg-20260314-102946.log
+
+[smoke] lsmod | grep amdgpu
+amdgpu               4186112  0
+drm_ttm_helper         16384  1 amdgpu
+drm_buddy              20480  1 amdgpu
+ttm                    57344  2 amdgpu,drm_ttm_helper
+gpu_sched              40960  2 amdgpu,panfrost
+
+[smoke] /dev/dri
+total 0
+drwxr-xr-x 2 root root        120 Mar 14 10:01 by-path
+crw-rw---- 1 root video  226,   0 Mar 14 10:01 card0
+crw-rw---- 1 root video  226,   1 Mar 14 10:01 card1
+crw-rw---- 1 root render 226, 128 Mar 14 10:01 renderD128
+crw-rw---- 1 root render 226, 129 Mar 14 10:01 renderD129
+
+[smoke] vulkaninfo --summary
+==========
+VULKANINFO
+==========
+
+Vulkan Instance Version: 1.4.309
+
+
+Instance Extensions: count = 24
+-------------------------------
+VK_EXT_acquire_drm_display             : extension revision 1
+VK_EXT_acquire_xlib_display            : extension revision 1
+VK_EXT_debug_report                    : extension revision 10
+VK_EXT_debug_utils                     : extension revision 2
+VK_EXT_direct_mode_display             : extension revision 1
+VK_EXT_display_surface_counter         : extension revision 1
+VK_EXT_headless_surface                : extension revision 1
+VK_EXT_surface_maintenance1            : extension revision 1
+VK_EXT_swapchain_colorspace            : extension revision 5
+VK_KHR_device_group_creation           : extension revision 1
+VK_KHR_display                         : extension revision 23
+VK_KHR_external_fence_capabilities     : extension revision 1
+VK_KHR_external_memory_capabilities    : extension revision 1
+VK_KHR_external_semaphore_capabilities : extension revision 1
+VK_KHR_get_display_properties2         : extension revision 1
+VK_KHR_get_physical_device_properties2 : extension revision 2
+VK_KHR_get_surface_capabilities2       : extension revision 1
+VK_KHR_portability_enumeration         : extension revision 1
+VK_KHR_surface                         : extension revision 25
+VK_KHR_surface_protected_capabilities  : extension revision 1
+VK_KHR_wayland_surface                 : extension revision 6
+VK_KHR_xcb_surface                     : extension revision 6
+VK_KHR_xlib_surface                    : extension revision 6
+VK_LUNARG_direct_driver_loading        : extension revision 1
+
+Instance Layers: count = 2
+--------------------------
+VK_LAYER_MESA_device_select Linux device selection layer 1.4.303  version 1
+VK_LAYER_MESA_overlay       Mesa Overlay layer           1.4.303  version 1
+
+Devices:
+========
+GPU0:
+	apiVersion         = 1.4.305
+	driverVersion      = 0.0.1
+	vendorID           = 0x10005
+	deviceID           = 0x0000
+	deviceType         = PHYSICAL_DEVICE_TYPE_CPU
+	deviceName         = llvmpipe (LLVM 19.1.7, 128 bits)
+	driverID           = DRIVER_ID_MESA_LLVMPIPE
+	driverName         = llvmpipe
+	driverInfo         = Mesa 25.0.7-2 (LLVM 19.1.7)
+	conformanceVersion = 1.3.1.1
+	deviceUUID         = 6d657361-3235-2e30-2e37-2d3200000000
+	driverUUID         = 6c6c766d-7069-7065-5555-494400000000
+
+[smoke] unload amdgpu after capture
+
+[smoke] dmesg snapshot extract
+[Sat Mar 14 10:30:12 2026] [drm] amdgpu kernel modesetting enabled.
+[Sat Mar 14 10:30:12 2026] amdgpu 0000:03:00.0: enabling device (0000 -> 0003)
+[Sat Mar 14 10:30:12 2026] amdgpu 0000:03:00.0: amdgpu: get invalid ip discovery binary signature from vram
+[Sat Mar 14 10:30:12 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_discovery is not set properly
+[Sat Mar 14 10:30:12 2026] amdgpu 0000:03:00.0: amdgpu: failed to read ip discovery binary from file
+[Sat Mar 14 10:30:12 2026] [drm:amdgpu_discovery_set_ip_blocks [amdgpu]] *ERROR* amdgpu_discovery_init failed
+[Sat Mar 14 10:30:12 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using beige_goby static IP fallback after discovery failure
+[Sat Mar 14 10:30:12 2026] [drm] add ip block number 3 <psp>
+[Sat Mar 14 10:30:12 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: forcing GPU post because PSP sign-of-life register is all-ones
+[Sat Mar 14 10:30:12 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Sat Mar 14 10:30:13 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sat Mar 14 10:30:13 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sat Mar 14 10:30:13 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sat Mar 14 10:30:13 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: skipping asic reset on init for fw_load_type=3 reset_method=-1
+[Sat Mar 14 10:30:13 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: forcing GPU post because PSP sign-of-life register is all-ones
+[Sat Mar 14 10:30:23 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: post result C2PMSG_81=0xffffffff
+[Sat Mar 14 10:30:23 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: retrying GPU post because PSP sign-of-life remained all-ones
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: second post result C2PMSG_81=0xffffffff
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using static CONFIG_MEMSIZE fallback 0xff0 MB for beige_goby
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: BAR 2: releasing [mem 0x910000000-0x9101fffff 64bit pref]
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: BAR 0: releasing [mem 0x900000000-0x90fffffff 64bit pref]
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: BAR 0: no space for [mem size 0x100000000 64bit pref]
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: BAR 0: failed to assign [mem size 0x100000000 64bit pref]
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: BAR 2: no space for [mem size 0x00200000 64bit pref]
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: BAR 2: failed to assign [mem size 0x00200000 64bit pref]
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: BAR 0: assigned [mem 0x900000000-0x90fffffff 64bit pref]
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: BAR 2: assigned [mem 0x910000000-0x9101fffff 64bit pref]
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using static FB layout fallback base=0xffffff000000 fb_offset=0xffffffff000000 for beige_goby hot-reset path
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: VRAM: 4080M 0x0000008000000000 - 0x00000080FEFFFFFF (4080M used)
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: AGP: 267894784M 0x0000008400000000 - 0x0000FFFFFFFFFFFF
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: enabling reserve_tmr on beige_goby static discovery fallback
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: reserve_tmr mem_train=1 bios_reserved=0x300000 reserve_size=0x300000 mc_vram=0xff000000 real_vram=0xff000000 visible_vram=0x10000000 vram_start=0x8000000000 vram_end=0x80feffffff fb_offset=0x0
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_train block reserve_size=0x300000 mc_vram=0xff000000 real_vram=0xff000000 visible_vram=0x10000000 p2c=0xfeff8000 c2p=0xfec00000 train_size=0x1000
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: reserve_tmr fw_reserved_offset=0xfed00000 size=0x300000
+[Sat Mar 14 10:30:34 2026] [drm] amdgpu: 4080M of VRAM memory ready
+[Sat Mar 14 10:30:34 2026] [drm] amdgpu: 3968M of GTT memory ready.
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: HDP init_registers callback missing, skipping
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: psp sw_init: load_type=3 autoload_supported=1 toc_start=0000000063a173c5 toc_size=0x600 sos_start=0000000073b87e24 sos_size=0x14350
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't exist
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't exist
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_training decision runtime_db=0 boot_cfg_bitmask=0x0 enable=1 init=4
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: memory training init train_size=0x1000 p2c=0xfeff8000 c2p=0xfec00000 mc_vram=0xff000000 real_vram=0xff000000 visible_vram=0x10000000
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: treating C2PMSG_81=0xffffffff as sOS not alive
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_training v11 begin ops=0x1 p2c=0xfeff8000 c2p=0xfec00000 train_size=0x1000
+[Sat Mar 14 10:30:34 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_training v11 resolved_ops=0x3 cache_sig=0x00000000 p2c_sig=0xffffffff
+[Sat Mar 14 10:30:36 2026] amdgpu 0000:03:00.0: amdgpu: psp shared buf: using VRAM-backed fw_pri mc=0x8000b00000 psp_addr=0x8000b00000 size=0x100000
+[Sat Mar 14 10:30:36 2026] amdgpu 0000:03:00.0: amdgpu: rlc autoload parse toc: psp_toc_size=0x00000600 first_entry{id=22 offset=0x00c9448f size=0x0001035a}
+[Sat Mar 14 10:30:36 2026] amdgpu 0000:03:00.0: amdgpu: psp ring init: type=2 ring_mc=0x8000a05000 ring_size=0x1000
+[Sat Mar 14 10:30:36 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: treating C2PMSG_81=0xffffffff as sOS not alive
+[Sat Mar 14 10:30:40 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: bootloader mailbox reads all-ones; PSP boot state is invalid after probe/reset
+[Sat Mar 14 10:30:40 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: bootloader wait timeout retry=20 msg35=0xffffffff msg36=0xffffffff msg81=0xffffffff
+[Sat Mar 14 10:30:40 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: bootloader not ready before cmd=524288, attempting PSP mode1 reset
+[Sat Mar 14 10:30:57 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0xffffffff expect=0x80000000 mask=0x8000ffff changed=0 timeout_us=10000000
+[Sat Mar 14 10:30:57 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: forcing PSP mode1 reset from all-ones mailbox state msg64=0xffffffff msg33=0xffffffff msg81=0xffffffff
+[Sat Mar 14 10:30:58 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: forced PSP mode1 reset completed msg64=0xffffffff msg33=0xffffffff msg81=0xffffffff
+[Sat Mar 14 10:30:58 2026] [drm] psp mode1 reset succeed 
+[Sat Mar 14 10:31:02 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: bootloader mailbox reads all-ones; PSP boot state is invalid after probe/reset
+[Sat Mar 14 10:31:02 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: bootloader wait timeout retry=20 msg35=0xffffffff msg36=0xffffffff msg81=0xffffffff
+[Sat Mar 14 10:31:02 2026] [drm:psp_hw_start [amdgpu]] *ERROR* PSP load kdb failed!
+[Sat Mar 14 10:31:02 2026] [drm:psp_hw_init [amdgpu]] *ERROR* PSP firmware loading failed
+[Sat Mar 14 10:31:02 2026] [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* hw_init of IP block <psp> failed -22
+[Sat Mar 14 10:31:02 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Sat Mar 14 10:31:02 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sat Mar 14 10:31:02 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sat Mar 14 10:31:02 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Sat Mar 14 10:31:02 2026] Modules linked in: amdgpu(O+) drm_ttm_helper drm_buddy ttm(O) zram zsmalloc binfmt_misc pwm_fan rk805_pwrkey panfrost drm_shmem_helper gpu_sched fuse nfnetlink ip_tables x_tables ipv6 btrfs blake2b_generic xor xor_neon raid6_pq r8169 rockchip_cpuinfo adc_keys uio_pdrv_genirq uio [last unloaded: drm_ttm_helper]
+[Sat Mar 14 10:31:02 2026]  amdgpu_gtt_mgr_fini+0x60/0xe4 [amdgpu]
+[Sat Mar 14 10:31:02 2026]  amdgpu_ttm_fini+0x138/0x1b8 [amdgpu]
+[Sat Mar 14 10:31:02 2026]  amdgpu_bo_fini+0x38/0x80 [amdgpu]
+[Sat Mar 14 10:31:02 2026]  gmc_v10_0_sw_fini+0x38/0x4c [amdgpu]
+[Sat Mar 14 10:31:02 2026]  amdgpu_device_fini_sw+0x248/0x2d0 [amdgpu]
+[Sat Mar 14 10:31:02 2026]  amdgpu_driver_release_kms+0x24/0x3c [amdgpu]
+[Sat Mar 14 10:31:02 2026]  amdgpu_init+0x7c/0xfa0 [amdgpu]
+[Sat Mar 14 10:31:03 2026] [drm] amdgpu: ttm finalized

@@ -1,0 +1,46 @@
+From 9e45b980cc7ea49618b57ee6ab6f44fdab3d0172 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:43:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 log CP/RB control state on ring timeout
+
+RK3588 bring-up currently stalls in gfx ring test with static
+scratch/rptr/wptr symptoms. Extend timeout diagnostics with CP and RB
+control registers so we can distinguish "CP halted" from "CP running but
+not consuming RB".
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 7a57458b89e3..00d23db5aa14 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -3810,6 +3810,13 @@ static int gfx_v10_0_ring_test_ring(struct amdgpu_ring *ring)
+ 	if (i >= adev->usec_timeout) {
+ 		uint32_t grbm_status = RREG32_SOC15(GC, 0, mmGRBM_STATUS);
+ 		uint32_t grbm_status2 = RREG32_SOC15(GC, 0, mmGRBM_STATUS2);
++		uint32_t cp_stat = RREG32_SOC15(GC, 0, mmCP_STAT);
++		uint32_t cp_me_cntl = RREG32_SOC15(GC, 0, mmCP_ME_CNTL);
++		uint32_t rb0_cntl = RREG32_SOC15(GC, 0, mmCP_RB0_CNTL);
++		uint32_t rb0_rptr = RREG32_SOC15(GC, 0, mmCP_RB0_RPTR);
++		uint32_t rb0_wptr = RREG32_SOC15(GC, 0, mmCP_RB0_WPTR);
++		uint32_t rb0_wptr_hi = RREG32_SOC15(GC, 0, mmCP_RB0_WPTR_HI);
++		uint32_t rb_wptr_poll_cntl = RREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_CNTL);
+ 		uint64_t rptr = amdgpu_ring_get_rptr(ring);
+ 		uint64_t wptr = amdgpu_ring_get_wptr(ring);
+ 
+@@ -3824,6 +3831,12 @@ static int gfx_v10_0_ring_test_ring(struct amdgpu_ring *ring)
+ 			  adev->usec_timeout);
+ 		DRM_ERROR("gfx ring status: GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x\n",
+ 			  grbm_status, grbm_status2);
++		DRM_ERROR("gfx cp status: CP_ME_CNTL=0x%08x CP_STAT=0x%08x CP_RB0_CNTL=0x%08x\n",
++			  cp_me_cntl, cp_stat, rb0_cntl);
++		DRM_ERROR("gfx rb0 ptrs: CP_RB0_RPTR=0x%08x CP_RB0_WPTR=0x%08x CP_RB0_WPTR_HI=0x%08x CP_RB_WPTR_POLL_CNTL=0x%08x\n",
++			  rb0_rptr, rb0_wptr, rb0_wptr_hi, rb_wptr_poll_cntl);
+ 		r = -ETIMEDOUT;
+ 	}
+ 
+-- 
+2.43.0
+

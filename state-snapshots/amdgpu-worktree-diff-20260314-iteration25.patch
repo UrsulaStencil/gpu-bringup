@@ -1,0 +1,1349 @@
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index f8740ad08af4..4cf24ae18c95 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -44,6 +44,7 @@
+ #include "amdgpu_atomfirmware.h"
+ 
+ #define AMD_VBIOS_FILE_MAX_SIZE_B      (1024*1024*3)
++#define PSP_CMD_RESP_SENTINEL          0xA5A5A5A5u
+ 
+ static int psp_sysfs_init(struct amdgpu_device *adev);
+ static void psp_sysfs_fini(struct amdgpu_device *adev);
+@@ -222,7 +223,9 @@ static int psp_memory_training_init(struct psp_context *psp)
+ 	struct psp_memory_training_context *ctx = &psp->mem_train_ctx;
+ 
+ 	if (ctx->init != PSP_MEM_TRAIN_RESERVE_SUCCESS) {
+-		DRM_DEBUG("memory training is not supported!\n");
++		dev_info(psp->adev->dev,
++			 "arm64 bring-up: memory training init skipped state=%u enable=%d\n",
++			 ctx->init, ctx->enable_mem_training);
+ 		return 0;
+ 	}
+ 
+@@ -233,10 +236,14 @@ static int psp_memory_training_init(struct psp_context *psp)
+ 		goto Err_out;
+ 	}
+ 
+-	DRM_DEBUG("train_data_size:%llx,p2c_train_data_offset:%llx,c2p_train_data_offset:%llx.\n",
+-		  ctx->train_data_size,
+-		  ctx->p2c_train_data_offset,
+-		  ctx->c2p_train_data_offset);
++	dev_info(psp->adev->dev,
++		 "arm64 bring-up: memory training init train_size=0x%llx p2c=0x%llx c2p=0x%llx mc_vram=0x%llx real_vram=0x%llx visible_vram=0x%llx\n",
++		 (unsigned long long)ctx->train_data_size,
++		 (unsigned long long)ctx->p2c_train_data_offset,
++		 (unsigned long long)ctx->c2p_train_data_offset,
++		 (unsigned long long)psp->adev->gmc.mc_vram_size,
++		 (unsigned long long)psp->adev->gmc.real_vram_size,
++		 (unsigned long long)psp->adev->gmc.visible_vram_size);
+ 	ctx->init = PSP_MEM_TRAIN_INIT_SUCCESS;
+ 	return 0;
+ 
+@@ -365,6 +372,7 @@ static int psp_sw_init(void *handle)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 	struct psp_context *psp = &adev->psp;
+ 	int ret;
++	bool boot_cfg_valid;
+ 	struct psp_runtime_boot_cfg_entry boot_cfg_entry;
+ 	struct psp_memory_training_context *mem_training_ctx = &psp->mem_train_ctx;
+ 	struct psp_runtime_scpm_entry scpm_entry;
+@@ -384,6 +392,12 @@ static int psp_sw_init(void *handle)
+ 		return ret;
+ 	}
+ 
++	dev_info(adev->dev,
++		 "psp sw_init: load_type=%d autoload_supported=%d toc_start=%p toc_size=0x%x sos_start=%p sos_size=0x%x\n",
++		 adev->firmware.load_type, psp->autoload_supported,
++		 psp->toc.start_addr, psp->toc.size_bytes,
++		 psp->sos.start_addr, psp->sos.size_bytes);
++
+ 	adev->psp.xgmi_context.supports_extended_data =
+ 		!adev->gmc.xgmi.connected_to_cpu &&
+ 			adev->ip_versions[MP0_HWIP][0] == IP_VERSION(13, 0, 2);
+@@ -403,9 +417,10 @@ static int psp_sw_init(void *handle)
+ 	/* TODO: stop gpu driver services and print alarm if scpm is enabled with error status */
+ 
+ 	memset(&boot_cfg_entry, 0, sizeof(boot_cfg_entry));
+-	if (psp_get_runtime_db_entry(adev,
+-				PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG,
+-				&boot_cfg_entry)) {
++	boot_cfg_valid = psp_get_runtime_db_entry(adev,
++					PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG,
++					&boot_cfg_entry);
++	if (boot_cfg_valid) {
+ 		psp->boot_cfg_bitmask = boot_cfg_entry.boot_cfg_bitmask;
+ 		if ((psp->boot_cfg_bitmask) &
+ 		    BOOT_CFG_FEATURE_TWO_STAGE_DRAM_TRAINING) {
+@@ -423,6 +438,13 @@ static int psp_sw_init(void *handle)
+ 		mem_training_ctx->enable_mem_training = true;
+ 	}
+ 
++	dev_info(psp->adev->dev,
++		 "arm64 bring-up: mem_training decision runtime_db=%d boot_cfg_bitmask=0x%x enable=%d init=%u\n",
++		 boot_cfg_valid,
++		 psp->boot_cfg_bitmask,
++		 mem_training_ctx->enable_mem_training,
++		 mem_training_ctx->init);
++
+ 	if (mem_training_ctx->enable_mem_training) {
+ 		ret = psp_memory_training_init(psp);
+ 		if (ret) {
+@@ -445,12 +467,31 @@ static int psp_sw_init(void *handle)
+ 		}
+ 	}
+ 
+-	ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
+-				      amdgpu_sriov_vf(adev) ?
+-				      AMDGPU_GEM_DOMAIN_VRAM : AMDGPU_GEM_DOMAIN_GTT,
+-				      &psp->fw_pri_bo,
+-				      &psp->fw_pri_mc_addr,
+-				      &psp->fw_pri_buf);
++	{
++		u32 fw_pri_domain = amdgpu_sriov_vf(adev) ?
++			AMDGPU_GEM_DOMAIN_VRAM : AMDGPU_GEM_DOMAIN_GTT;
++#if defined(CONFIG_ARM64)
++		/*
++		 * On ARM64 bring-up, PSP/MP0 accesses to the fw private buffer can
++		 * fault when the buffer lives in GTT. Keep it in visible VRAM so
++		 * LOAD_TOC / bootloader paths use the same aperture style as the
++		 * already-working PSP cmd/fence buffers.
++		 */
++		if (!amdgpu_sriov_vf(adev))
++			fw_pri_domain = AMDGPU_GEM_DOMAIN_VRAM;
++#endif
++		ret = amdgpu_bo_create_kernel(adev, PSP_1_MEG, PSP_1_MEG,
++					      fw_pri_domain,
++					      &psp->fw_pri_bo,
++					      &psp->fw_pri_mc_addr,
++					      &psp->fw_pri_buf);
++		if (!ret)
++			dev_info(adev->dev,
++				 "psp shared buf: using %s-backed fw_pri mc=0x%llx size=0x%x\n",
++				 fw_pri_domain == AMDGPU_GEM_DOMAIN_VRAM ? "VRAM" : "GTT",
++				 (unsigned long long)psp->fw_pri_mc_addr,
++				 PSP_1_MEG);
++	}
+ 	if (ret)
+ 		return ret;
+ 
+@@ -594,6 +635,113 @@ static const char *psp_gfx_cmd_name(enum psp_gfx_cmd_id cmd_id)
+ 	}
+ }
+ 
++static void psp_mark_cmd_resp_pending(struct psp_gfx_cmd_resp *cmd)
++{
++	u32 *dw = (u32 *)&cmd->resp;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(cmd->resp.reserved); i++)
++		dw[i] = PSP_CMD_RESP_SENTINEL;
++}
++
++static bool psp_cmd_resp_written(const struct psp_gfx_cmd_resp *cmd)
++{
++	const u32 *dw = (const u32 *)&cmd->resp;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(cmd->resp.reserved); i++) {
++		if (dw[i] != PSP_CMD_RESP_SENTINEL)
++			return true;
++	}
++
++	return false;
++}
++
++static void psp_log_boot_bufs(struct psp_context *psp, const char *stage,
++			      const struct psp_gfx_cmd_resp *cmd)
++{
++	struct amdgpu_device *adev = psp->adev;
++	struct psp_ring *ring = &psp->km_ring;
++	u64 fw_pri_mc = psp->fw_pri_bo ? psp->fw_pri_mc_addr : 0;
++	u64 cmd_mc = psp->cmd_buf_bo ? psp->cmd_buf_mc_addr : 0;
++	u64 fence_mc = psp->fence_buf_bo ? psp->fence_buf_mc_addr : 0;
++	u64 ring_mc = ring->ring_mem ? ring->ring_mem_mc_addr : 0;
++	u64 tmr_mc = psp->tmr_bo ? psp->tmr_mc_addr : 0;
++	unsigned long fw_pri_size = psp->fw_pri_bo ? amdgpu_bo_size(psp->fw_pri_bo) : 0;
++	unsigned long cmd_size = psp->cmd_buf_bo ? amdgpu_bo_size(psp->cmd_buf_bo) : 0;
++	unsigned long fence_size = psp->fence_buf_bo ? amdgpu_bo_size(psp->fence_buf_bo) : 0;
++	unsigned long tmr_size = psp->tmr_bo ? amdgpu_bo_size(psp->tmr_bo) : 0;
++
++	dev_info(adev->dev,
++		 "psp %s: fw_pri_mc=0x%llx cmd_mc=0x%llx fence_mc=0x%llx ring_mc=0x%llx tmr_mc=0x%llx sizes fw=0x%lx cmd=0x%lx fence=0x%lx ring=0x%x tmr=0x%lx\n",
++		 stage,
++		 (unsigned long long)fw_pri_mc,
++		 (unsigned long long)cmd_mc,
++		 (unsigned long long)fence_mc,
++		 (unsigned long long)ring_mc,
++		 (unsigned long long)tmr_mc,
++		 fw_pri_size, cmd_size, fence_size, ring->ring_size, tmr_size);
++
++	if (!cmd)
++		return;
++
++	switch (cmd->cmd_id) {
++	case GFX_CMD_ID_LOAD_TOC:
++		dev_info(adev->dev,
++			 "psp %s: cmd=%s(0x%x) toc_mc=0x%llx toc_size=0x%x resp{status=0x%x fw=0x%08x:%08x tmr=0x%x}\n",
++			 stage, psp_gfx_cmd_name(cmd->cmd_id), cmd->cmd_id,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_load_toc.toc_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_load_toc.toc_phy_addr_lo),
++			 cmd->cmd.cmd_load_toc.toc_size,
++			 cmd->resp.status,
++			 cmd->resp.fw_addr_hi,
++			 cmd->resp.fw_addr_lo,
++			 cmd->resp.tmr_size);
++		break;
++	case GFX_CMD_ID_SETUP_TMR:
++	case GFX_CMD_ID_SETUP_VMR:
++		dev_info(adev->dev,
++			 "psp %s: cmd=%s(0x%x) buf_mc=0x%llx buf_size=0x%x system_pa=0x%llx flags=0x%x resp{status=0x%x fw=0x%08x:%08x tmr=0x%x}\n",
++			 stage, psp_gfx_cmd_name(cmd->cmd_id), cmd->cmd_id,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_setup_tmr.buf_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_setup_tmr.buf_phy_addr_lo),
++			 cmd->cmd.cmd_setup_tmr.buf_size,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_setup_tmr.system_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_setup_tmr.system_phy_addr_lo),
++			 cmd->cmd.cmd_setup_tmr.tmr_flags,
++			 cmd->resp.status,
++			 cmd->resp.fw_addr_hi,
++			 cmd->resp.fw_addr_lo,
++			 cmd->resp.tmr_size);
++		break;
++	case GFX_CMD_ID_LOAD_ASD:
++	case GFX_CMD_ID_LOAD_TA:
++		dev_info(adev->dev,
++			 "psp %s: cmd=%s(0x%x) app_mc=0x%llx app_len=0x%x shared_mc=0x%llx shared_len=0x%x resp{status=0x%x fw=0x%08x:%08x tmr=0x%x}\n",
++			 stage, psp_gfx_cmd_name(cmd->cmd_id), cmd->cmd_id,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_load_ta.app_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_load_ta.app_phy_addr_lo),
++			 cmd->cmd.cmd_load_ta.app_len,
++			 (unsigned long long)(((u64)cmd->cmd.cmd_load_ta.cmd_buf_phy_addr_hi << 32) |
++					      cmd->cmd.cmd_load_ta.cmd_buf_phy_addr_lo),
++			 cmd->cmd.cmd_load_ta.cmd_buf_len,
++			 cmd->resp.status,
++			 cmd->resp.fw_addr_hi,
++			 cmd->resp.fw_addr_lo,
++			 cmd->resp.tmr_size);
++		break;
++	default:
++		dev_info(adev->dev,
++			 "psp %s: cmd=%s(0x%x) resp{status=0x%x fw=0x%08x:%08x tmr=0x%x}\n",
++			 stage, psp_gfx_cmd_name(cmd->cmd_id), cmd->cmd_id,
++			 cmd->resp.status,
++			 cmd->resp.fw_addr_hi,
++			 cmd->resp.fw_addr_lo,
++			 cmd->resp.tmr_size);
++		break;
++	}
++}
++
+ static int
+ psp_cmd_submit_buf(struct psp_context *psp,
+ 		   struct amdgpu_firmware_info *ucode,
+@@ -611,14 +759,17 @@ psp_cmd_submit_buf(struct psp_context *psp,
+ 	if (!drm_dev_enter(adev_to_drm(psp->adev), &idx))
+ 		return 0;
+ 
+-	memset(psp->cmd_buf_mem, 0, PSP_CMD_BUFFER_SIZE);
++	memset_io(psp->cmd_buf_mem, 0, PSP_CMD_BUFFER_SIZE);
++	psp_mark_cmd_resp_pending(cmd);
+ 
+-	memcpy(psp->cmd_buf_mem, cmd, sizeof(struct psp_gfx_cmd_resp));
++	memcpy_toio(psp->cmd_buf_mem, cmd, sizeof(struct psp_gfx_cmd_resp));
++	psp_log_boot_bufs(psp, "submit-pre", cmd);
+ 
+ 	index = atomic_inc_return(&psp->fence_value);
+ 	ret = psp_ring_cmd_submit(psp, psp->cmd_buf_mc_addr, fence_mc_addr, index);
+ 	if (ret) {
+ 		atomic_dec(&psp->fence_value);
++		psp_log_boot_bufs(psp, "submit-ring-error", cmd);
+ 		goto exit;
+ 	}
+ 
+@@ -642,7 +793,32 @@ psp_cmd_submit_buf(struct psp_context *psp,
+ 	skip_unsupport = (psp->cmd_buf_mem->resp.status == TEE_ERROR_NOT_SUPPORTED ||
+ 		psp->cmd_buf_mem->resp.status == PSP_ERR_UNKNOWN_COMMAND) && amdgpu_sriov_vf(psp->adev);
+ 
+-	memcpy((void*)&cmd->resp, (void*)&psp->cmd_buf_mem->resp, sizeof(struct psp_gfx_resp));
++	memcpy_fromio((void *)&cmd->resp, (void *)&psp->cmd_buf_mem->resp,
++		      sizeof(struct psp_gfx_resp));
++	psp_log_boot_bufs(psp, "submit-post", cmd);
++
++#if defined(CONFIG_ARM64)
++	/*
++	 * On RK3588 bring-up we have observed LOAD_TOC return a valid TMR size
++	 * even when the PSP fence writeback path does not complete in time.
++	 * If the response payload is already populated, continue so the next
++	 * stage can reveal whether the remaining blocker is the fence path or
++	 * a later PSP command.
++	 */
++	if (!timeout &&
++	    psp->adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13) &&
++	    psp_cmd_resp_written(cmd) &&
++	    !cmd->resp.status) {
++		dev_warn(psp->adev->dev,
++			 "arm64 bring-up: ignoring PSP fence timeout for %s, status=0x%08x tmr=0x%x fence=0x%x index=%d\n",
++			 psp_gfx_cmd_name(cmd->cmd_id),
++			 cmd->resp.status,
++			 cmd->resp.tmr_size,
++			 *((unsigned int *)psp->fence_buf),
++			 index);
++		timeout = 1;
++	}
++#endif
+ 
+ 	/* In some cases, psp response status is not 0 even there is no
+ 	 * problem while the command is submitted. Some version of PSP FW
+@@ -709,6 +885,23 @@ static void psp_prep_tmr_cmd_buf(struct psp_context *psp,
+ 	cmd->cmd.cmd_setup_tmr.buf_phy_addr_lo = lower_32_bits(tmr_mc);
+ 	cmd->cmd.cmd_setup_tmr.buf_phy_addr_hi = upper_32_bits(tmr_mc);
+ 	cmd->cmd.cmd_setup_tmr.buf_size = size;
++
++#if defined(CONFIG_ARM64)
++	if (adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13) &&
++	    (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT ||
++	     adev->firmware.load_type == AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO)) {
++		cmd->cmd.cmd_setup_tmr.bitfield.virt_phy_addr = 0;
++		cmd->cmd.cmd_setup_tmr.system_phy_addr_lo = 0;
++		cmd->cmd.cmd_setup_tmr.system_phy_addr_hi = 0;
++		dev_info(adev->dev,
++			 "arm64 bring-up: SETUP_TMR using MC-only addressing mc=0x%llx pa=0x%llx size=0x%x\n",
++			 (unsigned long long)tmr_mc,
++			 (unsigned long long)tmr_pa,
++			 size);
++		return;
++	}
++#endif
++
+ 	cmd->cmd.cmd_setup_tmr.bitfield.virt_phy_addr = 1;
+ 	cmd->cmd.cmd_setup_tmr.system_phy_addr_lo = lower_32_bits(tmr_pa);
+ 	cmd->cmd.cmd_setup_tmr.system_phy_addr_hi = upper_32_bits(tmr_pa);
+@@ -745,11 +938,44 @@ static int psp_load_toc(struct psp_context *psp,
+ 	return ret;
+ }
+ 
++static bool psp_get_natural_tmr_offset(struct psp_context *psp,
++				       uint32_t tmr_size,
++				       uint64_t *tmr_offset,
++				       uint64_t *top_limit)
++{
++	struct amdgpu_device *adev = psp->adev;
++	struct psp_memory_training_context *ctx = &psp->mem_train_ctx;
++	uint64_t limit = adev->gmc.real_vram_size;
++
++	if (!tmr_size)
++		return false;
++
++	if (adev->mman.fw_reserved_memory)
++		limit -= amdgpu_bo_size(adev->mman.fw_reserved_memory);
++
++	if (ctx->init == PSP_MEM_TRAIN_RESERVE_SUCCESS &&
++	    ctx->c2p_bo &&
++	    ctx->c2p_train_data_offset &&
++	    ctx->c2p_train_data_offset < limit)
++		limit = ctx->c2p_train_data_offset;
++
++	if (limit <= tmr_size)
++		return false;
++
++	*top_limit = limit;
++	*tmr_offset = rounddown(limit - tmr_size, (uint64_t)tmr_size);
++
++	return (*tmr_offset + tmr_size) <= limit;
++}
++
+ /* Set up Trusted Memory Region */
+ static int psp_tmr_init(struct psp_context *psp)
+ {
+ 	int ret = 0;
+ 	int tmr_size;
++	u32 tmr_align;
++	u64 tmr_offset = 0;
++	u64 top_limit = 0;
+ 	void *tmr_buf;
+ 	void **pptr;
+ 
+@@ -777,9 +1003,53 @@ static int psp_tmr_init(struct psp_context *psp)
+ 
+ 	if (!psp->tmr_bo) {
+ 		pptr = amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
+-		ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_ALIGNMENT,
+-					      AMDGPU_GEM_DOMAIN_VRAM,
+-					      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
++		tmr_align = max_t(u32, PSP_TMR_ALIGNMENT, tmr_size);
++		if (!amdgpu_sriov_vf(psp->adev) &&
++		    psp_get_natural_tmr_offset(psp, tmr_size, &tmr_offset, &top_limit)) {
++			dev_info(psp->adev->dev,
++				 "psp tmr placement: trying fixed offset=0x%llx size=0x%x limit=0x%llx\n",
++				 (unsigned long long)tmr_offset, tmr_size,
++				 (unsigned long long)top_limit);
++			ret = amdgpu_bo_create_kernel_at(psp->adev, tmr_offset, tmr_size,
++							 &psp->tmr_bo, NULL);
++			if (!ret) {
++				psp->tmr_mc_addr = amdgpu_bo_gpu_offset(psp->tmr_bo);
++				dev_info(psp->adev->dev,
++					 "psp tmr fixed: size=0x%x offset=0x%llx mc=0x%llx pa=0x%llx pa_mod_size=0x%llx\n",
++					 tmr_size,
++					 (unsigned long long)tmr_offset,
++					 (unsigned long long)psp->tmr_mc_addr,
++					 (unsigned long long)amdgpu_gmc_vram_pa(psp->adev, psp->tmr_bo),
++					 (unsigned long long)(amdgpu_gmc_vram_pa(psp->adev, psp->tmr_bo) % tmr_size));
++			} else {
++				dev_warn(psp->adev->dev,
++					 "psp tmr fixed placement failed size=0x%x offset=0x%llx ret=%d, falling back\n",
++					 tmr_size,
++					 (unsigned long long)tmr_offset,
++					 ret);
++			}
++		}
++		if (!psp->tmr_bo) {
++			ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, tmr_align,
++						      AMDGPU_GEM_DOMAIN_VRAM,
++						      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
++		}
++		if (ret && tmr_align != PSP_TMR_ALIGNMENT) {
++			dev_warn(psp->adev->dev,
++				 "psp tmr alloc: aligned request failed size=0x%x align=0x%x, retrying align=0x%x\n",
++				 tmr_size, tmr_align, PSP_TMR_ALIGNMENT);
++			ret = amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_ALIGNMENT,
++						      AMDGPU_GEM_DOMAIN_VRAM,
++						      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
++			tmr_align = PSP_TMR_ALIGNMENT;
++		}
++		if (!ret)
++			dev_info(psp->adev->dev,
++				 "psp tmr alloc: size=0x%x align=0x%x mc=0x%llx pa=0x%llx pa_mod_size=0x%llx\n",
++				 tmr_size, tmr_align,
++				 (unsigned long long)psp->tmr_mc_addr,
++				 (unsigned long long)amdgpu_gmc_vram_pa(psp->adev, psp->tmr_bo),
++				 (unsigned long long)(amdgpu_gmc_vram_pa(psp->adev, psp->tmr_bo) % tmr_size));
+ 	}
+ 
+ 	return ret;
+@@ -941,8 +1211,8 @@ static int psp_rl_load(struct amdgpu_device *adev)
+ 
+ 	cmd = acquire_psp_cmd_buf(psp);
+ 
+-	memset(psp->fw_pri_buf, 0, PSP_1_MEG);
+-	memcpy(psp->fw_pri_buf, psp->rl.start_addr, psp->rl.size_bytes);
++	memset_io(psp->fw_pri_buf, 0, PSP_1_MEG);
++	memcpy_toio(psp->fw_pri_buf, psp->rl.start_addr, psp->rl.size_bytes);
+ 
+ 	cmd->cmd_id = GFX_CMD_ID_LOAD_IP_FW;
+ 	cmd->cmd.cmd_load_ip_fw.fw_phy_addr_lo = lower_32_bits(psp->fw_pri_mc_addr);
+@@ -972,6 +1242,12 @@ static int psp_asd_initialize(struct psp_context *psp)
+ 	psp->asd_context.mem_context.shared_mem_size = PSP_ASD_SHARED_MEM_SIZE;
+ 	psp->asd_context.ta_load_type                = GFX_CMD_ID_LOAD_ASD;
+ 
++	if (!psp->asd_context.mem_context.shared_buf) {
++		ret = psp_ta_init_shared_buf(psp, &psp->asd_context.mem_context);
++		if (ret)
++			return ret;
++	}
++
+ 	ret = psp_ta_load(psp, &psp->asd_context);
+ 	if (!ret)
+ 		psp->asd_context.initialized = true;
+@@ -1065,15 +1341,32 @@ static void psp_prep_ta_load_cmd_buf(struct psp_gfx_cmd_resp *cmd,
+ int psp_ta_init_shared_buf(struct psp_context *psp,
+ 				  struct ta_mem_context *mem_ctx)
+ {
++	int ret;
++	u64 shared_pa = 0;
++
+ 	/*
+ 	* Allocate 16k memory aligned to 4k from Frame Buffer (local
+ 	* physical) for ta to host memory
+ 	*/
+-	return amdgpu_bo_create_kernel(psp->adev, mem_ctx->shared_mem_size,
++	ret = amdgpu_bo_create_kernel(psp->adev, mem_ctx->shared_mem_size,
+ 				      PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM,
+ 				      &mem_ctx->shared_bo,
+ 				      &mem_ctx->shared_mc_addr,
+ 				      &mem_ctx->shared_buf);
++	if (ret)
++		return ret;
++
++	if (mem_ctx->shared_bo)
++		shared_pa = amdgpu_gmc_vram_pa(psp->adev, mem_ctx->shared_bo);
++
++	dev_info(psp->adev->dev,
++		 "psp ta shared alloc: size=0x%x mc=0x%llx pa=0x%llx pa_mod_2g=0x%llx\n",
++		 mem_ctx->shared_mem_size,
++		 (unsigned long long)mem_ctx->shared_mc_addr,
++		 (unsigned long long)shared_pa,
++		 (unsigned long long)(shared_pa & 0x7fffffffULL));
++
++	return 0;
+ }
+ 
+ static void psp_prep_ta_invoke_indirect_cmd_buf(struct psp_gfx_cmd_resp *cmd,
+@@ -1144,9 +1437,25 @@ int psp_ta_load(struct psp_context *psp, struct ta_context *context)
+ {
+ 	int ret;
+ 	struct psp_gfx_cmd_resp *cmd;
++	u64 shared_pa = 0;
+ 
+ 	cmd = acquire_psp_cmd_buf(psp);
+ 
++	if (context->mem_context.shared_bo)
++		shared_pa = amdgpu_gmc_vram_pa(psp->adev,
++					       context->mem_context.shared_bo);
++
++	dev_info(psp->adev->dev,
++		 "psp ta load prep: type=%s fw_ver=0x%x feature=0x%x app_len=0x%x fw_pri_mc=0x%llx shared_mc=0x%llx shared_pa=0x%llx shared_pa_mod_2g=0x%llx\n",
++		 psp_gfx_cmd_name(context->ta_load_type),
++		 context->bin_desc.fw_version,
++		 context->bin_desc.feature_version,
++		 context->bin_desc.size_bytes,
++		 (unsigned long long)psp->fw_pri_mc_addr,
++		 (unsigned long long)context->mem_context.shared_mc_addr,
++		 (unsigned long long)shared_pa,
++		 (unsigned long long)(shared_pa & 0x7fffffffULL));
++
+ 	psp_copy_fw(psp, context->bin_desc.start_addr,
+ 		    context->bin_desc.size_bytes);
+ 
+@@ -1820,6 +2129,14 @@ static int psp_rap_initialize(struct psp_context *psp)
+ 	int ret;
+ 	enum ta_rap_status status = TA_RAP_STATUS__SUCCESS;
+ 
++#if defined(CONFIG_ARM64)
++	if (psp->adev->ip_versions[MP0_HWIP][0] == IP_VERSION(11, 0, 13)) {
++		dev_info(psp->adev->dev,
++			 "arm64 bring-up: skipping optional RAP TA on MP0 11.0.13\n");
++		return 0;
++	}
++#endif
++
+ 	/*
+ 	 * TODO: bypass the initialize in sriov for now
+ 	 */
+@@ -2546,7 +2863,7 @@ static int psp_load_fw(struct amdgpu_device *adev)
+ 		/* should not destroy ring, only stop */
+ 		psp_ring_stop(psp, PSP_RING_TYPE__KM);
+ 	} else {
+-		memset(psp->fence_buf, 0, PSP_FENCE_BUFFER_SIZE);
++		memset_io(psp->fence_buf, 0, PSP_FENCE_BUFFER_SIZE);
+ 
+ 		ret = psp_ring_init(psp, PSP_RING_TYPE__KM);
+ 		if (ret) {
+@@ -2906,7 +3223,7 @@ int psp_ring_cmd_submit(struct psp_context *psp,
+ 	}
+ 
+ 	/* Initialize KM RB frame */
+-	memset(write_frame, 0, sizeof(struct psp_gfx_rb_frame));
++	memset_io(write_frame, 0, sizeof(struct psp_gfx_rb_frame));
+ 
+ 	/* Update KM RB frame */
+ 	write_frame->cmd_buf_addr_hi = upper_32_bits(cmd_buf_mc_addr);
+@@ -3492,8 +3809,8 @@ void psp_copy_fw(struct psp_context *psp, uint8_t *start_addr, uint32_t bin_size
+ 	if (!drm_dev_enter(adev_to_drm(psp->adev), &idx))
+ 		return;
+ 
+-	memset(psp->fw_pri_buf, 0, PSP_1_MEG);
+-	memcpy(psp->fw_pri_buf, start_addr, bin_size);
++	memset_io(psp->fw_pri_buf, 0, PSP_1_MEG);
++	memcpy_toio(psp->fw_pri_buf, start_addr, bin_size);
+ 
+ 	drm_dev_exit(idx);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index f8382b227ad4..a4c767a19279 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -152,6 +152,10 @@
+ #define CPC_PSP_DEBUG__GPA_OVERRIDE_MASK	0x00000008L
+ #define CPG_PSP_DEBUG__GPA_OVERRIDE_MASK	0x00000008L
+ 
++static int gfx_v10_0_soft_reset(void *handle);
++static void gfx_v10_0_cp_gfx_switch_pipe(struct amdgpu_device *adev,
++					 CP_PIPE_ID pipe);
++
+ //CC_GC_SA_UNIT_DISABLE
+ #define mmCC_GC_SA_UNIT_DISABLE                 0x0fe9
+ #define mmCC_GC_SA_UNIT_DISABLE_BASE_IDX        0
+@@ -3496,6 +3500,9 @@ static u32 gfx_v10_0_get_wgp_active_bitmap_per_sh(struct amdgpu_device *adev);
+ static int gfx_v10_0_rlc_backdoor_autoload_buffer_init(struct amdgpu_device *adev);
+ static void gfx_v10_0_rlc_backdoor_autoload_buffer_fini(struct amdgpu_device *adev);
+ static int gfx_v10_0_rlc_backdoor_autoload_enable(struct amdgpu_device *adev);
++static void gfx_v10_0_disable_gpa_mode(struct amdgpu_device *adev);
++static void gfx_v10_0_log_cp_gfx_direct_state(struct amdgpu_device *adev,
++					      const char *stage);
+ static int gfx_v10_0_wait_for_rlc_autoload_complete(struct amdgpu_device *adev);
+ static void gfx_v10_0_ring_emit_ce_meta(struct amdgpu_ring *ring, bool resume);
+ static void gfx_v10_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume);
+@@ -3809,8 +3816,114 @@ static int gfx_v10_0_ring_test_ring(struct amdgpu_ring *ring)
+ 			udelay(1);
+ 	}
+ 
+-	if (i >= adev->usec_timeout)
++#if defined(CONFIG_ARM64)
++	if (i >= adev->usec_timeout) {
++		unsigned int extra;
++
++		/*
++		 * On some arm64 bring-up paths, CP scratch update can lag the
++		 * nominal timeout window. Give one longer window before fail.
++		 */
++		for (extra = 0; extra < 900000; extra++) {
++			tmp = RREG32(scratch);
++			if (tmp == 0xDEADBEEF) {
++				DRM_WARN("gfx ring test recovered after extended arm64 wait (%u us)\n",
++					 extra + 1);
++				return 0;
++			}
++			udelay(1);
++		}
++	}
++#endif
++
++	if (i >= adev->usec_timeout) {
++		uint32_t grbm_status = RREG32_SOC15(GC, 0, mmGRBM_STATUS);
++		uint32_t grbm_status2 = RREG32_SOC15(GC, 0, mmGRBM_STATUS2);
++		uint32_t cp_stat = RREG32_SOC15(GC, 0, mmCP_STAT);
++		uint32_t cp_me_cntl = RREG32_SOC15(GC, 0, mmCP_ME_CNTL);
++		uint32_t rb0_cntl = RREG32_SOC15(GC, 0, mmCP_RB0_CNTL);
++		uint32_t rb0_base = RREG32_SOC15(GC, 0, mmCP_RB0_BASE);
++		uint32_t rb0_base_hi = RREG32_SOC15(GC, 0, mmCP_RB0_BASE_HI);
++		uint32_t rb0_rptr = RREG32_SOC15(GC, 0, mmCP_RB0_RPTR);
++		uint32_t rb0_rptr_addr = RREG32_SOC15(GC, 0, mmCP_RB0_RPTR_ADDR);
++		uint32_t rb0_rptr_addr_hi = RREG32_SOC15(GC, 0, mmCP_RB0_RPTR_ADDR_HI);
++		uint32_t rb0_wptr = RREG32_SOC15(GC, 0, mmCP_RB0_WPTR);
++		uint32_t rb0_wptr_hi = RREG32_SOC15(GC, 0, mmCP_RB0_WPTR_HI);
++		uint32_t rb_wptr_poll_cntl = RREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_CNTL);
++		uint32_t rb_wptr_poll_addr_lo = RREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_LO);
++		uint32_t rb_wptr_poll_addr_hi = RREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_HI);
++		uint32_t rb_vmid = RREG32_SOC15(GC, 0, mmCP_RB_VMID);
++		uint32_t pfp_ucode_addr = RREG32_SOC15(GC, 0, mmCP_PFP_UCODE_ADDR);
++		uint32_t hyp_pfp_ucode_addr = RREG32_SOC15(GC, 0, mmCP_HYP_PFP_UCODE_ADDR);
++		uint32_t ce_ucode_addr = RREG32_SOC15(GC, 0, mmCP_CE_UCODE_ADDR);
++		uint32_t hyp_me_ucode_addr = RREG32_SOC15(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
++		uint32_t pfp_ic_base_lo = RREG32_SOC15(GC, 0, mmCP_PFP_IC_BASE_LO);
++		uint32_t pfp_ic_base_hi = RREG32_SOC15(GC, 0, mmCP_PFP_IC_BASE_HI);
++		uint32_t pfp_ic_base_cntl = RREG32_SOC15(GC, 0, mmCP_PFP_IC_BASE_CNTL);
++		uint32_t ce_ic_base_lo = RREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_LO);
++		uint32_t ce_ic_base_hi = RREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_HI);
++		uint32_t ce_ic_base_cntl = RREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_CNTL);
++		uint32_t me_ic_base_lo = RREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_LO);
++		uint32_t me_ic_base_hi = RREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_HI);
++		uint32_t me_ic_base_cntl = RREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_CNTL);
++		uint32_t rlcs_bootload_status = RREG32_SOC15(GC, 0, mmRLC_RLCS_BOOTLOAD_STATUS);
++		uint32_t grbm_gfx_cntl = RREG32_SOC15(GC, 0, mmGRBM_GFX_CNTL);
++		uint32_t grbm_gfx_index = RREG32_SOC15(GC, 0, mmGRBM_GFX_INDEX);
++		uint32_t cp_cpc_status = RREG32_SOC15(GC, 0, mmCP_CPC_STATUS);
++		uint32_t cp_cpc_busy_stat = RREG32_SOC15(GC, 0, mmCP_CPC_BUSY_STAT);
++		uint32_t cp_cpc_busy_stat2 = RREG32_SOC15(GC, 0, mmCP_CPC_BUSY_STAT2);
++		uint32_t cp_cpc_stalled_stat1 = RREG32_SOC15(GC, 0, mmCP_CPC_STALLED_STAT1);
++		uint32_t cp_cpf_status = RREG32_SOC15(GC, 0, mmCP_CPF_STATUS);
++		uint32_t cp_cpf_busy_stat = RREG32_SOC15(GC, 0, mmCP_CPF_BUSY_STAT);
++		uint32_t cp_cpf_busy_stat2 = RREG32_SOC15(GC, 0, mmCP_CPF_BUSY_STAT2);
++		uint32_t cp_cpf_stalled_stat1 = RREG32_SOC15(GC, 0, mmCP_CPF_STALLED_STAT1);
++		uint32_t cp_stalled_stat1 = RREG32_SOC15(GC, 0, mmCP_STALLED_STAT1);
++		uint32_t cp_stalled_stat2 = RREG32_SOC15(GC, 0, mmCP_STALLED_STAT2);
++		uint32_t cp_stalled_stat3 = RREG32_SOC15(GC, 0, mmCP_STALLED_STAT3);
++		uint32_t cpg_psp_debug = RREG32_SOC15(GC, 0, mmCPG_PSP_DEBUG);
++		uint32_t cpc_psp_debug = RREG32_SOC15(GC, 0, mmCPC_PSP_DEBUG);
++		uint64_t rptr = amdgpu_ring_get_rptr(ring);
++		uint64_t wptr = amdgpu_ring_get_wptr(ring);
++
++		DRM_ERROR("gfx ring test timeout: ring=%s idx=%d scratch=0x%08x expected=0xDEADBEEF\n",
++			  ring->name, ring->idx, tmp);
++		DRM_ERROR("gfx ring state: rptr=0x%llx wptr=0x%llx sw_wptr=0x%llx usec_timeout=%u\n",
++			  (unsigned long long)rptr,
++			  (unsigned long long)wptr,
++			  (unsigned long long)ring->wptr,
++			  adev->usec_timeout);
++		DRM_ERROR("gfx ring status: GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x\n",
++			  grbm_status, grbm_status2);
++		DRM_ERROR("gfx cp status: CP_ME_CNTL=0x%08x CP_STAT=0x%08x CP_RB0_CNTL=0x%08x\n",
++			  cp_me_cntl, cp_stat, rb0_cntl);
++		DRM_ERROR("gfx rb0 ptrs: CP_RB0_RPTR=0x%08x CP_RB0_WPTR=0x%08x CP_RB0_WPTR_HI=0x%08x CP_RB_WPTR_POLL_CNTL=0x%08x\n",
++			  rb0_rptr, rb0_wptr, rb0_wptr_hi, rb_wptr_poll_cntl);
++		DRM_ERROR("gfx rb0 addr regs: BASE=0x%08x BASE_HI=0x%08x RPTR_ADDR=0x%08x RPTR_ADDR_HI=0x%08x WPTR_POLL_ADDR_LO=0x%08x WPTR_POLL_ADDR_HI=0x%08x\n",
++			  rb0_base, rb0_base_hi, rb0_rptr_addr, rb0_rptr_addr_hi,
++			  rb_wptr_poll_addr_lo, rb_wptr_poll_addr_hi);
++		DRM_ERROR("gfx rb0 vmid/debug: CP_RB_VMID=0x%08x CPG_PSP_DEBUG=0x%08x CPC_PSP_DEBUG=0x%08x\n",
++			  rb_vmid, cpg_psp_debug, cpc_psp_debug);
++		DRM_ERROR("gfx rb0 sw addrs: ring->gpu_addr=0x%llx rptr_gpu_addr=0x%llx wptr_gpu_addr=0x%llx\n",
++			  (unsigned long long)ring->gpu_addr,
++			  (unsigned long long)ring->rptr_gpu_addr,
++			  (unsigned long long)ring->wptr_gpu_addr);
++		DRM_ERROR("gfx cp fw regs: PFP_UCODE_ADDR=0x%08x HYP_PFP_UCODE_ADDR=0x%08x CE_UCODE_ADDR=0x%08x HYP_ME_UCODE_ADDR=0x%08x RLCS_BOOTLOAD_STATUS=0x%08x\n",
++			  pfp_ucode_addr, hyp_pfp_ucode_addr, ce_ucode_addr,
++			  hyp_me_ucode_addr, rlcs_bootload_status);
++		DRM_ERROR("gfx cp icache regs: PFP_BASE=0x%08x:%08x PFP_CNTL=0x%08x CE_BASE=0x%08x:%08x CE_CNTL=0x%08x ME_BASE=0x%08x:%08x ME_CNTL=0x%08x\n",
++			  pfp_ic_base_hi, pfp_ic_base_lo, pfp_ic_base_cntl,
++			  ce_ic_base_hi, ce_ic_base_lo, ce_ic_base_cntl,
++			  me_ic_base_hi, me_ic_base_lo, me_ic_base_cntl);
++		DRM_ERROR("gfx grbm select regs: GRBM_GFX_CNTL=0x%08x GRBM_GFX_INDEX=0x%08x\n",
++			  grbm_gfx_cntl, grbm_gfx_index);
++		DRM_ERROR("gfx cp cpf/cpc: CPC_STATUS=0x%08x CPC_BUSY1=0x%08x CPC_BUSY2=0x%08x CPC_STALL1=0x%08x CPF_STATUS=0x%08x CPF_BUSY1=0x%08x CPF_BUSY2=0x%08x CPF_STALL1=0x%08x\n",
++			  cp_cpc_status, cp_cpc_busy_stat, cp_cpc_busy_stat2,
++			  cp_cpc_stalled_stat1, cp_cpf_status, cp_cpf_busy_stat,
++			  cp_cpf_busy_stat2, cp_cpf_stalled_stat1);
++		DRM_ERROR("gfx cp stalled stats: CP_STALLED_STAT1=0x%08x CP_STALLED_STAT2=0x%08x CP_STALLED_STAT3=0x%08x\n",
++			  cp_stalled_stat1, cp_stalled_stat2, cp_stalled_stat3);
+ 		r = -ETIMEDOUT;
++	}
+ 
+ 	return r;
+ }
+@@ -4314,7 +4427,7 @@ static int gfx_v10_0_mec_init(struct amdgpu_device *adev)
+ 			return r;
+ 		}
+ 
+-		memset(hpd, 0, mec_hpd_size);
++		memset_io(hpd, 0, mec_hpd_size);
+ 
+ 		amdgpu_bo_kunmap(adev->gfx.mec.hpd_eop_obj);
+ 		amdgpu_bo_unreserve(adev->gfx.mec.hpd_eop_obj);
+@@ -4338,7 +4451,8 @@ static int gfx_v10_0_mec_init(struct amdgpu_device *adev)
+ 			return r;
+ 		}
+ 
+-		memcpy(fw, fw_data, fw_size);
++		memcpy_toio(fw, fw_data, fw_size);
++		wmb();
+ 
+ 		amdgpu_bo_kunmap(adev->gfx.mec.mec_fw_obj);
+ 		amdgpu_bo_unreserve(adev->gfx.mec.mec_fw_obj);
+@@ -5273,6 +5387,14 @@ static int gfx_v10_0_parse_rlc_toc(struct amdgpu_device *adev)
+ {
+ 	int ret;
+ 	RLC_TABLE_OF_CONTENT *rlc_toc;
++	RLC_TABLE_OF_CONTENT *first;
++
++	if (!adev->psp.toc.start_addr || !adev->psp.toc.size_bytes) {
++		dev_err(adev->dev,
++			"rlc autoload: missing psp toc buffer (start=%p size=0x%x)\n",
++			adev->psp.toc.start_addr, adev->psp.toc.size_bytes);
++		return -EINVAL;
++	}
+ 
+ 	ret = amdgpu_bo_create_reserved(adev, adev->psp.toc.size_bytes, PAGE_SIZE,
+ 					AMDGPU_GEM_DOMAIN_GTT,
+@@ -5288,6 +5410,16 @@ static int gfx_v10_0_parse_rlc_toc(struct amdgpu_device *adev)
+ 	memcpy(adev->gfx.rlc.rlc_toc_buf, adev->psp.toc.start_addr, adev->psp.toc.size_bytes);
+ 
+ 	rlc_toc = (RLC_TABLE_OF_CONTENT *)adev->gfx.rlc.rlc_toc_buf;
++	first = rlc_toc;
++	dev_info(adev->dev,
++		 "rlc autoload parse toc: psp_toc_size=0x%08x first_entry{id=%u offset=0x%08x size=0x%08x}\n",
++		 adev->psp.toc.size_bytes, first->id, first->offset, first->size);
++	if (!(first && (first->id > FIRMWARE_ID_INVALID) &&
++	      (first->id < FIRMWARE_ID_MAX)))
++		dev_err(adev->dev,
++			"rlc autoload parse toc: first entry id=%u outside expected range (%u..%u)\n",
++			first->id, FIRMWARE_ID_INVALID + 1, FIRMWARE_ID_MAX - 1);
++
+ 	while (rlc_toc && (rlc_toc->id > FIRMWARE_ID_INVALID) &&
+ 		(rlc_toc->id < FIRMWARE_ID_MAX)) {
+ 		if ((rlc_toc->id >= FIRMWARE_ID_CP_CE) &&
+@@ -5380,10 +5512,10 @@ static void gfx_v10_0_rlc_backdoor_autoload_copy_ucode(struct amdgpu_device *ade
+ 	if (fw_size > toc_fw_size)
+ 		fw_size = toc_fw_size;
+ 
+-	memcpy(ptr + toc_offset, fw_data, fw_size);
++	memcpy_toio(ptr + toc_offset, fw_data, fw_size);
+ 
+ 	if (fw_size < toc_fw_size)
+-		memset(ptr + toc_offset + fw_size, 0, toc_fw_size - fw_size);
++		memset_io(ptr + toc_offset + fw_size, 0, toc_fw_size - fw_size);
+ }
+ 
+ static void gfx_v10_0_rlc_backdoor_autoload_copy_toc_ucode(struct amdgpu_device *adev)
+@@ -5497,6 +5629,7 @@ static void gfx_v10_0_rlc_backdoor_autoload_copy_sdma_ucode(struct amdgpu_device
+ static int gfx_v10_0_rlc_backdoor_autoload_enable(struct amdgpu_device *adev)
+ {
+ 	uint32_t rlc_g_offset, rlc_g_size, tmp;
++	uint32_t pfp_size, ce_size, me_size, mec_size;
+ 	uint64_t gpu_addr;
+ 
+ 	gfx_v10_0_rlc_backdoor_autoload_copy_toc_ucode(adev);
+@@ -5505,8 +5638,21 @@ static int gfx_v10_0_rlc_backdoor_autoload_enable(struct amdgpu_device *adev)
+ 
+ 	rlc_g_offset = rlc_autoload_info[FIRMWARE_ID_RLC_G_UCODE].offset;
+ 	rlc_g_size = rlc_autoload_info[FIRMWARE_ID_RLC_G_UCODE].size;
++	pfp_size = rlc_autoload_info[FIRMWARE_ID_CP_PFP].size;
++	ce_size = rlc_autoload_info[FIRMWARE_ID_CP_CE].size;
++	me_size = rlc_autoload_info[FIRMWARE_ID_CP_ME].size;
++	mec_size = rlc_autoload_info[FIRMWARE_ID_CP_MEC].size;
+ 	gpu_addr = adev->gfx.rlc.rlc_autoload_gpu_addr + rlc_g_offset;
+ 
++	dev_info(adev->dev,
++		 "rlc autoload toc: RLC_G off=0x%08x size=0x%08x PFP size=0x%08x CE size=0x%08x ME size=0x%08x MEC size=0x%08x SDMA0 size=0x%08x SDMA1 size=0x%08x\n",
++		 rlc_g_offset, rlc_g_size, pfp_size, ce_size, me_size, mec_size,
++		 rlc_autoload_info[FIRMWARE_ID_SDMA0_UCODE].size,
++		 rlc_autoload_info[FIRMWARE_ID_SDMA1_UCODE].size);
++	if (!rlc_g_size || !pfp_size || !ce_size || !me_size || !mec_size)
++		dev_err(adev->dev,
++			"rlc autoload toc has empty mandatory entries (RLC_G/PFP/CE/ME/MEC)\n");
++
+ 	WREG32_SOC15(GC, 0, mmRLC_HYP_BOOTLOAD_ADDR_HI, upper_32_bits(gpu_addr));
+ 	WREG32_SOC15(GC, 0, mmRLC_HYP_BOOTLOAD_ADDR_LO, lower_32_bits(gpu_addr));
+ 	WREG32_SOC15(GC, 0, mmRLC_HYP_BOOTLOAD_SIZE, rlc_g_size);
+@@ -5679,11 +5825,20 @@ static int gfx_v10_0_wait_for_rlc_autoload_complete(struct amdgpu_device *adev)
+ {
+ 	uint32_t cp_status;
+ 	uint32_t bootload_status;
++	uint32_t first_cp_status = 0;
++	uint32_t first_bootload_status = 0;
+ 	int i, r;
+ 
++	if (adev->firmware.load_type == AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO)
++		gfx_v10_0_log_cp_gfx_direct_state(adev, "fw3-pre-autoload-wait");
++
+ 	for (i = 0; i < adev->usec_timeout; i++) {
+ 		cp_status = RREG32_SOC15(GC, 0, mmCP_STAT);
+ 		bootload_status = RREG32_SOC15(GC, 0, mmRLC_RLCS_BOOTLOAD_STATUS);
++		if (!i) {
++			first_cp_status = cp_status;
++			first_bootload_status = bootload_status;
++		}
+ 		if ((cp_status == 0) &&
+ 		    (REG_GET_FIELD(bootload_status,
+ 			RLC_RLCS_BOOTLOAD_STATUS, BOOTLOAD_COMPLETE) == 1)) {
+@@ -5693,11 +5848,30 @@ static int gfx_v10_0_wait_for_rlc_autoload_complete(struct amdgpu_device *adev)
+ 	}
+ 
+ 	if (i >= adev->usec_timeout) {
+-		dev_err(adev->dev, "rlc autoload: gc ucode autoload timeout\n");
+-		return -ETIMEDOUT;
+-	}
++		uint32_t grbm_status = RREG32_SOC15(GC, 0, mmGRBM_STATUS);
++		uint32_t grbm_status2 = RREG32_SOC15(GC, 0, mmGRBM_STATUS2);
++		uint32_t cp_me_cntl = RREG32_SOC15(GC, 0, mmCP_ME_CNTL);
++		uint32_t pfp_ucode_addr = RREG32_SOC15(GC, 0, mmCP_PFP_UCODE_ADDR);
++		uint32_t ce_ucode_addr = RREG32_SOC15(GC, 0, mmCP_CE_UCODE_ADDR);
++		uint32_t hyp_me_ucode_addr = RREG32_SOC15(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
++		uint32_t bootload_complete = REG_GET_FIELD(bootload_status,
++							   RLC_RLCS_BOOTLOAD_STATUS,
++							   BOOTLOAD_COMPLETE);
++
++		dev_err(adev->dev,
++			"rlc autoload: gc ucode autoload timeout cp_stat first=0x%08x last=0x%08x boot first=0x%08x last=0x%08x complete=%u\n",
++			first_cp_status, cp_status, first_bootload_status,
++			bootload_status, bootload_complete);
++		dev_err(adev->dev,
++			"rlc autoload regs: GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x CP_ME_CNTL=0x%08x PFP_UCODE_ADDR=0x%08x CE_UCODE_ADDR=0x%08x HYP_ME_UCODE_ADDR=0x%08x\n",
++			grbm_status, grbm_status2, cp_me_cntl, pfp_ucode_addr,
++			ce_ucode_addr, hyp_me_ucode_addr);
++			return -ETIMEDOUT;
++		}
+ 
+ 	if (adev->firmware.load_type == AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO) {
++		gfx_v10_0_log_cp_gfx_direct_state(adev, "fw3-post-autoload-wait");
++
+ 		r = gfx_v10_0_rlc_backdoor_autoload_config_me_cache(adev);
+ 		if (r)
+ 			return r;
+@@ -5713,6 +5887,8 @@ static int gfx_v10_0_wait_for_rlc_autoload_complete(struct amdgpu_device *adev)
+ 		r = gfx_v10_0_rlc_backdoor_autoload_config_mec_cache(adev);
+ 		if (r)
+ 			return r;
++
++		gfx_v10_0_log_cp_gfx_direct_state(adev, "fw3-post-cache-config");
+ 	}
+ 
+ 	return 0;
+@@ -5748,6 +5924,157 @@ static int gfx_v10_0_cp_gfx_enable(struct amdgpu_device *adev, bool enable)
+ 	return 0;
+ }
+ 
++static void gfx_v10_0_log_cp_gfx_direct_state(struct amdgpu_device *adev,
++					      const char *stage)
++{
++	dev_info(adev->dev,
++		 "gfx cp load: %s GC_BASE0=0x%08x GC_BASE1=0x%08x CP_STAT_OFF=0x%08x PFP_OP_OFF=0x%08x CE_OP_OFF=0x%08x ME_OP_OFF=0x%08x PFP_BASE_OFF=0x%08x HYP_PFP_OFF=0x%08x CPG_DBG_OFF=0x%08x\n",
++		 stage,
++		 adev->reg_offset[GC_HWIP][0][0],
++		 adev->reg_offset[GC_HWIP][0][1],
++		 SOC15_REG_OFFSET(GC, 0, mmCP_STAT),
++		 SOC15_REG_OFFSET(GC, 0, mmCP_PFP_IC_OP_CNTL),
++		 SOC15_REG_OFFSET(GC, 0, mmCP_CE_IC_OP_CNTL),
++		 SOC15_REG_OFFSET(GC, 0, mmCP_ME_IC_OP_CNTL),
++		 SOC15_REG_OFFSET(GC, 0, mmCP_PFP_IC_BASE_LO),
++		 SOC15_REG_OFFSET(GC, 0, mmCP_HYP_PFP_UCODE_ADDR),
++		 SOC15_REG_OFFSET(GC, 0, mmCPG_PSP_DEBUG));
++	dev_info(adev->dev,
++		 "gfx cp load: %s CP_STAT=0x%08x CP_ME_CNTL=0x%08x PFP_OP=0x%08x CE_OP=0x%08x ME_OP=0x%08x PFP_BASE=0x%08x:%08x CE_BASE=0x%08x:%08x ME_BASE=0x%08x:%08x PFP_UCODE=0x%08x CE_UCODE=0x%08x ME_UCODE=0x%08x CPG_PSP_DEBUG=0x%08x CPC_PSP_DEBUG=0x%08x RLC_SAFE_MODE=0x%08x RLC_CP_SCHED=0x%08x PA_SC_TILE=0x%08x\n",
++		 stage,
++		 RREG32_SOC15(GC, 0, mmCP_STAT),
++		 RREG32_SOC15(GC, 0, mmCP_ME_CNTL),
++		 RREG32_SOC15(GC, 0, mmCP_PFP_IC_OP_CNTL),
++		 RREG32_SOC15(GC, 0, mmCP_CE_IC_OP_CNTL),
++		 RREG32_SOC15(GC, 0, mmCP_ME_IC_OP_CNTL),
++		 RREG32_SOC15(GC, 0, mmCP_PFP_IC_BASE_HI),
++		 RREG32_SOC15(GC, 0, mmCP_PFP_IC_BASE_LO),
++		 RREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_HI),
++		 RREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_LO),
++		 RREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_HI),
++		 RREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_LO),
++		 RREG32_SOC15(GC, 0, mmCP_HYP_PFP_UCODE_ADDR),
++		 RREG32_SOC15(GC, 0, mmCP_HYP_CE_UCODE_ADDR),
++		 RREG32_SOC15(GC, 0, mmCP_HYP_ME_UCODE_ADDR),
++		 RREG32_SOC15(GC, 0, mmCPG_PSP_DEBUG),
++		 RREG32_SOC15(GC, 0, mmCPC_PSP_DEBUG),
++		 RREG32_SOC15(GC, 0, mmRLC_SAFE_MODE),
++		 RREG32_SOC15(GC, 0, mmRLC_CP_SCHEDULERS),
++		 RREG32_SOC15(GC, 0, mmPA_SC_TILE_STEERING_OVERRIDE));
++}
++
++static void gfx_v10_0_cp_gfx_prepare_for_load(struct amdgpu_device *adev)
++{
++	u16 pci_cmd = 0;
++	u32 cp_stat;
++	u32 grbm_status;
++	u32 grbm_status2;
++	u32 grbm_gfx_cntl;
++	u32 grbm_gfx_index;
++
++	pci_read_config_word(adev->pdev, PCI_COMMAND, &pci_cmd);
++	if (!(pci_cmd & PCI_COMMAND_MASTER)) {
++		dev_warn(adev->dev,
++			 "gfx cp load: PCI_COMMAND=0x%04x missing bus mastering, forcing enable\n",
++			 pci_cmd);
++		pci_set_master(adev->pdev);
++		pci_read_config_word(adev->pdev, PCI_COMMAND, &pci_cmd);
++			dev_info(adev->dev,
++				 "gfx cp load: PCI_COMMAND after pci_set_master=0x%04x\n",
++				 pci_cmd);
++	}
++
++	gfx_v10_0_log_cp_gfx_direct_state(adev, "pre-disable-gpa");
++	gfx_v10_0_disable_gpa_mode(adev);
++	gfx_v10_0_log_cp_gfx_direct_state(adev, "post-disable-gpa");
++
++	gfx_v10_0_cp_gfx_enable(adev, false);
++	cp_stat = RREG32_SOC15(GC, 0, mmCP_STAT);
++	grbm_status = RREG32_SOC15(GC, 0, mmGRBM_STATUS);
++	grbm_status2 = RREG32_SOC15(GC, 0, mmGRBM_STATUS2);
++
++	if (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT) {
++		dev_info(adev->dev,
++			 "gfx cp load: forcing local soft reset before direct ucode load (pre CP_STAT=0x%08x GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x)\n",
++			 cp_stat, grbm_status, grbm_status2);
++		gfx_v10_0_soft_reset(adev);
++		mutex_lock(&adev->grbm_idx_mutex);
++			gfx_v10_0_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff);
++			mutex_unlock(&adev->grbm_idx_mutex);
++			mutex_lock(&adev->srbm_mutex);
++			gfx_v10_0_cp_gfx_switch_pipe(adev, PIPE_ID0);
++			mutex_unlock(&adev->srbm_mutex);
++			gfx_v10_0_disable_gpa_mode(adev);
++			gfx_v10_0_cp_gfx_enable(adev, false);
++			cp_stat = RREG32_SOC15(GC, 0, mmCP_STAT);
++			grbm_status = RREG32_SOC15(GC, 0, mmGRBM_STATUS);
++			grbm_status2 = RREG32_SOC15(GC, 0, mmGRBM_STATUS2);
++			grbm_gfx_cntl = RREG32_SOC15(GC, 0, mmGRBM_GFX_CNTL);
++			grbm_gfx_index = RREG32_SOC15(GC, 0, mmGRBM_GFX_INDEX);
++			dev_info(adev->dev,
++				 "gfx cp load: post-forced-soft-reset state CP_STAT=0x%08x GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x GRBM_GFX_CNTL=0x%08x GRBM_GFX_INDEX=0x%08x\n",
++				 cp_stat, grbm_status, grbm_status2,
++				 grbm_gfx_cntl, grbm_gfx_index);
++			gfx_v10_0_log_cp_gfx_direct_state(adev, "post-soft-reset");
++			return;
++		}
++
++	if (!cp_stat)
++		return;
++
++	dev_warn(adev->dev,
++		 "gfx cp load: CP still busy after halt (CP_STAT=0x%08x GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x), attempting local soft reset\n",
++		 cp_stat, grbm_status, grbm_status2);
++
++	gfx_v10_0_soft_reset(adev);
++	gfx_v10_0_cp_gfx_enable(adev, false);
++	cp_stat = RREG32_SOC15(GC, 0, mmCP_STAT);
++	grbm_status = RREG32_SOC15(GC, 0, mmGRBM_STATUS);
++	grbm_status2 = RREG32_SOC15(GC, 0, mmGRBM_STATUS2);
++	dev_info(adev->dev,
++		 "gfx cp load: post-soft-reset state CP_STAT=0x%08x GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x\n",
++		 cp_stat, grbm_status, grbm_status2);
++}
++
++static int gfx_v10_0_cp_gfx_create_fw_bo(struct amdgpu_device *adev,
++					 const char *name,
++					 unsigned long size,
++					 struct amdgpu_bo **bo_ptr,
++					 u64 *gpu_addr,
++					 void **cpu_addr)
++{
++	u32 domain = AMDGPU_GEM_DOMAIN_GTT;
++	int r;
++
++#if defined(CONFIG_ARM64)
++	if (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT) {
++		domain = AMDGPU_GEM_DOMAIN_VRAM;
++		r = amdgpu_bo_create_reserved(adev, size, PAGE_SIZE, domain,
++					      bo_ptr, gpu_addr, cpu_addr);
++		if (!r) {
++			dev_info(adev->dev,
++				 "gfx cp load: using VRAM-backed %s fw bo gpu_addr=0x%llx size=0x%lx\n",
++				 name, (unsigned long long)*gpu_addr, size);
++			return 0;
++		}
++
++		dev_warn(adev->dev,
++			 "gfx cp load: VRAM-backed %s fw bo alloc failed (%d), falling back to GTT\n",
++			 name, r);
++		domain = AMDGPU_GEM_DOMAIN_GTT;
++	}
++#endif
++
++	r = amdgpu_bo_create_reserved(adev, size, PAGE_SIZE, domain,
++				      bo_ptr, gpu_addr, cpu_addr);
++	if (!r && adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT)
++		dev_info(adev->dev,
++			 "gfx cp load: using GTT-backed %s fw bo gpu_addr=0x%llx size=0x%lx\n",
++			 name, (unsigned long long)*gpu_addr, size);
++
++	return r;
++}
++
+ static int gfx_v10_0_cp_gfx_load_pfp_microcode(struct amdgpu_device *adev)
+ {
+ 	int r;
+@@ -5766,18 +6093,19 @@ static int gfx_v10_0_cp_gfx_load_pfp_microcode(struct amdgpu_device *adev)
+ 		le32_to_cpu(pfp_hdr->header.ucode_array_offset_bytes));
+ 	fw_size = le32_to_cpu(pfp_hdr->header.ucode_size_bytes);
+ 
+-	r = amdgpu_bo_create_reserved(adev, pfp_hdr->header.ucode_size_bytes,
+-				      PAGE_SIZE, AMDGPU_GEM_DOMAIN_GTT,
+-				      &adev->gfx.pfp.pfp_fw_obj,
+-				      &adev->gfx.pfp.pfp_fw_gpu_addr,
+-				      (void **)&adev->gfx.pfp.pfp_fw_ptr);
++	r = gfx_v10_0_cp_gfx_create_fw_bo(adev, "pfp",
++					  pfp_hdr->header.ucode_size_bytes,
++					  &adev->gfx.pfp.pfp_fw_obj,
++					  &adev->gfx.pfp.pfp_fw_gpu_addr,
++					  (void **)&adev->gfx.pfp.pfp_fw_ptr);
+ 	if (r) {
+ 		dev_err(adev->dev, "(%d) failed to create pfp fw bo\n", r);
+ 		gfx_v10_0_pfp_fini(adev);
+ 		return r;
+ 	}
+ 
+-	memcpy(adev->gfx.pfp.pfp_fw_ptr, fw_data, fw_size);
++	memcpy_toio(adev->gfx.pfp.pfp_fw_ptr, fw_data, fw_size);
++	wmb();
+ 
+ 	amdgpu_bo_kunmap(adev->gfx.pfp.pfp_fw_obj);
+ 	amdgpu_bo_unreserve(adev->gfx.pfp.pfp_fw_obj);
+@@ -5822,6 +6150,7 @@ static int gfx_v10_0_cp_gfx_load_pfp_microcode(struct amdgpu_device *adev)
+ 			     le32_to_cpup(fw_data + pfp_hdr->jt_offset + i));
+ 
+ 	WREG32_SOC15(GC, 0, mmCP_HYP_PFP_UCODE_ADDR, adev->gfx.pfp_fw_version);
++	gfx_v10_0_log_cp_gfx_direct_state(adev, "pfp-post-write");
+ 
+ 	return 0;
+ }
+@@ -5844,18 +6173,19 @@ static int gfx_v10_0_cp_gfx_load_ce_microcode(struct amdgpu_device *adev)
+ 		le32_to_cpu(ce_hdr->header.ucode_array_offset_bytes));
+ 	fw_size = le32_to_cpu(ce_hdr->header.ucode_size_bytes);
+ 
+-	r = amdgpu_bo_create_reserved(adev, ce_hdr->header.ucode_size_bytes,
+-				      PAGE_SIZE, AMDGPU_GEM_DOMAIN_GTT,
+-				      &adev->gfx.ce.ce_fw_obj,
+-				      &adev->gfx.ce.ce_fw_gpu_addr,
+-				      (void **)&adev->gfx.ce.ce_fw_ptr);
++	r = gfx_v10_0_cp_gfx_create_fw_bo(adev, "ce",
++					  ce_hdr->header.ucode_size_bytes,
++					  &adev->gfx.ce.ce_fw_obj,
++					  &adev->gfx.ce.ce_fw_gpu_addr,
++					  (void **)&adev->gfx.ce.ce_fw_ptr);
+ 	if (r) {
+ 		dev_err(adev->dev, "(%d) failed to create ce fw bo\n", r);
+ 		gfx_v10_0_ce_fini(adev);
+ 		return r;
+ 	}
+ 
+-	memcpy(adev->gfx.ce.ce_fw_ptr, fw_data, fw_size);
++	memcpy_toio(adev->gfx.ce.ce_fw_ptr, fw_data, fw_size);
++	wmb();
+ 
+ 	amdgpu_bo_kunmap(adev->gfx.ce.ce_fw_obj);
+ 	amdgpu_bo_unreserve(adev->gfx.ce.ce_fw_obj);
+@@ -5887,6 +6217,7 @@ static int gfx_v10_0_cp_gfx_load_ce_microcode(struct amdgpu_device *adev)
+ 	tmp = REG_SET_FIELD(tmp, CP_CE_IC_BASE_CNTL, CACHE_POLICY, 0);
+ 	tmp = REG_SET_FIELD(tmp, CP_CE_IC_BASE_CNTL, EXE_DISABLE, 0);
+ 	tmp = REG_SET_FIELD(tmp, CP_CE_IC_BASE_CNTL, ADDRESS_CLAMP, 1);
++	WREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_CNTL, tmp);
+ 	WREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_LO,
+ 		adev->gfx.ce.ce_fw_gpu_addr & 0xFFFFF000);
+ 	WREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_HI,
+@@ -5899,6 +6230,7 @@ static int gfx_v10_0_cp_gfx_load_ce_microcode(struct amdgpu_device *adev)
+ 			     le32_to_cpup(fw_data + ce_hdr->jt_offset + i));
+ 
+ 	WREG32_SOC15(GC, 0, mmCP_HYP_CE_UCODE_ADDR, adev->gfx.ce_fw_version);
++	gfx_v10_0_log_cp_gfx_direct_state(adev, "ce-post-write");
+ 
+ 	return 0;
+ }
+@@ -5921,18 +6253,19 @@ static int gfx_v10_0_cp_gfx_load_me_microcode(struct amdgpu_device *adev)
+ 		le32_to_cpu(me_hdr->header.ucode_array_offset_bytes));
+ 	fw_size = le32_to_cpu(me_hdr->header.ucode_size_bytes);
+ 
+-	r = amdgpu_bo_create_reserved(adev, me_hdr->header.ucode_size_bytes,
+-				      PAGE_SIZE, AMDGPU_GEM_DOMAIN_GTT,
+-				      &adev->gfx.me.me_fw_obj,
+-				      &adev->gfx.me.me_fw_gpu_addr,
+-				      (void **)&adev->gfx.me.me_fw_ptr);
++	r = gfx_v10_0_cp_gfx_create_fw_bo(adev, "me",
++					  me_hdr->header.ucode_size_bytes,
++					  &adev->gfx.me.me_fw_obj,
++					  &adev->gfx.me.me_fw_gpu_addr,
++					  (void **)&adev->gfx.me.me_fw_ptr);
+ 	if (r) {
+ 		dev_err(adev->dev, "(%d) failed to create me fw bo\n", r);
+ 		gfx_v10_0_me_fini(adev);
+ 		return r;
+ 	}
+ 
+-	memcpy(adev->gfx.me.me_fw_ptr, fw_data, fw_size);
++	memcpy_toio(adev->gfx.me.me_fw_ptr, fw_data, fw_size);
++	wmb();
+ 
+ 	amdgpu_bo_kunmap(adev->gfx.me.me_fw_obj);
+ 	amdgpu_bo_unreserve(adev->gfx.me.me_fw_obj);
+@@ -5964,6 +6297,7 @@ static int gfx_v10_0_cp_gfx_load_me_microcode(struct amdgpu_device *adev)
+ 	tmp = REG_SET_FIELD(tmp, CP_ME_IC_BASE_CNTL, CACHE_POLICY, 0);
+ 	tmp = REG_SET_FIELD(tmp, CP_ME_IC_BASE_CNTL, EXE_DISABLE, 0);
+ 	tmp = REG_SET_FIELD(tmp, CP_ME_IC_BASE_CNTL, ADDRESS_CLAMP, 1);
++	WREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_CNTL, tmp);
+ 	WREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_LO,
+ 		adev->gfx.me.me_fw_gpu_addr & 0xFFFFF000);
+ 	WREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_HI,
+@@ -5976,6 +6310,7 @@ static int gfx_v10_0_cp_gfx_load_me_microcode(struct amdgpu_device *adev)
+ 			     le32_to_cpup(fw_data + me_hdr->jt_offset + i));
+ 
+ 	WREG32_SOC15(GC, 0, mmCP_HYP_ME_UCODE_ADDR, adev->gfx.me_fw_version);
++	gfx_v10_0_log_cp_gfx_direct_state(adev, "me-post-write");
+ 
+ 	return 0;
+ }
+@@ -5987,7 +6322,7 @@ static int gfx_v10_0_cp_gfx_load_microcode(struct amdgpu_device *adev)
+ 	if (!adev->gfx.me_fw || !adev->gfx.pfp_fw || !adev->gfx.ce_fw)
+ 		return -EINVAL;
+ 
+-	gfx_v10_0_cp_gfx_enable(adev, false);
++	gfx_v10_0_cp_gfx_prepare_for_load(adev);
+ 
+ 	r = gfx_v10_0_cp_gfx_load_pfp_microcode(adev);
+ 	if (r) {
+@@ -6007,6 +6342,36 @@ static int gfx_v10_0_cp_gfx_load_microcode(struct amdgpu_device *adev)
+ 		return r;
+ 	}
+ 
++	{
++		u32 pfp_ucode_addr = RREG32_SOC15(GC, 0, mmCP_PFP_UCODE_ADDR);
++		u32 ce_ucode_addr = RREG32_SOC15(GC, 0, mmCP_HYP_CE_UCODE_ADDR);
++		u32 me_ucode_addr = RREG32_SOC15(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
++		u32 pfp_ic_lo = RREG32_SOC15(GC, 0, mmCP_PFP_IC_BASE_LO);
++		u32 ce_ic_lo = RREG32_SOC15(GC, 0, mmCP_CE_IC_BASE_LO);
++		u32 me_ic_lo = RREG32_SOC15(GC, 0, mmCP_ME_IC_BASE_LO);
++		u32 pfp_ucode_addr_rlc = RREG32_SOC15_RLC(GC, 0, mmCP_PFP_UCODE_ADDR);
++		u32 ce_ucode_addr_rlc = RREG32_SOC15_RLC(GC, 0, mmCP_HYP_CE_UCODE_ADDR);
++		u32 me_ucode_addr_rlc = RREG32_SOC15_RLC(GC, 0, mmCP_HYP_ME_UCODE_ADDR);
++		u32 pfp_ic_lo_rlc = RREG32_SOC15_RLC(GC, 0, mmCP_PFP_IC_BASE_LO);
++		u32 ce_ic_lo_rlc = RREG32_SOC15_RLC(GC, 0, mmCP_CE_IC_BASE_LO);
++		u32 me_ic_lo_rlc = RREG32_SOC15_RLC(GC, 0, mmCP_ME_IC_BASE_LO);
++
++		if (pfp_ucode_addr == 0xffffffff || ce_ucode_addr == 0xffffffff ||
++		    me_ucode_addr == 0xffffffff || pfp_ic_lo == 0xffffffff ||
++		    ce_ic_lo == 0xffffffff || me_ic_lo == 0xffffffff) {
++			DRM_ERROR("gfx cp ucode load readback abnormal: direct pfp_ucode=0x%08x ce_ucode=0x%08x me_ucode=0x%08x pfp_ic_lo=0x%08x ce_ic_lo=0x%08x me_ic_lo=0x%08x | rlc pfp_ucode=0x%08x ce_ucode=0x%08x me_ucode=0x%08x pfp_ic_lo=0x%08x ce_ic_lo=0x%08x me_ic_lo=0x%08x load_type=%d pfp_fw=0x%x ce_fw=0x%x me_fw=0x%x\n",
++				  pfp_ucode_addr, ce_ucode_addr, me_ucode_addr,
++				  pfp_ic_lo, ce_ic_lo, me_ic_lo,
++				  pfp_ucode_addr_rlc, ce_ucode_addr_rlc,
++				  me_ucode_addr_rlc, pfp_ic_lo_rlc,
++				  ce_ic_lo_rlc, me_ic_lo_rlc,
++				  adev->firmware.load_type,
++				  adev->gfx.pfp_fw_version,
++				  adev->gfx.ce_fw_version,
++				  adev->gfx.me_fw_version);
++		}
++	}
++
+ 	return 0;
+ }
+ 
+@@ -6402,7 +6767,7 @@ static void gfx_v10_0_kiq_setting(struct amdgpu_ring *ring)
+ }
+ 
+ static void gfx_v10_0_gfx_mqd_set_priority(struct amdgpu_device *adev,
+-					   struct v10_gfx_mqd *mqd,
++					   volatile struct v10_gfx_mqd *mqd,
+ 					   struct amdgpu_mqd_prop *prop)
+ {
+ 	bool priority = 0;
+@@ -6422,7 +6787,7 @@ static void gfx_v10_0_gfx_mqd_set_priority(struct amdgpu_device *adev,
+ static int gfx_v10_0_gfx_mqd_init(struct amdgpu_device *adev, void *m,
+ 				  struct amdgpu_mqd_prop *prop)
+ {
+-	struct v10_gfx_mqd *mqd = m;
++	volatile struct v10_gfx_mqd *mqd = m;
+ 	uint64_t hqd_gpu_addr, wb_gpu_addr;
+ 	uint32_t tmp;
+ 	uint32_t rb_bufsz;
+@@ -6554,11 +6919,11 @@ static int gfx_v10_0_gfx_queue_init_register(struct amdgpu_ring *ring)
+ static int gfx_v10_0_gfx_init_queue(struct amdgpu_ring *ring)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+-	struct v10_gfx_mqd *mqd = ring->mqd_ptr;
++	volatile struct v10_gfx_mqd *mqd = ring->mqd_ptr;
+ 	int mqd_idx = ring - &adev->gfx.gfx_ring[0];
+ 
+ 	if (!amdgpu_in_reset(adev) && !adev->in_suspend) {
+-		memset((void *)mqd, 0, sizeof(*mqd));
++		memset_io((void *)mqd, 0, sizeof(*mqd));
+ 		mutex_lock(&adev->srbm_mutex);
+ 		nv_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0);
+ 		amdgpu_ring_init_mqd(ring);
+@@ -6577,11 +6942,11 @@ static int gfx_v10_0_gfx_init_queue(struct amdgpu_ring *ring)
+ 		nv_grbm_select(adev, 0, 0, 0, 0);
+ 		mutex_unlock(&adev->srbm_mutex);
+ 		if (adev->gfx.me.mqd_backup[mqd_idx])
+-			memcpy(adev->gfx.me.mqd_backup[mqd_idx], mqd, sizeof(*mqd));
++			memcpy_fromio(adev->gfx.me.mqd_backup[mqd_idx], mqd, sizeof(*mqd));
+ 	} else if (amdgpu_in_reset(adev)) {
+ 		/* reset mqd with the backup copy */
+ 		if (adev->gfx.me.mqd_backup[mqd_idx])
+-			memcpy(mqd, adev->gfx.me.mqd_backup[mqd_idx], sizeof(*mqd));
++			memcpy_toio(mqd, adev->gfx.me.mqd_backup[mqd_idx], sizeof(*mqd));
+ 		/* reset the ring */
+ 		ring->wptr = 0;
+ 		*ring->wptr_cpu_addr = 0;
+@@ -6610,6 +6975,11 @@ static int gfx_v10_0_kiq_enable_kgq(struct amdgpu_device *adev)
+ 	if (!kiq->pmf || !kiq->pmf->kiq_map_queues)
+ 		return -EINVAL;
+ 
++	if (!adev->gfx.num_compute_rings) {
++		DRM_INFO("num_kcq=0; skipping KGQ setup\n");
++		return 0;
++	}
++
+ 	r = amdgpu_ring_alloc(kiq_ring, kiq->pmf->map_queues_size *
+ 					adev->gfx.num_gfx_rings);
+ 	if (r) {
+@@ -6666,7 +7036,7 @@ static int gfx_v10_0_cp_async_gfx_ring_resume(struct amdgpu_device *adev)
+ static int gfx_v10_0_compute_mqd_init(struct amdgpu_device *adev, void *m,
+ 				      struct amdgpu_mqd_prop *prop)
+ {
+-	struct v10_compute_mqd *mqd = m;
++	volatile struct v10_compute_mqd *mqd = m;
+ 	uint64_t hqd_gpu_addr, wb_gpu_addr, eop_base_addr;
+ 	uint32_t tmp;
+ 
+@@ -6890,7 +7260,7 @@ static int gfx_v10_0_kiq_init_register(struct amdgpu_ring *ring)
+ static int gfx_v10_0_kiq_init_queue(struct amdgpu_ring *ring)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+-	struct v10_compute_mqd *mqd = ring->mqd_ptr;
++	volatile struct v10_compute_mqd *mqd = ring->mqd_ptr;
+ 	int mqd_idx = AMDGPU_MAX_COMPUTE_RINGS;
+ 
+ 	gfx_v10_0_kiq_setting(ring);
+@@ -6898,7 +7268,7 @@ static int gfx_v10_0_kiq_init_queue(struct amdgpu_ring *ring)
+ 	if (amdgpu_in_reset(adev)) { /* for GPU_RESET case */
+ 		/* reset MQD to a clean status */
+ 		if (adev->gfx.mec.mqd_backup[mqd_idx])
+-			memcpy(mqd, adev->gfx.mec.mqd_backup[mqd_idx], sizeof(*mqd));
++			memcpy_toio(mqd, adev->gfx.mec.mqd_backup[mqd_idx], sizeof(*mqd));
+ 
+ 		/* reset ring buffer */
+ 		ring->wptr = 0;
+@@ -6910,7 +7280,7 @@ static int gfx_v10_0_kiq_init_queue(struct amdgpu_ring *ring)
+ 		nv_grbm_select(adev, 0, 0, 0, 0);
+ 		mutex_unlock(&adev->srbm_mutex);
+ 	} else {
+-		memset((void *)mqd, 0, sizeof(*mqd));
++		memset_io((void *)mqd, 0, sizeof(*mqd));
+ 		mutex_lock(&adev->srbm_mutex);
+ 		nv_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0);
+ 		amdgpu_ring_init_mqd(ring);
+@@ -6919,7 +7289,7 @@ static int gfx_v10_0_kiq_init_queue(struct amdgpu_ring *ring)
+ 		mutex_unlock(&adev->srbm_mutex);
+ 
+ 		if (adev->gfx.mec.mqd_backup[mqd_idx])
+-			memcpy(adev->gfx.mec.mqd_backup[mqd_idx], mqd, sizeof(*mqd));
++			memcpy_fromio(adev->gfx.mec.mqd_backup[mqd_idx], mqd, sizeof(*mqd));
+ 	}
+ 
+ 	return 0;
+@@ -6928,11 +7298,11 @@ static int gfx_v10_0_kiq_init_queue(struct amdgpu_ring *ring)
+ static int gfx_v10_0_kcq_init_queue(struct amdgpu_ring *ring)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+-	struct v10_compute_mqd *mqd = ring->mqd_ptr;
++	volatile struct v10_compute_mqd *mqd = ring->mqd_ptr;
+ 	int mqd_idx = ring - &adev->gfx.compute_ring[0];
+ 
+ 	if (!amdgpu_in_reset(adev) && !adev->in_suspend) {
+-		memset((void *)mqd, 0, sizeof(*mqd));
++		memset_io((void *)mqd, 0, sizeof(*mqd));
+ 		mutex_lock(&adev->srbm_mutex);
+ 		nv_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0);
+ 		amdgpu_ring_init_mqd(ring);
+@@ -6940,11 +7310,11 @@ static int gfx_v10_0_kcq_init_queue(struct amdgpu_ring *ring)
+ 		mutex_unlock(&adev->srbm_mutex);
+ 
+ 		if (adev->gfx.mec.mqd_backup[mqd_idx])
+-			memcpy(adev->gfx.mec.mqd_backup[mqd_idx], mqd, sizeof(*mqd));
++			memcpy_fromio(adev->gfx.mec.mqd_backup[mqd_idx], mqd, sizeof(*mqd));
+ 	} else if (amdgpu_in_reset(adev)) { /* for GPU_RESET case */
+ 		/* reset MQD to a clean status */
+ 		if (adev->gfx.mec.mqd_backup[mqd_idx])
+-			memcpy(mqd, adev->gfx.mec.mqd_backup[mqd_idx], sizeof(*mqd));
++			memcpy_toio(mqd, adev->gfx.mec.mqd_backup[mqd_idx], sizeof(*mqd));
+ 
+ 		/* reset ring buffer */
+ 		ring->wptr = 0;
+@@ -7329,6 +7699,9 @@ static int gfx_v10_0_kiq_disable_kgq(struct amdgpu_device *adev)
+ 	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
+ 		return -EINVAL;
+ 
++	if (!adev->gfx.num_compute_rings)
++		return 0;
++
+ 	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size *
+ 					adev->gfx.num_gfx_rings))
+ 		return -ENOMEM;
+@@ -8719,13 +9092,14 @@ static void gfx_v10_0_ring_emit_patch_cond_exec(struct amdgpu_ring *ring, unsign
+ {
+ 	unsigned cur;
+ 	BUG_ON(offset > ring->buf_mask);
+-	BUG_ON(ring->ring[offset] != 0x55aa55aa);
++	BUG_ON(amdgpu_ring_get_dw(ring, offset) != 0x55aa55aa);
+ 
+ 	cur = (ring->wptr - 1) & ring->buf_mask;
+ 	if (likely(cur > offset))
+-		ring->ring[offset] = cur - offset;
++		amdgpu_ring_set_dw(ring, offset, cur - offset);
+ 	else
+-		ring->ring[offset] = (ring->buf_mask + 1) - offset + cur;
++		amdgpu_ring_set_dw(ring, offset,
++				   (ring->buf_mask + 1) - offset + cur);
+ }
+ 
+ static int gfx_v10_0_ring_preempt_ib(struct amdgpu_ring *ring)
+diff --git a/drivers/gpu/drm/ttm/ttm_module.c b/drivers/gpu/drm/ttm/ttm_module.c
+index b3fffe7b5062..41c7058c5825 100644
+--- a/drivers/gpu/drm/ttm/ttm_module.c
++++ b/drivers/gpu/drm/ttm/ttm_module.c
+@@ -62,8 +62,12 @@
+ pgprot_t ttm_prot_from_caching(enum ttm_caching caching, pgprot_t tmp)
+ {
+ 	/* Cached mappings need no adjustment */
+-	if (caching == ttm_cached)
++	if (caching == ttm_cached) {
++#ifdef CONFIG_ARM64
++		return pgprot_dmacoherent(tmp);
++#endif
+ 		return tmp;
++	}
+ 
+ #if defined(__i386__) || defined(__x86_64__)
+ 	if (caching == ttm_write_combined)

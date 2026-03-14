@@ -1,0 +1,16 @@
+[smoke] date=2026-03-14T02:14:09+01:00
+[smoke] uname -r: 6.1.115-vendor-rk35xx
+[smoke] boot_id: 487b5540-2917-45de-a416-5bc82e313b45
+[smoke] modprobe args: fw_load_type=3 num_kcq=0 mes=0 msi=1
+[smoke] amdgpu.ko sha256: a0259ff7e37481c40ea7cd00bdc50a826773116af500ca206ab8f24d312c07c5
+
+[smoke] lspci -nn -s 03:00.0
+0000:03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon RX 6400/6500 XT/6500M] [1002:743f] (rev c7)
+
+[smoke] unload amdgpu
+
+[smoke] clear dmesg
+
+[smoke] modprobe amdgpu fw_load_type=3 num_kcq=0 mes=0 msi=1
+[smoke] modprobe timeout: 45s
+[smoke] modprobe pid: 2056 (timeout 45s)

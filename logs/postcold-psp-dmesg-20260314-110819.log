@@ -1,0 +1,41 @@
+[Sat Mar 14 11:08:45 2026] [drm] amdgpu kernel modesetting enabled.
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: enabling device (0000 -> 0003)
+[Sat Mar 14 11:08:45 2026] [drm] initializing kernel modesetting (BEIGE_GOBY 0x1002:0x743F 0x1462:0x5082 0xC7).
+[Sat Mar 14 11:08:45 2026] [drm] register mmio base: 0xF0200000
+[Sat Mar 14 11:08:45 2026] [drm] register mmio size: 1048576
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: get invalid ip discovery binary signature from vram
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_discovery is not set properly
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: failed to read ip discovery binary from file
+[Sat Mar 14 11:08:45 2026] [drm:amdgpu_discovery_set_ip_blocks [amdgpu]] *ERROR* amdgpu_discovery_init failed
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using beige_goby static IP fallback after discovery failure
+[Sat Mar 14 11:08:45 2026] [drm] add ip block number 0 <nv_common>
+[Sat Mar 14 11:08:45 2026] [drm] add ip block number 1 <gmc_v10_0>
+[Sat Mar 14 11:08:45 2026] [drm] add ip block number 2 <navi10_ih>
+[Sat Mar 14 11:08:45 2026] [drm] add ip block number 3 <psp>
+[Sat Mar 14 11:08:45 2026] [drm] add ip block number 4 <smu>
+[Sat Mar 14 11:08:45 2026] [drm] add ip block number 5 <gfx_v10_0>
+[Sat Mar 14 11:08:45 2026] [drm] add ip block number 6 <sdma_v5_2>
+[Sat Mar 14 11:08:45 2026] [drm] add ip block number 7 <vcn_v3_0>
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: forcing GPU post because PSP sign-of-life register is all-ones
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Sat Mar 14 11:08:45 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sat Mar 14 11:08:45 2026] [drm] VCN(0) decode is enabled in VM mode
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: SMU: response:0xFFFFFFFF for index:2 param:0x00000000 message:GetSmuVersion?
+[Sat Mar 14 11:08:45 2026] amdgpu 0000:03:00.0: amdgpu: GPU psp mode1 reset
+[Sat Mar 14 11:08:55 2026] r8169 0003:31:00.0 enP3p49s0: NETDEV WATCHDOG: CPU: 7: transmit queue 0 timed out 5544 ms
+[Sat Mar 14 11:08:55 2026] r8169 0003:31:00.0 enP3p49s0: ASPM disabled on Tx timeout
+[Sat Mar 14 11:09:00 2026] r8169 0003:31:00.0 enP3p49s0: NETDEV WATCHDOG: CPU: 7: transmit queue 0 timed out 5004 ms
+[Sat Mar 14 11:09:02 2026] [drm:psp_v11_0_wait_for_ext.constprop.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0xffffffff expect=0x80000000 mask=0x8000ffff changed=0 timeout_us=10000000
+[Sat Mar 14 11:09:02 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: forcing PSP mode1 reset from all-ones mailbox state msg64=0xffffffff msg33=0xffffffff msg81=0xffffffff
+[Sat Mar 14 11:09:21 2026] [drm:psp_v11_0_wait_for_ext.constprop.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16061 val=0xffffffff expect=0x80000000 mask=0x80000000 changed=0 timeout_us=10000000
+[Sat Mar 14 11:09:22 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: forced PSP mode1 reset did not complete msg64=0xffffffff msg33=0xffffffff msg81=0xffffffff
+[Sat Mar 14 11:09:22 2026] [drm] psp mode 1 reset failed!
+[Sat Mar 14 11:09:22 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset failed
+[Sat Mar 14 11:09:22 2026] amdgpu 0000:03:00.0: amdgpu: asic reset on init failed
+[Sat Mar 14 11:09:22 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sat Mar 14 11:09:22 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sat Mar 14 11:09:22 2026] amdgpu: probe of 0000:03:00.0 failed with error -22

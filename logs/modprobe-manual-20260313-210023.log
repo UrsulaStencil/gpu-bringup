@@ -1,0 +1,249 @@
+===== fw1_async0 =====
+MARKER_fw1_async0_1773432024
+[Fr Mär 13 20:35:35 2026] [drm] amdgpu: ttm finalized
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099EE0, 0x00037D60, 0x00019F00)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000945C0, 0x000148C0, 0x000145E0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E980, 0x0000EBC0, 0x0000E9A0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089080, 0x00009360, 0x000090A0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083C20, 0x00003E40, 0x00003C40)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BE4E0, 0x0003E600, 0x0003E500)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8940, 0x00038AE0, 0x00038960)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B30E0, 0x00033320, 0x00033100)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD340, 0x0002D6E0, 0x0002D360)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8040, 0x00028100, 0x00028060)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3120, 0x000231E0, 0x00023140)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009DE40, 0x0001DEE0, 0x0001DE60)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000984E0, 0x00018820, 0x00018500)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092F80, 0x000132A0, 0x00012FA0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D8E0, 0x0000D960, 0x0000D900)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087F20, 0x000082C0, 0x00007F40)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082CA0, 0x00002CE0, 0x00002CC0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD020, 0x0003D2A0, 0x0003D040)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B76A0, 0x00037A00, 0x000376C0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1F00, 0x00032080, 0x00031F20)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC860, 0x0002C8E0, 0x0002C880)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A75E0, 0x00027620, 0x00027600)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1E40, 0x00021FC0, 0x00021E60)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CBE0, 0x0001CC00, 0x0001CC00)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097AA0, 0x00017D80, 0x00017AC0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092800, 0x00012860, 0x00012820)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D540, 0x0000D5C0, 0x0000D560)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088540, 0x000086E0, 0x00008560)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082F60, 0x00003300, 0x00002F80)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BDA00, 0x0003DD20, 0x0003DA20)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8620, 0x000387C0, 0x00038640)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3660, 0x000337C0, 0x00033680)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE660, 0x0002E800, 0x0002E680)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9900, 0x00029BE0, 0x00029920)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4D60, 0x00024E80, 0x00024D80)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A09C0, 0x00020AA0, 0x000209E0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C2C0, 0x0001C320, 0x0001C2E0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097140, 0x00017460, 0x00017160)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092680, 0x000126C0, 0x000126A0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D9E0, 0x0000DC00, 0x0000DA00)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000892E0, 0x00009340, 0x00009300)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084B40, 0x00004C40, 0x00004B60)
+[Fr Mär 13 21:00:57 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=2000000
+[Fr Mär 13 21:00:57 2026] [drm:psp_v11_0_ring_destroy [amdgpu]] *ERROR* Fail to stop psp ring
+[Fr Mär 13 21:00:57 2026] [drm:psp_hw_init [amdgpu]] *ERROR* PSP firmware loading failed
+[Fr Mär 13 21:00:57 2026] [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* hw_init of IP block <psp> failed -22
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:00:57 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Fr Mär 13 21:00:57 2026] [drm] amdgpu: ttm finalized
+===== fw1_async1 =====
+MARKER_fw1_async1_1773432039
+[Fr Mär 13 21:00:57 2026] [drm] amdgpu: ttm finalized
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099EE0, 0x00037D60, 0x00019F00)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000945C0, 0x000148C0, 0x000145E0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E980, 0x0000EBC0, 0x0000E9A0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089080, 0x00009360, 0x000090A0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083C20, 0x00003E40, 0x00003C40)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BE4E0, 0x0003E600, 0x0003E500)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8940, 0x00038AE0, 0x00038960)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B30E0, 0x00033320, 0x00033100)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD340, 0x0002D6E0, 0x0002D360)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8040, 0x00028100, 0x00028060)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3120, 0x000231E0, 0x00023140)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009DE40, 0x0001DEE0, 0x0001DE60)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000984E0, 0x00018820, 0x00018500)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092F80, 0x000132A0, 0x00012FA0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D8E0, 0x0000D960, 0x0000D900)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087F20, 0x000082C0, 0x00007F40)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082CA0, 0x00002CE0, 0x00002CC0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD020, 0x0003D2A0, 0x0003D040)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B76A0, 0x00037A00, 0x000376C0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1F00, 0x00032080, 0x00031F20)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC860, 0x0002C8E0, 0x0002C880)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A75E0, 0x00027620, 0x00027600)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1E40, 0x00021FC0, 0x00021E60)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CBE0, 0x0001CC00, 0x0001CC00)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097AA0, 0x00017D80, 0x00017AC0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092800, 0x00012860, 0x00012820)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D540, 0x0000D5C0, 0x0000D560)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088540, 0x000086E0, 0x00008560)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082F60, 0x00003300, 0x00002F80)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BDA00, 0x0003DD20, 0x0003DA20)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8620, 0x000387C0, 0x00038640)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3660, 0x000337C0, 0x00033680)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE660, 0x0002E800, 0x0002E680)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9900, 0x00029BE0, 0x00029920)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4D60, 0x00024E80, 0x00024D80)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A09C0, 0x00020AA0, 0x000209E0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C2C0, 0x0001C320, 0x0001C2E0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097140, 0x00017460, 0x00017160)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092680, 0x000126C0, 0x000126A0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D9E0, 0x0000DC00, 0x0000DA00)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000892E0, 0x00009340, 0x00009300)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084B40, 0x00004C40, 0x00004B60)
+[Fr Mär 13 21:00:57 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=2000000
+[Fr Mär 13 21:00:57 2026] [drm:psp_v11_0_ring_destroy [amdgpu]] *ERROR* Fail to stop psp ring
+[Fr Mär 13 21:00:57 2026] [drm:psp_hw_init [amdgpu]] *ERROR* PSP firmware loading failed
+[Fr Mär 13 21:00:57 2026] [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* hw_init of IP block <psp> failed -22
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:00:57 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Fr Mär 13 21:00:57 2026] [drm] amdgpu: ttm finalized
+[Fr Mär 13 21:01:02 2026] amdgpu: unknown parameter 'amdgpu_async_gfx_ring' ignored
+[Fr Mär 13 21:01:02 2026] [drm] amdgpu kernel modesetting enabled.
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Fr Mär 13 21:01:02 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+[Fr Mär 13 21:01:05 2026] amdgpu 0000:03:00.0: amdgpu: SMU: I'm not done with your previous command: SMN_C2PMSG_66:0x00000002 SMN_C2PMSG_82:0x00000000
+[Fr Mär 13 21:01:05 2026] amdgpu 0000:03:00.0: amdgpu: GPU psp mode1 reset
+[Fr Mär 13 21:01:11 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16061 val=0x00000000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=2000000
+[Fr Mär 13 21:01:11 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset failed
+[Fr Mär 13 21:01:11 2026] amdgpu 0000:03:00.0: amdgpu: asic reset on init failed
+[Fr Mär 13 21:01:11 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Fr Mär 13 21:01:11 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:01:11 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+===== fw3_async0 =====
+MARKER_fw3_async0_1773432052
+[Fr Mär 13 21:01:11 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089080, 0x00009360, 0x000090A0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083C20, 0x00003E40, 0x00003C40)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BE4E0, 0x0003E600, 0x0003E500)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8940, 0x00038AE0, 0x00038960)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B30E0, 0x00033320, 0x00033100)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD340, 0x0002D6E0, 0x0002D360)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8040, 0x00028100, 0x00028060)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3120, 0x000231E0, 0x00023140)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009DE40, 0x0001DEE0, 0x0001DE60)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000984E0, 0x00018820, 0x00018500)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092F80, 0x000132A0, 0x00012FA0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D8E0, 0x0000D960, 0x0000D900)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087F20, 0x000082C0, 0x00007F40)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082CA0, 0x00002CE0, 0x00002CC0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD020, 0x0003D2A0, 0x0003D040)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B76A0, 0x00037A00, 0x000376C0)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1F00, 0x00032080, 0x00031F20)
+[Fr Mär 13 21:00:56 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC860, 0x0002C8E0, 0x0002C880)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A75E0, 0x00027620, 0x00027600)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1E40, 0x00021FC0, 0x00021E60)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CBE0, 0x0001CC00, 0x0001CC00)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097AA0, 0x00017D80, 0x00017AC0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092800, 0x00012860, 0x00012820)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D540, 0x0000D5C0, 0x0000D560)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088540, 0x000086E0, 0x00008560)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082F60, 0x00003300, 0x00002F80)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BDA00, 0x0003DD20, 0x0003DA20)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8620, 0x000387C0, 0x00038640)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3660, 0x000337C0, 0x00033680)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE660, 0x0002E800, 0x0002E680)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9900, 0x00029BE0, 0x00029920)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4D60, 0x00024E80, 0x00024D80)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A09C0, 0x00020AA0, 0x000209E0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C2C0, 0x0001C320, 0x0001C2E0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097140, 0x00017460, 0x00017160)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092680, 0x000126C0, 0x000126A0)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D9E0, 0x0000DC00, 0x0000DA00)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000892E0, 0x00009340, 0x00009300)
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084B40, 0x00004C40, 0x00004B60)
+[Fr Mär 13 21:00:57 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=2000000
+[Fr Mär 13 21:00:57 2026] [drm:psp_v11_0_ring_destroy [amdgpu]] *ERROR* Fail to stop psp ring
+[Fr Mär 13 21:00:57 2026] [drm:psp_hw_init [amdgpu]] *ERROR* PSP firmware loading failed
+[Fr Mär 13 21:00:57 2026] [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* hw_init of IP block <psp> failed -22
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Fr Mär 13 21:00:57 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:00:57 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Fr Mär 13 21:00:57 2026] [drm] amdgpu: ttm finalized
+[Fr Mär 13 21:01:02 2026] amdgpu: unknown parameter 'amdgpu_async_gfx_ring' ignored
+[Fr Mär 13 21:01:02 2026] [drm] amdgpu kernel modesetting enabled.
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Fr Mär 13 21:01:02 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+[Fr Mär 13 21:01:02 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+[Fr Mär 13 21:01:05 2026] amdgpu 0000:03:00.0: amdgpu: SMU: I'm not done with your previous command: SMN_C2PMSG_66:0x00000002 SMN_C2PMSG_82:0x00000000
+[Fr Mär 13 21:01:05 2026] amdgpu 0000:03:00.0: amdgpu: GPU psp mode1 reset
+[Fr Mär 13 21:01:11 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16061 val=0x00000000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=2000000
+[Fr Mär 13 21:01:11 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset failed
+[Fr Mär 13 21:01:11 2026] amdgpu 0000:03:00.0: amdgpu: asic reset on init failed
+[Fr Mär 13 21:01:11 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Fr Mär 13 21:01:11 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:01:11 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Fr Mär 13 21:01:15 2026] amdgpu: unknown parameter 'amdgpu_async_gfx_ring' ignored
+[Fr Mär 13 21:01:15 2026] [drm] amdgpu kernel modesetting enabled.
+[Fr Mär 13 21:01:15 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Fr Mär 13 21:01:15 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Fr Mär 13 21:01:15 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Fr Mär 13 21:01:15 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Fr Mär 13 21:01:15 2026] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+[Fr Mär 13 21:01:15 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+[Fr Mär 13 21:01:19 2026] amdgpu 0000:03:00.0: amdgpu: SMU: I'm not done with your previous command: SMN_C2PMSG_66:0x00000002 SMN_C2PMSG_82:0x00000000
+[Fr Mär 13 21:01:19 2026] amdgpu 0000:03:00.0: amdgpu: GPU psp mode1 reset
+[Fr Mär 13 21:01:23 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00070000 expect=0x80000000 mask=0x8000ffff changed=0 timeout_us=2000000
+[Fr Mär 13 21:01:23 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset failed
+[Fr Mär 13 21:01:23 2026] amdgpu 0000:03:00.0: amdgpu: asic reset on init failed
+[Fr Mär 13 21:01:23 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Fr Mär 13 21:01:23 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:01:23 2026] amdgpu: probe of 0000:03:00.0 failed with error -22

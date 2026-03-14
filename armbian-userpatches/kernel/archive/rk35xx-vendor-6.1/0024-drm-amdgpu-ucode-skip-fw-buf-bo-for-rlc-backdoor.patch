@@ -1,0 +1,32 @@
+From 8e0ddf6e269f7312f67f574f5785fc2d6bf5f86e Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 23:05:00 +0100
+Subject: [PATCH] drm/amdgpu: skip fw_buf BO allocation for RLC backdoor mode
+
+When forcing fw_load_type=3 (RLC backdoor autoload), bring-up reached
+amdgpu_ucode_create_bo() and failed with:
+  "failed to create kernel buffer for firmware.fw_buf" (-ENOMEM)
+
+The fw_buf BO is needed for PSP path staging, but RLC backdoor path does
+not consume this BO. Skip that allocation for RLC backdoor load type.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+index f2d1430be29f..d54a649ef7e6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+@@ -996,7 +996,8 @@ static int amdgpu_ucode_patch_jt(struct amdgpu_firmware_info *ucode,
+ 
+ int amdgpu_ucode_create_bo(struct amdgpu_device *adev)
+ {
+-	if (adev->firmware.load_type != AMDGPU_FW_LOAD_DIRECT) {
++	if (adev->firmware.load_type != AMDGPU_FW_LOAD_DIRECT &&
++	    adev->firmware.load_type != AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO) {
+ 		amdgpu_bo_create_kernel(adev, adev->firmware.fw_size, PAGE_SIZE,
+ 			amdgpu_sriov_vf(adev) ? AMDGPU_GEM_DOMAIN_VRAM : AMDGPU_GEM_DOMAIN_GTT,
+ 			&adev->firmware.fw_buf,
+-- 
+2.43.0
+

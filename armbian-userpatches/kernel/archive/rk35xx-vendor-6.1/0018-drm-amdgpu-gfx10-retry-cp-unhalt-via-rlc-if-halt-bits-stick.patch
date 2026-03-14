@@ -1,0 +1,44 @@
+From 35c1f99b56fae5e16859b2d1dce6f6cd37d0817c Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:55:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 retry CP unhalt via RLC if halt bits stick
+
+RK3588 diagnostics with `async_gfx_ring=0` show `CP_ME_CNTL` halt bits
+staying set during ring test timeout (`ME/PFP/CE_HALT`), even after the
+normal unhalt write path.
+
+When enabling GFX CP, read back `CP_ME_CNTL` and retry the same value once
+through the RLC write path if halt bits remain set.
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index d8f66a8d4c83..77f3cc31f613 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -5786,6 +5786,22 @@ static int gfx_v10_0_cp_gfx_enable(struct amdgpu_device *adev, bool enable)
+ 	} else {
+ 		WREG32_SOC15(GC, 0, mmCP_ME_CNTL, tmp);
+ 	}
++	if (enable) {
++		u32 me_cntl = RREG32_SOC15(GC, 0, mmCP_ME_CNTL);
++		u32 halt_mask = CP_ME_CNTL__ME_HALT_MASK |
++				CP_ME_CNTL__PFP_HALT_MASK |
++				CP_ME_CNTL__CE_HALT_MASK;
++
++		if (me_cntl & halt_mask) {
++			/*
++			 * Some arm64 bring-up paths keep CP halt bits latched
++			 * after the direct write. Retry via RLC path.
++			 */
++			WREG32_SOC15_RLC(GC, 0, mmCP_ME_CNTL, tmp);
++		}
++	}
+ 
+ 	if (adev->job_hang && !enable)
+ 		return 0;
+-- 
+2.43.0
+

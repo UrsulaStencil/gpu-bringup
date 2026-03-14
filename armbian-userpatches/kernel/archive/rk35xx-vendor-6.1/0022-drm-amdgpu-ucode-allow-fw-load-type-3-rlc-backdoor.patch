@@ -1,0 +1,31 @@
+From 84e7cf5e4502ef1762f8c264604f3f92b1b949af Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 22:18:00 +0100
+Subject: [PATCH] drm/amdgpu: allow fw_load_type=3 to select RLC backdoor mode
+
+On this vendor-6.1 branch, module parameter documentation already advertises:
+  fw_load_type=3 -> RLC backdoor autoload
+but amdgpu_ucode_get_load_type() only maps to DIRECT (0) or PSP (!=0).
+
+Wire fw_load_type=3 to AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO so bring-up can
+exercise the RLC autoload path without source edits.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+index 4f88ecaf1668..f2d1430be29f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+@@ -562,6 +562,8 @@ amdgpu_ucode_get_load_type(struct amdgpu_device *adev, int load_type)
+ 	default:
+ 		if (!load_type)
+ 			return AMDGPU_FW_LOAD_DIRECT;
++		else if (load_type == 3)
++			return AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO;
+ 		else
+ 			return AMDGPU_FW_LOAD_PSP;
+ 	}
+-- 
+2.43.0
+

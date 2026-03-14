@@ -1,0 +1,2182 @@
+[ 3293.683547] [drm] amdgpu kernel modesetting enabled.
+[ 3293.685278] [drm] initializing kernel modesetting (BEIGE_GOBY 0x1002:0x743F 0x1462:0x5082 0xC7).
+[ 3293.686603] [drm] register mmio base: 0xF0200000
+[ 3293.687902] [drm] register mmio size: 1048576
+[ 3293.691276] [drm] add ip block number 0 <nv_common>
+[ 3293.692920] [drm] add ip block number 1 <gmc_v10_0>
+[ 3293.694424] [drm] add ip block number 2 <navi10_ih>
+[ 3293.696034] [drm] add ip block number 3 <psp>
+[ 3293.697714] [drm] add ip block number 4 <gfx_v10_0>
+[ 3293.699252] [drm] add ip block number 5 <sdma_v5_2>
+[ 3293.700873] [drm] add ip block number 6 <vcn_v3_0>
+[ 3293.728639] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[ 3293.729804] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[ 3293.730930] [drm] VCN(0) decode is enabled in VM mode
+[ 3293.732080] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[ 3293.733202] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[ 3293.734310] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: skipping asic reset on init for fw_load_type=3
+[ 3293.735474] [drm] vm size is 262144 GB, 4 levels, block size is 9-bit, fragment size is 9-bit
+[ 3293.736652] amdgpu 0000:03:00.0: BAR 2: releasing [mem 0x910000000-0x9101fffff 64bit pref]
+[ 3293.737777] amdgpu 0000:03:00.0: BAR 0: releasing [mem 0x900000000-0x90fffffff 64bit pref]
+[ 3293.738961] pcieport 0000:02:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[ 3293.740093] pcieport 0000:01:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[ 3293.741221] pcieport 0000:00:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[ 3293.742369] pcieport 0000:00:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[ 3293.743503] pcieport 0000:00:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[ 3293.744642] pcieport 0000:01:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[ 3293.745789] pcieport 0000:01:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[ 3293.746941] pcieport 0000:02:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[ 3293.748095] pcieport 0000:02:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[ 3293.749263] amdgpu 0000:03:00.0: BAR 0: no space for [mem size 0x100000000 64bit pref]
+[ 3293.750424] amdgpu 0000:03:00.0: BAR 0: failed to assign [mem size 0x100000000 64bit pref]
+[ 3293.751589] amdgpu 0000:03:00.0: BAR 2: no space for [mem size 0x00200000 64bit pref]
+[ 3293.752754] amdgpu 0000:03:00.0: BAR 2: failed to assign [mem size 0x00200000 64bit pref]
+[ 3293.753913] pcieport 0000:00:00.0: PCI bridge to [bus 01-ff]
+[ 3293.755070] pcieport 0000:00:00.0:   bridge window [io  0x300000-0x300fff]
+[ 3293.756231] pcieport 0000:00:00.0:   bridge window [mem 0xf0200000-0xf04fffff]
+[ 3293.757383] pcieport 0000:00:00.0: PCI bridge to [bus 01-ff]
+[ 3293.758526] pcieport 0000:00:00.0:   bridge window [io  0x300000-0x300fff]
+[ 3293.759671] pcieport 0000:00:00.0:   bridge window [mem 0xf0200000-0xf04fffff]
+[ 3293.760808] pcieport 0000:00:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[ 3293.761942] pcieport 0000:01:00.0: PCI bridge to [bus 02-03]
+[ 3293.763077] pcieport 0000:01:00.0:   bridge window [io  0x300000-0x300fff]
+[ 3293.764214] pcieport 0000:01:00.0:   bridge window [mem 0xf0200000-0xf03fffff]
+[ 3293.765350] pcieport 0000:01:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[ 3293.766483] pcieport 0000:02:00.0: PCI bridge to [bus 03]
+[ 3293.767600] pcieport 0000:02:00.0:   bridge window [io  0x300000-0x300fff]
+[ 3293.768728] pcieport 0000:02:00.0:   bridge window [mem 0xf0200000-0xf03fffff]
+[ 3293.769842] pcieport 0000:02:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[ 3293.770978] [drm] Not enough PCI address space for a large BAR.
+[ 3293.770981] amdgpu 0000:03:00.0: BAR 0: assigned [mem 0x900000000-0x90fffffff 64bit pref]
+[ 3293.773213] amdgpu 0000:03:00.0: BAR 2: assigned [mem 0x910000000-0x9101fffff 64bit pref]
+[ 3293.774344] amdgpu 0000:03:00.0: amdgpu: VRAM: 4080M 0x0000008000000000 - 0x00000080FEFFFFFF (4080M used)
+[ 3293.775453] amdgpu 0000:03:00.0: amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
+[ 3293.776550] amdgpu 0000:03:00.0: amdgpu: AGP: 267894784M 0x0000008400000000 - 0x0000FFFFFFFFFFFF
+[ 3293.777647] [drm] Detected VRAM RAM=4080M, BAR=256M
+[ 3293.778743] [drm] RAM width 64bits GDDR6
+[ 3293.779899] [drm] amdgpu: 4080M of VRAM memory ready
+[ 3293.780988] [drm] amdgpu: 3968M of GTT memory ready.
+[ 3293.782095] [drm] GART: num cpu pages 131072, num gpu pages 131072
+[ 3293.783309] [drm] PCIE GART of 512M enabled (table at 0x0000008000000000).
+[ 3293.784973] amdgpu 0000:03:00.0: amdgpu: psp sw_init: load_type=3 autoload_supported=1 toc_start=00000000934d34b4 toc_size=0x600 sos_start=000000007b2dc14c sos_size=0x14350
+[ 3293.786150] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't exist
+[ 3293.787248] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't exist
+[ 3293.788351] amdgpu 0000:03:00.0: amdgpu: psp shared buf: using VRAM-backed fw_pri mc=0x8000200000 size=0x100000
+[ 3293.793736] amdgpu 0000:03:00.0: amdgpu: rlc autoload parse toc: psp_toc_size=0x00000600 first_entry{id=22 offset=0x00c9448f size=0x0001035a}
+[ 3293.794958] [drm] use_doorbell being set to: [true]
+[ 3293.796297] [drm] Found VCN firmware Version ENC: 1.33 DEC: 4 VEP: 0 Revision: 13
+[ 3293.804844] gmc_v10_0_process_interrupt: 1369152 callbacks suppressed
+[ 3293.804847] amdgpu 0000:03:00.0: amdgpu: psp ring init: type=2 ring_mc=0x8000105000 ring_size=0x1000
+[ 3293.804848] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.808279] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.809433] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.810587] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.811745] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.812905] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.814068] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.815235] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.816401] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.817569] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.818756] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.819943] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.821128] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.822315] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.823502] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.824691] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.825883] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.827078] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.828274] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.829485] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.830702] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.831923] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.833148] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.834374] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.835604] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.836834] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.838069] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.839306] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.840567] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.841831] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.843089] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.844349] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.845602] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.846854] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.848101] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.849344] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.850586] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.851842] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.853097] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.854352] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.855603] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.856845] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.858084] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.859321] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.860552] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.861781] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.863022] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.864266] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.865509] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.866751] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.867989] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.869223] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.870453] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.871680] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.872904] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.874142] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.875380] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.876615] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.877850] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.879084] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.880318] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.881550] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.882777] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.884001] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.885237] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.886474] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.887711] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.888943] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.890168] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.891394] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.892617] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.893842] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.895070] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.896316] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.897567] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.898822] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.900078] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.901329] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.902577] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.903823] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.905060] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.906292] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3293.907535] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3293.908774] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3293.910008] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3293.911245] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3293.912476] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3293.913709] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3293.914944] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3293.916175] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3293.917469] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AED20, 0x00000400, 0x0002ED40)
+[ 3294.010595] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0520, 0x00020880, 0x00020540)
+[ 3294.103888] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092540, 0x00012840, 0x00012560)
+[ 3294.196822] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083DC0, 0x000040A0, 0x00003DE0)
+[ 3294.289961] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B59C0, 0x00035D00, 0x000359E0)
+[ 3294.383079] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A71C0, 0x00027520, 0x000271E0)
+[ 3294.476212] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098980, 0x00018D20, 0x000189A0)
+[ 3294.569469] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A9A0, 0x0000ACA0, 0x0000A9C0)
+[ 3294.662456] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BBA40, 0x0003BD40, 0x0003BA60)
+[ 3294.755971] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE5A0, 0x0002E900, 0x0002E5C0)
+[ 3294.848939] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009F5E0, 0x0001F940, 0x0001F600)
+[ 3294.942297] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000919A0, 0x00011CE0, 0x000119C0)
+[ 3295.035716] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000840C0, 0x00004480, 0x000040E0)
+[ 3295.129081] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B64A0, 0x000367C0, 0x000364C0)
+[ 3295.222351] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8420, 0x000287C0, 0x00028440)
+[ 3295.315714] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009A820, 0x0001AB20, 0x0001A840)
+[ 3295.408989] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C840, 0x0000CB40, 0x0000C860)
+[ 3295.502271] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BE7E0, 0x0003EB60, 0x0003E800)
+[ 3295.595836] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B16E0, 0x00031A80, 0x00031700)
+[ 3295.689115] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3680, 0x00023A00, 0x000236A0)
+[ 3295.782318] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095260, 0x000155C0, 0x00015280)
+[ 3295.875859] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088160, 0x00008500, 0x00008180)
+[ 3295.969218] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BA560, 0x0003A860, 0x0003A580)
+[ 3296.062884] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD8C0, 0x0002DBE0, 0x0002D8E0)
+[ 3296.156243] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009FD00, 0x0001FFC0, 0x0001FD20)
+[ 3296.249671] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092440, 0x000127E0, 0x00012460)
+[ 3296.343018] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000847C0, 0x00004B40, 0x000047E0)
+[ 3296.436757] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7EA0, 0x00038220, 0x00037EC0)
+[ 3296.530548] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB9E0, 0x0002BCE0, 0x0002BA00)
+[ 3296.624113] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009E8E0, 0x0001EC80, 0x0001E900)
+[ 3296.717695] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00091820, 0x00011B80, 0x00011840)
+[ 3296.811423] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084EE0, 0x00005280, 0x00004F00)
+[ 3296.905083] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8260, 0x00038560, 0x00038280)
+[ 3296.998591] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AAE20, 0x0002B120, 0x0002AE40)
+[ 3297.092002] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D580, 0x0001D900, 0x0001D5A0)
+[ 3297.185744] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090D20, 0x00010FE0, 0x00010D40)
+[ 3297.279392] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000840A0, 0x000043A0, 0x000040C0)
+[ 3297.373183] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7B60, 0x00037EE0, 0x00037B80)
+[ 3297.467208] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC1E0, 0x0002C540, 0x0002C200)
+[ 3297.560855] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009F4C0, 0x0001F860, 0x0001F4E0)
+[ 3297.654961] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093F20, 0x00014280, 0x00013F40)
+[ 3297.748762] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087A80, 0x00007D60, 0x00007AA0)
+[ 3297.842853] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC4A0, 0x0003C840, 0x0003C4C0)
+[ 3297.936871] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0B60, 0x00030E80, 0x00030B80)
+[ 3298.030587] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4240, 0x000245C0, 0x00024260)
+[ 3298.124613] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000988E0, 0x00018C20, 0x00018900)
+[ 3298.218563] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008CB80, 0x0000CEE0, 0x0000CBA0)
+[ 3298.312669] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00081620, 0x00001940, 0x00001640)
+[ 3298.406770] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B60A0, 0x000363E0, 0x000360C0)
+[ 3298.500940] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AAEA0, 0x0002B240, 0x0002AEC0)
+[ 3298.594965] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009F580, 0x0001F880, 0x0001F5A0)
+[ 3298.688923] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093880, 0x00013B80, 0x000138A0)
+[ 3298.783156] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088AA0, 0x00008E00, 0x00008AC0)
+[ 3298.805599] gmc_v10_0_process_interrupt: 1625685 callbacks suppressed
+[ 3298.805601] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.807603] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.808609] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[ 3298.809613] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[ 3298.810618] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3298.811624] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[ 3298.812628] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[ 3298.813633] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[ 3298.814638] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.815638] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.816645] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.817650] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.818654] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.819658] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.820661] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.821665] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.822670] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.823675] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.824672] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.825678] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.826683] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.827687] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.828690] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.829693] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.830696] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.831700] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.832704] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.833702] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.834706] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.835711] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.836712] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.837714] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.838717] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.839718] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.840721] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.841723] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.842719] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.843723] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.844727] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.845728] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.846730] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.847732] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.848733] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.849734] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.850736] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.851731] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.852735] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.853738] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.854740] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.855741] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.856742] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.857742] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.858743] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.859743] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.860736] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.861738] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.862740] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.863740] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.864738] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.865737] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.866735] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.867734] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.868734] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.869726] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.870728] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.871727] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.872725] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.873723] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.874721] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.875717] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.876714] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.877712] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.878702] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BFFE0, 0x000011A0, 0x00000000)
+[ 3298.879699] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.880698] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.881698] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.882699] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.883701] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.884702] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.885702] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.886704] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.887699] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.888696] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3298.889712] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3298.890733] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3298.891756] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3298.892781] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3298.893806] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3298.894832] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3298.895860] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3298.896887] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3298.899841] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084E60, 0x00005160, 0x00004E80)
+[ 3298.993776] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B90E0, 0x00039460, 0x00039100)
+[ 3299.087886] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ADBA0, 0x0002DEA0, 0x0002DBC0)
+[ 3299.181822] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1E00, 0x000221A0, 0x00021E20)
+[ 3299.275775] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000960E0, 0x00016400, 0x00016100)
+[ 3299.369388] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089400, 0x00009760, 0x00009420)
+[ 3299.463411] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BDAC0, 0x0003DDE0, 0x0003DAE0)
+[ 3299.557581] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2940, 0x00032C60, 0x00032960)
+[ 3299.651826] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A7BC0, 0x00027EC0, 0x00027BE0)
+[ 3299.745850] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C2A0, 0x0001C5A0, 0x0001C2C0)
+[ 3299.839881] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090920, 0x00010C80, 0x00010940)
+[ 3299.933671] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084460, 0x00004760, 0x00004480)
+[ 3300.027475] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7FA0, 0x000382A0, 0x00037FC0)
+[ 3300.121499] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC640, 0x0002C980, 0x0002C660)
+[ 3300.215375] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0520, 0x00020860, 0x00020540)
+[ 3300.309555] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095400, 0x000156C0, 0x00015420)
+[ 3300.403417] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000892C0, 0x00009620, 0x000092E0)
+[ 3300.497519] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BDD60, 0x0003E080, 0x0003DD80)
+[ 3300.591475] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2020, 0x00032360, 0x00032040)
+[ 3300.685261] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5B60, 0x00025E60, 0x00025B80)
+[ 3300.779677] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009B5E0, 0x0001B8A0, 0x0001B600)
+[ 3300.873571] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008FC80, 0x0000FFC0, 0x0000FCA0)
+[ 3300.967055] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083780, 0x00003AC0, 0x000037A0)
+[ 3301.060689] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B6AC0, 0x00036E00, 0x00036AE0)
+[ 3301.154765] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB540, 0x0002B880, 0x0002B560)
+[ 3301.248380] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009E820, 0x0001EBC0, 0x0001E840)
+[ 3301.342263] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092760, 0x00012A40, 0x00012780)
+[ 3301.436135] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000866A0, 0x00006980, 0x000066C0)
+[ 3301.530244] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BB1A0, 0x0003B460, 0x0003B1C0)
+[ 3301.624408] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AFFE0, 0x00030340, 0x00030000)
+[ 3301.718358] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4320, 0x000245E0, 0x00024340)
+[ 3301.812292] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000985A0, 0x00018920, 0x000185C0)
+[ 3301.906234] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C840, 0x0000CBA0, 0x0000C860)
+[ 3302.000274] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00080F40, 0x00001220, 0x00000F60)
+[ 3302.094217] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B51C0, 0x00035540, 0x000351E0)
+[ 3302.187939] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8900, 0x00028C20, 0x00028920)
+[ 3302.281890] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CC40, 0x0001CF00, 0x0001CC60)
+[ 3302.375533] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008FF80, 0x000102C0, 0x0000FFA0)
+[ 3302.469407] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083E20, 0x000041A0, 0x00003E40)
+[ 3302.563279] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7CA0, 0x00038040, 0x00037CC0)
+[ 3302.657074] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB7C0, 0x0002BAE0, 0x0002B7E0)
+[ 3302.750938] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009F6A0, 0x0001F9E0, 0x0001F6C0)
+[ 3302.844735] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000931A0, 0x000134E0, 0x000131C0)
+[ 3302.938222] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00085D40, 0x00006060, 0x00005D60)
+[ 3303.032240] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BA3E0, 0x0003A720, 0x0003A400)
+[ 3303.126252] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AEA60, 0x0002EDC0, 0x0002EA80)
+[ 3303.220127] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A2960, 0x00022C80, 0x00022980)
+[ 3303.314303] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097800, 0x00017B00, 0x00017820)
+[ 3303.408318] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008BE60, 0x0000C1E0, 0x0000BE80)
+[ 3303.502562] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000810C0, 0x000013E0, 0x000010E0)
+[ 3303.596658] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5B00, 0x00035E80, 0x00035B20)
+[ 3303.690824] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AA960, 0x0002ACA0, 0x0002A980)
+[ 3303.785059] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009FBE0, 0x0001FEE0, 0x0001FC00)
+[ 3303.809232] gmc_v10_0_process_interrupt: 1635166 callbacks suppressed
+[ 3303.809235] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.811212] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.812212] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[ 3303.813211] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[ 3303.814212] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3303.815212] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[ 3303.816212] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[ 3303.817213] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[ 3303.818205] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.819192] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.820189] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.821188] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.822187] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.823190] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.824190] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.825190] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.826190] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.827182] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.828168] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.829164] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.830162] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.831160] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.832160] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.833163] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.834161] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.835160] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.836152] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.837136] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.838131] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.839129] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.840127] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.841127] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.842125] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.843122] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.844121] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.845112] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.846096] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.847092] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.848089] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.849087] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.850086] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.851086] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.852084] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.853085] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.854077] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.855062] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.856059] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.857057] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.858055] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.859055] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.860054] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.861053] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.862053] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.863045] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.864030] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.865028] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.866027] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.867026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.868026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.869025] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.870023] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.871023] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.872017] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.873007] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.874003] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.874999] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.875994] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.876988] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.877982] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.878977] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.879973] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.880968] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.881956] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.882954] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.883950] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.884944] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.885938] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.886933] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.887927] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.888922] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.889918] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.890909] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3303.891918] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3303.892933] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3303.893949] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3303.894968] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3303.895985] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3303.897004] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3303.898025] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3303.899046] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3303.900097] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096900, 0x0001CC80, 0x00016920)
+[ 3303.993962] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A7C0, 0x0000AB20, 0x0000A7E0)
+[ 3304.087601] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BDAE0, 0x0003DE40, 0x0003DB00)
+[ 3304.181613] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B21C0, 0x000324C0, 0x000321E0)
+[ 3304.275564] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A64C0, 0x000267C0, 0x000264E0)
+[ 3304.369341] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099F40, 0x0001A300, 0x00019F60)
+[ 3304.463200] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008DDE0, 0x0000E160, 0x0000DE00)
+[ 3304.557126] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082060, 0x000023E0, 0x00002080)
+[ 3304.651236] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B6B40, 0x00036E20, 0x00036B60)
+[ 3304.745404] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB9E0, 0x0002BCE0, 0x0002BA00)
+[ 3304.839040] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009ED00, 0x0001F060, 0x0001ED20)
+[ 3304.933067] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000933E0, 0x000136E0, 0x00013400)
+[ 3305.026715] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086740, 0x00006A60, 0x00006760)
+[ 3305.120810] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BB180, 0x0003B500, 0x0003B1A0)
+[ 3305.214774] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AF4C0, 0x0002F780, 0x0002F4E0)
+[ 3305.308701] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3780, 0x00023AC0, 0x000237A0)
+[ 3305.402807] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098280, 0x00018540, 0x000182A0)
+[ 3305.496605] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008BD20, 0x0000C0C0, 0x0000BD40)
+[ 3305.590561] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00080060, 0x00000320, 0x00000080)
+[ 3305.684749] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4F00, 0x00035200, 0x00034F20)
+[ 3305.778536] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A89C0, 0x00028D40, 0x000289E0)
+[ 3305.872325] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C500, 0x0001C800, 0x0001C520)
+[ 3305.966359] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090C00, 0x00010EE0, 0x00010C20)
+[ 3306.060526] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00085AC0, 0x00005DA0, 0x00005AE0)
+[ 3306.154019] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B85E0, 0x00038980, 0x00038600)
+[ 3306.247971] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC900, 0x0002CBE0, 0x0002C920)
+[ 3306.341681] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009FFE0, 0x00020360, 0x00020000)
+[ 3306.435403] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093700, 0x00013A40, 0x00013720)
+[ 3306.529427] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087DC0, 0x000080E0, 0x00007DE0)
+[ 3306.623382] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC0A0, 0x0003C3C0, 0x0003C0C0)
+[ 3306.717328] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0360, 0x000306A0, 0x00030380)
+[ 3306.811202] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4280, 0x00024580, 0x000242A0)
+[ 3306.904986] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097D20, 0x000180C0, 0x00017D40)
+[ 3306.999074] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C760, 0x0000CAE0, 0x0000C780)
+[ 3307.092714] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BFA60, 0x0003FDE0, 0x0003FA80)
+[ 3307.186640] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3CC0, 0x00034060, 0x00033CE0)
+[ 3307.280441] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A7820, 0x00027B00, 0x00027840)
+[ 3307.374455] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009BE60, 0x0001C200, 0x0001BE80)
+[ 3307.468405] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090140, 0x00010460, 0x00010160)
+[ 3307.562065] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083500, 0x000037C0, 0x00003520)
+[ 3307.656094] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7C00, 0x00037EE0, 0x00037C20)
+[ 3307.750268] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ACAA0, 0x0002CDA0, 0x0002CAC0)
+[ 3307.844062] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A05C0, 0x000208E0, 0x000205E0)
+[ 3307.937845] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00094080, 0x00014400, 0x000140A0)
+[ 3308.031790] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088380, 0x00008680, 0x000083A0)
+[ 3308.125504] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BBAA0, 0x0003BDE0, 0x0003BAC0)
+[ 3308.219763] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0D40, 0x00031020, 0x00030D60)
+[ 3308.313947] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5C40, 0x00025EE0, 0x00025C60)
+[ 3308.408119] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009AAC0, 0x0001ADE0, 0x0001AAE0)
+[ 3308.502073] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008EDA0, 0x0000F0C0, 0x0000EDC0)
+[ 3308.596313] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083FC0, 0x00004320, 0x00003FE0)
+[ 3308.690337] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8660, 0x000389A0, 0x00038680)
+[ 3308.784211] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC580, 0x0002C880, 0x0002C5A0)
+[ 3308.812821] gmc_v10_0_process_interrupt: 1635384 callbacks suppressed
+[ 3308.812823] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.814805] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.815802] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[ 3308.816796] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[ 3308.817792] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3308.818787] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[ 3308.819783] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[ 3308.820780] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[ 3308.821777] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.822768] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.823768] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.824765] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.825761] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.826758] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.827755] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.828752] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.829748] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.830745] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.831736] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.832735] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.833733] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.834730] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.835727] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.836723] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.837720] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.838718] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.839715] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.840706] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.841705] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.842702] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.843699] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.844696] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.845692] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.846689] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.847687] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.848684] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.849675] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.850674] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.851674] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.852671] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.853668] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.854664] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.855662] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.856660] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.857658] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.858649] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.859650] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.860649] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.861647] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.862645] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.863643] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.864640] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.865639] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.866638] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.867630] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.868632] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.869631] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.870629] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.871627] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.872626] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.873623] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.874621] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.875621] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.876611] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.877611] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.878611] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.879608] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.880605] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.881602] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.882599] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.883596] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.884594] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.885584] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.886584] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.887581] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.888578] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.889575] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.890570] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.891566] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.892562] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.893559] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.894551] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3308.895561] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3308.896575] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3308.897592] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3308.898612] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3308.899631] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3308.900650] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3308.901672] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3308.902693] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3308.903779] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2200, 0x00035400, 0x00032220)
+[ 3308.997870] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A6CE0, 0x00026FC0, 0x00026D00)
+[ 3309.091733] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009AB80, 0x0001AF00, 0x0001ABA0)
+[ 3309.185366] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E600, 0x0000E9C0, 0x0000E620)
+[ 3309.279421] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083400, 0x000037A0, 0x00003420)
+[ 3309.373358] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7680, 0x00037A00, 0x000376A0)
+[ 3309.467448] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC160, 0x0002C440, 0x0002C180)
+[ 3309.561319] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A00C0, 0x00020380, 0x000200E0)
+[ 3309.655329] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00094740, 0x00014AA0, 0x00014760)
+[ 3309.749273] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088A60, 0x00008D40, 0x00008A80)
+[ 3309.843206] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BCD00, 0x0003D060, 0x0003CD20)
+[ 3309.937364] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1B60, 0x00031EA0, 0x00031B80)
+[ 3310.031149] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5680, 0x000259A0, 0x000256A0)
+[ 3310.124936] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000991A0, 0x000194C0, 0x000191C0)
+[ 3310.218801] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D120, 0x0000D3C0, 0x0000D140)
+[ 3310.312573] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00080C00, 0x00000F60, 0x00000C20)
+[ 3310.406589] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5280, 0x000355E0, 0x000352A0)
+[ 3310.500388] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8DE0, 0x000290C0, 0x00028E00)
+[ 3310.594335] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D0C0, 0x0001D3E0, 0x0001D0E0)
+[ 3310.688120] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090BA0, 0x00010F00, 0x00010BC0)
+[ 3310.782060] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084EC0, 0x000051A0, 0x00004EE0)
+[ 3310.875990] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B91A0, 0x000394C0, 0x000391C0)
+[ 3310.969849] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD080, 0x0002D3C0, 0x0002D0A0)
+[ 3311.063696] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0F20, 0x000212A0, 0x00020F40)
+[ 3311.157632] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000951E0, 0x00015520, 0x00015200)
+[ 3311.251941] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A800, 0x0000AB40, 0x0000A820)
+[ 3311.345799] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BE6E0, 0x0003EA20, 0x0003E700)
+[ 3311.439671] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B25A0, 0x00032900, 0x000325C0)
+[ 3311.533611] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A6840, 0x00026BA0, 0x00026860)
+[ 3311.627621] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009AE80, 0x0001B220, 0x0001AEA0)
+[ 3311.721570] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F1A0, 0x0000F480, 0x0000F1C0)
+[ 3311.815520] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000834E0, 0x000037A0, 0x00003500)
+[ 3311.909383] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7360, 0x00037700, 0x00037380)
+[ 3312.003554] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC160, 0x0002C500, 0x0002C180)
+[ 3312.097482] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0420, 0x00020760, 0x00020440)
+[ 3312.191435] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00094700, 0x00014A20, 0x00014720)
+[ 3312.285435] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088D80, 0x000090E0, 0x00008DA0)
+[ 3312.379369] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD040, 0x0003D380, 0x0003D060)
+[ 3312.473534] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1E40, 0x000321E0, 0x00031E60)
+[ 3312.567459] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A60C0, 0x00026440, 0x000260E0)
+[ 3312.661166] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000997C0, 0x00019B20, 0x000197E0)
+[ 3312.754952] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D260, 0x0000D600, 0x0000D280)
+[ 3312.848817] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00081180, 0x00001480, 0x000011A0)
+[ 3312.942681] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5040, 0x000353A0, 0x00035060)
+[ 3313.036777] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9B00, 0x00029E00, 0x00029B20)
+[ 3313.131008] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009ED40, 0x0001F080, 0x0001ED60)
+[ 3313.225091] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093800, 0x00013B00, 0x00013820)
+[ 3313.319109] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087EC0, 0x000081E0, 0x00007EE0)
+[ 3313.413128] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC5A0, 0x0003C8A0, 0x0003C5C0)
+[ 3313.507450] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1BC0, 0x00031F00, 0x00031BE0)
+[ 3313.601988] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A7DA0, 0x000280C0, 0x00027DC0)
+[ 3313.696223] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CFC0, 0x0001D320, 0x0001CFE0)
+[ 3313.790697] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092DE0, 0x000130E0, 0x00012E00)
+[ 3313.816402] gmc_v10_0_process_interrupt: 1635837 callbacks suppressed
+[ 3313.816404] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.818387] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.819385] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[ 3313.820381] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[ 3313.821378] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3313.822375] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[ 3313.823371] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[ 3313.824368] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[ 3313.825366] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.826357] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.827356] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.828354] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.829352] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.830349] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.831345] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.832342] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.833338] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.834336] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.835327] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.836327] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.837324] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.838321] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.839318] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.840315] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.841311] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.842310] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.843306] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.844297] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.845297] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.846294] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.847291] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.848288] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.849284] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.850281] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.851278] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.852275] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.853266] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.854265] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.855263] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.856259] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.857255] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.858251] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.859248] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.860245] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.861242] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.862232] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.863231] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.864228] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.865225] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.866222] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.867218] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.868214] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.869211] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.870208] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.871200] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.872200] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.873198] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.874196] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.875193] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.876190] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.877187] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.878186] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.879183] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.880175] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.881177] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.882176] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.883175] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.884172] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.885170] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.886168] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.887165] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.888163] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.889155] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.890155] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.891153] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.892151] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.893148] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.894145] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.895141] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.896139] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.897135] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.898129] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3313.899139] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3313.900156] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3313.901174] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3313.902195] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3313.903216] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3313.904238] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3313.905261] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3313.906284] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3313.907346] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F280, 0x00014060, 0x0000F2A0)
+[ 3314.001223] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000831E0, 0x000034A0, 0x00003200)
+[ 3314.095158] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B74A0, 0x000377E0, 0x000374C0)
+[ 3314.188964] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AAFE0, 0x0002B2E0, 0x0002B000)
+[ 3314.282837] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009EF00, 0x0001F200, 0x0001EF20)
+[ 3314.376486] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092200, 0x00012580, 0x00012220)
+[ 3314.470349] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086080, 0x00006420, 0x000060A0)
+[ 3314.564062] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B97A0, 0x00039AE0, 0x000397C0)
+[ 3314.658089] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ADE60, 0x0002E180, 0x0002DE80)
+[ 3314.751879] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A19E0, 0x00021CA0, 0x00021A00)
+[ 3314.845588] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000950A0, 0x00015440, 0x000150C0)
+[ 3314.939602] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089780, 0x00009A80, 0x000097A0)
+[ 3315.033388] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD220, 0x0003D5C0, 0x0003D240)
+[ 3315.127202] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0D60, 0x00031060, 0x00030D80)
+[ 3315.221210] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5400, 0x00025740, 0x00025420)
+[ 3315.315305] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099E80, 0x0001A1C0, 0x00019EA0)
+[ 3315.408948] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D1E0, 0x0000D500, 0x0000D200)
+[ 3315.502803] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000810C0, 0x00001400, 0x000010E0)
+[ 3315.596605] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4C00, 0x00034F00, 0x00034C20)
+[ 3315.690320] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8300, 0x00028660, 0x00028320)
+[ 3315.784183] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C200, 0x0001C520, 0x0001C220)
+[ 3315.878052] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090500, 0x00010800, 0x00010520)
+[ 3315.971623] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083C80, 0x00003F60, 0x00003CA0)
+[ 3316.065492] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7BA0, 0x00037EA0, 0x00037BC0)
+[ 3316.159216] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB320, 0x0002B600, 0x0002B340)
+[ 3316.253076] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009F200, 0x0001F540, 0x0001F220)
+[ 3316.347097] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000938E0, 0x00013BE0, 0x00013900)
+[ 3316.440804] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086F80, 0x00007340, 0x00006FA0)
+[ 3316.534740] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BB220, 0x0003B580, 0x0003B240)
+[ 3316.628839] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AFCA0, 0x0002FFE0, 0x0002FCC0)
+[ 3316.722620] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3760, 0x00023AE0, 0x00023780)
+[ 3316.816258] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096A80, 0x00016DE0, 0x00016AA0)
+[ 3316.910126] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A9C0, 0x0000ACA0, 0x0000A9E0)
+[ 3317.004204] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BF4A0, 0x0003F780, 0x0003F4C0)
+[ 3317.098070] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3320, 0x000336C0, 0x00033340)
+[ 3317.191806] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A6AC0, 0x00026D80, 0x00026AE0)
+[ 3317.285691] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009A9E0, 0x0001ACE0, 0x0001AA00)
+[ 3317.379636] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008ECC0, 0x0000EFE0, 0x0000ECE0)
+[ 3317.473511] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082C00, 0x00002EE0, 0x00002C20)
+[ 3317.567069] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5B40, 0x00035EA0, 0x00035B60)
+[ 3317.661080] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AA1E0, 0x0002A520, 0x0002A200)
+[ 3317.754798] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D900, 0x0001DC40, 0x0001D920)
+[ 3317.848585] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00091440, 0x00011740, 0x00011460)
+[ 3317.942374] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084F40, 0x00005280, 0x00004F60)
+[ 3318.036153] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B89E0, 0x00038D80, 0x00038A00)
+[ 3318.130098] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ACC40, 0x0002CFE0, 0x0002CC60)
+[ 3318.224031] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0F00, 0x00021240, 0x00020F20)
+[ 3318.317981] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000951E0, 0x00015500, 0x00015200)
+[ 3318.411905] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089460, 0x000097E0, 0x00009480)
+[ 3318.431942] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=10000000
+[ 3318.433334] [drm:psp_v11_0_ring_create [amdgpu]] *ERROR* Failed to wait for sOS ready for ring creation
+[ 3318.434688] [drm:psp_hw_start [amdgpu]] *ERROR* PSP create ring failed!
+[ 3318.545242] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BF800, 0x0003FB40, 0x0003F820)
+[ 3318.638883] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2EC0, 0x00033260, 0x00032EE0)
+[ 3318.733116] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8140, 0x00028440, 0x00028160)
+[ 3318.819987] gmc_v10_0_process_interrupt: 1638992 callbacks suppressed
+[ 3318.819989] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.822059] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.823106] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[ 3318.824155] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[ 3318.825207] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3318.826257] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[ 3318.827308] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[ 3318.828351] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[ 3318.829387] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.830418] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.831464] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.832512] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.833563] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.834617] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.835668] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.836721] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.837766] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.838804] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.839836] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.840882] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.841932] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.842983] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.844035] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.845088] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.846141] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.847187] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.848224] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.849257] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.850304] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.851355] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.852408] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.853463] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.854515] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.855569] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.856616] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.857654] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.858688] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.859736] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.860788] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.861841] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.862896] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.863950] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.865005] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.866052] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.867092] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.868128] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.869177] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.870229] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.871284] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.872340] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.873396] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.874451] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.875498] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.876539] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.877576] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.878627] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.879679] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.880734] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.881791] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.882847] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.883903] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.884954] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.885995] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.887032] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.888083] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.889137] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.890193] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.891252] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.892309] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.893367] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.894418] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.895460] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.896498] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.897550] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.898606] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.899662] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.900720] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.901778] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.902836] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.903890] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.904944] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.906000] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3318.907073] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3318.908152] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3318.909233] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3318.910316] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3318.911399] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3318.912482] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3318.913568] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3318.914653] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3318.915776] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BCB40, 0x0000A0C0, 0x0003CB60)
+[ 3319.009572] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0660, 0x00030980, 0x00030680)
+[ 3319.103353] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4140, 0x000244A0, 0x00024160)
+[ 3319.197149] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097C20, 0x00017F80, 0x00017C40)
+[ 3319.290883] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008B3E0, 0x0000B680, 0x0000B400)
+[ 3319.384298] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BDB40, 0x0003DEC0, 0x0003DB60)
+[ 3319.477811] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0740, 0x00030A00, 0x00030760)
+[ 3319.571832] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4E40, 0x00025120, 0x00024E60)
+[ 3319.665482] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000981C0, 0x000184C0, 0x000181E0)
+[ 3319.759353] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C120, 0x0000C3E0, 0x0000C140)
+[ 3319.853065] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BF7E0, 0x0003FB80, 0x0003F800)
+[ 3319.946707] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2B60, 0x00032E60, 0x00032B80)
+[ 3320.040506] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A66C0, 0x000269A0, 0x000266E0)
+[ 3320.134299] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009A180, 0x0001A500, 0x0001A1A0)
+[ 3320.228172] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E0C0, 0x0000E3A0, 0x0000E0E0)
+[ 3320.321812] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000813C0, 0x00001740, 0x000013E0)
+[ 3320.415829] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5AA0, 0x00035DA0, 0x00035AC0)
+[ 3320.509171] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A7E60, 0x000281A0, 0x00027E80)
+[ 3320.602810] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009B1A0, 0x0001B4E0, 0x0001B1C0)
+[ 3320.696527] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E900, 0x0000EC00, 0x0000E920)
+[ 3320.790327] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082420, 0x00002740, 0x00002440)
+[ 3320.884122] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5EC0, 0x00036260, 0x00035EE0)
+[ 3320.977917] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9A40, 0x00029D00, 0x00029A60)
+[ 3321.071565] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CDA0, 0x0001D0C0, 0x0001CDC0)
+[ 3321.165376] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090900, 0x00010BE0, 0x00010920)
+[ 3321.259179] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084440, 0x00004740, 0x00004460)
+[ 3321.352975] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7F60, 0x00038280, 0x00037F80)
+[ 3321.446693] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB680, 0x0002B9C0, 0x0002B6A0)
+[ 3321.540405] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009EDC0, 0x0001F0E0, 0x0001EDE0)
+[ 3321.634197] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000928C0, 0x00012C00, 0x000128E0)
+[ 3321.727979] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086400, 0x00006700, 0x00006420)
+[ 3321.821993] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BAAE0, 0x0003ADE0, 0x0003AB00)
+[ 3321.915708] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE1E0, 0x0002E540, 0x0002E200)
+[ 3322.009512] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1D40, 0x00022020, 0x00021D60)
+[ 3322.103229] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095440, 0x000157A0, 0x00015460)
+[ 3322.197075] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000892A0, 0x00009660, 0x000092C0)
+[ 3322.290945] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD1C0, 0x0003D4C0, 0x0003D1E0)
+[ 3322.384824] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1120, 0x000313E0, 0x00031140)
+[ 3322.478535] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4820, 0x00024B80, 0x00024840)
+[ 3322.572311] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098EA0, 0x00019200, 0x00018EC0)
+[ 3322.666084] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C9A0, 0x0000CCE0, 0x0000C9C0)
+[ 3322.760097] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00081080, 0x00001380, 0x000010A0)
+[ 3322.853953] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4F20, 0x000352A0, 0x00034F40)
+[ 3322.947734] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8A60, 0x00028D60, 0x00028A80)
+[ 3323.041961] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009DD00, 0x0001DFE0, 0x0001DD20)
+[ 3323.135826] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00091C00, 0x00011F20, 0x00011C20)
+[ 3323.229823] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086260, 0x000065E0, 0x00006280)
+[ 3323.324137] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BB840, 0x0003BBC0, 0x0003B860)
+[ 3323.418291] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0680, 0x000309E0, 0x000306A0)
+[ 3323.512455] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5520, 0x00025820, 0x00025540)
+[ 3323.606613] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009A380, 0x0001A6C0, 0x0001A3A0)
+[ 3323.700789] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F260, 0x0000F520, 0x0000F280)
+[ 3323.794877] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083CA0, 0x00004020, 0x00003CC0)
+[ 3323.823568] gmc_v10_0_process_interrupt: 1633525 callbacks suppressed
+[ 3323.823570] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.825570] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.826576] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[ 3323.827580] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[ 3323.828584] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3323.829588] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[ 3323.830592] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[ 3323.831597] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[ 3323.832601] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.833598] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.834604] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.835609] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.836612] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.837616] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.838619] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.839622] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.840627] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.841631] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.842628] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.843634] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.844639] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.845642] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.846645] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.847648] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.848649] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.849652] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.850655] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.851653] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.852658] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.853662] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.854663] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.855666] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.856668] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.857669] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.858672] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.859674] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.860669] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.861673] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.862676] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.863678] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.864679] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.865681] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.866682] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.867683] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.868686] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.869683] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.870687] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.871689] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.872690] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.873699] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.874701] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.875700] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.876701] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.877701] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.878695] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.879698] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.880700] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.881699] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.882700] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.883700] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.884699] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.885699] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.886699] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.887691] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.888692] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.889692] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.890690] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.891688] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.892686] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.893683] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.894680] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.895678] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.896670] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.897669] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.898669] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.899666] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.900663] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.901659] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.902656] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.903653] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.904651] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.905644] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3323.906655] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3323.907670] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3323.908687] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3323.909707] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3323.910726] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3323.911747] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3323.912769] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3323.913792] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3323.914879] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008AF80, 0x0000CF00, 0x0000AFA0)
+[ 3324.008826] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BF2A0, 0x0003F580, 0x0003F2C0)
+[ 3324.103048] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B44C0, 0x00034820, 0x000344E0)
+[ 3324.196915] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A83C0, 0x000286E0, 0x000283E0)
+[ 3324.290921] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009CA60, 0x0001CDA0, 0x0001CA80)
+[ 3324.384832] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090D00, 0x00011060, 0x00010D20)
+[ 3324.478684] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084BE0, 0x00004F20, 0x00004C00)
+[ 3324.572826] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B9A80, 0x00039D80, 0x00039AA0)
+[ 3324.666988] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE8C0, 0x0002EC20, 0x0002E8E0)
+[ 3324.760841] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A27E0, 0x00022AE0, 0x00022800)
+[ 3324.854554] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095EA0, 0x00016240, 0x00015EC0)
+[ 3324.948634] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A900, 0x0000AC60, 0x0000A920)
+[ 3325.042638] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BEFC0, 0x0003F2E0, 0x0003EFE0)
+[ 3325.136580] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3240, 0x000335C0, 0x00033260)
+[ 3325.230577] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A78C0, 0x00027C20, 0x000278E0)
+[ 3325.324302] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009AFC0, 0x0001B320, 0x0001AFE0)
+[ 3325.418316] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F6E0, 0x0000F9A0, 0x0000F700)
+[ 3325.512237] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083940, 0x00003CE0, 0x00003960)
+[ 3325.606343] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8400, 0x00038700, 0x00038420)
+[ 3325.700147] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ABF40, 0x0002C240, 0x0002BF60)
+[ 3325.794151] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0580, 0x00020920, 0x000205A0)
+[ 3325.888030] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00094480, 0x000147A0, 0x000144A0)
+[ 3325.981809] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087F20, 0x000082C0, 0x00007F40)
+[ 3326.075684] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BBE40, 0x0003C140, 0x0003BE60)
+[ 3326.169704] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0540, 0x00030820, 0x00030560)
+[ 3326.263784] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4FC0, 0x00025300, 0x00024FE0)
+[ 3326.357869] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099A00, 0x00019D80, 0x00019A20)
+[ 3326.451971] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E4E0, 0x0000E7C0, 0x0000E500)
+[ 3326.545758] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00081FC0, 0x00002320, 0x00001FE0)
+[ 3326.639769] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B6680, 0x000369A0, 0x000366A0)
+[ 3326.733464] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9D40, 0x0002A0E0, 0x00029D60)
+[ 3326.827480] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009E400, 0x0001E720, 0x0001E420)
+[ 3326.921498] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092AC0, 0x00012DE0, 0x00012AE0)
+[ 3327.015363] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086A20, 0x00006CE0, 0x00006A40)
+[ 3327.109166] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BA540, 0x0003A860, 0x0003A560)
+[ 3327.202964] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE0A0, 0x0002E380, 0x0002E0C0)
+[ 3327.297271] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A36C0, 0x00023A00, 0x000236E0)
+[ 3327.391216] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000979A0, 0x00017CC0, 0x000179C0)
+[ 3327.485158] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008BC80, 0x0000BFA0, 0x0000BCA0)
+[ 3327.579105] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BFEE0, 0x00000280, 0x0003FF00)
+[ 3327.673126] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4600, 0x000348C0, 0x00034620)
+[ 3327.767047] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8860, 0x00028C00, 0x00028880)
+[ 3327.861131] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D2A0, 0x0001D620, 0x0001D2C0)
+[ 3327.955291] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00092100, 0x00012440, 0x00012120)
+[ 3328.049606] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087760, 0x00007A60, 0x00007780)
+[ 3328.143848] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BCA40, 0x0003CCE0, 0x0003CA60)
+[ 3328.237787] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0CC0, 0x00031040, 0x00030CE0)
+[ 3328.331560] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4760, 0x00024B00, 0x00024780)
+[ 3328.425733] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000995E0, 0x00019900, 0x00019600)
+[ 3328.519820] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E040, 0x0000E3A0, 0x0000E060)
+[ 3328.613822] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000826E0, 0x00002A20, 0x00002700)
+[ 3328.708437] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8CC0, 0x00038FC0, 0x00038CE0)
+[ 3328.802522] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD720, 0x0002DA80, 0x0002D740)
+[ 3328.827105] gmc_v10_0_process_interrupt: 1635678 callbacks suppressed
+[ 3328.827106] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.829094] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.830093] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[ 3328.831090] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[ 3328.832089] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3328.833087] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[ 3328.834085] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[ 3328.835084] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[ 3328.836082] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.837073] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.838073] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.839071] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.840068] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.841067] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.842063] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.843060] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.844058] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.845056] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.846048] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.847048] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.848046] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.849043] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.850040] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.851036] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.852034] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.853032] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.854030] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.855019] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.856019] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.857017] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.858014] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.859011] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.860007] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.861003] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.862001] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.862999] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.863989] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.864990] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.865989] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.866986] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.867982] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.868979] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.869976] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.870973] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.871971] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.872962] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.873963] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.874961] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.875957] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.876954] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.877952] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.878948] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.879947] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.880945] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.881937] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.882938] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.883937] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.884935] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.885934] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.886931] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.887930] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.888928] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.889926] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.890918] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.891919] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.892919] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.893917] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.894915] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.895912] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.896911] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.897909] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.898907] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.899899] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.900899] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.901899] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.902896] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.903894] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.904890] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.905887] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.906884] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.907881] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.908874] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3328.909884] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3328.910900] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3328.911919] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3328.912941] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3328.913962] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3328.914983] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3328.916006] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3328.917030] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3328.918108] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A6220, 0x0002BB20, 0x00026240)
+[ 3329.011830] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099940, 0x00019C80, 0x00019960)
+[ 3329.105838] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008DF60, 0x0000E320, 0x0000DF80)
+[ 3329.199631] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00081A40, 0x00001DA0, 0x00001A60)
+[ 3329.293725] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B64C0, 0x00036800, 0x000364E0)
+[ 3329.387445] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AA760, 0x0002AAC0, 0x0002A780)
+[ 3329.481148] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009DF00, 0x0001E1C0, 0x0001DF20)
+[ 3329.575081] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000921E0, 0x00012500, 0x00012200)
+[ 3329.669094] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086900, 0x00006BC0, 0x00006920)
+[ 3329.763033] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BABE0, 0x0003AF00, 0x0003AC00)
+[ 3329.856899] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AEAA0, 0x0002EE00, 0x0002EAC0)
+[ 3329.950907] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3140, 0x00023480, 0x00023160)
+[ 3330.044908] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000977C0, 0x00017B20, 0x000177E0)
+[ 3330.138927] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008BEC0, 0x0000C1A0, 0x0000BEE0)
+[ 3330.232949] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000805A0, 0x000008A0, 0x000005C0)
+[ 3330.327033] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5020, 0x00035360, 0x00035040)
+[ 3330.421062] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9740, 0x00029A00, 0x00029760)
+[ 3330.515060] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009DD80, 0x0001E120, 0x0001DDA0)
+[ 3330.609372] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093400, 0x000136E0, 0x00013420)
+[ 3330.703371] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087AE0, 0x00007DE0, 0x00007B00)
+[ 3330.797300] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BBD40, 0x0003C0E0, 0x0003BD60)
+[ 3330.891228] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0000, 0x00030340, 0x00030020)
+[ 3330.985166] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A42C0, 0x00024600, 0x000242E0)
+[ 3331.079080] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000985A0, 0x000188C0, 0x000185C0)
+[ 3331.172950] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C4A0, 0x0000C7C0, 0x0000C4C0)
+[ 3331.267102] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00081320, 0x00001640, 0x00001340)
+[ 3331.361188] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5D80, 0x000360E0, 0x00035DA0)
+[ 3331.455432] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB020, 0x0002B300, 0x0002B040)
+[ 3331.549349] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009F280, 0x0001F620, 0x0001F2A0)
+[ 3331.643369] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093980, 0x00013C60, 0x000139A0)
+[ 3331.737308] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087CA0, 0x00007F80, 0x00007CC0)
+[ 3331.831319] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC340, 0x0003C680, 0x0003C360)
+[ 3331.925260] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0620, 0x00030940, 0x00030640)
+[ 3332.019271] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4C40, 0x00025000, 0x00024C60)
+[ 3332.113276] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000992A0, 0x00019620, 0x000192C0)
+[ 3332.206907] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C5E0, 0x0000C920, 0x0000C600)
+[ 3332.300917] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00080CA0, 0x00000FC0, 0x00000CC0)
+[ 3332.394853] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4F20, 0x000352A0, 0x00034F40)
+[ 3332.489002] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9D40, 0x0002A0C0, 0x00029D60)
+[ 3332.583132] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009EBA0, 0x0001EEE0, 0x0001EBC0)
+[ 3332.677147] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093220, 0x00013580, 0x00013240)
+[ 3332.771152] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087860, 0x00007C00, 0x00007880)
+[ 3332.865179] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BBF00, 0x0003C240, 0x0003BF20)
+[ 3332.959346] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B0D60, 0x000310A0, 0x00030D80)
+[ 3333.053496] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5C00, 0x00025F00, 0x00025C20)
+[ 3333.147731] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009AE20, 0x0001B180, 0x0001AE40)
+[ 3333.241910] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008FCA0, 0x0000FFC0, 0x0000FCC0)
+[ 3333.335503] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083420, 0x00003700, 0x00003440)
+[ 3333.429666] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B82E0, 0x000385C0, 0x00038300)
+[ 3333.523685] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC940, 0x0002CCC0, 0x0002C960)
+[ 3333.617690] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A0FC0, 0x00021320, 0x00020FE0)
+[ 3333.712002] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096660, 0x00016920, 0x00016680)
+[ 3333.806076] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008B080, 0x0000B420, 0x0000B0A0)
+[ 3333.830729] gmc_v10_0_process_interrupt: 1636014 callbacks suppressed
+[ 3333.830732] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.832713] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.833711] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B32
+[ 3333.834706] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.835702] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3333.836699] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.837695] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.838691] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.839687] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.840678] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.841677] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.842674] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.843671] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.844668] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.845664] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.846661] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.847658] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.848654] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.849645] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.850645] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.851643] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.852639] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.853638] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.854634] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.855631] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.856628] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.857626] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.858617] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.859617] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.860615] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.861612] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.862609] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.863606] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.864602] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.865598] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.866595] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.867586] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.868586] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.869584] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.870581] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.871578] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.872574] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.873570] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.874567] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.875563] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.876553] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.877550] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.878549] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.879546] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.880544] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.881540] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.882537] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.883535] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.884532] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.885523] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.886522] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.887521] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.888518] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.889515] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.890512] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.891508] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.892506] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.893504] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.894495] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.895493] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.896492] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.897489] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.898487] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.899484] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.900481] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.901479] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.902478] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.903469] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.904469] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.905468] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.906465] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.907462] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.908458] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.909454] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.910451] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.911448] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.912442] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3333.913453] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3333.914469] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3333.915488] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3333.916508] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3333.917527] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3333.918548] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3333.919570] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3333.920592] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3333.921671] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083E00, 0x00009860, 0x00003E20)
+[ 3334.015581] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B80C0, 0x00038400, 0x000380E0)
+[ 3334.109676] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ACBE0, 0x0002CE80, 0x0002CC00)
+[ 3334.203690] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A12E0, 0x000215C0, 0x00021300)
+[ 3334.297620] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095540, 0x000158E0, 0x00015560)
+[ 3334.391556] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089800, 0x00009B40, 0x00009820)
+[ 3334.485419] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD6E0, 0x0003DA20, 0x0003D700)
+[ 3334.579509] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2180, 0x000324A0, 0x000321A0)
+[ 3334.673604] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A6C40, 0x00026F40, 0x00026C60)
+[ 3334.767680] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009B640, 0x0001BA00, 0x0001B660)
+[ 3334.861691] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008FCE0, 0x00010020, 0x0000FD00)
+[ 3334.955853] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084B40, 0x00004E80, 0x00004B60)
+[ 3335.049863] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B91C0, 0x00039520, 0x000391E0)
+[ 3335.143894] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD8E0, 0x0002DBA0, 0x0002D900)
+[ 3335.237985] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A23C0, 0x000226A0, 0x000223E0)
+[ 3335.332226] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000975E0, 0x00017940, 0x00017600)
+[ 3335.426297] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C000, 0x0000C3A0, 0x0000C020)
+[ 3335.520320] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00080700, 0x000009E0, 0x00000720)
+[ 3335.614185] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B45E0, 0x00034920, 0x00034600)
+[ 3335.708349] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A9440, 0x00029780, 0x00029460)
+[ 3335.802441] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009DF20, 0x0001E200, 0x0001DF40)
+[ 3335.896304] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00091DA0, 0x00012140, 0x00011DC0)
+[ 3335.990250] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000860A0, 0x000063A0, 0x000060C0)
+[ 3336.083989] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BA3A0, 0x0003A6A0, 0x0003A3C0)
+[ 3336.177674] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE260, 0x0002E5C0, 0x0002E280)
+[ 3336.271886] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A34E0, 0x000237E0, 0x00023500)
+[ 3336.365890] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00097BC0, 0x00017EC0, 0x00017BE0)
+[ 3336.459829] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008BEA0, 0x0000C1C0, 0x0000BEC0)
+[ 3336.553615] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BF940, 0x0003FCE0, 0x0003F960)
+[ 3336.647634] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4020, 0x00034320, 0x00034040)
+[ 3336.741652] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8700, 0x00028A00, 0x00028720)
+[ 3336.835428] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009C1C0, 0x0001C540, 0x0001C1E0)
+[ 3336.929728] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00091780, 0x00011B20, 0x000117A0)
+[ 3337.023965] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086A20, 0x00006D00, 0x00006A40)
+[ 3337.117891] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BAC80, 0x0003B020, 0x0003ACA0)
+[ 3337.211670] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AE720, 0x0002EAC0, 0x0002E740)
+[ 3337.305588] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A29A0, 0x00022D20, 0x000229C0)
+[ 3337.399528] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096CC0, 0x00016FA0, 0x00016CE0)
+[ 3337.493299] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A760, 0x0000AB00, 0x0000A780)
+[ 3337.587327] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BEE20, 0x0003F140, 0x0003EE40)
+[ 3337.681432] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3940, 0x00033BE0, 0x00033960)
+[ 3337.775665] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8B60, 0x00028EC0, 0x00028B80)
+[ 3337.869817] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009DA40, 0x0001DD00, 0x0001DA60)
+[ 3337.963886] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000924E0, 0x00012800, 0x00012500)
+[ 3338.058027] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087300, 0x00007680, 0x00007320)
+[ 3338.152271] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC580, 0x0003C880, 0x0003C5A0)
+[ 3338.246426] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B13E0, 0x00031720, 0x00031400)
+[ 3338.340431] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5AA0, 0x00025DC0, 0x00025AC0)
+[ 3338.434727] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009B080, 0x0001B400, 0x0001B0A0)
+[ 3338.528940] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000902A0, 0x00010600, 0x000102C0)
+[ 3338.623015] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084D20, 0x00005060, 0x00004D40)
+[ 3338.717176] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B9B80, 0x00039EC0, 0x00039BA0)
+[ 3338.811562] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AF5E0, 0x0002F8C0, 0x0002F600)
+[ 3338.834220] gmc_v10_0_process_interrupt: 1636173 callbacks suppressed
+[ 3338.834221] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.836204] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.837204] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[ 3338.838200] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[ 3338.839197] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[ 3338.840194] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[ 3338.841191] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[ 3338.842188] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[ 3338.843185] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.844176] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.845176] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.846174] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.847171] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.848169] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.849165] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.850162] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.851160] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.852158] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.853150] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.854149] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.855147] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.856144] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.857142] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.858139] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.859135] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.860133] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.861130] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.862121] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.863121] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.864120] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.865116] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.866114] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.867111] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.868107] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.869105] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.870102] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.871093] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.872094] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.873093] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.874091] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.875088] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.876084] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.877081] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.878079] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.879077] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.880068] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.881068] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.882067] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.883064] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.884061] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.885057] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.886054] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.887051] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.888048] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.889039] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.890038] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.891037] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.892034] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.893031] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.894028] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.895025] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.896023] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.897020] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.898012] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.899012] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.900010] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.901008] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.902005] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.903001] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.903998] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.904995] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.905992] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.906982] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.907982] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.908981] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.909977] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.910975] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.911971] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.912967] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.913964] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.914961] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.915954] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[ 3338.916964] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000200000000 from client 0x12 (VMC)
+[ 3338.917979] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[ 3338.918997] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[ 3338.920017] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[ 3338.921036] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[ 3338.922057] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[ 3338.923078] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[ 3338.924102] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[ 3338.925174] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A18A0, 0x00028880, 0x000218C0)
+[ 3339.019198] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095F80, 0x00016280, 0x00015FA0)
+[ 3339.112752] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088F00, 0x00009220, 0x00008F20)
+[ 3339.206625] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BCE20, 0x0003D120, 0x0003CE40)
+[ 3339.300434] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B09A0, 0x00030C60, 0x000309C0)
+[ 3339.394281] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4840, 0x00024BC0, 0x00024860)
+[ 3339.488062] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098360, 0x00018680, 0x00018380)
+[ 3339.581846] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008BE80, 0x0000C1A0, 0x0000BEA0)
+[ 3339.675783] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00080100, 0x00000480, 0x00000120)
+[ 3339.769733] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4420, 0x00034700, 0x00034440)
+[ 3339.863675] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8700, 0x00028A20, 0x00028720)
+[ 3339.957239] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009B640, 0x0001B9A0, 0x0001B660)
+[ 3340.051171] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F8E0, 0x0000FC40, 0x0000F900)
+[ 3340.145177] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083F60, 0x000042C0, 0x00003F80)
+[ 3340.239115] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8260, 0x00038560, 0x00038280)
+[ 3340.332975] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AC100, 0x0002C480, 0x0002C120)
+[ 3340.426830] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009FF80, 0x00020320, 0x0001FFA0)
+[ 3340.520616] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093A00, 0x00013DC0, 0x00013A20)
+[ 3340.614491] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087960, 0x00007C20, 0x00007980)
+[ 3340.708430] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BBC00, 0x0003BF60, 0x0003BC20)
+[ 3340.802366] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AFEA0, 0x00030200, 0x0002FEC0)
+[ 3340.896302] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A4160, 0x000244A0, 0x00024180)
+[ 3340.990543] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099420, 0x000196E0, 0x00019440)
+[ 3341.084100] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008C3A0, 0x0000C6C0, 0x0000C3C0)
+[ 3341.177899] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BFEC0, 0x000001E0, 0x0003FEE0)
+[ 3341.271984] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B48E0, 0x00034C80, 0x00034900)
+[ 3341.365858] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8820, 0x00028B00, 0x00028840)
+[ 3341.459944] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D280, 0x0001D5E0, 0x0001D2A0)
+[ 3341.553749] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090D80, 0x000110C0, 0x00010DA0)
+[ 3341.647696] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000850A0, 0x00005380, 0x000050C0)
+[ 3341.741478] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B8B40, 0x00038EE0, 0x00038B60)
+[ 3341.835512] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD280, 0x0002D520, 0x0002D2A0)
+[ 3341.929445] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1580, 0x00021880, 0x000215A0)
+[ 3342.023302] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095400, 0x000157A0, 0x00015420)
+[ 3342.117378] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089E20, 0x0000A1C0, 0x00009E40)
+[ 3342.211102] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD580, 0x0003D880, 0x0003D5A0)
+[ 3342.304989] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B14A0, 0x000317A0, 0x000314C0)
+[ 3342.399060] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5EC0, 0x00026260, 0x00025EE0)
+[ 3342.493064] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009A580, 0x0001A8A0, 0x0001A5A0)
+[ 3342.587008] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E880, 0x0000EB80, 0x0000E8A0)
+[ 3342.680924] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00082B00, 0x00002E80, 0x00002B20)
+[ 3342.775023] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B75C0, 0x000378C0, 0x000375E0)
+[ 3342.868963] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB8A0, 0x0002BBC0, 0x0002B8C0)
+[ 3342.962730] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009F740, 0x0001FAC0, 0x0001F760)
+[ 3343.056432] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00093660, 0x00013960, 0x00013680)
+[ 3343.096340] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=10000000
+[ 3343.097727] [drm:psp_v11_0_ring_destroy [amdgpu]] *ERROR* Fail to stop psp ring
+[ 3343.099183] [drm:psp_hw_init [amdgpu]] *ERROR* PSP firmware loading failed
+[ 3343.100544] [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* hw_init of IP block <psp> failed -22
+[ 3343.101913] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[ 3343.102960] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[ 3343.104006] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[ 3343.120001] [drm] shutdown in progress; skipping GPU TLB flush
+[ 3343.121542] amdgpu: probe of 0000:03:00.0 failed with error -22
+[ 3343.193455] ------------[ cut here ]------------
+[ 3343.196461] Memory manager not clean during takedown.
+[ 3343.199394] WARNING: CPU: 2 PID: 42706 at drivers/gpu/drm/drm_mm.c:999 drm_mm_takedown+0x2c/0x40
+[ 3343.202306] Modules linked in: amdgpu(O+) drm_ttm_helper drm_buddy ttm(O) zram zsmalloc binfmt_misc pwm_fan rk805_pwrkey panfrost drm_shmem_helper gpu_sched fuse nfnetlink ip_tables x_tables ipv6 btrfs blake2b_generic xor xor_neon raid6_pq r8169 rockchip_cpuinfo uio_pdrv_genirq uio adc_keys [last unloaded: drm_ttm_helper]
+[ 3343.205458] CPU: 2 PID: 42706 Comm: modprobe Tainted: G        W  O       6.1.115-vendor-rk35xx #1
+[ 3343.208553] Hardware name: Orange Pi 5 Plus (DT)
+[ 3343.211637] pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[ 3343.214754] pc : drm_mm_takedown+0x2c/0x40
+[ 3343.217876] lr : drm_mm_takedown+0x2c/0x40
+[ 3343.220961] sp : ffff80000c3eb6d0
+[ 3343.224022] x29: ffff80000c3eb6d0 x28: 000000000000000c x27: 0000000000000000
+[ 3343.227101] x26: 0000000000000000 x25: 0000000000006250 x24: ffff00015e517100
+[ 3343.230178] x23: ffff800001788c76 x22: ffff00015e514000 x21: ffff00015e506130
+[ 3343.233258] x20: ffff00015e505fc8 x19: ffff00015e500000 x18: 000000000000000a
+[ 3343.236349] x17: 0000000000000000 x16: 0000000000000000 x15: ffff80000c3eb190
+[ 3343.239448] x14: 0000000000000000 x13: 2e6e776f64656b61 x12: 7420676e69727564
+[ 3343.242548] x11: 206e61656c632074 x10: 6f6e20726567616e x9 : ffff8000081aba44
+[ 3343.245666] x8 : ffff80000c3eb438 x7 : ffff0002f6d4ea10 x6 : ffff0002f6d4ea10
+[ 3343.248776] x5 : ffff0002f6d5aa70 x4 : 0000000000000000 x3 : ffff0002f6d5aa70
+[ 3343.251870] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff000112ecae80
+[ 3343.254952] Call trace:
+[ 3343.258011]  drm_mm_takedown+0x2c/0x40
+[ 3343.261074]  amdgpu_gtt_mgr_fini+0x60/0xe4 [amdgpu]
+[ 3343.264981]  amdgpu_ttm_fini+0x138/0x1b8 [amdgpu]
+[ 3343.268843]  amdgpu_bo_fini+0x38/0x80 [amdgpu]
+[ 3343.272697]  gmc_v10_0_sw_fini+0x38/0x4c [amdgpu]
+[ 3343.276560]  amdgpu_device_fini_sw+0x248/0x2d0 [amdgpu]
+[ 3343.280418]  amdgpu_driver_release_kms+0x24/0x3c [amdgpu]
+[ 3343.284252]  drm_dev_put+0xa4/0xac
+[ 3343.287300]  devm_drm_dev_init_release+0x18/0x24
+[ 3343.290346]  devm_action_release+0x1c/0x28
+[ 3343.293392]  release_nodes+0x78/0x8c
+[ 3343.296428]  devres_release_all+0xc0/0xf8
+[ 3343.299474]  device_unbind_cleanup+0x20/0x70
+[ 3343.302527]  really_probe+0x1a4/0x390
+[ 3343.305576]  __driver_probe_device+0x140/0x158
+[ 3343.308617]  driver_probe_device+0x44/0x100
+[ 3343.311638]  __driver_attach+0x16c/0x17c
+[ 3343.314646]  bus_for_each_dev+0x80/0xd0
+[ 3343.317641]  driver_attach+0x2c/0x38
+[ 3343.320632]  bus_add_driver+0xf8/0x20c
+[ 3343.323631]  driver_register+0xb8/0xf4
+[ 3343.326631]  __pci_register_driver+0x48/0x54
+[ 3343.329637]  amdgpu_init+0x7c/0xfa0 [amdgpu]
+[ 3343.333420]  do_one_initcall+0xa4/0x1f8
+[ 3343.336405]  do_init_module+0x58/0x1dc
+[ 3343.339370]  load_module+0x1878/0x18f0
+[ 3343.342318]  __do_sys_finit_module+0xf4/0x124
+[ 3343.345263]  __arm64_sys_finit_module+0x24/0x30
+[ 3343.348215]  invoke_syscall+0x8c/0x12c
+[ 3343.351163]  el0_svc_common.constprop.0+0xd8/0x124
+[ 3343.354120]  do_el0_svc+0x9c/0xc4
+[ 3343.357076]  el0_svc+0x2c/0x54
+[ 3343.360032]  el0t_64_sync_handler+0xac/0x13c
+[ 3343.362974]  el0t_64_sync+0x19c/0x1a0
+[ 3343.365910] 
+               PC: 0xffff80000875c29c:
+[ 3343.371676] c09c  f9400044 f9000483 a9020824 f9000043 a9408422 f9401803 8b010041 eb03003f
+[ 3343.374623] c0bc  540000c9 f9401c00 eb00005f 1a9f27e0 d50323bf d65f03c0 52800000 17fffffd
+[ 3343.377584] c0dc  aa1e03e9 d503201f d503233f a9bd7bfd 52800023 d2800004 910003fd a90153f3
+[ 3343.380566] c0fc  aa0003f3 f90013f5 a9418015 a9408662 f85e8000 cb020000 cb010000 910342a1
+[ 3343.383562] c11c  aa0103e2 a9090260 f9400054 b5000434 91016260 f9002e64 a900fc1f f9000040
+[ 3343.386578] c13c  34000043 f9006ea0 9428ad3a a9408263 910382a1 f9404e65 aa0103e2 8b000063
+[ 3343.389587] c15c  f9400040 b5000380 9101c260 f9003a74 a900fc1f f9000040 f0ffffe2 91363042
+[ 3343.392592] c17c  9428ad7f aa1503e0 9100c261 f8408c02 f9000441 a9030262 f90006a1 f94013f5
+[ 3343.395594] c19c  a94153f3 a8c37bfd d50323bf d65f03c0 f9401e82 eb02001f 54000089 91004282
+[ 3343.398609] c1bc  aa1403e4 17ffffd9 91002282 52800003 17fffffc f9401404 d101c002 eb0400bf
+[ 3343.401637] c1dc  54000049 f9004c45 a9408844 91004006 aa0003f4 8b020084 91002002 eb04007f
+[ 3343.404681] c1fc  9a862042 17ffffd7 aa1e03e9 d503201f d503233f a9be7bfd 8b020021 cb0203e2
+[ 3343.407744] c21c  910003fd f9000bf3 aa0003f3 f800841f f9000660 f9000a60 9100e260 f9001e60
+[ 3343.410824] c23c  a9020a61 f9001a73 f9002260 91006260 a90bfe7f a90cfe7f a90dfe7f 97ffffa1
+[ 3343.413926] c25c  f900767f f9400bf3 a8c27bfd d50323bf d65f03c0 aa1e03e9 d503201f f8438c01
+[ 3343.417019] c27c  eb00003f 54000160 d503233f a9bf7bfd f00081a0 910c0800 910003fd 97e4a4bf
+[ 3343.420107] c29c* d4210000 a8c17bfd d50323bf d65f03c0 d65f03c0 aa1e03e9 d503201f d503233f
+[ 3343.423196] c2bc  a9bf7bfd 910003fd a9408c22 f9400c04 8b030042 d1000442 f9004422 f9405002
+[ 3343.426301] c2dc  360003c2 91010003 aa0303e2 b40000c2 f9402447 d1010045 f9404426 eb0600ff
+[ 3343.429413] c2fc  54000243 91012002 52800005 f9400040 b50002c0 91010020 f9002023 a900fc1f
+[ 3343.432539] c31c  f9000040 34000045 f9006480 91030081 90000002 911c4042 9428ad11 a8c17bfd
+[ 3343.435689] c33c  d50323bf d65f03c0 f90044a6 f9400042 927ef442 17ffffe6 91030082 52800025
+[ 3343.438852] c35c  d2800003 17ffffea f9402406 d1010002 f9404423 eb0300df 54000042 f9004443
+[ 3343.442034] c37c  f9400423 f9400442 eb02007f 54000082 91004002 aa0003e3 17ffffdd 91002002
+[ 3343.445220] c39c  52800005 17fffffc d503233f d2800021 d503201f f8611001 d50323bf d65f03c0
+[ 3343.448425] c3bc  f9800011 c85f7c02 8a210043 c804fc03 35ffffa4 17fffff9 aa1e03e9 d503201f
+[ 3343.451647] c3dc  d503233f a9bd7bfd 910003fd a90153f3 aa0003f4 d2800013 a9025bf5 aa0103f5
+[ 3343.454890] c3fc  aa0203f6 b50000f4 aa1303e0 a94153f3 a9425bf5 a8c37bfd d50323bf d65f03c0
+[ 3343.458152] c41c  aa1603e1 aa1403e0 97fffe6e 3607fee0 d101c293 a9408660 8b010000 eb15001f
+[ 3343.461432] c43c  54000069 f9404274 17ffffef f9404a61 8b010000 eb0002bf 54fffd89 f9403e74
+[ 3343.464731] c45c  17ffffe9 d503233f eb01001f 54000061 d50323bf d65f03c0 f9400803 d101c000
+[ 3343.468049] c47c  f9404802 b4000083 f9401463 eb03005f 9a832042 f9403c03 b4000083 f9401463
+[ 3343.471387] 
+               LR: 0xffff80000875c29c:
+[ 3343.478002] c09c  f9400044 f9000483 a9020824 f9000043 a9408422 f9401803 8b010041 eb03003f
+[ 3343.481385] c0bc  540000c9 f9401c00 eb00005f 1a9f27e0 d50323bf d65f03c0 52800000 17fffffd
+[ 3343.484786] c0dc  aa1e03e9 d503201f d503233f a9bd7bfd 52800023 d2800004 910003fd a90153f3
+[ 3343.488204] c0fc  aa0003f3 f90013f5 a9418015 a9408662 f85e8000 cb020000 cb010000 910342a1
+[ 3343.491642] c11c  aa0103e2 a9090260 f9400054 b5000434 91016260 f9002e64 a900fc1f f9000040
+[ 3343.495099] c13c  34000043 f9006ea0 9428ad3a a9408263 910382a1 f9404e65 aa0103e2 8b000063
+[ 3343.498574] c15c  f9400040 b5000380 9101c260 f9003a74 a900fc1f f9000040 f0ffffe2 91363042
+[ 3343.502068] c17c  9428ad7f aa1503e0 9100c261 f8408c02 f9000441 a9030262 f90006a1 f94013f5
+[ 3343.505580] c19c  a94153f3 a8c37bfd d50323bf d65f03c0 f9401e82 eb02001f 54000089 91004282
+[ 3343.509110] c1bc  aa1403e4 17ffffd9 91002282 52800003 17fffffc f9401404 d101c002 eb0400bf
+[ 3343.512665] c1dc  54000049 f9004c45 a9408844 91004006 aa0003f4 8b020084 91002002 eb04007f
+[ 3343.516234] c1fc  9a862042 17ffffd7 aa1e03e9 d503201f d503233f a9be7bfd 8b020021 cb0203e2
+[ 3343.519822] c21c  910003fd f9000bf3 aa0003f3 f800841f f9000660 f9000a60 9100e260 f9001e60
+[ 3343.523429] c23c  a9020a61 f9001a73 f9002260 91006260 a90bfe7f a90cfe7f a90dfe7f 97ffffa1
+[ 3343.527056] c25c  f900767f f9400bf3 a8c27bfd d50323bf d65f03c0 aa1e03e9 d503201f f8438c01
+[ 3343.530703] c27c  eb00003f 54000160 d503233f a9bf7bfd f00081a0 910c0800 910003fd 97e4a4bf
+[ 3343.534368] c29c* d4210000 a8c17bfd d50323bf d65f03c0 d65f03c0 aa1e03e9 d503201f d503233f
+[ 3343.538053] c2bc  a9bf7bfd 910003fd a9408c22 f9400c04 8b030042 d1000442 f9004422 f9405002
+[ 3343.541760] c2dc  360003c2 91010003 aa0303e2 b40000c2 f9402447 d1010045 f9404426 eb0600ff
+[ 3343.545481] c2fc  54000243 91012002 52800005 f9400040 b50002c0 91010020 f9002023 a900fc1f
+[ 3343.549220] c31c  f9000040 34000045 f9006480 91030081 90000002 911c4042 9428ad11 a8c17bfd
+[ 3343.552974] c33c  d50323bf d65f03c0 f90044a6 f9400042 927ef442 17ffffe6 91030082 52800025
+[ 3343.556754] c35c  d2800003 17ffffea f9402406 d1010002 f9404423 eb0300df 54000042 f9004443
+[ 3343.560546] c37c  f9400423 f9400442 eb02007f 54000082 91004002 aa0003e3 17ffffdd 91002002
+[ 3343.564363] c39c  52800005 17fffffc d503233f d2800021 d503201f f8611001 d50323bf d65f03c0
+[ 3343.568196] c3bc  f9800011 c85f7c02 8a210043 c804fc03 35ffffa4 17fffff9 aa1e03e9 d503201f
+[ 3343.572051] c3dc  d503233f a9bd7bfd 910003fd a90153f3 aa0003f4 d2800013 a9025bf5 aa0103f5
+[ 3343.575922] c3fc  aa0203f6 b50000f4 aa1303e0 a94153f3 a9425bf5 a8c37bfd d50323bf d65f03c0
+[ 3343.579811] c41c  aa1603e1 aa1403e0 97fffe6e 3607fee0 d101c293 a9408660 8b010000 eb15001f
+[ 3343.583725] c43c  54000069 f9404274 17ffffef f9404a61 8b010000 eb0002bf 54fffd89 f9403e74
+[ 3343.587659] c45c  17ffffe9 d503233f eb01001f 54000061 d50323bf d65f03c0 f9400803 d101c000
+[ 3343.591611] c47c  f9404802 b4000083 f9401463 eb03005f 9a832042 f9403c03 b4000083 f9401463
+[ 3343.595580] 
+               SP: 0xffff80000c3eb6d0:
+[ 3343.603450] b4d0  0c3eb4f0 ffff8000 08033264 ffff8000 0c3eb580 ffff8000 00000029 00000000
+[ 3343.607409] b4f0  0c3eb540 ffff8000 091d5f70 ffff8000 0c3eb580 ffff8000 09b142f4 ffff8000
+[ 3343.611330] b510  f2000800 00000000 00000000 76fbf0e8 60400009 00000000 5e517100 ffff0001
+[ 3343.615253] b530  00006250 00000000 00000000 00000000 0c3eb570 ffff8000 091d6390 ffff8000
+[ 3343.619160] b550  5e500000 ffff0001 5e505fc8 ffff0001 0c3eb6d0 ffff8000 0875c29c ffff8000
+[ 3343.623053] b570  0c3eb6b0 ffff8000 080112e0 ffff8000 12ecae80 ffff0001 00000000 00000000
+[ 3343.626955] b590  00000000 00000000 f6d5aa70 ffff0002 00000000 00000000 f6d5aa70 ffff0002
+[ 3343.630870] b5b0  f6d4ea10 ffff0002 f6d4ea10 ffff0002 0c3eb438 ffff8000 081aba44 ffff8000
+[ 3343.634792] b5d0  6567616e 6f6e2072 6c632074 206e6165 69727564 7420676e 64656b61 2e6e776f
+[ 3343.638716] b5f0  00000000 00000000 0c3eb190 ffff8000 00000000 00000000 00000000 00000000
+[ 3343.642648] b610  0000000a 00000000 5e500000 ffff0001 5e505fc8 ffff0001 5e506130 ffff0001
+[ 3343.646583] b630  5e514000 ffff0001 01788c76 ffff8000 5e517100 ffff0001 00006250 00000000
+[ 3343.650514] b650  00000000 00000000 00000000 00000000 0000000c 00000000 0c3eb6d0 ffff8000
+[ 3343.654357] b670  0875c29c ffff8000 0c3eb6d0 ffff8000 0875c29c ffff8000 60400009 00000000
+[ 3343.658116] b690  0c3eb6e0 ffff8000 5f14be68 ffff0001 00000001 00000000 5e506130 ffff0001
+[ 3343.661865] b6b0  0c3eb6d0 ffff8000 0875c29c ffff8000 00000000 00000000 00000000 00000000
+[ 3343.665607] b6d0* 0c3eb6e0 ffff8000 014c6564 ffff8000 0c3eb720 ffff8000 014a5040 ffff8000
+[ 3343.669342] b6f0  5e500000 ffff0001 5e505000 ffff0001 5e5140a0 ffff0001 014a5030 ffff8000
+[ 3343.673090] b710  5e5000c0 00000000 3b1cad00 2dcca69c 0c3eb760 ffff8000 014a71ac ffff8000
+[ 3343.676846] b730  5e500000 ffff0001 5e516018 ffff0001 00000001 00000000 5e516018 ffff0001
+[ 3343.680608] b750  00000001 00000000 3b1cad00 2dcca69c 0c3eb780 ffff8000 01500054 ffff8000
+[ 3343.684384] b770  5e500000 ffff0001 00000000 00000000 0c3eb7b0 ffff8000 014928a8 ffff8000
+[ 3343.688155] b790  5e500000 ffff0001 5e516018 ffff0001 00000000 00000000 3b1cad00 2dcca69c
+[ 3343.691929] b7b0  0c3eb800 ffff8000 01498a4c ffff8000 5e500000 ffff0001 0c3eb8a8 ffff8000
+[ 3343.695704] b7d0  065490c8 ffff0001 0c3eb8a8 ffff8000 09715920 ffff8000 00000001 00000000
+[ 3343.699484] b7f0  5e862068 ffff0001 5e863e00 ffff0001 0c3eb820 ffff8000 0875ae48 ffff8000
+[ 3343.703261] b810  5e500010 ffff0001 00000001 00000000 0c3eb840 ffff8000 0875ae68 ffff8000
+[ 3343.707024] b830  5e863300 ffff0001 088e8be8 ffff8000 0c3eb850 ffff8000 088e89cc ffff8000
+[ 3343.710789] b850  0c3eb860 ffff8000 088e8bdc ffff8000 0c3eb8c0 ffff8000 088e9fe4 ffff8000
+[ 3343.714557] b870  065490c8 ffff0001 0000000d 00000000 0c3eb8a8 ffff8000 00000000 00000000
+[ 3343.718323] b890  06549370 ffff0001 091d8e48 ffff8000 12ecae80 ffff0001 5e863300 ffff0001
+[ 3343.722086] b8b0  5ecc8000 ffff0001 3b1cad00 2dcca69c 0c3eb900 ffff8000 088e33bc ffff8000
+[ 3343.725858] 
+               X0: 0xffff000112ecae80:
+[ 3343.733320] ac80  00000000 00000000 00000000 00000000 00000005 00000000 00000000 00000000
+[ 3343.737115] aca0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.740896] acc0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.744671] ace0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.748429] ad00  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.752177] ad20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.755911] ad40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.759639] ad60  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.763358] ad80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.767064] ada0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.770762] adc0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.774449] ade0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.778152] ae00  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.781818] ae20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.785479] ae40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.789129] ae60  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.792772] ae80* 0000000e 00000000 00000000 00000000 00000002 00000000 00000000 00000000
+[ 3343.796407] aea0  0c3e8000 ffff8000 00000001 00400100 00000000 00000001 00000000 00000000
+[ 3343.800048] aec0  00000030 00000000 00000030 00000000 000dd2f6 00000001 00cb9f00 ffff0001
+[ 3343.803688] aee0  00000005 00000002 00000001 00000078 00000078 00000078 00000000 00000000
+[ 3343.807334] af00  00100000 00000000 00400000 00000000 00000001 00000000 00000000 00000000
+[ 3343.810977] af20  00000000 00000000 f6d5fa78 ffff0002 08a09fa8 ffff0001 00000001 00000000
+[ 3343.814630] af40  04e7a516 00000305 89402a48 0000000b 9fd6e786 0000003a 88e620a4 0000000b
+[ 3343.818293] af60  00000003 00000000 00000003 00000000 0bf71400 ffff0001 0bf70a00 ffff0001
+[ 3343.821965] af80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.825638] afa0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.829298] afc0  960aa000 00000304 0000b84a 00000000 02e12c5b 00000000 02ccb01b 000002a8
+[ 3343.832957] afe0  000003fb 00000000 000003fb 00000000 000003de 00000000 000003ed 000003fa
+[ 3343.836627] b000  12ecb000 ffff0001 12ecb000 ffff0001 00000000 00000000 00000000 00000000
+[ 3343.840306] b020  0000001e 00000000 00000000 00000000 11e88f00 ffff0001 04830000 ffff0001
+[ 3343.843998] b040  00000000 00000000 12ecb048 ffff0001 00000000 00000000 00000000 00000000
+[ 3343.847695] b060  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.851399] 
+               X3: 0xffff0002f6d5aa70:
+[ 3343.858674] a870  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.862359] a890  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.866020] a8b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.869654] a8d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.873265] a8f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.876851] a910  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.880415] a930  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.883959] a950  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.887471] a970  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.890960] a990  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.894428] a9b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.897866] a9d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.901281] a9f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.904673] aa10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.908046] aa30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.911395] aa50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.914715] aa70* f6d4ea10 ffff0002 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.918024] aa90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.921310] aab0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.924577] aad0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.927816] aaf0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.931034] ab10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.934228] ab30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.937397] ab50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.940542] ab70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.943661] ab90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.946759] abb0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.949832] abd0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.952880] abf0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.955905] ac10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.958903] ac30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.961877] ac50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.964848] 
+               X5: 0xffff0002f6d5aa70:
+[ 3343.970658] a870  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.973607] a890  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.976534] a8b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.979434] a8d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.982311] a8f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.985168] a910  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.988000] a930  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.990805] a950  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.993587] a970  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.996347] a990  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3343.999079] a9b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.001785] a9d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.004469] a9f0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.007131] aa10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.009768] aa30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.012381] aa50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.014969] aa70* f6d4ea10 ffff0002 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.017544] aa90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.020100] aab0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.022638] aad0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.025148] aaf0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.027633] ab10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.030096] ab30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.032536] ab50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.034949] ab70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.037336] ab90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.039702] abb0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.042040] abd0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.044354] abf0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.046645] ac10  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.048910] ac30  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.051151] ac50  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.053387] 
+               X6: 0xffff0002f6d4ea10:
+[ 3344.057746] e810  00000000 00000000 00000000 00000000 4c0a47ea 00000017 0065b9aa 00000000
+[ 3344.059982] e830  b56f6d17 00000014 245bdc43 00000000 00000000 00000000 2de6c2d7 000002d6
+[ 3344.062218] e850  0774d36b 00000003 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.064448] e870  00065cfe 00000000 00000001 00007a9c 00000000 00000024 00000000 00000000
+[ 3344.066670] e890  00000013 00011fe8 00000000 0001bcd4 000000ff 00000000 000000ff 00000000
+[ 3344.068882] e8b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.071081] e8d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.073257] e8f0  00000000 00000000 00000000 00000000 f6d5d9e8 ffff0002 00000000 00000000
+[ 3344.075413] e910  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.077556] e930  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.079684] e950  00c70a00 ffff0001 00000008 00000000 09a80680 ffff0001 00000000 00000000
+[ 3344.081802] e970  00000000 00000000 00c70a00 ffff0001 00103c66 00000000 00000000 00000003
+[ 3344.083915] e990  00000000 000000d0 7caa7a7b 4fb20e95 00000000 00000000 3c21feac fda019cb
+[ 3344.086027] e9b0  cea7377a 00000000 1a454a16 00000305 7caa7a7b 4fb20e95 00000000 00000000
+[ 3344.088152] e9d0  260b790f fd98c677 b6e55af1 00000000 00000000 00000000 00000000 00000000
+[ 3344.090277] e9f0  00000000 00000000 00000000 00000000 1155430f 0000002d 00000001 00000000
+[ 3344.092405] ea10* 00000000 00000000 00000027 00000000 080ece20 ffff8000 00000000 00000000
+[ 3344.094526] ea30  00000000 00000000 00000000 00000000 00000000 00000000 f6d4ea40 ffff0002
+[ 3344.096638] ea50  f6d4ea40 ffff0002 f6d4ea40 ffff0002 f6d4ea40 ffff0002 00000000 00000000
+[ 3344.098750] ea70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.100865] ea90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.102969] eab0  00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.105049] ead0  ffffffe0 0000000f f6d4ead8 ffff0002 f6d4ead8 ffff0002 0810430c ffff8000
+[ 3344.107133] eaf0  00000000 00000000 00000008 00000000 08103c18 ffff8000 00000000 00000000
+[ 3344.109223] eb10  00000000 00000000 00000000 00000000 f6d4eb20 ffff0002 f6d4eb20 ffff0002
+[ 3344.111313] eb30  00000002 00000000 0a287468 ffff8000 00000000 00000000 f6d4eb40 ffff0002
+[ 3344.113403] eb50  f6d4eb40 ffff0002 f6d4eb40 ffff0002 f6d4eb40 ffff0002 00000000 00000000
+[ 3344.115510] eb70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.117613] eb90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.119700] ebb0  00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.121770] ebd0  ffffffe0 0000000f f6d4ebd8 ffff0002 f6d4ebd8 ffff0002 0810430c ffff8000
+[ 3344.123835] ebf0  00000000 00000000 00000008 00000000 08103c18 ffff8000 00000000 00000000
+[ 3344.125913] 
+               X7: 0xffff0002f6d4ea10:
+[ 3344.129966] e810  00000000 00000000 00000000 00000000 4c0a47ea 00000017 0065b9aa 00000000
+[ 3344.132074] e830  b56f6d17 00000014 245bdc43 00000000 00000000 00000000 2de6c2d7 000002d6
+[ 3344.134198] e850  0774d36b 00000003 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.136337] e870  00065cfe 00000000 00000001 00007a9c 00000000 00000024 00000000 00000000
+[ 3344.138482] e890  00000013 00011fe8 00000000 0001bcd4 000000ff 00000000 000000ff 00000000
+[ 3344.140635] e8b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.142802] e8d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.144964] e8f0  00000000 00000000 00000000 00000000 f6d5d9e8 ffff0002 00000000 00000000
+[ 3344.147131] e910  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.149305] e930  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.151481] e950  00c70a00 ffff0001 00000008 00000000 09a80680 ffff0001 00000000 00000000
+[ 3344.153667] e970  00000000 00000000 00c70a00 ffff0001 00103c66 00000000 00000000 00000003
+[ 3344.155870] e990  00000000 000000d0 7caa7a7b 4fb20e95 00000000 00000000 3c21feac fda019cb
+[ 3344.158088] e9b0  cea7377a 00000000 1a454a16 00000305 7caa7a7b 4fb20e95 00000000 00000000
+[ 3344.160328] e9d0  260b790f fd98c677 b6e55af1 00000000 00000000 00000000 00000000 00000000
+[ 3344.162583] e9f0  00000000 00000000 00000000 00000000 1155430f 0000002d 00000001 00000000
+[ 3344.164845] ea10* 00000000 00000000 00000027 00000000 080ece20 ffff8000 00000000 00000000
+[ 3344.167099] ea30  00000000 00000000 00000000 00000000 00000000 00000000 f6d4ea40 ffff0002
+[ 3344.169357] ea50  f6d4ea40 ffff0002 f6d4ea40 ffff0002 f6d4ea40 ffff0002 00000000 00000000
+[ 3344.171629] ea70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.173902] ea90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.176155] eab0  00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.178387] ead0  ffffffe0 0000000f f6d4ead8 ffff0002 f6d4ead8 ffff0002 0810430c ffff8000
+[ 3344.180629] eaf0  00000000 00000000 00000008 00000000 08103c18 ffff8000 00000000 00000000
+[ 3344.182889] eb10  00000000 00000000 00000000 00000000 f6d4eb20 ffff0002 f6d4eb20 ffff0002
+[ 3344.185150] eb30  00000002 00000000 0a287468 ffff8000 00000000 00000000 f6d4eb40 ffff0002
+[ 3344.187408] eb50  f6d4eb40 ffff0002 f6d4eb40 ffff0002 f6d4eb40 ffff0002 00000000 00000000
+[ 3344.189671] eb70  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.191930] eb90  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.194172] ebb0  00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.196409] ebd0  ffffffe0 0000000f f6d4ebd8 ffff0002 f6d4ebd8 ffff0002 0810430c ffff8000
+[ 3344.198641] ebf0  00000000 00000000 00000008 00000000 08103c18 ffff8000 00000000 00000000
+[ 3344.200886] 
+               X8: 0xffff80000c3eb438:
+[ 3344.205278] b238  0c3eb340 ffff8000 0c3eb300 ffff8000 ffffffc8 00000000 0c3eb2f0 ffff8000
+[ 3344.207554] b258  09194678 ffff8000 00000020 00000000 0c3eb264 ffff8000 00000001 00000000
+[ 3344.209850] b278  ffffffe0 00000000 0c3eb340 ffff8000 0c3eb340 ffff8000 0c3eb300 ffff8000
+[ 3344.212163] b298  ffffffc8 00000000 0c3eb340 ffff8000 0c3eb340 ffff8000 0c3eb300 ffff8000
+[ 3344.214474] b2b8  ffffffc8 00000000 0c3eb580 ffff8000 0c3eb340 ffff8000 0c3eb340 ffff8000
+[ 3344.216796] b2d8  0c3eb300 ffff8000 0c3eb320 ffff8000 091ddfb8 ffff8000 0c3eb344 ffff8000
+[ 3344.219122] b2f8  0c3eb2f8 ffff8000 00000006 00000000 00000000 00000000 00000000 00000000
+[ 3344.221465] b318  3b1cad00 2dcca69c 0c3eb350 ffff8000 080192a4 ffff8000 00000020 00000000
+[ 3344.223823] b338  00000000 00000000 0c3eb3a0 00000000 3b1cad00 2dcca69c 0c3eb3b0 ffff8000
+[ 3344.226204] b358  080194f4 ffff8000 0c3eb580 ffff8000 00000009 00000000 096ff494 ffff8000
+[ 3344.228600] b378  0c3eb580 ffff8000 0979338d ffff8000 00000009 00000000 000003e7 00000000
+[ 3344.231005] b398  00000000 00000000 00000000 00003858 3b1cad00 2dcca69c 0c3eb3e0 ffff8000
+[ 3344.233444] b3b8  08085d78 ffff8000 09b14008 ffff8000 00000000 00000000 0875c29c ffff8000
+[ 3344.235893] b3d8  f6d4ea10 ffff0002 0c3eb450 ffff8000 09173af0 ffff8000 09b24330 ffff8000
+[ 3344.238356] b3f8  0a5317c4 ffff8000 0875c29c ffff8000 ff261bc5 00000000 0c3eb580 ffff8000
+[ 3344.240826] b418  00000000 00000000 000003e7 00000000 080efeb8 ffff8000 0a551568 ffff8000
+[ 3344.243311] b438* 00000000 00000000 00000000 00000000 00000001 00000000 0c3eb4a0 ffff8000
+[ 3344.245804] b458  0801fc9c ffff8000 0c3eb580 ffff8000 f2000800 00000000 f2000800 00000000
+[ 3344.248319] b478  00000090 00000000 0a49bbb8 ffff8000 0a49bc48 ffff8000 00000000 76fbf0e8
+[ 3344.250849] b498  0875c29c ffff8000 0c3eb4c0 ffff8000 080158ec ffff8000 0c3eb580 ffff8000
+[ 3344.253399] b4b8  0c3eb580 ffff8000 0c3eb4d0 ffff8000 08015d3c ffff8000 0c3eb4f0 ffff8000
+[ 3344.255954] b4d8  08033264 ffff8000 0c3eb580 ffff8000 00000029 00000000 0c3eb540 ffff8000
+[ 3344.258517] b4f8  091d5f70 ffff8000 0c3eb580 ffff8000 09b142f4 ffff8000 f2000800 00000000
+[ 3344.261092] b518  00000000 76fbf0e8 60400009 00000000 5e517100 ffff0001 00006250 00000000
+[ 3344.263686] b538  00000000 00000000 0c3eb570 ffff8000 091d6390 ffff8000 5e500000 ffff0001
+[ 3344.266301] b558  5e505fc8 ffff0001 0c3eb6d0 ffff8000 0875c29c ffff8000 0c3eb6b0 ffff8000
+[ 3344.268930] b578  080112e0 ffff8000 12ecae80 ffff0001 00000000 00000000 00000000 00000000
+[ 3344.271579] b598  f6d5aa70 ffff0002 00000000 00000000 f6d5aa70 ffff0002 f6d4ea10 ffff0002
+[ 3344.274246] b5b8  f6d4ea10 ffff0002 0c3eb438 ffff8000 081aba44 ffff8000 6567616e 6f6e2072
+[ 3344.276932] b5d8  6c632074 206e6165 69727564 7420676e 64656b61 2e6e776f 00000000 00000000
+[ 3344.279642] b5f8  0c3eb190 ffff8000 00000000 00000000 00000000 00000000 0000000a 00000000
+[ 3344.282349] b618  5e500000 ffff0001 5e505fc8 ffff0001 5e506130 ffff0001 5e514000 ffff0001
+[ 3344.285076] 
+               X9: 0xffff8000081aba44:
+[ 3344.290419] b844  911c0400 943fa372 910023e0 94041a2e 17ffffe0 a905d815 a94087e0 a9038660
+[ 3344.293176] b864  aa1403e0 52819801 94022de0 f9002a60 b4000320 f9404260 f00107a1 911f6021
+[ 3344.295957] b884  9101c274 9100e022 91016021 f9004c02 f9403002 f9001041 52801041 b900c001
+[ 3344.298759] b8a4  f9403001 90000000 9114d000 f9000c20 f9401260 f100001f aa1403e0 1a9f07e1
+[ 3344.301601] b8c4  97fff352 37f80080 f9404273 91014273 17ffffc0 aa1303e0 92800173 97fff71b
+[ 3344.304449] b8e4  17ffffbc a9427bfd aa1303e0 a94353f3 a9445bf5 910143ff d50323bf d65f03c0
+[ 3344.307321] b904  d503233f a9bf7bfd 910003fd f84a0c01 eb00003f 540000e0 b40000c1 d101c020
+[ 3344.310217] b924  97fff70a a8c17bfd d50323bf d65f03c0 d4210000 d2800000 17fffffa d53cd040
+[ 3344.313136] b944  d503233f d50323bf d53cd040 d65f03c0 d503233f 52800462 d503201f 91002000
+[ 3344.316076] b964  b8e23001 2a2103e0 d50323bf 12000000 d65f03c0 91002000 f9800011 885f7c01
+[ 3344.319046] b984  2a020023 8804fc03 35ffffa4 d5033bbf 17fffff5 d503233f a9be7bfd 910003fd
+[ 3344.322036] b9a4  f9000bf3 aa0003f3 9440b512 b9400a60 370800a0 f9400bf3 a8c27bfd d50323bf
+[ 3344.325051] b9c4  d65f03c0 d503203f 17fffff9 d503233f d50323bf d65f03c0 d503233f a9be7bfd
+[ 3344.328091] b9e4  f000cba3 aa0003e1 910003fd 9129c063 f9000bf3 b9400804 97ffffd2 36100184
+[ 3344.331155] ba04  8b000062 52800033 aa0103e0 940f8fbd 36000060 35000153 97f9eb62 f9400bf3
+[ 3344.334234] ba24  a8c27bfd d50323bf d65f03c0 91002063 52800013 8b000062 17fffff4 97fe23d0
+[ 3344.337333] ba44* 3707fec0 17fffff6 d503233f a9be7bfd aa0003e5 910003fd f9000bf3 97ffffbd
+[ 3344.340455] ba64  2a0003f3 36000073 aa0503e0 97ffffdb 2a1303e0 f9400bf3 a8c27bfd d50323bf
+[ 3344.343605] ba84  d65f03c0 aa0003e6 d503233f 53067c20 a9be7bfd 2a0103e5 d37df000 910003fd
+[ 3344.346781] baa4  d000fe81 9128a021 f9000bf3 f8606820 9ac52400 37000040 d4210000 aa0603e0
+[ 3344.349978] bac4  97ffffa4 2a0003f3 360001f3 b000cb41 97ffff9c 91002021 b8616800 6b05001f
+[ 3344.353205] bae4  540001c0 d5384100 b9400800 720c0c1f 54000040 d4210000 aa0603e1 2a0503e0
+[ 3344.356452] bb04  97fe3eb6 2a1303e0 f9400bf3 a8c27bfd d50323bf d65f03c0 aa0603e0 97ffffaf
+[ 3344.359720] bb24  17fffff9 d503233f a9bf7bfd f000cba1 9129c021 910003fd 91002022 97ffff81
+[ 3344.363009] bb44  f8626802 f8616801 b4000221 b000cb41 91002021 b8616802 d000fe81 9128a021
+[ 3344.366324] bb64  53067c40 d37df000 f8606820 9ac22400 360000a0 52800020 a8c17bfd d50323bf
+[ 3344.369663] bb84  d65f03c0 d4210000 17fffffb 52800000 17fffffa d503233f a9bd7bfd 910003fd
+[ 3344.373023] bba4  a90153f3 aa0003f3 f90013f5 b9400815 121f7ab4 b9000814 d5033bbf f9400801
+[ 3344.376421] bbc4  d63f0020 121e76a2 d503201f 91002260 2a1403e1 aa0003e3 2a0103e4 88e4fc62
+[ 3344.379839] bbe4  2a0403e0 f94013f5 a94153f3 a8c37bfd d50323bf d65f03c0 91002263 f9800071
+[ 3344.383273] bc04  885f7c61 4a140020 35000080 8800fc62 35ffff80 d5033bbf 17fffff3 d53b4222
+[ 3344.386713] bc24  12190041 35000041 d4210000 f9400001 b4000121 d2800002 f8e28001 d503201f
+[ 3344.390169] 
+               X15: 0xffff80000c3eb190:
+[ 3344.396960] af90  0c3eaff0 ffff8000 0918e900 ffff8000 0000000c 00000000 00001f40 00000000
+[ 3344.400418] afb0  ffffff41 c0000000 0006a1f8 00000000 0006a238 00000000 3b1cad00 2dcca69c
+[ 3344.403886] afd0  0c3eb030 ffff8000 080efeb8 ffff8000 0c3eb040 ffff8000 080eeef0 ffff8000
+[ 3344.407365] aff0  0c3eb090 ffff8000 00003f42 00000000 00000000 00000000 0c3eb128 ffff8000
+[ 3344.410847] b010  0c3eb0b0 ffff8000 080ef6dc ffff8000 0a1a67e0 ffff8000 0c3eb090 ffff8000
+[ 3344.414344] b030  00000000 00000000 0c3eb128 ffff8000 00000000 00000000 00001f44 00000001
+[ 3344.417855] b050  00003f45 00000000 0c3eb090 ffff8000 0a55171c 00000001 0a1a6810 ffff8000
+[ 3344.421377] b070  00000000 00000000 00000000 00000000 00000000 00000000 00001f47 00000000
+[ 3344.424911] b090  ffffff48 c0000000 0006a430 00000000 0006a480 00000000 3b1cad00 2dcca69c
+[ 3344.428447] b0b0  0c3eb110 ffff8000 080efeb8 ffff8000 0a551568 ffff8000 00000000 00000000
+[ 3344.431988] b0d0  00000000 00000000 00000001 00000000 00003f49 00000000 0a551b8d ffff8000
+[ 3344.435529] b0f0  00000000 00000000 00000000 00000000 0a551b40 ffff8000 00000001 00000000
+[ 3344.439060] b110  0c3eb140 ffff8000 080ecbf4 ffff8000 0a551568 ffff8000 00003f4b 00000000
+[ 3344.442588] b130  0c3eb150 00ff8000 3b1cad00 2dcca69c 0c3eb160 ffff8000 080eba44 ffff8000
+[ 3344.446117] b150  09b16a10 ffff8000 00000009 00000000 0c3eb190 ffff8000 080ee698 ffff8000
+[ 3344.449648] b170  00000000 00000000 00000009 00000000 ffffffff 00000000 0c3eb230 ffff8000
+[ 3344.453187] b190* 0c3eb1a0 ffff8000 080ee824 ffff8000 0c3eb220 ffff8000 080ee8e4 ffff8000
+[ 3344.456715] b1b0  09b16a34 ffff8000 096ff382 ffff8000 0c3eb2a0 ffff8000 0c3eb1b0 ffff8000
+[ 3344.460236] b1d0  096ff382 ffff8000 096ff36f ffff8000 096ff376 ffff8000 00000001 00000000
+[ 3344.463769] b1f0  00000000 00000000 0c3eb220 ffff8000 0c3eb340 ffff8000 0c3eb340 ffff8000
+[ 3344.467316] b210  0c3eb300 ffff8000 ffffffc8 00000000 0c3eb250 ffff8000 080eec50 ffff8000
+[ 3344.470855] b230  0c3eb340 ffff8000 0c3eb340 ffff8000 0c3eb300 ffff8000 ffffffc8 00000000
+[ 3344.474409] b250  0c3eb2f0 ffff8000 09194678 ffff8000 00000020 00000000 0c3eb264 ffff8000
+[ 3344.477946] b270  00000017 00000000 ffffffe0 00000000 0c3eb340 ffff8000 0c3eb340 ffff8000
+[ 3344.481489] b290  0c3eb300 ffff8000 ffffffc8 00000000 0c3eb340 ffff8000 0c3eb340 ffff8000
+[ 3344.485016] b2b0  0c3eb300 ffff8000 ffffffc8 00000000 0c3eb580 ffff8000 0c3eb340 ffff8000
+[ 3344.488533] b2d0  0c3eb340 ffff8000 0c3eb300 ffff8000 0c3eb320 ffff8000 091ddfb8 ffff8000
+[ 3344.492057] b2f0  0c3eb344 ffff8000 0c3eb2f8 ffff8000 0000001b 00000000 00000000 00000000
+[ 3344.495591] b310  00000000 00000000 3b1cad00 2dcca69c 0c3eb350 ffff8000 080192a4 ffff8000
+[ 3344.499126] b330  00000020 00000000 00000000 00000000 0c3eb3a0 00000000 3b1cad00 2dcca69c
+[ 3344.502656] b350  0c3eb3b0 ffff8000 080194f4 ffff8000 0c3eb580 ffff8000 00000010 00000000
+[ 3344.506181] b370  096ff494 ffff8000 0c3eb580 ffff8000 0979338d ffff8000 00000009 00000000
+[ 3344.509708] 
+               X19: 0xffff00015e500000:
+[ 3344.516648] fe00  6e616c70 615f7365 735f646e 61657274 74735f6d 00657461 655f6364 6c62616e
+[ 3344.520181] fe20  6d645f65 6f5f6275 6f627475 63640078 6f72705f 73736563 756d645f 70645f62
+[ 3344.523732] fe40  685f6169 695f6470 655f746e 6c62616e 00000065 53556357 7b7b7b51 797b7b7b
+[ 3344.527293] fe60  7b7b107b 70117b7b 117b7b7b 17151715 38383838 00383838 38383638 20193838
+[ 3344.530871] fe80  19383838 08080807 08080808 08080808 6c5f6364 5f6b6e69 61647075 735f6574
+[ 3344.534473] fea0  705f7473 6f6c7961 64006461 63657465 696c5f74 615f6b6e 6c5f646e 6c61636f
+[ 3344.538103] fec0  6e69735f 3537006b 75803038 5f636400 6b6e696c 5f73695f 735f7064 5f6b6e69
+[ 3344.541748] fee0  73657270 00746e65 6c5f6364 5f6b6e69 65746564 64007463 696c5f63 635f6b6e
+[ 3344.545419] ff00  74736e6f 74637572 67656c5f 00796361 5f746567 5f636464 656e696c 74656700
+[ 3344.549101] ff20  6470685f 6e696c5f 6f630065 6c5f6572 5f6b6e69 61736964 5f656c62 65727473
+[ 3344.552790] ff40  64006d61 6c6c6165 7461636f 736d5f65 61705f74 616f6c79 63640064 6e696c5f
+[ 3344.556487] ff60  6e695f6b 61657263 6d5f6573 705f7473 6f6c7961 64006461 696c5f63 725f6b6e
+[ 3344.560189] ff80  63756465 736d5f65 61705f74 616f6c79 63640064 6e696c5f 6c615f6b 61636f6c
+[ 3344.563896] ffa0  6d5f6574 705f7473 6f6c7961 63006461 5f65726f 6b6e696c 616e655f 5f656c62
+[ 3344.567614] ffc0  65727473 00006d61 03030300 03030503 030a0303 50030303 03030303 271b1603
+[ 3344.571350] ffe0  033c493a 4503414e 61647075 6e5f6574 615f6d75 6f696475 73657200 6372756f
+[ 3344.575099] 0000* 065490c8 ffff0001 06549000 ffff0001 00000000 00000000 065490c8 ffff0001
+[ 3344.578849] 0020  03770b80 ffff0001 09984400 ffff0001 5e500000 ffff0001 00000000 00000000
+[ 3344.582598] 0040  016e55e8 ffff8000 00000000 00000000 5e863d80 ffff0001 5e862380 ffff0001
+[ 3344.586366] 0060  00000000 00000000 00000000 00000000 ffffffef 00000000 5d5ee018 ffff0001
+[ 3344.590145] 0080  5e863180 ffff0001 00000000 00000000 00000000 00000000 5e500098 ffff0001
+[ 3344.593918] 00a0  5e500098 ffff0001 00000000 00000000 00000000 00000000 5e5000b8 ffff0001
+[ 3344.597673] 00c0  5e5000b8 ffff0001 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.601426] 00e0  5e5000e0 ffff0001 5e5000e0 ffff0001 5e5000f0 ffff0001 5e5000f0 ffff0001
+[ 3344.605179] 0100  5e500100 ffff0001 5e500100 ffff0001 00000000 00000000 00000000 00000000
+[ 3344.608925] 0120  5e500120 ffff0001 5e500120 ffff0001 5e500130 ffff0001 5e500130 ffff0001
+[ 3344.612664] 0140  00000001 00000000 03770c00 ffff0001 00000000 00000000 00ffffff 00000000
+[ 3344.616427] 0160  5e500160 ffff0001 5e500160 ffff0001 00000000 00000000 00000000 00000000
+[ 3344.620198] 0180  00000000 00000000 5e500188 ffff0001 5e500188 ffff0001 00000000 00000000
+[ 3344.623962] 01a0  00000000 00000000 5e5001a8 ffff0001 5e5001a8 ffff0001 00000000 00000000
+[ 3344.627707] 01c0  5e5001c0 ffff0001 5e5001c0 ffff0001 00000000 00000000 00000000 00000000
+[ 3344.631443] 01e0  00000000 00000000 5e5001e8 ffff0001 5e5001e8 ffff0001 00000000 08000004
+[ 3344.635189] 
+               X20: 0xffff00015e505fc8:
+[ 3344.642552] 5dc8  5e50b910 ffff0001 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.646287] 5de8  5e505de8 ffff0001 5e505de8 ffff0001 00000000 00000000 00000000 00000000
+[ 3344.650032] 5e08  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.653788] 5e28  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.657533] 5e48  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.661267] 5e68  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.664980] 5e88  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.668671] 5ea8  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.672348] 5ec8  00000000 00000000 00000000 00000000 5e505508 ffff0001 ff000000 00000000
+[ 3344.676017] 5ee8  016ea380 ffff8000 00000000 00000000 00000000 00000000 5e505f00 ffff0001
+[ 3344.679684] 5f08  5e505f00 ffff0001 5e505f10 ffff0001 5e505f10 ffff0001 5e505f20 ffff0001
+[ 3344.683347] 5f28  5e505f20 ffff0001 5e505f30 ffff0001 5e505f30 ffff0001 00000000 00000000
+[ 3344.687002] 5f48  27070400 ffff0001 06586a80 ffff0001 00000008 00000013 00001000 00000000
+[ 3344.690655] 5f68  ff000000 00000000 ff000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.694304] 5f88  5e505f88 ffff0001 5e505f88 ffff0001 5e505f98 ffff0001 5e505f98 ffff0001
+[ 3344.697970] 5fa8  5e505fa8 ffff0001 5e505fa8 ffff0001 00000000 00000000 00001000 00000000
+[ 3344.701631] 5fc8* 00000100 00000000 5e505508 ffff0001 f804a000 00000000 016ea2f8 ffff8000
+[ 3344.705287] 5fe8  00000000 00000000 00000000 00000000 5e505ff8 ffff0001 5e505ff8 ffff0001
+[ 3344.708942] 6008  5e506008 ffff0001 5e506008 ffff0001 5e506018 ffff0001 5e506018 ffff0001
+[ 3344.712609] 6028  5e506028 ffff0001 5e506028 ffff0001 00042000 00000000 00000000 00000000
+[ 3344.716279] 6048  5f14be78 ffff0001 5e506088 ffff0001 00000000 00000000 00020000 00000000
+[ 3344.719943] 6068  fffe0400 ffffffff 5e506040 ffff0001 5f14be68 ffff0001 5f14be68 ffff0001
+[ 3344.723605] 6088  5e506048 ffff0001 5f14be78 ffff0001 00000000 00000000 00000000 00000000
+[ 3344.727264] 60a8  00000000 00000000 00000001 00000000 00000000 00000000 5f14bea0 ffff0001
+[ 3344.730926] 60c8  00000001 00000000 5f14beb8 ffff0001 00000000 00000000 00000000 00000000
+[ 3344.734586] 60e8  00000104 00000000 0001fabb 00000000 00000000 00000000 5f14be88 ffff0001
+[ 3344.738237] 6108  5f14be88 ffff0001 5e5060b0 ffff0001 5f14bea0 ffff0001 5e5060c8 ffff0001
+[ 3344.741891] 6128  00000000 00000000 00000001 00000000 00000101 00000000 5e505508 ffff0001
+[ 3344.745542] 6148  40000000 00000000 016ea348 ffff8000 00000000 00000000 00000000 00000000
+[ 3344.749182] 6168  5e506168 ffff0001 5e506168 ffff0001 5e506178 ffff0001 5e506178 ffff0001
+[ 3344.752824] 6188  5e506188 ffff0001 5e506188 ffff0001 5e506198 ffff0001 5e506198 ffff0001
+[ 3344.756441] 61a8  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.760077] 
+               X21: 0xffff00015e506130:
+[ 3344.767228] 5f30  5e505f30 ffff0001 5e505f30 ffff0001 00000000 00000000 27070400 ffff0001
+[ 3344.770846] 5f50  06586a80 ffff0001 00000008 00000013 00001000 00000000 ff000000 00000000
+[ 3344.774459] 5f70  ff000000 00000000 00000000 00000000 00000000 00000000 5e505f88 ffff0001
+[ 3344.778065] 5f90  5e505f88 ffff0001 5e505f98 ffff0001 5e505f98 ffff0001 5e505fa8 ffff0001
+[ 3344.781662] 5fb0  5e505fa8 ffff0001 00000000 00000000 00001000 00000000 00000100 00000000
+[ 3344.785253] 5fd0  5e505508 ffff0001 f804a000 00000000 016ea2f8 ffff8000 00000000 00000000
+[ 3344.788831] 5ff0  00000000 00000000 5e505ff8 ffff0001 5e505ff8 ffff0001 5e506008 ffff0001
+[ 3344.792412] 6010  5e506008 ffff0001 5e506018 ffff0001 5e506018 ffff0001 5e506028 ffff0001
+[ 3344.795982] 6030  5e506028 ffff0001 00042000 00000000 00000000 00000000 5f14be78 ffff0001
+[ 3344.799538] 6050  5e506088 ffff0001 00000000 00000000 00020000 00000000 fffe0400 ffffffff
+[ 3344.803080] 6070  5e506040 ffff0001 5f14be68 ffff0001 5f14be68 ffff0001 5e506048 ffff0001
+[ 3344.806612] 6090  5f14be78 ffff0001 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.810138] 60b0  00000001 00000000 00000000 00000000 5f14bea0 ffff0001 00000001 00000000
+[ 3344.813657] 60d0  5f14beb8 ffff0001 00000000 00000000 00000000 00000000 00000104 00000000
+[ 3344.817161] 60f0  0001fabb 00000000 00000000 00000000 5f14be88 ffff0001 5f14be88 ffff0001
+[ 3344.820659] 6110  5e5060b0 ffff0001 5f14bea0 ffff0001 5e5060c8 ffff0001 00000000 00000000
+[ 3344.824153] 6130* 00000001 00000000 00000101 00000000 5e505508 ffff0001 40000000 00000000
+[ 3344.827636] 6150  016ea348 ffff8000 00000000 00000000 00000000 00000000 5e506168 ffff0001
+[ 3344.831119] 6170  5e506168 ffff0001 5e506178 ffff0001 5e506178 ffff0001 5e506188 ffff0001
+[ 3344.834593] 6190  5e506188 ffff0001 5e506198 ffff0001 5e506198 ffff0001 00000000 00000000
+[ 3344.838049] 61b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.841506] 61d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.844953] 61f0  5e565000 ffff0001 00001000 00000000 00000000 00000000 00000000 00000000
+[ 3344.848367] 6210  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.851759] 6230  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.855137] 6250  00000000 00000000 20100000 ffff8000 00100000 00000080 00000000 00000000
+[ 3344.858494] 6270  00000000 00000000 00000000 00000000 00000100 00000000 00042108 00000000
+[ 3344.861829] 6290  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.865147] 62b0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.868455] 62d0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.871722] 62f0  00000000 00000000 00000000 00000000 12cfe800 ffff0001 01bfac00 ffff0001
+[ 3344.874976] 6310  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.878233] 
+               X22: 0xffff00015e514000:
+[ 3344.884623] 3e00  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.887866] 3e20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.891102] 3e40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.894320] 3e60  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.897520] 3e80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.900705] 3ea0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.903877] 3ec0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.907039] 3ee0  00000000 00000000 00000000 00000000 17000049 00000000 00007100 00000000
+[ 3344.910180] 3f00  0d5fe200 ffff8000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.913309] 3f20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.916431] 3f40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.919543] 3f60  1200001a 00000000 00002100 00000000 0d605300 ffff8000 00000000 00000000
+[ 3344.922642] 3f80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.925738] 3fa0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.928820] 3fc0  00000000 00000000 00000000 00000000 07000016 00000000 00003100 00000000
+[ 3344.931887] 3fe0  0d607400 ffff8000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.934949] 4000* 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.938008] 4020  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.941050] 4040  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.944081] 4060  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.947108] 4080  00000000 00000000 00000000 00000000 5e514090 ffff0001 5e514090 ffff0001
+[ 3344.950123] 40a0  00001000 00000000 00000000 00000000 feff8000 00000000 fec00000 00000000
+[ 3344.953135] 40c0  00000000 00000000 00000000 00000000 00000001 00000000 00000000 00000000
+[ 3344.956148] 40e0  00000000 00000000 00000000 00000000 00000000 00000000 00010000 00000040
+[ 3344.959161] 4100  00000010 000001ff 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.962169] 4120  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.965167] 4140  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.968141] 4160  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.971098] 4180  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.974041] 41a0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.976970] 41c0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.979879] 41e0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3344.982779] 
+               X23: 0xffff800001788c76:
+[ 3344.988455] 8a74  4920666f 6c622050 206b636f 3e73253c 69616620 2064656c 000a6425 5f746573
+[ 3344.991340] 8a94  65776f70 74616772 5f676e69 74617473 666f2065 20504920 636f6c62 253c206b
+[ 3344.994220] 8ab4  66203e73 656c6961 64252064 3601000a 6d72645b 6461205d 70692064 6f6c6220
+[ 3344.997102] 8ad4  6e206b63 65626d75 64252072 73253c20 73000a3e 635f7465 6b636f6c 69746167
+[ 3344.999981] 8af4  735f676e 65746174 74616728 6f202965 50492066 6f6c6220 3c206b63 203e7325
+[ 3345.002858] 8b14  6c696166 25206465 73000a64 705f7465 7265776f 69746167 735f676e 65746174
+[ 3345.005738] 8b34  74616728 6f202965 50492066 6f6c6220 3c206b63 203e7325 6c696166 25206465
+[ 3345.008619] 8b54  61000a64 7067646d 46203a75 656c6961 6f742064 73696420 6f6c6c61 66642077
+[ 3345.011501] 8b74  74736320 00657461 6574616c 696e695f 666f2074 20504920 636f6c62 253c206b
+[ 3345.014381] 8b94  66203e73 656c6961 64252064 6d61000a 75706764 7361725f 74616c5f 6e695f65
+[ 3345.017260] 8bb4  66207469 656c6961 64252064 616e6500 20656c62 7570676d 6e616620 6f6f6220
+[ 3345.020131] 8bd4  66207473 656c6961 25282064 0a2e2964 74737000 20657461 74746573 20676e69
+[ 3345.022996] 8bf4  6c696166 28206465 2e296425 6d61000a 75706764 6d61203a 75706764 6966203a
+[ 3345.025865] 8c14  6873696e 20676e69 69766564 0a2e6563 72616500 665f796c 20696e69 4920666f
+[ 3345.028732] 8c34  6c622050 206b636f 3e73253c 69616620 2064656c 000a6425 6c696166 74206465
+[ 3345.031597] 8c54  6572206f 7361656c 78652065 73756c63 20657669 65646f6d 206e6f20 696e6966
+[ 3345.034469] 8c74* 7773000a 6e69665f 666f2069 20504920 636f6c62 253c206b 66203e73 656c6961
+[ 3345.037354] 8c94  64252064 6d61000a 75706764 6d61203a 75706764 69736120 6e692063 66207469
+[ 3345.040246] 8cb4  656c6961 61000a64 7067646d 61203a75 7067646d 65645f75 65636976 5f70695f
+[ 3345.043154] 8cd4  75736572 6620656d 656c6961 25282064 0a2e2964 6c697700 6e65206c 656c6261
+[ 3345.046084] 8cf4  78666720 2066666f 20726f66 20656874 7373696d 206e6f69 65646f6d 6d61000a
+[ 3345.049032] 8d14  75706764 6954203a 756f656d 62202c74 6e207475 6168206f 61776472 68206572
+[ 3345.051990] 8d34  20676e61 65746564 64657463 61000a2e 7067646d 47203a75 72205550 766f6365
+[ 3345.054962] 8d54  20797265 61736964 64656c62 61000a2e 7067646d 73203a75 2074666f 65736572
+[ 3345.057933] 8d74  61662074 64656c69 6977202c 66206c6c 626c6c61 206b6361 66206f74 206c6c75
+[ 3345.060913] 8d94  65736572 000a2174 67646d61 203a7570 43495341 73657220 66207465 656c6961
+[ 3345.063901] 8db4  69772064 65206874 726f7272 6425202c 726f6620 6d726420 76656420 7325202c
+[ 3345.066904] 8dd4  646d6100 3a757067 69736120 74612063 69206d6f 2074696e 6c696166 00216465
+[ 3345.069930] 8df4  67646d61 203a7570 20555047 65736572 75732074 65656363 2c646564 79727420
+[ 3345.072973] 8e14  20676e69 72206f74 6d757365 01000a65 72645b36 56205d6d 204d4152 6c207369
+[ 3345.076026] 8e34  2074736f 20657564 47206f74 72205550 74657365 61000a21 7067646d 69203a75
+[ 3345.079076] 8e54  69722062 7420676e 20747365 6c696166 28206465 2e296425 6f6a000a 73207362
+[ 3345.082148] 8e74  00706f74 65736572 61660074 64656c69 63757300 64656563 01006465 72645b34
+[ 3345.085218] 
+               X24: 0xffff00015e517100:
+[ 3345.091288] 6f00  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.094394] 6f20  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.097499] 6f40  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.100604] 6f60  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.103711] 6f80  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.106821] 6fa0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.109939] 6fc0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.113023] 6fe0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.116091] 7000  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.119151] 7020  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.122196] 7040  00000000 00000000 5e565264 ffff0001 00000000 00000000 00000000 00000000
+[ 3345.125235] 7060  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.128256] 7080  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.131261] 70a0  ffffffe0 0000000f 5e5170a8 ffff0001 5e5170a8 ffff0001 01490134 ffff8000
+[ 3345.134271] 70c0  00000000 00000000 00000000 00000000 00000000 00000000 080a3da8 ffff8000
+[ 3345.137284] 70e0  00200005 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.140288] 7100* 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.143278] 7120  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.146264] 7140  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.149235] 7160  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.152184] 7180  00000000 00000000 00000000 00000000 00000000 00000000 5e517198 ffff0001
+[ 3345.155124] 71a0  5e517198 ffff0001 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.158063] 71c0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.160991] 71e0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.163902] 7200  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.166793] 7220  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.169668] 7240  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.172524] 7260  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.175373] 7280  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.178201] 72a0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.181001] 72c0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.183800] 72e0  00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 3345.186572] 
+               X29: 0xffff80000c3eb6d0:
+[ 3345.192023] b4d0  0c3eb4f0 ffff8000 08033264 ffff8000 0c3eb580 ffff8000 00000029 00000000
+[ 3345.194801] b4f0  0c3eb540 ffff8000 091d5f70 ffff8000 0c3eb580 ffff8000 09b142f4 ffff8000
+[ 3345.197568] b510  f2000800 00000000 00000000 76fbf0e8 60400009 00000000 5e517100 ffff0001
+[ 3345.200350] b530  00006250 00000000 00000000 00000000 0c3eb570 ffff8000 091d6390 ffff8000
+[ 3345.203124] b550  5e500000 ffff0001 5e505fc8 ffff0001 0c3eb6d0 ffff8000 0875c29c ffff8000
+[ 3345.205903] b570  0c3eb6b0 ffff8000 080112e0 ffff8000 12ecae80 ffff0001 00000000 00000000
+[ 3345.208688] b590  00000000 00000000 f6d5aa70 ffff0002 00000000 00000000 f6d5aa70 ffff0002
+[ 3345.211488] b5b0  f6d4ea10 ffff0002 f6d4ea10 ffff0002 0c3eb438 ffff8000 081aba44 ffff8000
+[ 3345.214286] b5d0  6567616e 6f6e2072 6c632074 206e6165 69727564 7420676e 64656b61 2e6e776f
+[ 3345.217086] b5f0  00000000 00000000 0c3eb190 ffff8000 00000000 00000000 00000000 00000000
+[ 3345.219897] b610  0000000a 00000000 5e500000 ffff0001 5e505fc8 ffff0001 5e506130 ffff0001
+[ 3345.222711] b630  5e514000 ffff0001 01788c76 ffff8000 5e517100 ffff0001 00006250 00000000
+[ 3345.225529] b650  00000000 00000000 00000000 00000000 0000000c 00000000 0c3eb6d0 ffff8000
+[ 3345.228349] b670  0875c29c ffff8000 0c3eb6d0 ffff8000 0875c29c ffff8000 60400009 00000000
+[ 3345.231168] b690  0c3eb6e0 ffff8000 5f14be68 ffff0001 00000001 00000000 5e506130 ffff0001
+[ 3345.233989] b6b0  0c3eb6d0 ffff8000 0875c29c ffff8000 00000000 00000000 00000000 00000000
+[ 3345.236803] b6d0* 0c3eb6e0 ffff8000 014c6564 ffff8000 0c3eb720 ffff8000 014a5040 ffff8000
+[ 3345.239623] b6f0  5e500000 ffff0001 5e505000 ffff0001 5e5140a0 ffff0001 014a5030 ffff8000
+[ 3345.242442] b710  5e5000c0 00000000 3b1cad00 2dcca69c 0c3eb760 ffff8000 014a71ac ffff8000
+[ 3345.245277] b730  5e500000 ffff0001 5e516018 ffff0001 00000001 00000000 5e516018 ffff0001
+[ 3345.248124] b750  00000001 00000000 3b1cad00 2dcca69c 0c3eb780 ffff8000 01500054 ffff8000
+[ 3345.250985] b770  5e500000 ffff0001 00000000 00000000 0c3eb7b0 ffff8000 014928a8 ffff8000
+[ 3345.253860] b790  5e500000 ffff0001 5e516018 ffff0001 00000000 00000000 3b1cad00 2dcca69c
+[ 3345.256747] b7b0  0c3eb800 ffff8000 01498a4c ffff8000 5e500000 ffff0001 0c3eb8a8 ffff8000
+[ 3345.259646] b7d0  065490c8 ffff0001 0c3eb8a8 ffff8000 09715920 ffff8000 00000001 00000000
+[ 3345.262559] b7f0  5e862068 ffff0001 5e863e00 ffff0001 0c3eb820 ffff8000 0875ae48 ffff8000
+[ 3345.265486] b810  5e500010 ffff0001 00000001 00000000 0c3eb840 ffff8000 0875ae68 ffff8000
+[ 3345.268428] b830  5e863300 ffff0001 088e8be8 ffff8000 0c3eb850 ffff8000 088e89cc ffff8000
+[ 3345.271365] b850  0c3eb860 ffff8000 088e8bdc ffff8000 0c3eb8c0 ffff8000 088e9fe4 ffff8000
+[ 3345.274300] b870  065490c8 ffff0001 0000000d 00000000 0c3eb8a8 ffff8000 00000000 00000000
+[ 3345.277227] b890  06549370 ffff0001 091d8e48 ffff8000 12ecae80 ffff0001 5e863300 ffff0001
+[ 3345.280166] b8b0  5ecc8000 ffff0001 3b1cad00 2dcca69c 0c3eb900 ffff8000 088e33bc ffff8000
+[ 3345.283098] ---[ end trace 0000000000000000 ]---
+[ 3345.286342] [drm] amdgpu: ttm finalized

@@ -1,0 +1,494 @@
+[smoke] date=2026-03-14T02:12:54+01:00
+[smoke] uname -r: 6.1.115-vendor-rk35xx
+[smoke] boot_id: 487b5540-2917-45de-a416-5bc82e313b45
+[smoke] modprobe args: fw_load_type=3 num_kcq=0 mes=0 msi=1
+[smoke] amdgpu.ko sha256: a0259ff7e37481c40ea7cd00bdc50a826773116af500ca206ab8f24d312c07c5
+
+[smoke] lspci -nn -s 03:00.0
+0000:03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon RX 6400/6500 XT/6500M] [1002:743f] (rev c7)
+
+[smoke] unload amdgpu
+
+[smoke] clear dmesg
+
+[smoke] modprobe amdgpu fw_load_type=3 num_kcq=0 mes=0 msi=1
+[smoke] modprobe timeout: 45s
+[smoke] modprobe pid: 1742 (timeout 45s)
+[smoke] modprobe exited within timeout
+
+[smoke] capture full dmesg snapshot: /home/orange/gpu-bringup/logs/postcold-psp-dmesg-20260314-021254.log
+
+[smoke] lsmod | grep amdgpu
+amdgpu               4177920  0
+drm_ttm_helper         16384  1 amdgpu
+ttm                    57344  2 amdgpu,drm_ttm_helper
+drm_buddy              20480  1 amdgpu
+gpu_sched              40960  2 amdgpu,panfrost
+
+[smoke] /dev/dri
+insgesamt 0
+drwxr-xr-x 2 root root        120 14. Mär 02:09 by-path
+crw-rw---- 1 root video  226,   0 14. Mär 02:09 card0
+crw-rw---- 1 root video  226,   1 14. Mär 02:09 card1
+crw-rw---- 1 root render 226, 128 14. Mär 02:09 renderD128
+crw-rw---- 1 root render 226, 129 14. Mär 02:09 renderD129
+
+[smoke] vulkaninfo --summary
+==========
+VULKANINFO
+==========
+
+Vulkan Instance Version: 1.4.309
+
+
+Instance Extensions: count = 24
+-------------------------------
+VK_EXT_acquire_drm_display             : extension revision 1
+VK_EXT_acquire_xlib_display            : extension revision 1
+VK_EXT_debug_report                    : extension revision 10
+VK_EXT_debug_utils                     : extension revision 2
+VK_EXT_direct_mode_display             : extension revision 1
+VK_EXT_display_surface_counter         : extension revision 1
+VK_EXT_headless_surface                : extension revision 1
+VK_EXT_surface_maintenance1            : extension revision 1
+VK_EXT_swapchain_colorspace            : extension revision 5
+VK_KHR_device_group_creation           : extension revision 1
+VK_KHR_display                         : extension revision 23
+VK_KHR_external_fence_capabilities     : extension revision 1
+VK_KHR_external_memory_capabilities    : extension revision 1
+VK_KHR_external_semaphore_capabilities : extension revision 1
+VK_KHR_get_display_properties2         : extension revision 1
+VK_KHR_get_physical_device_properties2 : extension revision 2
+VK_KHR_get_surface_capabilities2       : extension revision 1
+VK_KHR_portability_enumeration         : extension revision 1
+VK_KHR_surface                         : extension revision 25
+VK_KHR_surface_protected_capabilities  : extension revision 1
+VK_KHR_wayland_surface                 : extension revision 6
+VK_KHR_xcb_surface                     : extension revision 6
+VK_KHR_xlib_surface                    : extension revision 6
+VK_LUNARG_direct_driver_loading        : extension revision 1
+
+Instance Layers: count = 2
+--------------------------
+VK_LAYER_MESA_device_select Linux device selection layer 1.4.303  version 1
+VK_LAYER_MESA_overlay       Mesa Overlay layer           1.4.303  version 1
+
+Devices:
+========
+GPU0:
+	apiVersion         = 1.4.305
+	driverVersion      = 0.0.1
+	vendorID           = 0x10005
+	deviceID           = 0x0000
+	deviceType         = PHYSICAL_DEVICE_TYPE_CPU
+	deviceName         = llvmpipe (LLVM 19.1.7, 128 bits)
+	driverID           = DRIVER_ID_MESA_LLVMPIPE
+	driverName         = llvmpipe
+	driverInfo         = Mesa 25.0.7-2 (LLVM 19.1.7)
+	conformanceVersion = 1.3.1.1
+	deviceUUID         = 6d657361-3235-2e30-2e37-2d3200000000
+	driverUUID         = 6c6c766d-7069-7065-5555-494400000000
+
+[smoke] unload amdgpu after capture
+
+[smoke] dmesg snapshot extract
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008B000, 0x0003B7A0, 0x0000B020)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD7A0, 0x0003DAE0, 0x0003D7C0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000873A0, 0x00007680, 0x000073C0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099B20, 0x00019E00, 0x00019B40)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB700, 0x0002B9E0, 0x0002B720)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BE9A0, 0x0003ED00, 0x0003E9C0)
+[Sa Mär 14 02:13:36 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00091CC0, 0x00011FA0, 0x00011CE0)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A5740, 0x00025A80, 0x00025760)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7640, 0x000379E0, 0x00037660)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008A120, 0x0000A480, 0x0000A140)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009D800, 0x0001DB00, 0x0001D820)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B06C0, 0x00030A20, 0x000306E0)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000829C0, 0x00002D40, 0x000029E0)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00095CC0, 0x00015FC0, 0x00015CE0)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8440, 0x00028720, 0x00028460)
+[Sa Mär 14 02:13:37 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BB360, 0x0003B660, 0x0003B380)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E9C0, 0x0000ED40, 0x0000E9E0)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A14C0, 0x00021800, 0x000214E0)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B4020, 0x00034300, 0x00034040)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086B80, 0x00006E60, 0x00006BA0)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098B00, 0x00018E20, 0x00018B20)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ABE00, 0x0002C100, 0x0002BE20)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BEC60, 0x0003F020, 0x0003EC80)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090FE0, 0x000112E0, 0x00011000)
+[Sa Mär 14 02:13:38 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3F00, 0x00024200, 0x00023F20)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B6640, 0x00036960, 0x00036660)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088620, 0x000088E0, 0x00008640)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009AD20, 0x0001B080, 0x0001AD40)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ABCC0, 0x0002C040, 0x0002BCE0)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BF780, 0x0003FA80, 0x0003F7A0)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00091EE0, 0x000121E0, 0x00011F00)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3E60, 0x00024180, 0x00023E80)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B55E0, 0x00035940, 0x00035600)
+[Sa Mär 14 02:13:39 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00088920, 0x00008BE0, 0x00008940)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009ACA0, 0x0001AFA0, 0x0001ACC0)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AD760, 0x0002DAE0, 0x0002D780)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BF300, 0x0003F620, 0x0003F320)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00091A40, 0x00011D60, 0x00011A60)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A3DC0, 0x000240C0, 0x00023DE0)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B7040, 0x000373C0, 0x00037060)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00089F40, 0x0000A260, 0x00009F60)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009BE40, 0x0001C1E0, 0x0001BE60)
+[Sa Mär 14 02:13:40 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ADDE0, 0x0002E0E0, 0x0002DE00)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000810E0, 0x000013E0, 0x00001100)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00094F80, 0x00015280, 0x00014FA0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00080840, 0x00032380, 0x00000860)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1C80, 0x00031FC0, 0x00031CA0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BBBA0, 0x0003BF40, 0x0003BBC0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E280, 0x0000E600, 0x0000E2A0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A2160, 0x00022420, 0x00022180)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B48A0, 0x00034BC0, 0x000348C0)
+[Sa Mär 14 02:13:41 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086080, 0x00006380, 0x000060A0)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098760, 0x00018AE0, 0x00018780)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB5E0, 0x0002B980, 0x0002B600)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BDCE0, 0x0003E040, 0x0003DD00)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F860, 0x0000FBA0, 0x0000F880)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1380, 0x00021720, 0x000213A0)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2720, 0x00032A80, 0x00032740)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00085A00, 0x00005D20, 0x00005A20)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000980C0, 0x00018460, 0x000180E0)
+[Sa Mär 14 02:13:42 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AA780, 0x0002AB20, 0x0002A7A0)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD5E0, 0x0003D9A0, 0x0003D600)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F4E0, 0x0000F880, 0x0000F500)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1BA0, 0x00021F40, 0x00021BC0)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B3B00, 0x00033E40, 0x00033B20)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086E00, 0x00007100, 0x00006E20)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099900, 0x00019C40, 0x00019920)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ACBC0, 0x0002CF00, 0x0002CBE0)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BFAC0, 0x0003FDE0, 0x0003FAE0)
+[Sa Mär 14 02:13:43 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00090700, 0x00010A00, 0x00010720)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A22A0, 0x000225C0, 0x000222C0)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B39E0, 0x00033D80, 0x00033A00)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00086C60, 0x00006FE0, 0x00006C80)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098F40, 0x000192E0, 0x00018F60)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AA660, 0x0002AA20, 0x0002A680)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC5C0, 0x0003C900, 0x0003C5E0)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008F100, 0x0000F400, 0x0000F120)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A2020, 0x00022320, 0x00022040)
+[Sa Mär 14 02:13:44 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B37E0, 0x00033B00, 0x00033800)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00085F20, 0x00006240, 0x00005F40)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098220, 0x000185A0, 0x00018240)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A99A0, 0x00029D00, 0x000299C0)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC0C0, 0x0003C400, 0x0003C0E0)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008E780, 0x0000EB20, 0x0000E7A0)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A02A0, 0x00020640, 0x000202C0)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B1E60, 0x00032160, 0x00031E80)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00085940, 0x00005C20, 0x00005960)
+[Sa Mär 14 02:13:45 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00098FE0, 0x00019320, 0x00019000)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A97A0, 0x00029B40, 0x000297C0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD640, 0x0003D940, 0x0003D660)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: unknown (0x0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1540, 0x00026440, 0x00021560)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: [mmhub] page fault (src_id:0 ring:153 vmid:0 pasid:0, for process  pid 0 thread  pid 0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu:   in page starting at address 0x0000000100000000 from client 0x12 (VMC)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: MMVM_L2_PROTECTION_FAULT_STATUS:0x00000B33
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 Faulty UTCL2 client ID: MP0 (0x5)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MORE_FAULTS: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 WALKER_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 PERMISSION_FAULTS: 0x3
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 MAPPING_ERROR: 0x1
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: 	 RW: 0x0
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BB580, 0x00021940, 0x0003B5A0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000AB260, 0x0002B5C0, 0x0002B280)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B5DC0, 0x000360C0, 0x00035DE0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00087500, 0x000078A0, 0x00007520)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00099CA0, 0x00019F60, 0x00019CC0)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000ACB40, 0x0002CEC0, 0x0002CB60)
+[Sa Mär 14 02:13:46 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BD780, 0x0003DA80, 0x0003D7A0)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008EB00, 0x0000EE80, 0x0000EB20)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A1600, 0x00021940, 0x00021620)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B31A0, 0x000334C0, 0x000331C0)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084900, 0x00004C80, 0x00004920)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00096C20, 0x00016F80, 0x00016C40)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A96E0, 0x00029A60, 0x00029700)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BC9A0, 0x0003CCE0, 0x0003C9C0)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008DD00, 0x0000E0A0, 0x0000DD20)
+[Sa Mär 14 02:13:47 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009F8A0, 0x0001FBC0, 0x0001F8C0)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B17A0, 0x00031B40, 0x000317C0)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00084A60, 0x00004DA0, 0x00004A80)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000978E0, 0x00017C80, 0x00017900)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A8C80, 0x00028FE0, 0x00028CA0)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000BAFA0, 0x0003B300, 0x0003AFC0)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0008D680, 0x0000DA00, 0x0000D6A0)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x0009FDA0, 0x000200E0, 0x0001FDC0)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000B2520, 0x00032800, 0x00032540)
+[Sa Mär 14 02:13:48 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x00083900, 0x00003C20, 0x00003920)
+[Sa Mär 14 02:13:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000950E0, 0x000153E0, 0x00015100)
+[Sa Mär 14 02:13:49 2026] amdgpu 0000:03:00.0: amdgpu: IH ring buffer overflow (0x000A7000, 0x00027380, 0x00027020)
+[Sa Mär 14 02:13:49 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=10000000
+[Sa Mär 14 02:13:49 2026] [drm:psp_v11_0_ring_destroy [amdgpu]] *ERROR* Fail to stop psp ring
+[Sa Mär 14 02:13:49 2026] [drm:psp_hw_init [amdgpu]] *ERROR* PSP firmware loading failed
+[Sa Mär 14 02:13:49 2026] [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* hw_init of IP block <psp> failed -22
+[Sa Mär 14 02:13:49 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Sa Mär 14 02:13:49 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sa Mär 14 02:13:49 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sa Mär 14 02:13:49 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Sa Mär 14 02:13:49 2026] Modules linked in: amdgpu(O+) drm_ttm_helper ttm(O) drm_buddy zram zsmalloc binfmt_misc panfrost pwm_fan rk805_pwrkey drm_shmem_helper gpu_sched fuse nfnetlink ip_tables x_tables ipv6 btrfs blake2b_generic xor xor_neon raid6_pq r8169 rockchip_cpuinfo uio_pdrv_genirq adc_keys uio
+[Sa Mär 14 02:13:49 2026]  amdgpu_gtt_mgr_fini+0x60/0xe4 [amdgpu]
+[Sa Mär 14 02:13:49 2026]  amdgpu_ttm_fini+0x138/0x1b8 [amdgpu]
+[Sa Mär 14 02:13:49 2026]  amdgpu_bo_fini+0x38/0x80 [amdgpu]
+[Sa Mär 14 02:13:49 2026]  gmc_v10_0_sw_fini+0x38/0x4c [amdgpu]
+[Sa Mär 14 02:13:49 2026]  amdgpu_device_fini_sw+0x248/0x2d0 [amdgpu]
+[Sa Mär 14 02:13:49 2026]  amdgpu_driver_release_kms+0x24/0x3c [amdgpu]
+[Sa Mär 14 02:13:49 2026]  amdgpu_init+0x7c/0xfa0 [amdgpu]
+[Sa Mär 14 02:13:49 2026] [drm] amdgpu: ttm finalized

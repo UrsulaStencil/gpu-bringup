@@ -1,0 +1,36 @@
+[Sa Mär 14 04:19:20 2026] [drm] amdgpu kernel modesetting enabled.
+[Sa Mär 14 04:19:20 2026] [drm] initializing kernel modesetting (BEIGE_GOBY 0x1002:0x743F 0x1462:0x5082 0xC7).
+[Sa Mär 14 04:19:20 2026] [drm] register mmio base: 0xF0200000
+[Sa Mär 14 04:19:20 2026] [drm] register mmio size: 1048576
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: get invalid ip discovery binary signature from vram
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_discovery is not set properly
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: failed to read ip discovery binary from file
+[Sa Mär 14 04:19:20 2026] [drm:amdgpu_discovery_set_ip_blocks [amdgpu]] *ERROR* amdgpu_discovery_init failed
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using beige_goby static IP fallback after discovery failure
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 0 <nv_common>
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 1 <gmc_v10_0>
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 2 <navi10_ih>
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 3 <psp>
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 4 <smu>
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 5 <gfx_v10_0>
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 6 <sdma_v5_2>
+[Sa Mär 14 04:19:20 2026] [drm] add ip block number 7 <vcn_v3_0>
+[Sa Mär 14 04:19:20 2026] [drm] BIOS signature incorrect ff ff
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: Invalid PCI ROM header signature: expecting 0xaa55, got 0xffff
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: Using VBIOS fallback file amdgpu/vbios-1002-743f-1462-5082.rom
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from firmware file
+[Sa Mär 14 04:19:20 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sa Mär 14 04:19:20 2026] [drm] VCN(0) decode is enabled in VM mode
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: SMU: response:0xFFFFFFFF for index:2 param:0x00000000 message:GetSmuVersion?
+[Sa Mär 14 04:19:20 2026] amdgpu 0000:03:00.0: amdgpu: GPU psp mode1 reset
+[Sa Mär 14 04:19:46 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0xffffffff expect=0x80000000 mask=0x8000ffff changed=0 timeout_us=10000000
+[Sa Mär 14 04:19:46 2026] [drm] psp is not working correctly before mode1 reset!
+[Sa Mär 14 04:19:46 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset failed
+[Sa Mär 14 04:19:46 2026] amdgpu 0000:03:00.0: amdgpu: asic reset on init failed
+[Sa Mär 14 04:19:46 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sa Mär 14 04:19:46 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sa Mär 14 04:19:46 2026] amdgpu: probe of 0000:03:00.0 failed with error -22

@@ -1,0 +1,91 @@
+[Sa Mär 14 04:46:15 2026] [drm] amdgpu kernel modesetting enabled.
+[Sa Mär 14 04:46:15 2026] [drm] initializing kernel modesetting (BEIGE_GOBY 0x1002:0x743F 0x1462:0x5082 0xC7).
+[Sa Mär 14 04:46:15 2026] [drm] register mmio base: 0xF0200000
+[Sa Mär 14 04:46:15 2026] [drm] register mmio size: 1048576
+[Sa Mär 14 04:46:15 2026] [drm] add ip block number 0 <nv_common>
+[Sa Mär 14 04:46:15 2026] [drm] add ip block number 1 <gmc_v10_0>
+[Sa Mär 14 04:46:15 2026] [drm] add ip block number 2 <navi10_ih>
+[Sa Mär 14 04:46:15 2026] [drm] add ip block number 3 <psp>
+[Sa Mär 14 04:46:15 2026] [drm] add ip block number 4 <smu>
+[Sa Mär 14 04:46:15 2026] [drm] add ip block number 5 <gfx_v10_0>
+[Sa Mär 14 04:46:15 2026] [drm] add ip block number 6 <sdma_v5_2>
+[Sa Mär 14 04:46:15 2026] [drm] add ip block number 7 <vcn_v3_0>
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Sa Mär 14 04:46:15 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sa Mär 14 04:46:15 2026] [drm] VCN(0) decode is enabled in VM mode
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sa Mär 14 04:46:15 2026] [drm] vm size is 262144 GB, 4 levels, block size is 9-bit, fragment size is 9-bit
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: BAR 2: releasing [mem 0x910000000-0x9101fffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: BAR 0: releasing [mem 0x900000000-0x90fffffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:02:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:01:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0: BAR 9: releasing [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:01:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:01:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:02:00.0: BAR 9: no space for [mem size 0x180000000 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:02:00.0: BAR 9: failed to assign [mem size 0x180000000 64bit pref]
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: BAR 0: no space for [mem size 0x100000000 64bit pref]
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: BAR 0: failed to assign [mem size 0x100000000 64bit pref]
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: BAR 2: no space for [mem size 0x00200000 64bit pref]
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: BAR 2: failed to assign [mem size 0x00200000 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0: PCI bridge to [bus 01-ff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0:   bridge window [io  0x300000-0x300fff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0:   bridge window [mem 0xf0200000-0xf04fffff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0: PCI bridge to [bus 01-ff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0:   bridge window [io  0x300000-0x300fff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0:   bridge window [mem 0xf0200000-0xf04fffff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:00:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:01:00.0: PCI bridge to [bus 02-03]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:01:00.0:   bridge window [io  0x300000-0x300fff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:01:00.0:   bridge window [mem 0xf0200000-0xf03fffff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:01:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:02:00.0: PCI bridge to [bus 03]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:02:00.0:   bridge window [io  0x300000-0x300fff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:02:00.0:   bridge window [mem 0xf0200000-0xf03fffff]
+[Sa Mär 14 04:46:15 2026] pcieport 0000:02:00.0:   bridge window [mem 0x900000000-0x917ffffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] [drm] Not enough PCI address space for a large BAR.
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: BAR 0: assigned [mem 0x900000000-0x90fffffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: BAR 2: assigned [mem 0x910000000-0x9101fffff 64bit pref]
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: VRAM: 4080M 0x0000008000000000 - 0x00000080FEFFFFFF (4080M used)
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: AGP: 267894784M 0x0000008400000000 - 0x0000FFFFFFFFFFFF
+[Sa Mär 14 04:46:15 2026] [drm] Detected VRAM RAM=4080M, BAR=256M
+[Sa Mär 14 04:46:15 2026] [drm] RAM width 64bits GDDR6
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: reserve_tmr mem_train=1 bios_reserved=0x300000 reserve_size=0x300000 mc_vram=0xff000000 real_vram=0xff000000 visible_vram=0x10000000 vram_start=0x8000000000 vram_end=0x80feffffff fb_offset=0x0
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_train block reserve_size=0x300000 mc_vram=0xff000000 real_vram=0xff000000 visible_vram=0x10000000 p2c=0xfeff8000 c2p=0xfec00000 train_size=0x1000
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: reserve_tmr fw_reserved_offset=0xfed00000 size=0x300000
+[Sa Mär 14 04:46:15 2026] [drm] amdgpu: 4080M of VRAM memory ready
+[Sa Mär 14 04:46:15 2026] [drm] amdgpu: 3968M of GTT memory ready.
+[Sa Mär 14 04:46:15 2026] [drm] GART: num cpu pages 131072, num gpu pages 131072
+[Sa Mär 14 04:46:15 2026] [drm] PCIE GART of 512M enabled (table at 0x0000008000000000).
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: psp sw_init: load_type=1 autoload_supported=1 toc_start=000000001ba574f4 toc_size=0x600 sos_start=00000000466f0df9 sos_size=0x14350
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't exist
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't exist
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_training decision runtime_db=0 boot_cfg_bitmask=0x0 enable=1 init=4
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: memory training init train_size=0x1000 p2c=0xfeff8000 c2p=0xfec00000 mc_vram=0xff000000 real_vram=0xff000000 visible_vram=0x10000000
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_training v11 begin ops=0x1 p2c=0xfeff8000 c2p=0xfec00000 train_size=0x1000
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_training warm signature detected, skipping training message and caching retained data
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: mem_training v11 resolved_ops=0x2 cache_sig=0x00000000 p2c_sig=0x54534942
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: psp shared buf: using VRAM-backed fw_pri mc=0x8000200000 psp_addr=0x8000200000 size=0x100000
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: STB initialized to 2048 entries
+[Sa Mär 14 04:46:15 2026] [drm] use_doorbell being set to: [true]
+[Sa Mär 14 04:46:15 2026] [drm] Found VCN firmware Version ENC: 1.33 DEC: 4 VEP: 0 Revision: 13
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: Will use PSP to load VCN firmware
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: firmware.fw_buf domain=vram load_type=1 mc=0x8000400000 psp_addr=0x8000400000 size=0x242000
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: psp ring init: type=2 ring_mc=0x8000107000 ring_size=0x1000
+[Sa Mär 14 04:46:15 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: clearing stale bootloader mailbox msg35=0x00200000 msg36=0x00000fec before cmd=524288
+[Sa Mär 14 04:46:19 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: bootloader wait timeout retry=20 msg35=0x00000000 msg36=0x00000000 msg81=0x00000000
+[Sa Mär 14 04:46:19 2026] [drm:psp_hw_start [amdgpu]] *ERROR* PSP load kdb failed!
+[Sa Mär 14 04:46:39 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x80000000 changed=0 timeout_us=10000000
+[Sa Mär 14 04:46:39 2026] [drm:psp_v11_0_ring_destroy [amdgpu]] *ERROR* Fail to stop psp ring
+[Sa Mär 14 04:46:39 2026] [drm:psp_hw_init [amdgpu]] *ERROR* PSP firmware loading failed
+[Sa Mär 14 04:46:39 2026] [drm:amdgpu_device_fw_loading [amdgpu]] *ERROR* hw_init of IP block <psp> failed -22
+[Sa Mär 14 04:46:39 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Sa Mär 14 04:46:39 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sa Mär 14 04:46:39 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sa Mär 14 04:46:39 2026] [drm] shutdown in progress; skipping GPU TLB flush
+[Sa Mär 14 04:46:39 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+[Sa Mär 14 04:46:40 2026] [drm] amdgpu: ttm finalized

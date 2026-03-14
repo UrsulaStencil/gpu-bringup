@@ -1,0 +1,25 @@
+[Sat Mar 14 10:33:21 2026] [drm] amdgpu kernel modesetting enabled.
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: enabling device (0000 -> 0003)
+[Sat Mar 14 10:33:21 2026] [drm] initializing kernel modesetting (BEIGE_GOBY 0x1002:0x743F 0x1462:0x5082 0xC7).
+[Sat Mar 14 10:33:21 2026] [drm] register mmio base: 0xF0200000
+[Sat Mar 14 10:33:21 2026] [drm] register mmio size: 1048576
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: get invalid ip discovery binary signature from vram
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_discovery is not set properly
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: failed to read ip discovery binary from file
+[Sat Mar 14 10:33:21 2026] [drm:amdgpu_discovery_set_ip_blocks [amdgpu]] *ERROR* amdgpu_discovery_init failed
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: using beige_goby static IP fallback after discovery failure
+[Sat Mar 14 10:33:21 2026] [drm] add ip block number 0 <nv_common>
+[Sat Mar 14 10:33:21 2026] [drm] add ip block number 1 <gmc_v10_0>
+[Sat Mar 14 10:33:21 2026] [drm] add ip block number 2 <navi10_ih>
+[Sat Mar 14 10:33:21 2026] [drm] add ip block number 3 <psp>
+[Sat Mar 14 10:33:21 2026] [drm] add ip block number 4 <smu>
+[Sat Mar 14 10:33:21 2026] [drm] add ip block number 5 <gfx_v10_0>
+[Sat Mar 14 10:33:21 2026] [drm] add ip block number 6 <sdma_v5_2>
+[Sat Mar 14 10:33:21 2026] [drm] add ip block number 7 <vcn_v3_0>
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: arm64 bring-up: forcing GPU post because PSP sign-of-life register is all-ones
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Sat Mar 14 10:33:21 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sat Mar 14 10:33:21 2026] [drm] VCN(0) decode is enabled in VM mode
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sat Mar 14 10:33:21 2026] amdgpu 0000:03:00.0: amdgpu: PCI reset

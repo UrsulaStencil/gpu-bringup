@@ -1,0 +1,39 @@
+From 2ac42a4ba6379832d75f14d0db95c4ec488508db Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:53:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 skip CP clear-state bootstrap on arm64
+
+On RK3588 bring-up with `async_gfx_ring=0`, CP enters early UTCL2 VM faults
+from CPG during `gfx_v10_0_cp_gfx_start()` bootstrap packet stream, before
+basic ring validation.
+
+As a bring-up isolation step, skip the heavy clear-state bootstrap command
+emission on arm64 and keep only CP enable. This allows probing whether
+basic ring test can progress without those early packets.
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index e1be6dc20d80..d8f66a8d4c83 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -6053,6 +6053,14 @@ static int gfx_v10_0_cp_gfx_start(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, mmCP_DEVICE_ID, 1);
+ 
+ 	gfx_v10_0_cp_gfx_enable(adev, true);
++#if defined(CONFIG_ARM64)
++	/*
++	 * RK3588 bring-up: skip heavy clear-state bootstrap packets for now.
++	 * They trigger early CPG UTCL2 VM faults and can block basic ring
++	 * validation. Keep CP enabled and let ring_test exercise the queue.
++	 */
++	return 0;
++#endif
+ 
+ 	ring = &adev->gfx.gfx_ring[0];
+ 	r = amdgpu_ring_alloc(ring, gfx_v10_0_get_csb_size(adev) + 4);
+-- 
+2.43.0
+

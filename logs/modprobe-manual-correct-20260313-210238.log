@@ -1,0 +1,16 @@
+===== fw1_async0 =====
+MARKER_fw1_async0_1773432159
+[Fr Mär 13 21:01:23 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:01:23 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+===== fw1_async1 =====
+MARKER_fw1_async1_1773432173
+[Fr Mär 13 21:03:10 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:03:10 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+===== fw3_async0 =====
+MARKER_fw3_async0_1773432187
+[Fr Mär 13 21:03:24 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:03:24 2026] amdgpu: probe of 0000:03:00.0 failed with error -22
+===== fw3_async1 =====
+MARKER_fw3_async1_1773432201
+[Fr Mär 13 21:03:38 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 21:03:38 2026] amdgpu: probe of 0000:03:00.0 failed with error -22

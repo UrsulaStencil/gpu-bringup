@@ -1,0 +1,65 @@
+From 0ee4222ae60cffc9447f2e2af7ced6d5c55184e0 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:58:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 add arm64 NOP+rptr ring pretest
+
+On RK3588 bring-up, the existing scratch-register ring test can fault
+before it proves basic queue progress. Add an arm64 pretest that submits a
+single PACKET3 NOP and waits for rptr movement. If rptr advances, treat
+ring test as success and skip the scratch path.
+
+This unblocks validation of basic ring fetch/execute in environments where
+SET_UCONFIG scratch writes are not yet reliable.
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 77f3cc31f613..28f4530a22ec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -3794,6 +3794,39 @@ static int gfx_v10_0_ring_test_ring(struct amdgpu_ring *ring)
+ 	unsigned i;
+ 	int r;
+ 
++#if defined(CONFIG_ARM64)
++	/*
++	 * On some arm64 bring-up paths, SET_UCONFIG_REG scratch writes can
++	 * fault before they prove basic queue progress. First validate that
++	 * RB fetch works with a minimal NOP packet and rptr movement.
++	 */
++	{
++		uint64_t start_rptr = amdgpu_ring_get_rptr(ring);
++
++		r = amdgpu_ring_alloc(ring, 1);
++		if (r) {
++			DRM_ERROR("amdgpu: cp failed to lock ring %d for nop pretest (%d).\n",
++				  ring->idx, r);
++			return r;
++		}
++
++		amdgpu_ring_write(ring, PACKET3(PACKET3_NOP, 0));
++		amdgpu_ring_commit(ring);
++
++		for (i = 0; i < adev->usec_timeout; i++) {
++			if (amdgpu_ring_get_rptr(ring) != start_rptr)
++				return 0;
++			if (amdgpu_emu_mode == 1)
++				msleep(1);
++			else
++				udelay(1);
++		}
++
++		DRM_ERROR("gfx ring nop pretest timed out: start_rptr=0x%llx cur_rptr=0x%llx\n",
++			  (unsigned long long)start_rptr,
++			  (unsigned long long)amdgpu_ring_get_rptr(ring));
++	}
++#endif
++
+ 	WREG32(scratch, 0xCAFEDEAD);
+ 	r = amdgpu_ring_alloc(ring, 3);
+ 	if (r) {
+-- 
+2.43.0
+

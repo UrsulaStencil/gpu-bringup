@@ -1,0 +1,11 @@
+[Sa Mär 14 02:04:17 2026] [drm] amdgpu kernel modesetting enabled.
+[Sa Mär 14 02:04:17 2026] [drm] initializing kernel modesetting (BEIGE_GOBY 0x1002:0x743F 0x1462:0x5082 0xC7).
+[Sa Mär 14 02:04:17 2026] [drm] register mmio base: 0xF0200000
+[Sa Mär 14 02:04:17 2026] [drm] register mmio size: 1048576
+[Sa Mär 14 02:04:17 2026] amdgpu 0000:03:00.0: amdgpu: get invalid ip discovery binary signature from vram
+[Sa Mär 14 02:04:17 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_discovery is not set properly
+[Sa Mär 14 02:04:17 2026] amdgpu 0000:03:00.0: amdgpu: failed to read ip discovery binary from file
+[Sa Mär 14 02:04:17 2026] [drm:amdgpu_discovery_set_ip_blocks [amdgpu]] *ERROR* amdgpu_discovery_init failed
+[Sa Mär 14 02:04:17 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sa Mär 14 02:04:17 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sa Mär 14 02:04:17 2026] amdgpu: probe of 0000:03:00.0 failed with error -22

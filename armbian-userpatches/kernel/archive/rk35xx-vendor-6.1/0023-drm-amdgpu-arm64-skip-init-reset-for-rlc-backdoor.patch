@@ -1,0 +1,36 @@
+From e37ed6957e2f248743a76c0f76df1f2387c37adb Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 22:25:00 +0100
+Subject: [PATCH] drm/amdgpu: arm64 skip init reset for RLC backdoor fw load
+
+On RK3588 bring-up we already skip ASIC reset for DIRECT firmware load to
+avoid early mode1-reset deadlocks. Extending fw_load_type to
+RLC_BACKDOOR_AUTO exposed the same reset path and crashed in
+smu_mode1_reset_is_support() before the new load mode could be evaluated.
+
+Treat RLC backdoor autoload like DIRECT for the arm64 bring-up reset guard.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 6b28988abec7..2a8d5144dd71 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -3817,8 +3817,11 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 			 * Auto mode (-1) still resolves via ASIC defaults.
+ 			 */
+ #if defined(CONFIG_ARM64)
+-			if (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT) {
+-				dev_info(adev->dev, "arm64 bring-up: skipping asic reset on init for DIRECT fw load\n");
++			if (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT ||
++			    adev->firmware.load_type == AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO) {
++				dev_info(adev->dev,
++					 "arm64 bring-up: skipping asic reset on init for fw_load_type=%d\n",
++					 adev->firmware.load_type);
+ 			} else {
+ 				r = amdgpu_asic_reset(adev);
+ 				if (r) {
+-- 
+2.43.0
+

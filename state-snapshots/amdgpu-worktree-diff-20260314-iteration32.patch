@@ -1,0 +1,145 @@
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index 35921b41fc27..1ad0023bb699 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -325,6 +325,16 @@ static void gmc_v10_0_flush_gpu_tlb(struct amdgpu_device *adev, uint32_t vmid,
+ 
+ 	int r;
+ 
++	/*
++	 * During teardown after failed bring-up, KIQ-based VM invalidation can
++	 * stall indefinitely on this platform. Skipping flushes in shutdown
++	 * avoids wedging module unload/probe retry paths.
++	 */
++	if (adev->shutdown) {
++		DRM_INFO_ONCE("shutdown in progress; skipping GPU TLB flush\n");
++		return;
++	}
++
+ 	/* flush hdp cache */
+ 	adev->hdp.funcs->flush_hdp(adev, NULL);
+ 
+@@ -777,12 +787,49 @@ static int gmc_v10_0_late_init(void *handle)
+ 	return amdgpu_irq_get(adev, &adev->gmc.vm_fault, 0);
+ }
+ 
++#if defined(CONFIG_ARM64)
++static bool gmc_v10_0_arm64_beige_goby_msi_rx6400(struct amdgpu_device *adev)
++{
++	return adev->asic_type == CHIP_BEIGE_GOBY &&
++	       adev->pdev->vendor == 0x1002 &&
++	       adev->pdev->device == 0x743f &&
++	       adev->pdev->subsystem_vendor == 0x1462 &&
++	       adev->pdev->subsystem_device == 0x5082;
++}
++
++static void gmc_v10_0_apply_static_fb_layout(struct amdgpu_device *adev,
++					     u64 *base, u64 *fb_offset)
++{
++	if (!gmc_v10_0_arm64_beige_goby_msi_rx6400(adev))
++		return;
++
++	if (*base == 0x0000008000000000ULL && *fb_offset == 0)
++		return;
++
++	if (*base >= 0x0000ffff00000000ULL || *base == 0 ||
++	    *fb_offset >= adev->gmc.mc_vram_size) {
++		dev_info(adev->dev,
++			 "arm64 bring-up: using static FB layout fallback base=0x%llx fb_offset=0x%llx for beige_goby hot-reset path\n",
++			 (unsigned long long)*base,
++			 (unsigned long long)*fb_offset);
++		*base = 0x0000008000000000ULL;
++		*fb_offset = 0;
++	}
++}
++#endif
++
+ static void gmc_v10_0_vram_gtt_location(struct amdgpu_device *adev,
+ 					struct amdgpu_gmc *mc)
+ {
+ 	u64 base = 0;
++	u64 fb_offset = 0;
+ 
+ 	base = adev->gfxhub.funcs->get_fb_location(adev);
++	fb_offset = adev->gfxhub.funcs->get_mc_fb_offset(adev);
++
++#if defined(CONFIG_ARM64)
++	gmc_v10_0_apply_static_fb_layout(adev, &base, &fb_offset);
++#endif
+ 
+ 	/* add the xgmi offset of the physical node */
+ 	base += adev->gmc.xgmi.physical_node_id * adev->gmc.xgmi.node_segment_size;
+@@ -792,7 +839,7 @@ static void gmc_v10_0_vram_gtt_location(struct amdgpu_device *adev,
+ 	amdgpu_gmc_agp_location(adev, mc);
+ 
+ 	/* base offset of vram pages */
+-	adev->vm_manager.vram_base_offset = adev->gfxhub.funcs->get_mc_fb_offset(adev);
++	adev->vm_manager.vram_base_offset = fb_offset;
+ 
+ 	/* add the xgmi offset of the physical node */
+ 	adev->vm_manager.vram_base_offset +=
+@@ -811,10 +858,27 @@ static void gmc_v10_0_vram_gtt_location(struct amdgpu_device *adev,
+ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
+ {
+ 	int r;
++	u32 memsize_mb;
++
++	memsize_mb = adev->nbio.funcs->get_memsize(adev);
++#if defined(CONFIG_ARM64)
++	if ((memsize_mb == 0 || memsize_mb == 0xffffffff) &&
++	    gmc_v10_0_arm64_beige_goby_msi_rx6400(adev)) {
++		/*
++		 * Same-boot bring-up on RK3588 can leave CONFIG_MEMSIZE unreadable
++		 * after we intentionally skip the broken init reset path.
++		 * Verified cold-boot runs on this exact board/GPU combination
++		 * consistently report 4080 MiB (0xff0) here.
++		 */
++		memsize_mb = 0xff0;
++		dev_info(adev->dev,
++			 "arm64 bring-up: using static CONFIG_MEMSIZE fallback 0x%x MB for beige_goby\n",
++			 memsize_mb);
++	}
++#endif
+ 
+ 	/* size in MB on si */
+-	adev->gmc.mc_vram_size =
+-		adev->nbio.funcs->get_memsize(adev) * 1024ULL * 1024ULL;
++	adev->gmc.mc_vram_size = memsize_mb * 1024ULL * 1024ULL;
+ 	adev->gmc.real_vram_size = adev->gmc.mc_vram_size;
+ 
+ 	if (!(adev->flags & AMD_IS_APU)) {
+@@ -1066,10 +1130,17 @@ static int gmc_v10_0_gart_enable(struct amdgpu_device *adev)
+ 	if (r)
+ 		return r;
+ 
+-	adev->hdp.funcs->init_registers(adev);
++	if (adev->hdp.funcs && adev->hdp.funcs->init_registers)
++		adev->hdp.funcs->init_registers(adev);
++#if defined(CONFIG_ARM64)
++	else if (gmc_v10_0_arm64_beige_goby_msi_rx6400(adev))
++		dev_info(adev->dev,
++			 "arm64 bring-up: HDP init_registers callback missing, skipping\n");
++#endif
+ 
+ 	/* Flush HDP after it is initialized */
+-	adev->hdp.funcs->flush_hdp(adev, NULL);
++	if (adev->hdp.funcs && adev->hdp.funcs->flush_hdp)
++		adev->hdp.funcs->flush_hdp(adev, NULL);
+ 
+ 	value = (amdgpu_vm_fault_stop == AMDGPU_VM_FAULT_STOP_ALWAYS) ?
+ 		false : true;
+@@ -1142,10 +1213,12 @@ static int gmc_v10_0_hw_fini(void *handle)
+ 		return 0;
+ 	}
+ 
+-	amdgpu_irq_put(adev, &adev->gmc.vm_fault, 0);
++	if (amdgpu_irq_enabled(adev, &adev->gmc.vm_fault, 0))
++		amdgpu_irq_put(adev, &adev->gmc.vm_fault, 0);
+ 
+ 	if (adev->gmc.ecc_irq.funcs &&
+-		amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__UMC))
++		amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__UMC) &&
++		amdgpu_irq_enabled(adev, &adev->gmc.ecc_irq, 0))
+ 		amdgpu_irq_put(adev, &adev->gmc.ecc_irq, 0);
+ 
+ 	return 0;

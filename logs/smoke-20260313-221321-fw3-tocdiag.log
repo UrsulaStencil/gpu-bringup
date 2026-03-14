@@ -1,0 +1,111 @@
+[smoke] uname -r
+6.1.115-vendor-rk35xx
+
+[smoke] lspci -nnk -s 03:00.0
+0000:03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 24 [Radeon RX 6400/6500 XT/6500M] [1002:743f] (rev c7)
+	Subsystem: Micro-Star International Co., Ltd. [MSI] Device [1462:5082]
+	Kernel modules: amdgpu
+
+[smoke] modprobe amdgpu mes=0 num_kcq=0 msi=1 fw_load_type=3
+[smoke] amdgpu dc parameter: 0
+
+[smoke] lsmod | grep amdgpu
+amdgpu               4161536  0
+drm_ttm_helper         16384  1 amdgpu
+drm_buddy              20480  1 amdgpu
+ttm                    57344  2 amdgpu,drm_ttm_helper
+gpu_sched              40960  2 amdgpu,panfrost
+
+[smoke] /dev/dri
+insgesamt 0
+drwxr-xr-x 2 root root        120 13. Mär 21:45 by-path
+crw-rw---- 1 root video  226,   0 13. Mär 21:45 card0
+crw-rw---- 1 root video  226,   1 13. Mär 21:45 card1
+crw-rw---- 1 root render 226, 128 13. Mär 21:45 renderD128
+crw-rw---- 1 root render 226, 129 13. Mär 21:45 renderD129
+
+[smoke] vulkaninfo --summary
+==========
+VULKANINFO
+==========
+
+Vulkan Instance Version: 1.4.309
+
+
+Instance Extensions: count = 24
+-------------------------------
+VK_EXT_acquire_drm_display             : extension revision 1
+VK_EXT_acquire_xlib_display            : extension revision 1
+VK_EXT_debug_report                    : extension revision 10
+VK_EXT_debug_utils                     : extension revision 2
+VK_EXT_direct_mode_display             : extension revision 1
+VK_EXT_display_surface_counter         : extension revision 1
+VK_EXT_headless_surface                : extension revision 1
+VK_EXT_surface_maintenance1            : extension revision 1
+VK_EXT_swapchain_colorspace            : extension revision 5
+VK_KHR_device_group_creation           : extension revision 1
+VK_KHR_display                         : extension revision 23
+VK_KHR_external_fence_capabilities     : extension revision 1
+VK_KHR_external_memory_capabilities    : extension revision 1
+VK_KHR_external_semaphore_capabilities : extension revision 1
+VK_KHR_get_display_properties2         : extension revision 1
+VK_KHR_get_physical_device_properties2 : extension revision 2
+VK_KHR_get_surface_capabilities2       : extension revision 1
+VK_KHR_portability_enumeration         : extension revision 1
+VK_KHR_surface                         : extension revision 25
+VK_KHR_surface_protected_capabilities  : extension revision 1
+VK_KHR_wayland_surface                 : extension revision 6
+VK_KHR_xcb_surface                     : extension revision 6
+VK_KHR_xlib_surface                    : extension revision 6
+VK_LUNARG_direct_driver_loading        : extension revision 1
+
+Instance Layers: count = 2
+--------------------------
+VK_LAYER_MESA_device_select Linux device selection layer 1.4.303  version 1
+VK_LAYER_MESA_overlay       Mesa Overlay layer           1.4.303  version 1
+
+Devices:
+========
+GPU0:
+	apiVersion         = 1.4.305
+	driverVersion      = 0.0.1
+	vendorID           = 0x10005
+	deviceID           = 0x0000
+	deviceType         = PHYSICAL_DEVICE_TYPE_CPU
+	deviceName         = llvmpipe (LLVM 19.1.7, 128 bits)
+	driverID           = DRIVER_ID_MESA_LLVMPIPE
+	driverName         = llvmpipe
+	driverInfo         = Mesa 25.0.7-2 (LLVM 19.1.7)
+	conformanceVersion = 1.3.1.1
+	deviceUUID         = 6d657361-3235-2e30-2e37-2d3200000000
+	driverUUID         = 6c6c766d-7069-7065-5555-494400000000
+
+[smoke] dmesg tail (amdgpu)
+[Fr Mär 13 22:13:45 2026] [drm] amdgpu kernel modesetting enabled.
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Fr Mär 13 22:13:45 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: BAR 2: releasing [mem 0x910000000-0x9101fffff 64bit pref]
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: BAR 0: releasing [mem 0x900000000-0x90fffffff 64bit pref]
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: BAR 0: no space for [mem size 0x100000000 64bit pref]
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: BAR 0: failed to assign [mem size 0x100000000 64bit pref]
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: BAR 2: no space for [mem size 0x00200000 64bit pref]
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: BAR 2: failed to assign [mem size 0x00200000 64bit pref]
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: BAR 0: assigned [mem 0x900000000-0x90fffffff 64bit pref]
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: BAR 2: assigned [mem 0x910000000-0x9101fffff 64bit pref]
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: VRAM: 4080M 0x0000008000000000 - 0x00000080FEFFFFFF (4080M used)
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: AGP: 267894784M 0x0000008400000000 - 0x0000FFFFFFFFFFFF
+[Fr Mär 13 22:13:45 2026] [drm] amdgpu: 4080M of VRAM memory ready
+[Fr Mär 13 22:13:45 2026] [drm] amdgpu: 3968M of GTT memory ready.
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: rlc autoload toc: RLC_G off=0x00000000 size=0x00000000 PFP size=0x00000000 CE size=0x00000000 ME size=0x00000000 MEC size=0x00000000 SDMA0 size=0x00000000 SDMA1 size=0x00000000
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: rlc autoload toc has empty mandatory entries (RLC_G/PFP/CE/ME/MEC)
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: rlc autoload: gc ucode autoload timeout cp_stat first=0x84028000 last=0x84028000 boot first=0x00000000 last=0x00000000 complete=0
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: rlc autoload regs: GRBM_STATUS=0xa0003028 GRBM_STATUS2=0x70000008 CP_ME_CNTL=0x00000000 PFP_UCODE_ADDR=0xffffffff CE_UCODE_ADDR=0xffffffff HYP_ME_UCODE_ADDR=0xffffffff
+[Fr Mär 13 22:13:45 2026] [drm:amdgpu_device_init [amdgpu]] *ERROR* hw_init of IP block <gfx_v10_0> failed -110
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu_device_ip_init failed
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Fr Mär 13 22:13:45 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Fr Mär 13 22:13:45 2026] amdgpu: probe of 0000:03:00.0 failed with error -110
+[Fr Mär 13 22:13:45 2026] [drm] amdgpu: ttm finalized

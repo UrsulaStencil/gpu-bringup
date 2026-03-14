@@ -1,0 +1,28 @@
+[Sa Mär 14 03:03:29 2026] [drm] amdgpu kernel modesetting enabled.
+[Sa Mär 14 03:03:29 2026] [drm] initializing kernel modesetting (BEIGE_GOBY 0x1002:0x743F 0x1462:0x5082 0xC7).
+[Sa Mär 14 03:03:29 2026] [drm] register mmio base: 0xF0200000
+[Sa Mär 14 03:03:29 2026] [drm] register mmio size: 1048576
+[Sa Mär 14 03:03:29 2026] [drm] add ip block number 0 <nv_common>
+[Sa Mär 14 03:03:29 2026] [drm] add ip block number 1 <gmc_v10_0>
+[Sa Mär 14 03:03:29 2026] [drm] add ip block number 2 <navi10_ih>
+[Sa Mär 14 03:03:29 2026] [drm] add ip block number 3 <psp>
+[Sa Mär 14 03:03:29 2026] [drm] add ip block number 4 <smu>
+[Sa Mär 14 03:03:29 2026] [drm] add ip block number 5 <gfx_v10_0>
+[Sa Mär 14 03:03:29 2026] [drm] add ip block number 6 <sdma_v5_2>
+[Sa Mär 14 03:03:29 2026] [drm] add ip block number 7 <vcn_v3_0>
+[Sa Mär 14 03:03:29 2026] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from ROM BAR
+[Sa Mär 14 03:03:29 2026] amdgpu: ATOM BIOS: 113-V508AERO-0OC
+[Sa Mär 14 03:03:29 2026] [drm] VCN(0) decode is enabled in VM mode
+[Sa Mär 14 03:03:29 2026] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
+[Sa Mär 14 03:03:29 2026] amdgpu 0000:03:00.0: amdgpu: PCIE atomic ops is not supported
+[Sa Mär 14 03:03:29 2026] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+[Sa Mär 14 03:03:29 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+[Sa Mär 14 03:03:33 2026] amdgpu 0000:03:00.0: amdgpu: SMU: I'm not done with your previous command: SMN_C2PMSG_66:0x00000002 SMN_C2PMSG_82:0x00000000
+[Sa Mär 14 03:03:33 2026] amdgpu 0000:03:00.0: amdgpu: GPU psp mode1 reset
+[Sa Mär 14 03:03:53 2026] [drm:psp_v11_0_wait_for_ext.constprop.0.isra.0 [amdgpu]] *ERROR* psp wait timeout: reg=0x16080 val=0x00030000 expect=0x80000000 mask=0x8000ffff changed=0 timeout_us=10000000
+[Sa Mär 14 03:03:53 2026] [drm] psp is not working correctly before mode1 reset!
+[Sa Mär 14 03:03:53 2026] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset failed
+[Sa Mär 14 03:03:53 2026] amdgpu 0000:03:00.0: amdgpu: asic reset on init failed
+[Sa Mär 14 03:03:53 2026] amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+[Sa Mär 14 03:03:53 2026] amdgpu 0000:03:00.0: amdgpu: amdgpu: finishing device.
+[Sa Mär 14 03:03:53 2026] amdgpu: probe of 0000:03:00.0 failed with error -22

@@ -1,0 +1,25 @@
+1067:		pcie30phy {
+1069:			pcie30phy-pins {
+4296:		max-link-speed = <0x02>;
+4299:		reset-gpios = <0xfc 0x05 0x00>;
+4300:		num-lanes = <0x01>;
+7125:		max-link-speed = <0x02>;
+7128:		reset-gpios = <0x105 0x0b 0x00>;
+7129:		num-lanes = <0x01>;
+7214:			reset-gpios = <0x115 0x14 0x00>;
+7241:			reset-gpios = <0x115 0x14 0x00>;
+8326:	pcie@fe150000 {
+8341:		max-link-speed = <0x03>;
+8344:		reset-gpios = <0xfc 0x0e 0x00>;
+8345:		num-lanes = <0x04>;
+8977:		max-link-speed = <0x02>;
+8980:		reset-gpios = <0xfc 0x02 0x00>;
+8981:		num-lanes = <0x01>;
+10922:		pcie30phy = "/phy@fee80000";
+10980:		pcie30phy_pins = "/pinctrl/pcie30phy/pcie30phy-pins";
+11160:		pcie3x4_intc = "/pcie@fe150000/legacy-interrupt-controller";
+11596:		vcc3v3_pcie30 = "/vcc3v3-pcie30";
+11816:		pcie3x4 = "/pcie@fe150000";
+12079:		max-link-speed = <0x03>;
+12082:		num-lanes = <0x02>;
+13061:		regulator-name = "vcc3v3_pcie30";

@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+if [ -x /usr/local/sbin/armbian-fdt-sanity.sh ]; then
+	/usr/local/sbin/armbian-fdt-sanity.sh || true
+fi

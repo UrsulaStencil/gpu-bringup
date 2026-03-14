@@ -1,0 +1,47 @@
+From 7bd51f2e23d7bc6c5e5f2e1939f4c3a362223dd4 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:05:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 log ring timeout register state
+
+RK3588 bring-up currently fails in `gfx_v10_0` with ring test `-110`.
+Add focused timeout diagnostics in `gfx_v10_0_ring_test_ring()` so each
+failure captures scratch/rptr/wptr/GRBM state in dmesg.
+
+This is a diagnostics-only change for narrowing the remaining blocker.
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index db0fdd38f3e2..20e93e9704fb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -3806,8 +3806,22 @@ static int gfx_v10_0_ring_test_ring(struct amdgpu_ring *ring)
+ 			udelay(1);
+ 	}
+ 
+-	if (i >= adev->usec_timeout)
++	if (i >= adev->usec_timeout) {
++		uint32_t grbm_status = RREG32_SOC15(GC, 0, mmGRBM_STATUS);
++		uint32_t grbm_status2 = RREG32_SOC15(GC, 0, mmGRBM_STATUS2);
++		uint64_t rptr = amdgpu_ring_get_rptr(ring);
++		uint64_t wptr = amdgpu_ring_get_wptr(ring);
++
++		DRM_ERROR("gfx ring test timeout: ring=%s idx=%d scratch=0x%08x expected=0xDEADBEEF\n",
++			  ring->name, ring->idx, tmp);
++		DRM_ERROR("gfx ring state: rptr=0x%llx wptr=0x%llx sw_wptr=0x%llx usec_timeout=%u\n",
++			  (unsigned long long)rptr,
++			  (unsigned long long)wptr,
++			  (unsigned long long)ring->wptr,
++			  adev->usec_timeout);
++		DRM_ERROR("gfx ring status: GRBM_STATUS=0x%08x GRBM_STATUS2=0x%08x\n",
++			  grbm_status, grbm_status2);
+ 		r = -ETIMEDOUT;
++	}
+ 
+ 	return r;
+ }
+-- 
+2.43.0
+

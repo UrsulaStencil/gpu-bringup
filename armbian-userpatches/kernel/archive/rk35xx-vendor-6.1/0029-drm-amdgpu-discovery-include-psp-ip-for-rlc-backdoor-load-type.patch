@@ -1,0 +1,30 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: RK3588 AMDGPU Bringup <noreply@example.com>
+Date: Fri, 13 Mar 2026 22:40:00 +0100
+Subject: [PATCH] drm/amdgpu/discovery: include PSP IP block for RLC backdoor
+ load type
+
+On gfx_v10, the RLC backdoor path consumes `adev->psp.toc`. If discovery skips
+PSP IP initialization for `AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO`, TOC remains empty
+and autoload cannot start.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 55b7b3a70444..0f5e2e3a147d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -2381,7 +2381,8 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
+ 			if (r)
+ 				return r;
+ 
+-			if (likely(adev->firmware.load_type == AMDGPU_FW_LOAD_PSP)) {
++			if (likely(adev->firmware.load_type == AMDGPU_FW_LOAD_PSP ||
++				   adev->firmware.load_type == AMDGPU_FW_LOAD_RLC_BACKDOOR_AUTO)) {
+ 				r = amdgpu_discovery_set_psp_ip_blocks(adev);
+ 				if (r)
+ 					return r;
+-- 
+2.43.0
+

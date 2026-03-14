@@ -1,0 +1,37 @@
+From b116a06df4a0337d8566ae44479e30c2b2ad3529 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:47:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 set RB_EXE in CP_RB{0,1}_CNTL during resume
+
+RK3588 timeout diagnostics show CP ring pointers not advancing while
+`CP_RB0_CNTL` lacks `RB_EXE`. Set `RB_EXE=1` when programming RB0/RB1
+control registers in `gfx_v10_0_cp_gfx_resume()` to ensure execute state
+is explicit during bring-up.
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index ec4dfe6b0057..48a2df9533eb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -6210,6 +6210,7 @@ static int gfx_v10_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 	rb_bufsz = order_base_2(ring->ring_size / 8);
+ 	tmp = REG_SET_FIELD(0, CP_RB0_CNTL, RB_BUFSZ, rb_bufsz);
+ 	tmp = REG_SET_FIELD(tmp, CP_RB0_CNTL, RB_BLKSZ, rb_bufsz - 2);
++	tmp = REG_SET_FIELD(tmp, CP_RB0_CNTL, RB_EXE, 1);
+ #ifdef __BIG_ENDIAN
+ 	tmp = REG_SET_FIELD(tmp, CP_RB0_CNTL, BUF_SWAP, 1);
+ #endif
+@@ -6253,6 +6254,7 @@ static int gfx_v10_0_cp_gfx_resume(struct amdgpu_device *adev)
+ 		rb_bufsz = order_base_2(ring->ring_size / 8);
+ 		tmp = REG_SET_FIELD(0, CP_RB1_CNTL, RB_BUFSZ, rb_bufsz);
+ 		tmp = REG_SET_FIELD(tmp, CP_RB1_CNTL, RB_BLKSZ, rb_bufsz - 2);
++		tmp = REG_SET_FIELD(tmp, CP_RB1_CNTL, RB_EXE, 1);
+ 		WREG32_SOC15(GC, 0, mmCP_RB1_CNTL, tmp);
+ 		/* Initialize the ring buffer's write pointers */
+ 		ring->wptr = 0;
+-- 
+2.43.0
+

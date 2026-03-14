@@ -1,0 +1,67 @@
+From 4576b4740bafebe5b775ec528a95bf1f89f88e9d Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Wed, 11 Mar 2026 11:18:00 +0100
+Subject: [PATCH] drm/amdgpu: honor reset_method on init and allow soc21 PCI
+ reset
+
+RK3588 eGPU bring-up needs controlled reset-method experiments. The vendor
+tree currently forces reset method NONE during init-reset, so explicit module
+parameter choices are ignored. Also soc21 rejects AMD_RESET_METHOD_PCI even
+though the backend reset switch already supports it.
+
+Keep explicit reset_method selection during init-reset and accept PCI as a
+valid soc21 reset method.
+
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 10 ++--------
+ drivers/gpu/drm/amd/amdgpu/soc21.c         |  3 ++-
+ 2 files changed, 4 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 18f4f496f8f8..365fd862282a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -3584,7 +3584,6 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 	int r, i;
+ 	bool px = false;
+ 	u32 max_MBps;
+-	int tmp;
+ 
+ 	adev->shutdown = false;
+ 	adev->flags = flags;
+@@ -3813,13 +3812,10 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 					adev->ip_blocks[i].status.hw = true;
+ 				}
+ 			}
+-		} else {
+-			tmp = amdgpu_reset_method;
+-			/* It should do a default reset when loading or reloading the driver,
+-			 * regardless of the module parameter reset_method.
+-			 */
+-			amdgpu_reset_method = AMD_RESET_METHOD_NONE;
++		} else {
++			/* Keep explicit reset_method for bring-up experiments.
++			 * Auto mode (-1) still resolves via ASIC defaults.
++			 */
+ 			r = amdgpu_asic_reset(adev);
+-			amdgpu_reset_method = tmp;
+ 			if (r) {
+ 				dev_err(adev->dev, "asic reset on init failed\n");
+ 				goto failed;
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
+index c98c76520498..d8e1fa92b04c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc21.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
+@@ -349,7 +349,8 @@ soc21_asic_reset_method(struct amdgpu_device *adev)
+ {
+ 	if (amdgpu_reset_method == AMD_RESET_METHOD_MODE1 ||
+ 	    amdgpu_reset_method == AMD_RESET_METHOD_MODE2 ||
+-	    amdgpu_reset_method == AMD_RESET_METHOD_BACO)
++	    amdgpu_reset_method == AMD_RESET_METHOD_BACO ||
++	    amdgpu_reset_method == AMD_RESET_METHOD_PCI)
+ 		return amdgpu_reset_method;
+ 
+ 	if (amdgpu_reset_method != -1)
+-- 
+2.43.0
+

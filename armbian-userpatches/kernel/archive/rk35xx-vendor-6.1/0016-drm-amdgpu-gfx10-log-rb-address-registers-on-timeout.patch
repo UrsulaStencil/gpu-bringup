@@ -1,0 +1,55 @@
+From 5edabf60aeaf4b5d5ff329de1d02e6cf108ed7f0 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.local>
+Date: Fri, 13 Mar 2026 17:49:00 +0100
+Subject: [PATCH] drm/amdgpu: gfx10 log RB address registers on timeout
+
+Add RB address diagnostics to timeout path in `gfx_v10_0_ring_test_ring()`
+to validate address programming and DMA reachability assumptions on RK3588.
+
+Logs include:
+- CP_RB0_BASE/HI
+- CP_RB0_RPTR_ADDR/HI
+- CP_RB_WPTR_POLL_ADDR_LO/HI
+- software-side ring/rptr/wptr GPU addresses
+
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 48a2df9533eb..e1be6dc20d80 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -3818,9 +3818,15 @@ static int gfx_v10_0_ring_test_ring(struct amdgpu_ring *ring)
+ 		uint32_t cp_stat = RREG32_SOC15(GC, 0, mmCP_STAT);
+ 		uint32_t cp_me_cntl = RREG32_SOC15(GC, 0, mmCP_ME_CNTL);
+ 		uint32_t rb0_cntl = RREG32_SOC15(GC, 0, mmCP_RB0_CNTL);
++		uint32_t rb0_base = RREG32_SOC15(GC, 0, mmCP_RB0_BASE);
++		uint32_t rb0_base_hi = RREG32_SOC15(GC, 0, mmCP_RB0_BASE_HI);
+ 		uint32_t rb0_rptr = RREG32_SOC15(GC, 0, mmCP_RB0_RPTR);
++		uint32_t rb0_rptr_addr = RREG32_SOC15(GC, 0, mmCP_RB0_RPTR_ADDR);
++		uint32_t rb0_rptr_addr_hi = RREG32_SOC15(GC, 0, mmCP_RB0_RPTR_ADDR_HI);
+ 		uint32_t rb0_wptr = RREG32_SOC15(GC, 0, mmCP_RB0_WPTR);
+ 		uint32_t rb0_wptr_hi = RREG32_SOC15(GC, 0, mmCP_RB0_WPTR_HI);
+ 		uint32_t rb_wptr_poll_cntl = RREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_CNTL);
++		uint32_t rb_wptr_poll_addr_lo = RREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_LO);
++		uint32_t rb_wptr_poll_addr_hi = RREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_ADDR_HI);
+ 		uint64_t rptr = amdgpu_ring_get_rptr(ring);
+ 		uint64_t wptr = amdgpu_ring_get_wptr(ring);
+@@ -3839,6 +3845,16 @@ static int gfx_v10_0_ring_test_ring(struct amdgpu_ring *ring)
+ 			  cp_me_cntl, cp_stat, rb0_cntl);
+ 		DRM_ERROR("gfx rb0 ptrs: CP_RB0_RPTR=0x%08x CP_RB0_WPTR=0x%08x CP_RB0_WPTR_HI=0x%08x CP_RB_WPTR_POLL_CNTL=0x%08x\n",
+ 			  rb0_rptr, rb0_wptr, rb0_wptr_hi, rb_wptr_poll_cntl);
++		DRM_ERROR("gfx rb0 addr regs: BASE=0x%08x BASE_HI=0x%08x RPTR_ADDR=0x%08x RPTR_ADDR_HI=0x%08x WPTR_POLL_ADDR_LO=0x%08x WPTR_POLL_ADDR_HI=0x%08x\n",
++			  rb0_base, rb0_base_hi, rb0_rptr_addr, rb0_rptr_addr_hi,
++			  rb_wptr_poll_addr_lo, rb_wptr_poll_addr_hi);
++		DRM_ERROR("gfx rb0 sw addrs: ring->gpu_addr=0x%llx rptr_gpu_addr=0x%llx wptr_gpu_addr=0x%llx\n",
++			  (unsigned long long)ring->gpu_addr,
++			  (unsigned long long)ring->rptr_gpu_addr,
++			  (unsigned long long)ring->wptr_gpu_addr);
+ 		r = -ETIMEDOUT;
+ 	}
+ 
+-- 
+2.43.0
+
